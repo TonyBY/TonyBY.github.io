@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Isaac Changhau</title>
+    <link>https://isaacchanghau.github.io/post/</link>
+    <description>Recent content in Posts on Isaac Changhau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017-2018</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://isaacchanghau.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Variational Autoencoders Explained</title>
+      <link>https://isaacchanghau.github.io/post/vae_explained/</link>
+      <pubDate>Fri, 27 Jul 2018 14:20:36 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/vae_explained/</guid>
+      <description>Explanation of variational autoencoders.</description>
+    </item>
+    
+    <item>
+      <title>Introduction of TensorFlow Dataset API</title>
+      <link>https://isaacchanghau.github.io/post/tensorflow_dataset_api/</link>
+      <pubDate>Wed, 21 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/tensorflow_dataset_api/</guid>
+      <description>An introduction of TensorFlow dataset API.</description>
+    </item>
+    
+    <item>
+      <title>TensorFlow Updates Multiple Tensors Using Scan</title>
+      <link>https://isaacchanghau.github.io/post/tensorflow_scan/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/tensorflow_scan/</guid>
+      <description>Tutorial about how to update multiple tensors using tensorflow scan function.</description>
+    </item>
+    
+    <item>
+      <title>Useful Tricks for Operating Mac OS and Linux (Ubuntu)</title>
+      <link>https://isaacchanghau.github.io/post/useful_commands/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/useful_commands/</guid>
+      <description>Some useful commands and tips to raise efficiency under Mac OS and Linux, keep updating!</description>
+    </item>
+    
+    <item>
+      <title>PTransE -- Modeling Relation Paths for Representation Learning of Knowledge Bases</title>
+      <link>https://isaacchanghau.github.io/post/ptranse/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ptranse/</guid>
+      <description>An efficient and advanced deep learning approach to learn relational representation.</description>
+    </item>
+    
+    <item>
+      <title>TransX: Embedding Entities and Relationships of Multi-relational Data</title>
+      <link>https://isaacchanghau.github.io/post/transx/</link>
+      <pubDate>Thu, 14 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/transx/</guid>
+      <description>Summarization of several similar algorithms to learn relational representation.</description>
+    </item>
+    
+    <item>
+      <title>Analyzing Wolf Warrior II Movie Comments using Python</title>
+      <link>https://isaacchanghau.github.io/post/wolf_warrior/</link>
+      <pubDate>Mon, 11 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/wolf_warrior/</guid>
+      <description>Tutorial to analyze 170000+ movie comments of Wolf Warrior II from Douban website.</description>
+    </item>
+    
+    <item>
+      <title>Analyzing Your Friends Information in WeChat using Python</title>
+      <link>https://isaacchanghau.github.io/post/wechat_analysis/</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/wechat_analysis/</guid>
+      <description>Tutorial to analyze your friends information in WeChat using python itchat toolkit.</description>
+    </item>
+    
+    <item>
+      <title>Autoencoder and Sparsity</title>
+      <link>https://isaacchanghau.github.io/post/autoencoder_and_sparsity/</link>
+      <pubDate>Sat, 19 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/autoencoder_and_sparsity/</guid>
+      <description>Mathematical reasoning of autoencoder and its back-propagation.</description>
+    </item>
+    
+    <item>
+      <title>Backpropagation in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/backpropagation/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/backpropagation/</guid>
+      <description>Mathematical derivation of backpropagation</description>
+    </item>
+    
+    <item>
+      <title>Beam Search Algorithms in Sequence to Sequence</title>
+      <link>https://isaacchanghau.github.io/post/beam_search/</link>
+      <pubDate>Thu, 10 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/beam_search/</guid>
+      <description>Introduction of beam search algorithms in sequence to seqeunce framework.</description>
+    </item>
+    
+    <item>
+      <title>Seq2Seq Learning and Neural Conversational Model</title>
+      <link>https://isaacchanghau.github.io/post/seq2seq_conversation/</link>
+      <pubDate>Wed, 02 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/seq2seq_conversation/</guid>
+      <description>Introduction of sequence to sequence learning and its application in conversation generation.</description>
+    </item>
+    
+    <item>
+      <title>Plain Stock Price Prediction via LSTM</title>
+      <link>https://isaacchanghau.github.io/post/stock_price_predict/</link>
+      <pubDate>Wed, 26 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/stock_price_predict/</guid>
+      <description>Stock price prediction using recurrent neural network with LSTM unit.</description>
+    </item>
+    
+    <item>
+      <title>LSTM and GRU -- Formula Summary</title>
+      <link>https://isaacchanghau.github.io/post/lstm-gru-formula/</link>
+      <pubDate>Sat, 22 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/lstm-gru-formula/</guid>
+      <description>Brief summarization of LSTM and GRU in recurrent neural networks.</description>
+    </item>
+    
+    <item>
+      <title>Neural Responding Machine for Short-Text Conversation -- Summary</title>
+      <link>https://isaacchanghau.github.io/post/neural_responding_machine/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/neural_responding_machine/</guid>
+      <description>A simple conversation system using seq2seq encoder-decoder framework with attention mechanism.</description>
+    </item>
+    
+    <item>
+      <title>Singapore, Two Years</title>
+      <link>https://isaacchanghau.github.io/post/singapore_two_years/</link>
+      <pubDate>Fri, 14 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/singapore_two_years/</guid>
+      <description>Perception of life.</description>
+    </item>
+    
+    <item>
+      <title>House Prices Advanced Regression Techniques -- Modeling and Prediction</title>
+      <link>https://isaacchanghau.github.io/post/house_price_modeling/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/house_price_modeling/</guid>
+      <description>A practice to build machine learning model to predict house price trends, following the post: House Prices Advanced Regression Techniques &amp;ndash; Data Analysis</description>
+    </item>
+    
+    <item>
+      <title>House Prices Advanced Regression Techniques -- Data Analysis</title>
+      <link>https://isaacchanghau.github.io/post/house_price_data_analysis/</link>
+      <pubDate>Sat, 08 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/house_price_data_analysis/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques&#34; target=&#34;_blank&#34;&gt;House Prices: Advanced Regression Techniques&lt;/a&gt; is a &lt;a href=&#34;https://www.kaggle.com/&#34; target=&#34;_blank&#34;&gt;kaggle&lt;/a&gt; competition to predict the house prices, which aims to practice feature engineering, RFs, and gradient boosting.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark Installation on Mac OS X</title>
+      <link>https://isaacchanghau.github.io/post/install_spark_mac/</link>
+      <pubDate>Wed, 28 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/install_spark_mac/</guid>
+      <description>&lt;p&gt;It is an introduction of Spark installation under localhost mode. Generally, Spark is available for&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hadoop Installation on Mac OS X</title>
+      <link>https://isaacchanghau.github.io/post/install_hadoop_mac/</link>
+      <pubDate>Tue, 27 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/install_hadoop_mac/</guid>
+      <description>Tutorial about installing Hadoop and related packages on Mac OS X.</description>
+    </item>
+    
+    <item>
+      <title>Install XGBoost on Mac OS X</title>
+      <link>https://isaacchanghau.github.io/post/install_xgboost_mac/</link>
+      <pubDate>Tue, 20 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/install_xgboost_mac/</guid>
+      <description>Tutorial about installing XGBoost toolkit on Mac OS X.</description>
+    </item>
+    
+    <item>
+      <title>Mathematical Derivation of Covariance Matrix</title>
+      <link>https://isaacchanghau.github.io/post/covariance_derivation/</link>
+      <pubDate>Sat, 17 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/covariance_derivation/</guid>
+      <description>Mathematical reasoning of convariance matrix and its derivation.</description>
+    </item>
+    
+    <item>
+      <title>Understanding LSTM Networks</title>
+      <link>https://isaacchanghau.github.io/post/understand_lstm/</link>
+      <pubDate>Tue, 13 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/understand_lstm/</guid>
+      <description>A detailed introduction of LSTM networks, reprinted from colah&amp;rsquo;s blog.</description>
+    </item>
+    
+    <item>
+      <title>Loss Functions in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/loss_functions/</link>
+      <pubDate>Wed, 07 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/loss_functions/</guid>
+      <description>Summarization of several commonly-used loss functions in neural networks</description>
+    </item>
+    
+    <item>
+      <title>Parameter Update Methods in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/parameters_update/</link>
+      <pubDate>Mon, 29 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/parameters_update/</guid>
+      <description>Summarization of several commonly-used parameter update methods in neural network.</description>
+    </item>
+    
+    <item>
+      <title>Weight Initialization Methods in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/weight_initialization/</link>
+      <pubDate>Wed, 24 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/weight_initialization/</guid>
+      <description>&lt;p&gt;This is a summary of weight initialization in aritifical neural networks.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Activation Functions in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/activation_functions/</link>
+      <pubDate>Mon, 22 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/activation_functions/</guid>
+      <description>Summarization of several commonly-used activation functions in neural networks.</description>
+    </item>
+    
+    <item>
+      <title>Machine Learning Note (4): Ensemble Learning</title>
+      <link>https://isaacchanghau.github.io/post/ml_zzh_note_4/</link>
+      <pubDate>Thu, 18 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ml_zzh_note_4/</guid>
+      <description>Machine learning note: ensemble learning.</description>
+    </item>
+    
+    <item>
+      <title>Word2Vecf -- Dependency-Based Word Embeddings and Lexical Substitute</title>
+      <link>https://isaacchanghau.github.io/post/word2vecf/</link>
+      <pubDate>Thu, 18 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/word2vecf/</guid>
+      <description>Summarization of dependency-based word embeddings algorithms and its application in lexical substitution.</description>
+    </item>
+    
+    <item>
+      <title>Machine Learning Note (3): Support Vector Machine</title>
+      <link>https://isaacchanghau.github.io/post/ml_zzh_note_3/</link>
+      <pubDate>Tue, 16 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ml_zzh_note_3/</guid>
+      <description>Machine learning Note: support vector machine.</description>
+    </item>
+    
+    <item>
+      <title>Word2Vec -- Mathematical Principles and Java Implementation</title>
+      <link>https://isaacchanghau.github.io/post/word2vec/</link>
+      <pubDate>Sat, 13 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/word2vec/</guid>
+      <description>Summarization of word2vec algorithms, mathematical principles and its implementation.</description>
+    </item>
+    
+    <item>
+      <title>Machine Learning Note (2): Linear Regression</title>
+      <link>https://isaacchanghau.github.io/post/ml_zzh_note_2/</link>
+      <pubDate>Thu, 04 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ml_zzh_note_2/</guid>
+      <description>Machine learning note: linear regression.</description>
+    </item>
+    
+    <item>
+      <title>Machine Learning Note (1): Model Evaluation and Selection</title>
+      <link>https://isaacchanghau.github.io/post/ml_zzh_note_1/</link>
+      <pubDate>Fri, 28 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ml_zzh_note_1/</guid>
+      <description>Machine learning note: model evaluation and selection.</description>
+    </item>
+    
+    <item>
+      <title>Removing Backscatter to Enhance the Visibility of Underwater Object</title>
+      <link>https://isaacchanghau.github.io/post/removing_backscatter/</link>
+      <pubDate>Thu, 20 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/removing_backscatter/</guid>
+      <description>A novel method based on underwater optical model for underwater object visibility enhancement and its implementation.</description>
+    </item>
+    
+    <item>
+      <title>Underwater Image Enhance via Fusion and Its Java Implementation</title>
+      <link>https://isaacchanghau.github.io/post/underwater_image_fusion/</link>
+      <pubDate>Sat, 15 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/underwater_image_fusion/</guid>
+      <description>Restoring underwater images and videos via fusion technique and its Java implementation.</description>
+    </item>
+    
+    <item>
+      <title>Adaptive Local Tone Mapping Technique for HDR Image and Java Implementation</title>
+      <link>https://isaacchanghau.github.io/post/altm/</link>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/altm/</guid>
+      <description>Image enhancement approach via adaptive local tone mapping and its Java implementation.</description>
+    </item>
+    
+    <item>
+      <title>Installation of OpenCV for Java</title>
+      <link>https://isaacchanghau.github.io/post/install_opencv_java/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/install_opencv_java/</guid>
+      <description>Tutorial about installing OpenCV toolkit for Java.</description>
+    </item>
+    
+    <item>
+      <title>MacOS Dictionary Application Extension</title>
+      <link>https://isaacchanghau.github.io/post/mac_dict_extension/</link>
+      <pubDate>Mon, 03 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/mac_dict_extension/</guid>
+      <description>Tutorial about extending the source of builtin dictionary application in Mac OS.</description>
+    </item>
+    
+    <item>
+      <title>Configure BitBucket Git Repository in Eclipse</title>
+      <link>https://isaacchanghau.github.io/post/config_git_eclipse/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/config_git_eclipse/</guid>
+      <description>&lt;p&gt;Bitbucket is a distributed version control system (DVCS) code hosting site that supports Mercurial and Git.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Skiing In Singapore</title>
+      <link>https://isaacchanghau.github.io/post/skiing_in_singapore/</link>
+      <pubDate>Thu, 30 Mar 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/skiing_in_singapore/</guid>
+      <description>A simple programming practice using depth-first search algorithm.</description>
+    </item>
+    
+  </channel>
+</rss>

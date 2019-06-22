@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Restoring underwater images and videos via fusion technique and its Java implementation.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/underwater_image_fusion/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/underwater_image_fusion/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/underwater_image_fusion/">
+  <meta property="og:title" content="Underwater Image Enhance via Fusion and Its Java Implementation | Isaac Changhau">
+  <meta property="og:description" content="Restoring underwater images and videos via fusion technique and its Java implementation.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-04-15T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-04-15T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>Underwater Image Enhance via Fusion and Its Java Implementation | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Underwater Image Enhance via Fusion and Its Java Implementation</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-04-15 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Sat, Apr 15, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    13 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>This paper &ldquo;Enhancing Underwater Images and Videos by Fusion&rdquo;, published by <em>Ancuti et al.</em> on <a href="https://en.wikipedia.org/wiki/Conference_on_Computer_Vision_and_Pattern_Recognition" target="_blank">CVPR</a>, describes a novel strategy, built on the fusion principles, to enhance underwater videos and images. Here I implement this algorithm by Java, and summerize the main idea in this paper.</p>
+
+<h1 id="general-schema">General Schema</h1>
+
+<p>The enhancing approach starts from a single distorted underwater image, first of all, applying white balance to this image to generate the first input of fusion process, denotes as $img_{1}$, and applying a temporal coherent noise reduction method to this $img_{1}$ to derive another input of fusion process, denotes as $img_{2}$; then, obtaining the weights of these two inputs, where Laplacian contrast weight ($W_{L}$), local contrast weight ($W_{LC}$), Saliency weight ($W_{S}$) and exposedness weight ($W_{E}$) are used in this process; finally, the multi-scale fusion process is applied to generate the restored image.
+<img src="/img/imageprocessing/imagefusion/schema.png" alt="Schema" /></p>
+
+<h1 id="fusion-materials-generation">Fusion Materials Generation</h1>
+
+<p>The general idea of this fusion process is that the processed result, combines several input images by preserving only the most significant features of them. Here, the author choose to use two inputs, and the enhancing solution does not search to derive the inputs based on the physical model of the scene, only aims for a fast and simple technique that works generally. The first derived input is represented by the color corrected version of the image while the second is computed as a contrast enhanced version of the underwater image after a noise reduction operation is performed.</p>
+
+<h2 id="white-balance">White Balance</h2>
+
+<p>White balancing aims to enhance the image appearance by discarding unwanted color casts, due to various illuminants. Since, for underwater images, different components of light suffer from different degree of attenuation. In water deeper than $30ft$, white balancing suffers from noticeable effects since the absorbed colors are difficult to be restored. Additionally, underwater scenes present significant lack of contrast due to the poor light propagation in this type of medium. To deal with this problem, the author intorduces a modified balancing method according to <a href="https://en.wikipedia.org/wiki/Grayscale" target="_blank">Shades-of-Grey</a> hypothesis, where  the illumination is estimated by the value $\mu_{I}$ that is computed from the average of the scene $\mu_{ref}$ and adjusted by the parameter $\lambda$:
+$$
+\mu_{I}=0.5+\lambda\cdot\mu_{ref}
+$$
+The average color $\mu_{ref}$ is used to estimate the illuminant color and can be obtained based on <a href="https://en.wikipedia.org/wiki/Lp_space#The_p-norm_in_finite_dimensions" target="_blank">Minkowski norm</a> when $p=1$. Practically, the first input is computed by this straightforward white balancing operation. Since the white balancing solely is not able to solve the problem of visibility, thus, an additional input is required in order to enhance the contrast of the degraded image.</p>
+
+<p>To implement the color balance, I found that among different methods (including the method provided by the author), the <a href="http://www.ipol.im/pub/art/2011/llmps-scb/" target="_blank">Simplest Color Balance</a>, which performs color balancing via histogram bormalization, is a better way to handle such process, since it is fast and the restoring performance is better. Below is the Java codes I implemented for the Simplest Color Balance:</p>
+
+<pre><code class="language-java">/**
+ * Simplest Color Balance. Performs color balancing via histogram normalization.
+ * @param img input color or gray scale image
+ * @param percent controls the percentage of pixels to clip to white and black. (normally, choose 1~10)
+ * @return Balanced image in CvType.CV_32F
+ */
+public static Mat SimplestColorBalance(Mat img, int percent) {
+    if (percent &lt;= 0) percent = 5;
+    img.convertTo(img, CvType.CV_32F);
+    List&lt;Mat&gt; channels = new ArrayList&lt;Mat&gt;();
+    int rows = img.rows(); // number of rows of image
+    int cols = img.cols(); // number of columns of image
+    int chnls = img.channels(); //  number of channels of image
+    double halfPercent = percent / 200.0;
+    if (chnls == 3) { Core.split(img, channels); }
+    else { channels.add(img); }
+    List&lt;Mat&gt; results = new ArrayList&lt;Mat&gt;();
+    for (int i = 0; i &lt; chnls; i++) {
+        // find the low and high precentile values (based on the input percentile)
+        Mat flat = new Mat();
+        channels.get(i).reshape(1, 1).copyTo(flat);
+        Core.sort(flat, flat, Core.SORT_ASCENDING);
+        double lowVal = flat.get(0, (int) Math.floor(flat.cols() * halfPercent))[0];
+        double topVal = flat.get(0, (int) Math.ceil(flat.cols() * (1.0 - halfPercent)))[0];
+        // saturate below the low percentile and above the high percentile
+        Mat channel = channels.get(i);
+        for (int m = 0; m &lt; rows; m++) {
+            for (int n = 0; n &lt; cols; n++) {
+                if (channel.get(m, n)[0] &lt; lowVal) channel.put(m, n, lowVal);
+                if (channel.get(m, n)[0] &gt; topVal) channel.put(m, n, topVal);
+            }
+        }
+        Core.normalize(channel, channel, 0, 255, Core.NORM_MINMAX);
+        channel.convertTo(channel, CvType.CV_32F);
+        results.add(channel);
+    }
+    Mat outval = new Mat();
+    Core.merge(results, outval);
+    return outval;
+}
+</code></pre>
+
+<h2 id="temporal-coherent-noise-reduction">Temporal Coherent Noise Reduction</h2>
+
+<p>The temporal coherent noise reduction process is introduced, since underwater images are noisy due to the impurities and the special illumination conditions. To remove noise while preserve edges (for videos, also need to take both spatial and temporal coherence into consideration), The bilateral filter is commonly used, by considering the domain $\Omega$ of the spatial filter kernel $f$ (Gaussian with standard deviation $\sigma_{f}$), the bilateral filter blends the center pixel $s$ of the kernel with the neighboring pixels $p$ that are similar to $s$:
+$$
+J_{s}=\frac{1}{k(s)}\sum_{p\in\Omega}f\big(p-s,\sigma_{f}\big)\cdot g\big(D(p,s),\sigma_{g}\big)\cdot I_{p}
+$$
+where $D(p,s)=I_{p}-I_{s}$ is the difference in intensities, the normailization term
+$$
+k(s)=\sum_{p\in\Omega}f\big(p-s,\sigma_{f}\big)\cdot g\big(D(p,s),\sigma_{g}\big)
+$$
+$g$ is the range kernel that is a Gaussian with standard deviation $\sigma_{g}$ that penalizes pixels across edges that have large intensity differences. However, the bilateral filter does not guarantee the preservation of the temporal coherence for videos, thus, the author proposed a temporal bilateral filter,which instead of comparing the intensities as $D(p,s)=I_{p}-I_{s}$ directly, they compute the sum of squared differences between small spatial neighborhood $\Psi$ around $s$ and $p$ weighted by a Gaussian $\Gamma(x,y)$:
+$$
+D(p,s)=\sum_{x}^{\Psi}\sum_{y}^{\Psi}\Gamma(x,y)(I_{p}-I_{s})^{2}
+$$
+Typically, the size of neighborhood $\Psi$ is $3\times 3$ or $5\times 5$. Practically, the second input is computed from the noise-free and color corrected version of the original image. This input is designed in order to reduce the degradation due to volume scattering. To achieve an optimal contrast level of the image, the second input is obtained by applying the classical contrast local adaptive histogram equalization. And the Java Implementation is shown below:</p>
+
+<pre><code class="language-java">// color balance
+Mat img1 = ColorBalance.SimplestColorBalance(image, 5);
+img1.convertTo(img1, CvType.CV_8UC1);
+// Perform sRGB to CIE Lab color space conversion
+Mat LabIm1 = new Mat();
+Imgproc.cvtColor(img1, LabIm1, Imgproc.COLOR_BGR2Lab);
+Mat L1 = new Mat();
+Core.extractChannel(LabIm1, L1, 0);
+// apply CLAHE
+Mat[] result = applyCLAHE(LabIm1, L1);
+Mat img2 = result[0];
+Mat L2 = result[1];
+</code></pre>
+
+<p>where <code>applyCLAHE</code> is implemented as:</p>
+
+<pre><code class="language-java">public static Mat[] applyCLAHE(Mat img, Mat L) {
+    Mat[] result = new Mat[2];
+    CLAHE clahe = Imgproc.createCLAHE();
+    clahe.setClipLimit(2.0);
+    Mat L2 = new Mat();
+    clahe.apply(L, L2);
+    Mat LabIm2 = new Mat();
+    List&lt;Mat&gt; lab = new ArrayList&lt;Mat&gt;();
+    Core.split(img, lab);
+    Core.merge(new ArrayList&lt;Mat&gt;(Arrays.asList(L2, lab.get(1), lab.get(2))), LabIm2);
+    Mat img2 = new Mat();
+    Imgproc.cvtColor(LabIm2, img2, Imgproc.COLOR_Lab2BGR);
+    result[0] = img2;
+    result[1] = L2;
+    return result;
+}
+</code></pre>
+
+<h1 id="weights-of-fusion-process">Weights of Fusion Process</h1>
+
+<p>The author mentioned that the design of the weight measures needs to consider the desired appearance of the restored output. Image restoration is tightly correlated with the color appearance, and as a result the measurable values such as salient features, local and global contrast or exposedness are difficult to integrate by naive per pixel blending, without risking to introduce artifacts, thus, the fusion technique is used, which will be introduced later.
+<img src="/img/imageprocessing/imagefusion/weights.png" alt="Weights" /></p>
+
+<h2 id="laplacian-contrast-weight">Laplacian Contrast Weight</h2>
+
+<p>Laplacian contrst weight deals with global contrast by applying a Laplacian filter on each input luminance channel and computing the absolute value of the filter result.</p>
+
+<pre><code class="language-java">public static Mat LaplacianContrast(Mat img) {
+    Mat laplacian = new Mat();
+    Imgproc.Laplacian(img, laplacian, img.depth());
+    Core.convertScaleAbs(laplacian, laplacian);
+    return laplacian;
+}
+</code></pre>
+
+<p>It assigns high values to edges and texture. For the underwater restoration task, however, this weight is not sufficient to recover the contrast, mainly because it can not distinguish between a ramp and flat regions. To handle this problem, we searched for an additional contrast measurement that independently assess the local distribution.</p>
+
+<h2 id="local-contrast-weight">Local Contrast Weight</h2>
+
+<p>Local contrast weight comprises the relation between each pixel and its neighborhoods average. It is computed as the standard deviation between pixel luminance level and the local average of its surrounding region:
+$$
+W_{LC}(x,y)=\Vert I^{k}-I_{\omega_{hc}}^{k}\Vert
+$$
+where $I^{k}$ represents the luminance channel of the input and $I_{\omega_{hc}}^{k}$ denotes the low-passed version of it. This filtered version is obtained by employing a small $5\times 5$ ($\frac{1}{16}[1,4,6,4,1]$) separable binomial kernel with the high frequency cut-off value $\omega_{hc}=\frac{\pi}{2.75}$. For small kernels the binomial kernel is a good approximation of its Gaussian counterpart, and it can be computed more effectively.</p>
+
+<pre><code class="language-java">public static Mat LocalContrast(Mat img) {
+    double[] h = { 1.0 / 16.0, 4.0 / 16.0, 6.0 / 16.0, 4.0 / 16.0, 1.0 / 16.0 };
+    Mat mask = new Mat(h.length, h.length, img.type());
+    for (int i = 0; i &lt; h.length; i++) {
+        for (int j = 0; j &lt; h.length; j++) { mask.put(i, j, h[i] * h[j]); }
+    }
+    Mat localContrast = new Mat();
+    Imgproc.filter2D(img, localContrast, img.depth(), mask);
+    for (int i = 0; i &lt; localContrast.rows(); i++) {
+        for (int j = 0; j &lt; localContrast.cols(); j++) {
+            if (localContrast.get(i, j)[0] &gt; Math.PI / 2.75) localContrast.put(i, j, Math.PI / 2.75);
+        }
+    }
+    Core.subtract(img, localContrast, localContrast);
+    return localContrast.mul(localContrast);
+}
+</code></pre>
+
+<p>The impact of this measure is to strengthen the local contrast appearance since it advantages the transitions mainly in the highlighted and shadowed parts of the second input.</p>
+
+<h2 id="saliency-weight">Saliency Weight</h2>
+
+<p>Saliency weight aims to emphasize the discriminating objects that lose their prominence in the underwater scene. The saliency detection method used in this paper is <a href="https://infoscience.epfl.ch/record/135217/files/1708.pdf" target="_blank">Frequency-tuned Salient Region Detection</a> proposed by <em>Achanta et al.</em>, which is a computationally efficient saliency algorithm:</p>
+
+<pre><code class="language-java">public static Mat Saliency(Mat img) {
+    // blur image with a 3x3 or 5x5 Gaussian filter
+    Mat gfbgr = new Mat();
+    Imgproc.GaussianBlur(img, gfbgr, new Size(3, 3), 3);
+    // Perform sRGB to CIE Lab color space conversion
+    Mat LabIm = new Mat();
+    Imgproc.cvtColor(gfbgr, LabIm, Imgproc.COLOR_BGR2Lab);
+    // Compute Lab average values (note that in the paper this average is found from the un-blurred original image, but the results are quite similar)
+    List&lt;Mat&gt; lab = new ArrayList&lt;Mat&gt;();
+    Core.split(LabIm, lab);
+    Mat l = lab.get(0);
+    l.convertTo(l, CvType.CV_32F);
+    Mat a = lab.get(1);
+    a.convertTo(a, CvType.CV_32F);
+    Mat b = lab.get(2);
+    b.convertTo(b, CvType.CV_32F);
+    double lm = Core.mean(l).val[0];
+    double am = Core.mean(a).val[0];
+    double bm = Core.mean(b).val[0];
+    // Finally compute the saliency map
+    Mat sm = Mat.zeros(l.rows(), l.cols(), l.type());
+    Core.subtract(l, new Scalar(lm), l);
+    Core.subtract(a, new Scalar(am), a);
+    Core.subtract(b, new Scalar(bm), b);
+    Core.add(sm, l.mul(l), sm);
+    Core.add(sm, a.mul(a), sm);
+    Core.add(sm, b.mul(b), sm);
+    return sm;
+}
+</code></pre>
+
+<p>However, the saliency map tends to favor highlighted areas. To increase the accuracy of results, the author introduces the exposedness map to protect the mid tones that might be altered in some specific cases.</p>
+
+<h2 id="exposedness-weight">Exposedness Weight</h2>
+
+<p>Exposedness weight evaluates how well a pixel is exposed. This assessed quality provides an estimator to preserve a constant appearance of the local contrast, that ideally is neither exaggerated nor understated. Commonly, the pixels tend to have a higher exposed appearance when their normalized values are close to the average value of 0.5. This weight map is expressed as a Gaussian-modeled distance to the average normalized range value (0.5):
+$$
+W_{E}(x,y)=exp\bigg(-\frac{(I^{k}(x,y)-0.5)^{2}}{2\sigma^{2}}\bigg)
+$$
+where $I^{k}(x,y)$ represents the value of the pixel location $(x,y)$ of input image $I^{k}$, while the standard deviation is set to $\sigma=0.25$, the Java implementation is shown below:</p>
+
+<pre><code class="language-java">public static Mat Exposedness(Mat img) {
+    double sigma = 0.25;
+    double average = 0.5;
+    int rows = img.rows();
+    int cols = img.cols();
+    Mat exposedness = Mat.zeros(rows, cols, img.type());
+    // W = exp(-(img - aver).^2 / (2*sigma^2));
+    for (int i = 0; i &lt; rows; i++) {
+        for (int j = 0; j &lt; cols; j++) {
+            double value = Math.exp(-1.0 * Math.pow(img.get(i, j)[0] - average, 2.0) / (2 * Math.pow(sigma, 2.0)));
+            exposedness.put(i, j, value);
+        }
+    }
+    return exposedness;
+}
+</code></pre>
+
+<p>This weight map will assign higher values to those tones with a distance close to zero, while pixels that are characterized by larger distances, are associated with the over-exposed and under-exposed regions. In consequence, this weight tempers the result of the saliency map and produces a well preserved appearance of the fused image.</p>
+
+<h1 id="multi-scale-fusion">Multi-scale Fusion</h1>
+
+<p>To yield consistent results, the author employs the normalized weight values $\bar{W}$ by constraining taht the sum at ecach pixel location of weight maps $W$ equals to one:
+$$
+\bar{W}^{k}=\frac{W^{k}}{\sum_{k=1}^{K}W^{k}}
+$$
+Then, generally, the enhanced image version $\mathcal{R}(x,y)$ is computed by fusing the defined inputs with the weight measures at every pixel location $(x,y)$:
+$$
+\mathcal{R}(x,y)=\sum_{k=1}^{K}\bar{W}^{k}(x,y)\cdot I^{k}(x,y)
+$$
+where $k$ is the index of the inputs, and $K=2$ in this paper. However, the naive approach to directly fuse the inputs and the weights introduces undesirable halos. To deal with this issue, the author introduces the Gaussian pyramid decomposition for weight maps and Laplacian pyramid decomposition for inputs. Considering that both Gaussian and Laplacian pyramids have same levels, the mixing process is performed at each level independently yielding the fused pyramid:
+$$
+\mathcal{R}^{l}(x,y)=\sum_{k=1}^{K}G^{l}\big\{\bar{W}^{k}(x,y)\big\}\cdot L^{l}\big\{I^{k}(x,y)\big\}
+$$
+where $l$ denotes the number of the pyramid levels ($l=5$ in this paper), $L^{l}$ is the Laplacian version while $G^{l}$ is the Gaussian version. Below is the Java implementation of these two pyramids and the reconstruction method:</p>
+
+<pre><code class="language-java">public class Pyramid {
+    public static Mat[] GaussianPyramid(Mat img, int level) {
+        Mat[] gaussPyr = new Mat[level];
+        Mat mask = filterMask(img);
+        Mat tmp = new Mat();
+        Imgproc.filter2D(img, tmp, -1, mask);
+        gaussPyr[0] = tmp.clone();
+        Mat tmpImg = img.clone();
+        for (int i = 1; i &lt; level; i++) {
+            // resize image
+            Imgproc.resize(tmpImg, tmpImg, new Size(), 0.5, 0.5, Imgproc.INTER_LINEAR);
+            // blur image
+            tmp = new Mat();
+            Imgproc.filter2D(tmpImg, tmp, -1, mask);
+            gaussPyr[i] = tmp.clone();
+        }
+        return gaussPyr;
+    }
+    public static Mat[] LaplacianPyramid(Mat img, int level) {
+        Mat[] lapPyr = new Mat[level];
+        //Mat mask = filterMask(img);
+        lapPyr[0] = img.clone();
+        Mat tmpImg = img.clone();
+        for (int i = 1; i &lt; level; i++) {
+            // resize image
+            Imgproc.resize(tmpImg, tmpImg, new Size(), 0.5, 0.5, Imgproc.INTER_LINEAR);
+            lapPyr[i] = tmpImg.clone();
+        }
+        // calculate the DoG
+        for (int i = 0; i &lt; level - 1; i++) {
+            Mat tmpPyr = new Mat();
+            Imgproc.resize(lapPyr[i + 1], tmpPyr, lapPyr[i].size(), 0, 0, Imgproc.INTER_LINEAR);
+            Core.subtract(lapPyr[i], tmpPyr, lapPyr[i]);
+        }
+        return lapPyr;
+    }
+    public static Mat PyramidReconstruct(Mat[] pyramid) {
+        int level = pyramid.length;
+        for (int i = level - 1; i &gt; 0; i--) {
+            Mat tmpPyr = new Mat();
+            Imgproc.resize(pyramid[i], tmpPyr, pyramid[i - 1].size(), 0, 0, Imgproc.INTER_LINEAR);
+            Core.add(pyramid[i - 1], tmpPyr, pyramid[i - 1]);
+        }
+        return pyramid[0];
+    }
+    private static Mat filterMask(Mat img) {
+        double[] h = { 1.0 / 16.0, 4.0 / 16.0, 6.0 / 16.0, 4.0 / 16.0, 1.0 / 16.0 };
+        Mat mask = new Mat(h.length, h.length, img.type());
+        for (int i = 0; i &lt; h.length; i++) {
+            for (int j = 0; j &lt; h.length; j++) { mask.put(i, j, h[i] * h[j]); }
+        }
+        return mask;
+    }
+}
+</code></pre>
+
+<p>And the fusion process codes is shown here:</p>
+
+<pre><code class="language-java">// construct the gaussian pyramid for weight
+int level = 5;
+Mat[] weight1 = Pyramid.GaussianPyramid(w1, level);
+Mat[] weight2 = Pyramid.GaussianPyramid(w2, level);
+// construct the laplacian pyramid for input image channel
+img1.convertTo(img1, CvType.CV_32F);
+img2.convertTo(img2, CvType.CV_32F);
+List&lt;Mat&gt; bgr = new ArrayList&lt;Mat&gt;();
+Core.split(img1, bgr);
+Mat[] bCnl1 = Pyramid.LaplacianPyramid(bgr.get(0), level);
+Mat[] gCnl1 = Pyramid.LaplacianPyramid(bgr.get(1), level);
+Mat[] rCnl1 = Pyramid.LaplacianPyramid(bgr.get(2), level);
+Core.split(img2, bgr);
+Mat[] bCnl2 = Pyramid.LaplacianPyramid(bgr.get(0), level);
+Mat[] gCnl2 = Pyramid.LaplacianPyramid(bgr.get(1), level);
+Mat[] rCnl2 = Pyramid.LaplacianPyramid(bgr.get(2), level);
+// fusion process
+Mat[] bCnl = new Mat[level];
+Mat[] gCnl = new Mat[level];
+Mat[] rCnl = new Mat[level];
+for (int i = 0; i &lt; level; i++) {
+    Mat cn = new Mat();
+    Core.add(bCnl1[i].mul(weight1[i]), bCnl2[i].mul(weight2[i]), cn);
+    bCnl[i] = cn.clone();
+    Core.add(gCnl1[i].mul(weight1[i]), gCnl2[i].mul(weight2[i]), cn);
+    gCnl[i] = cn.clone();
+    Core.add(rCnl1[i].mul(weight1[i]), rCnl2[i].mul(weight2[i]), cn);
+    rCnl[i] = cn.clone();
+}
+// reconstruct &amp; output
+Mat bChannel = Pyramid.PyramidReconstruct(bCnl);
+Mat gChannel = Pyramid.PyramidReconstruct(gCnl);
+Mat rChannel = Pyramid.PyramidReconstruct(rCnl);
+Mat fusion = new Mat();
+Core.merge(new ArrayList&lt;Mat&gt;(Arrays.asList(bChannel, gChannel, rChannel)), fusion);
+fusion.convertTo(fusion, CvType.CV_8UC1);
+</code></pre>
+
+<p>Moreover, you can obtain the full java codes (also Matlab codes) in my GitHub repository: <a href="https://github.com/IsaacChanghau/OptimizedImageEnhance/blob/master/src/main/java/com/isaac/models/FusionEnhance.java" target="_blank">ImageEnhanceViaFusion</a> and the Matlab codes are available here: <a href="https://github.com/IsaacChanghau/OptimizedImageEnhance/tree/master/matlab/FusionEnhance" target="_blank">[link]</a>. Besides, for more details about this paper, you can read about the paper: <a href="http://perso.telecom-paristech.fr/~Gousseau/ProjAnim/2015/ImageSousMarine.pdf" target="_blank">Enhancing Underwater Images and Videos by Fusion</a>.</p>
+
+<h1 id="experiment-result">Experiment Result</h1>
+
+<p><strong>Heavy Distorted Fish Example</strong>
+<img src="/img/imageprocessing/imagefusion/fish.png" alt="Fish" />
+<strong>Enhancement Examples with Normalized Weight Maps of Two Divers</strong>
+<img src="/img/imageprocessing/imagefusion/two-diver1.png" alt="Two Divers" />
+<img src="/img/imageprocessing/imagefusion/two-diver2.png" alt="Weight Map of Two Divers" />
+<strong>Enhancement Examples with Normalized Weight Maps of One Diver</strong>
+<img src="/img/imageprocessing/imagefusion/one-diver1.png" alt="One Diver" />
+<img src="/img/imageprocessing/imagefusion/one-diver2.png" alt="Weight Map of One Diver" />
+<strong>Other Results</strong>
+<img src="/img/imageprocessing/imagefusion/divers.png" alt="Divers" />
+<img src="/img/imageprocessing/imagefusion/underwater.png" alt="Underwater Scene" />
+<img src="/img/imageprocessing/imagefusion/fishes.png" alt="Fishes" /></p>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="http://perso.telecom-paristech.fr/~Gousseau/ProjAnim/2015/ImageSousMarine.pdf" target="_blank">Enhancing Underwater Images and Videos by Fusion</a></li>
+<li><a href="http://ivrlwww.epfl.ch/supplementary_material/RK_CVPR09/" target="_blank">Frequency-tuned Salient Region Detection</a></li>
+</ul>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/computer-vision">computer-vision</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/java">java</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/opencv">opencv</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/altm/">Adaptive Local Tone Mapping Technique for HDR Image and Java Implementation</a></li>
+        
+        <li><a href="/post/install_opencv_java/">Installation of OpenCV for Java</a></li>
+        
+        <li><a href="/post/skiing_in_singapore/">Skiing In Singapore</a></li>
+        
+        <li><a href="/project/backscatter/">Removing Backscatter to Enhance the Visibility of Underwater Object</a></li>
+        
+        <li><a href="/project/retinex/">Image Enhancement based on Retinex Theory and Dual-tree Complex Wavelet Transform</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

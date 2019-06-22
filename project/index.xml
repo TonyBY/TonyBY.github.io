@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Isaac Changhau</title>
+    <link>https://isaacchanghau.github.io/project/</link>
+    <description>Recent content in Projects on Isaac Changhau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017-2018</copyright>
+    <lastBuildDate>Thu, 10 Jan 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://isaacchanghau.github.io/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PrimeNet: Human-inspired Framework for Commonsense Knowledge Representation and Reasoning</title>
+      <link>https://isaacchanghau.github.io/project/primenet/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/primenet/</guid>
+      <description>A human-inspired framework for commonsense knowledge representation and reasoning.</description>
+    </item>
+    
+    <item>
+      <title>Behavioural Understanding and Narrative Descriptions from Videos</title>
+      <link>https://isaacchanghau.github.io/project/maracana/</link>
+      <pubDate>Fri, 20 Apr 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/maracana/</guid>
+      <description>An effectively and flexibly multimodal system to analyze and narrate real world events captured in video.</description>
+    </item>
+    
+    <item>
+      <title>Neural Sequence Labeling</title>
+      <link>https://isaacchanghau.github.io/project/neural_seq_labeling/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/neural_seq_labeling/</guid>
+      <description>An unified and accurate deep learning based approach for various sequence labeling tasks such as POS, Chunking, NER, SRL, Punctuation Restoration and etc.</description>
+    </item>
+    
+    <item>
+      <title>Removing Backscatter to Enhance the Visibility of Underwater Object</title>
+      <link>https://isaacchanghau.github.io/project/backscatter/</link>
+      <pubDate>Tue, 16 Aug 2016 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/backscatter/</guid>
+      <description>A novel and effective method based on underwater optical model for underwater object visibility enhancement.</description>
+    </item>
+    
+    <item>
+      <title>Image Enhancement based on Retinex Theory and Dual-tree Complex Wavelet Transform</title>
+      <link>https://isaacchanghau.github.io/project/retinex/</link>
+      <pubDate>Fri, 01 May 2015 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/retinex/</guid>
+      <description>An improved and effective method for image enhancement based on retinex theory and dual-tree complex wavelet transform techniques.</description>
+    </item>
+    
+  </channel>
+</rss>

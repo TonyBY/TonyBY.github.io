@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Summarization of several commonly-used loss functions in neural networks">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/loss_functions/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/loss_functions/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/loss_functions/">
+  <meta property="og:title" content="Loss Functions in Neural Networks | Isaac Changhau">
+  <meta property="og:description" content="Summarization of several commonly-used loss functions in neural networks">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-06-07T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-06-07T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>Loss Functions in Neural Networks | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Loss Functions in Neural Networks</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-06-07 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Wed, Jun 7, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    10 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>Loss function is an important part in artificial neural networks, which is used to measure the inconsistency between predicted value ($\hat{y}$) and actual label ($y$). It is a non-negative value, where the robustness of model increases along with the decrease of the value of loss function. Loss function is the hard core of empirical risk function as well as a significant component of structural risk function. Generally, the structural risk function of a model is consist of empirical risk term and regularization term, which can be represented as
+$$
+\begin{aligned}
+\boldsymbol{\theta}^{*} &amp; =\arg\min_{\boldsymbol{\theta}}\boldsymbol{\mathcal{L}}(\boldsymbol{\theta})+\lambda\cdot\Phi(\boldsymbol{\theta})\newline
+&amp; =\arg\min_{\boldsymbol{\theta}}\frac{1}{n}\sum_{i=1}^{n}L\big(y^{(i)},\hat{y}^{(i)}\big)+\lambda\cdot\Phi(\boldsymbol{\theta})\newline
+&amp; =\arg\min_{\boldsymbol{\theta}}\frac{1}{n}\sum_{i=1}^{n}L\big(y^{(i)},f(\mathbf{x}^{(i)},\boldsymbol{\theta})\big)+\lambda\cdot\Phi(\boldsymbol{\theta})
+\end{aligned}
+$$
+where $\Phi(\boldsymbol{\theta})$ is the regularization term or penalty term, $\boldsymbol{\theta}$ is the parameters of model to be learned, $f(\cdot)$ represents the activation function and $\mathbf{x}^{(i)}=\{x_{1}^{(i)},x_{2}^{(i)},\dots ,x_{m}^{(i)}\}\in\mathbb{R}^{m}$ denotes the a training sample.</p>
+
+<p>Here we only concentrate on the empirical risk term (loss function)
+$$
+\boldsymbol{\mathcal{L}}(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=1}^{n}L\big(y^{(i)},f(\mathbf{x}^{(i)},\boldsymbol{\theta})\big)
+$$
+and introduce the mathematical expressions of several commonly-used loss functions as well as the corresponding expression in <a href="https://deeplearning4j.org/" target="_blank">DeepLearning4J</a>.</p>
+
+<h2 id="mean-squared-error">Mean Squared Error</h2>
+
+<p>Mean Squared Error (MSE), or quadratic, loss function is widely used in <strong>linear regression</strong> as the performance measure, and the method of minimizing MSE is called <a href="https://www.google.com.sg/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwiN-NPR9KrUAhULLY8KHQUoA78QFgggMAA&amp;url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FOrdinary_least_squares&amp;usg=AFQjCNGjRFY81dNPzK-FdcrrRmcRn1mknA" target="_blank">Ordinary Least Squares (OSL)</a>, the basic principle of OSL is that the optimized fitting line should be a line which minimizes the sum of distance of each point to the regression line, i.e., minimizes the quadratic sum. The standard form of MSE loss function is defined as
+$$
+\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}(y^{(i)}-\hat{y}^{(i)})^{2}
+$$
+where $(y^{(i)}-\hat{y}^{(i)})$ is named as residual, and the target of MSE loss function is to minimize the residual sum of squares. In DeepLearning4J, it is <code>LossFunctions.LossFunction.MSE</code> or <code>LossFunctions.LossFunction.SQUARED_LOSS</code> (they are same in DL4J). However, if using <a href="https://isaacchanghau.github.io/2017/05/12/Activation-Functions-in-Artificial-Neural-Networks/#Sigmoid-Units" target="_blank">Sigmoid</a> as the activation function, the quadratic loss function would suffer the problem of slow convergence (learning speed), for other activation funtions, it would not have such problem.</p>
+
+<p>For example, by using Sigmoid, $\hat{y}^{(i)}=\sigma(\mathbf{z}^{(i)})=\sigma(\boldsymbol{\theta}^{T}\mathbf{x}^{(i)})$, simply, we only consider one sample, say, $(y-\sigma(\mathbf{z}))^{2}$, and it derivative is computed by
+$$
+\frac{\partial\boldsymbol{\mathcal{L}}}{\partial\boldsymbol{\theta}}=-(y-\sigma(\mathbf{z}))\cdot\sigma&rsquo;(\mathbf{z})\cdot\mathbf{x}
+$$
+according to the shape and feature of Sigmoid, when $\sigma(\mathbf{z})$ tends to 0 or 1, $\sigma&rsquo;(\mathbf{z})$ is close to zero, and when $\sigma(\mathbf{z})$ close to 0.5, $\sigma&rsquo;(\mathbf{z})$ will reach it maximum. In this case, when the difference between predicted value and true label $(y-\sigma(\mathbf{z}))$ is large, $\sigma&rsquo;(\mathbf{z})$ will close to 0, which decreases the convergence speed, this is improper, since we expect that the learning speed should be fast when the error is large.</p>
+
+<h2 id="mean-squared-logarithmic-error">Mean Squared Logarithmic Error</h2>
+
+<p>Mean Squared Logarithmic Error (MSLE) loss function is a variant of MSE, which is defined as
+$$
+\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\big(\log(y^{(i)}+1)-\log(\hat{y}^{(i)}+1)\big)^{2}
+$$
+MSLE is also used to measure the different between actual and predicted. By taking the log of the predictions and actual values, what changes is the variance that you are measuring. <strong>It is usually used when you do not want to penalize huge differences in the predicted and the actual values when both predicted and true values are huge numbers</strong>. Another thing is that MSLE penalizes under-estimates more than over-estimates.</p>
+
+<ol>
+<li>If both predicted and actual values are small: MSE and MSLE is same.</li>
+<li>If either predicted or the actual value is big: $MSE &gt; MSLE$.</li>
+<li>If both predicted and actual values are big: $MSE &gt; MSLE$ (MSLE becomes almost negligible).</li>
+</ol>
+
+<p>It is expressed as <code>LossFunctions.LossFunction.MEAN_SQUARED_LOGARITHMIC_ERROR</code> in DeepLearning4J.</p>
+
+<h2 id="l2">L2</h2>
+
+<p>L2 loss function is the square of the L2 norm of the difference between actual value and predicted value. It is mathematically similar to MSE, only do not have division by $n$, it is computed by
+$$
+\boldsymbol{\mathcal{L}}=\sum_{i=1}^{n}(y^{(i)}-\hat{y}^{(i)})^{2}
+$$
+For more details, typically in mathematic, please read the paper: <a href="https://www.google.com.sg/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwiBuM6-n6vUAhWKchQKHcJSC1QQFggmMAE&amp;url=https%3A%2F%2Farxiv.org%2Fpdf%2F1702.05659&amp;usg=AFQjCNGQljo6wRaMCbNSQKyMvepxGInZIQ" target="_blank">On Loss Functions for Deep Neural Networks in Classification</a>, which gives comprehensive explanation about several commomly-used loss functions, including L2, L1 loss function. In DeepLearning4J, it is expressed as <code>LossFunctions.LossFunction.L2</code>.</p>
+
+<h2 id="mean-absolute-error">Mean Absolute Error</h2>
+
+<p>Mean Absolute Error (MAE) is a quantity used to measure how close forecasts or predictions are to the eventual outcomes, which is computed by
+$$
+\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\big\lvert y^{(i)}-\hat{y}^{(i)}\big\rvert
+$$
+where $\lvert\cdot\rvert$ denotes the absolute value. Albeit, both MSE and MAE are used in predictive modeling, there are several differences between them. MSE has nice mathematical properties which makes it easier to compute the gradient. However, MAE requires more complicated tools such as linear programming to compute the gradient. Because of the square, large errors have relatively greater influence on MSE than do the smaller error. Therefore, MAE is more robust to outliers since it does not make use of square. On the other hand, MSE is more useful if concerning about large errors whose consequences are much bigger than equivalent smaller ones. MSE also corresponds to maximizing the likelihood of Gaussian random variables. In DeepLearning4J, it is expressed as <code>LossFunctions.LossFunction.MEAN_ABSOLUTE_ERROR</code>.</p>
+
+<h2 id="mean-absolute-percentage-error">Mean Absolute Percentage Error</h2>
+
+<p>Mean Absolute Percentage Error (MAPE) is a variant of MAE, it is computed by
+$$
+\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\bigg\lvert\frac{y^{(i)}-\hat{y}^{(i)}}{y^{(i)}}\bigg\rvert\cdot100
+$$
+Although the concept of MAPE sounds very simple and convincing, it has major drawbacks in practical application:</p>
+
+<ol>
+<li>It cannot be used if there are zero values (which sometimes happens for example in demand data) because there would be a division by zero.</li>
+<li>For forecasts which are too low the percentage error cannot exceed $100%$, but for forecasts which are too high there is no upper limit to the percentage error.</li>
+<li>When MAPE is used to compare the accuracy of prediction methods it is biased in that it will systematically select a method whose forecasts are too low. This little-known but serious issue can be overcome by using an accuracy measure based on the ratio of the predicted to actual value (called the Accuracy Ratio), this approach leads to superior statistical properties and leads to predictions which can be interpreted in terms of the geometric mean.</li>
+</ol>
+
+<p>It is expressed as <code>LossFunctions.LossFunction.MEAN_ABSOLUTE_PERCENTAGE_ERROR</code> in DeepLearning4J.</p>
+
+<h2 id="l1">L1</h2>
+
+<p>L1 loss function is sum of absolute errors of the difference between actual value and predicted value. Similar to the relation between MSE and L2, L1 is mathematically similar to MAE, only do not have division by $n$, and it is defined as
+$$
+\boldsymbol{\mathcal{L}}=\sum_{i=1}^{n}\big\lvert y^{(i)}-\hat{y}^{(i)}\big\rvert
+$$
+In DeepLearning4J, it is expressed as <code>LossFunctions.LossFunction.L1</code>.</p>
+
+<h2 id="kullback-leibler-kl-divergence">Kullback Leibler (KL) Divergence</h2>
+
+<p>KL Divergence, also known as relative entropy, information divergence/gain, is a measure of how one probability distribution diverges from a second expected probability distribution. KL divergence loss function is computed by
+$$
+\begin{aligned}
+\boldsymbol{\mathcal{L}} &amp; =\frac{1}{n}\sum_{i=1}^{n}\mathcal{D}_{KL}(y^{(i)}||\hat{y}^{(i)})\newline
+&amp; =\frac{1}{n}\sum_{i=1}^{n}\big[y^{(i)}\cdot\log\big(\frac{y^{(i)}}{\hat{y}^{(i)}}\big)\big]\newline
+&amp; =\underbrace{\frac{1}{n}\sum_{i=1}^{n}\big(y^{(i)}\cdot\log(y^{(i)})\big)}_{\boldsymbol{entropy}}\underbrace{-\frac{1}{n}\sum_{i=1}^{n}\big(y^{(i)}\cdot\log(\hat{y}^{(i)})\big)}_{\boldsymbol{cross-entropy}}
+\end{aligned}
+$$
+where the first term is <strong>entropy</strong> and another is <strong>cross entropy</strong> (another kind of loss function which will be introduced later). KL divergence is a distribution-wise asymmetric measure and thus does not qualify as a statistical metric of spread. In the simple case, a KL divergence of 0 indicates that we can expect similar, if not the same, behavior of two different distributions, while a KL divergence of 1 indicates that the two distributions behave in such a different manner that the expectation given the first distribution approaches zero. For more details, please visit the wikipedia: <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank">[link]</a>.</p>
+
+<p>In DeepLearning4J, it is expressed as <code>LossFunctions.LossFunction.KL_DIVERGENCE</code>. Moreover, the implementation of <a href="https://en.wikipedia.org/wiki/Cross_entropy" target="_blank">Reconstruction Cross Entropy</a> in DeepLearning4J is same as Kullback Leibler (KL) Divergence, thus, you can also use <code>LossFunctions.LossFunction.RECONSTRUCTION_CROSSENTROPY</code>.</p>
+
+<h2 id="cross-entropy">Cross Entropy</h2>
+
+<p>Cross Entropy is commonly-used in <strong>binary classification</strong> (labels are assumed to take values 0 or 1) as a loss function (For multi-classification, use <strong>Multi-class Cross Entropy</strong>), which is computed by
+$$
+\boldsymbol{\mathcal{L}}=-\frac{1}{n}\sum_{i=1}^{n}\big[y^{(i)}\log(\hat{y}^{(i)})+(1-y^{(i)})\log(1-\hat{y}^{(i)})\big]
+$$
+Cross entropy measures the divergence between two probability distribution, if the cross entropy is large, which means that the difference between two distribution is large, while if the cross entropy is small, which means that two distribution is similar to each other. As we have mentioned in MSE that it suffers slow divergence when using Sigmoid as activation function, here the cross entropy does not have such problem. Samely, $\hat{y}^{(i)}=\sigma(\mathbf{z}^{(i)})=\sigma(\boldsymbol{\theta}^{T}\mathbf{x}^{(i)})$, and we only consider one training sample, by using Sigmoid, we have $\boldsymbol{\mathcal{L}}=y\log(\sigma(\mathbf{z}))+(1-y)\log(1-\sigma(\mathbf{z}))$, and compute it derivative as
+$$\frac{\partial\boldsymbol{\mathcal{L}}}{\partial\boldsymbol{\theta}}=(y-\sigma(\mathbf{z}))\cdot\mathbf{x}$$
+compare to the derivative in MSE, it eliminates the term $\sigma&rsquo;(\mathbf{z})$, where the learning speed is only controlled by $(y-\sigma(\mathbf{z}))$. In this case, when the difference between predicted value and actual value is large, the learning speed, i.e., convergence speed, is fast, otherwise, the difference is small, the learning speed is small, this is our expectation. Generally, comparing to quadratic cost function, cross entropy cost function has the advantages that fast convergence and is more likely to reach the global optimization (like the <a href="https://isaacchanghau.github.io/2017/05/29/parameter-update-methods/#Momentum" target="_blank">momentum</a>, it increases the update step). For the mathematical details, see wikipedia: <a href="https://en.wikipedia.org/wiki/Cross_entropy" target="_blank">[link]</a>.</p>
+
+<p>In DeepLearning4J, it is expressed as <code>LossFunctions.LossFunction.XENT</code>. For multi-classification, it is better use <code>LossFunctions.LossFunction.MCXENT</code>.</p>
+
+<h2 id="negative-logarithmic-likelihood">Negative Logarithmic Likelihood</h2>
+
+<p>Negative Log Likelihood loss function is widely used in neural networks, it measures the accuracy of a classifier. It is used when the model outputs a probability for each class, rather than just the most likely class. It  is a “soft” measurement of accuracy that incorporates the idea of probabilistic confidence. It is intimately tied to information theory. And it is similar to cross entropy (in binary classification) or multi-class cross entropy (in multi-classification) mathematically. Negative log likelihood is computed by
+$$
+\boldsymbol{\mathcal{L}}=-\frac{1}{n}\sum_{i=1}^{n}\log(\hat{y}^{(i)})
+$$
+More details about Negative Log Likelihood and the relation of KL Divergence, Cross Entropy and Negative Log Likelihood, you can visit this post: <a href="https://quantivity.wordpress.com/2011/05/23/why-minimize-negative-log-likelihood/" target="_blank">[link]</a>.</p>
+
+<p>In DeepLearning4J, it is expressed as <code>LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD</code>. Actually, in DL4J, the implementation of <code>MCXENT</code> and <code>NEGATIVELOGLIKELIHOOD</code> is same, since they have almost the mathematically samilar expressions.</p>
+
+<h2 id="poisson">Poisson</h2>
+
+<p>Poisson loss function is a measure of how the predicted distribution diverges from the expected distribution, the poisson as loss function is a variant from <a href="https://en.wikipedia.org/wiki/Poisson_regression" target="_blank">Poisson Distribution</a>, where the poisson distribution is widely used for modeling count data. It can be shown to be the limiting distribution for a normal approximation to a binomial where the number of trials goes to infinity and the probability goes to zero and both happen at such a rate that np is equal to some mean frequency for the process. In DL4J, the poisson loss function is computed by
+$$
+\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\big(\hat{y}^{(i)}-y^{(i)}\cdot\log(\hat{y}^{(i)})\big)
+$$
+In DL4J, it is expressed as <code>LossFunctions.LossFunction.POISSON</code>. Moreover, the implementation of <a href="https://math.stackexchange.com/questions/101481/calculating-maximum-likelihood-estimation-of-the-exponential-distribution-and-pr" target="_blank">Exponential Log Likelihood</a> in DeepLearning4J is same as Poisson, so you can also use <code>LossFunctions.LossFunction.EXPLL</code>.</p>
+
+<h2 id="cosine-proximity">Cosine Proximity</h2>
+
+<p>Cosine Proximity loss function computes the cosine proximity between predicted value and actual value, which is defined as
+$$
+\boldsymbol{\mathcal{L}}=-\frac{\mathbf{y}\cdot\mathbf{\hat{y}}}{||\mathbf{y}||_{2}\cdot||\mathbf{\hat{y}}||_{2}}=-\frac{\sum_{i=1}^{n}y^{(i)}\cdot\hat{y}^{(i)}}{\sqrt{\sum_{i=1}^{n}\big(y^{(i)}\big)^{2}}\centerdot\sqrt{\sum_{i=1}^{n}\big(\hat{y}^{(i)}\big)^{2}}}
+$$
+where $\mathbf{y}=\{y^{(1)},y^{(2)},\dots,y^{(n)}\}\in\mathbb{R}^{n}$, and $\mathbf{\hat{y}}=\{\hat{y}^{(1)},\hat{y}^{(2)},\dots,\hat{y}^{(n)}\}\in\mathbb{R}^{n}$. It is same as <a href="https://en.wikipedia.org/wiki/Cosine_similarity" target="_blank">Cosine Similarity</a>, which is a measure of similarity between two non-zero vectors of an inner product space that measures the cosine of the angle between them. In this case, note that unit vectors are maximally &ldquo;similar&rdquo; if they&rsquo;re parallel and maximally &ldquo;dissimilar&rdquo; if they&rsquo;re orthogonal (perpendicular). This is analogous to the cosine, which is unity (maximum value) when the segments subtend a zero angle and zero (uncorrelated) when the segments are perpendicular. In DeepLearning4J, it is expressed as <code>LossFunctions.LossFunction.COSINE_PROXIMITY</code>.</p>
+
+<h2 id="hinge">Hinge</h2>
+
+<p>Hinge Loss, also known as max-margin objective, is a loss function used for training classifiers. The hinge loss is used for &ldquo;maximum-margin&rdquo; classification, most notably for <a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">support vector machines (SVMs)</a>. For an intended output $y^{(i)}=\pm 1$, i.e., binary classification and a classifier score $\hat{y}^{(i)}$, the hinge loss of the prediction y is defined as
+$$
+\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\max(0,1-y^{(i)}\cdot\hat{y}^{(i)})
+$$
+Note that $\hat{y}^{(i)}$ should be the &ldquo;raw&rdquo; output of the classifier&rsquo;s decision function, not the predicted class label. It can be seen that when $y^{(i)}$ and $\hat{y}^{(i)}$ have the same sign (meaning $\hat{y}^{(i)}$ predicts the right class) and $|\hat{y}^{(i)}|&gt;1$, the hinge loss equals to zero, but when they have opposite sign, hinge loss increases linearly with $\hat{y}^{(i)}$ (one-sided error). And in DeepLearning4J, this formula is expressed as <code>LossFunctions.LossFunction.HINGE</code> (in ND4J codes, the <code>HINGE</code> loss function is implemented by the formula above). However, there is a more general expression
+$$
+\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\max(0,m-y^{(i)}\cdot\hat{y}^{(i)})
+$$
+where $m$ (margin) is a customized value. More details about extending to multi-classification, optimization, you can visit Hinge loss&rsquo;s wikipedia: <a href="https://en.wikipedia.org/wiki/Hinge_loss" target="_blank">[link]</a>.</p>
+
+<h2 id="squared-hinge">Squared Hinge</h2>
+
+<p><a href="http://ntu.csie.org/~cjlin/papers/l2mcsvm/l2mcsvm.pdf" target="_blank">Squared Hinge Loss function</a> is a variant of Hinge Loss, it solves the problem in hinge loss that the derivative of hinge loss has a discontinuity at $y^{(i)}\cdot\hat{y}^{(i)}=1$. Squared Hinge Loss is computed by
+$$
+\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\big(\max(0,1-y^{(i)}\cdot\hat{y}^{(i)})\big)^{2}
+$$
+In DeepLearning4J, it is expressed as <code>LossFunctions.LossFunction.SQUARED_HINGE</code>.</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://www.google.com.sg/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwiBuM6-n6vUAhWKchQKHcJSC1QQFggmMAE&amp;url=https%3A%2F%2Farxiv.org%2Fpdf%2F1702.05659&amp;usg=AFQjCNGQljo6wRaMCbNSQKyMvepxGInZIQ" target="_blank">On Loss Functions for Deep Neural Networks in Classification</a></li>
+<li><a href="http://courses.cms.caltech.edu/cs253/slides/cs253-14-GPs.pdf" target="_blank">Loss functions</a></li>
+<li><a href="https://github.com/deeplearning4j/nd4j/tree/master/nd4j-backends/nd4j-api-parent/nd4j-api/src/main/java/org/nd4j/linalg/lossfunctions" target="_blank">ND4J Loss Functions</a></li>
+<li><a href="https://keras.io/losses/" target="_blank">Losses - Keras Documentation</a></li>
+<li><a href="https://www.quora.com/What-is-the-difference-between-an-RMSE-and-RMSLE-logarithmic-error-and-does-a-high-RMSE-imply-low-RMSLE" target="_blank">What is the difference between an RMSE and RMSLE</a></li>
+<li><a href="http://www.csuldw.com/2016/03/26/2016-03-26-loss-function/" target="_blank">Machine Learning-Loss Function</a></li>
+<li><a href="http://blog.csdn.net/xmdxcsj/article/details/50210451" target="_blank">Neural Network-Loss Function</a></li>
+<li><a href="https://hit-scir.gitbooks.io/neural-networks-and-deep-learning-zh_cn/content/chap3/c3s1.html" target="_blank">Cross Entropy Cost Function</a></li>
+<li><a href="https://www.quora.com/What-is-the-difference-between-squared-error-and-absolute-error" target="_blank">What is the difference between squared error and absolute error?</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Mean_absolute_percentage_error" target="_blank">Mean Absolute Percentage Error</a></li>
+<li><a href="http://timvieira.github.io/blog/post/2014/10/06/kl-divergence-as-an-objective-function/" target="_blank">KL-divergence as an objective function</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Poisson_regression" target="_blank">Poisson regression</a></li>
+<li><a href="http://ntu.csie.org/~cjlin/papers/l2mcsvm/l2mcsvm.pdf" target="_blank">A Study on L2-Loss (Squared Hinge-Loss) Multi-Class SVM</a></li>
+<li><a href="https://quantivity.wordpress.com/2011/05/23/why-minimize-negative-log-likelihood/" target="_blank">Why Minimize Negative Log Likelihood?</a></li>
+</ul>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/deep-learning">deep-learning</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/machine-learning">machine-learning</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/parameters_update/">Parameter Update Methods in Neural Networks</a></li>
+        
+        <li><a href="/post/weight_initialization/">Weight Initialization Methods in Neural Networks</a></li>
+        
+        <li><a href="/post/activation_functions/">Activation Functions in Neural Networks</a></li>
+        
+        <li><a href="/post/ml_zzh_note_4/">Machine Learning Note (4): Ensemble Learning</a></li>
+        
+        <li><a href="/post/word2vecf/">Word2Vecf -- Dependency-Based Word Embeddings and Lexical Substitute</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

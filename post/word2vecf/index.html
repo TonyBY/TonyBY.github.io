@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Summarization of dependency-based word embeddings algorithms and its application in lexical substitution.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/word2vecf/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/word2vecf/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/word2vecf/">
+  <meta property="og:title" content="Word2Vecf -- Dependency-Based Word Embeddings and Lexical Substitute | Isaac Changhau">
+  <meta property="og:description" content="Summarization of dependency-based word embeddings algorithms and its application in lexical substitution.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-05-18T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-05-18T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>Word2Vecf -- Dependency-Based Word Embeddings and Lexical Substitute | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Word2Vecf -- Dependency-Based Word Embeddings and Lexical Substitute</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-05-18 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Thu, May 18, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    9 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>It is a summary of <a href="http://www.aclweb.org/anthology/P14-2050" target="_blank">Dependency-based Word Embeddings</a> and <a href="http://www.aclweb.org/anthology/W15-1501" target="_blank">A Simple Word Embedding Model for Lexical Substitution</a> proposed by <a href="https://levyomer.wordpress.com" target="_blank">Omer Levy</a> on <a href="http://acl2014.org" target="_blank">ACL 2014</a> and <a href="http://naacl15vs.github.io/index.html" target="_blank">VSM 2015</a> respectively. After studying the two papers, I implement the methods intorduced in the two papers with Java to enhance my comprehension and deal with some practical tasks.</p>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>The method proposed in &ldquo;Dependency-based Word Embeddings&rdquo; is a generalized skip-gram model with negative sampling, which is capable of dealing with the arbitrary contexts, and its generated embeddings are less topical and exhibit more functional similarity than the original skip-gram embeddings in <a href="https://en.wikipedia.org/wiki/Word2vec" target="_blank">Word2Vec</a>. While the methods introduced in &ldquo;A Simple Word Embedding Model for Lexical Substitution&rdquo; are using the results generated by the generalized skip-gram model to handle the <a href="https://en.wikipedia.org/wiki/Lexical_substitution" target="_blank">lexical substitution</a> task. The novelty of our approach is in leveraging explicitly the context embeddings generated within the skip-gram model, which were so far considered only as an internal component of the learning process.</p>
+
+<h1 id="dependency-based-word-embeddings">Dependency-based Word Embeddings</h1>
+
+<p>In this paper, the author proposed an improved skip-gram model with negative sampling, which is capable of dealing with the arbitrary contexts.</p>
+
+<h2 id="skip-gram-model">Skip-Gram Model</h2>
+
+<p>Here I will introduce the skip-gram model in brief, more details can refer my another blog &ndash; <a href="https://isaacchanghau.github.io/2017/05/22/Word2Vec/" target="_blank">Word2Vec Summary</a>. Before start, let&rsquo;s summarize the notations will be used later: $\boldsymbol{\mathcal{W}}$ represents the words vocabulary, $\boldsymbol{\mathcal{C}}$ represents the contexts vocabulary, $d$ denotes the vector dimensionality, $w$ denotes a word in words vocabulary, $c$ denotes a context in contexts vocabulary, $\mathbf{v}_{w}$ and $\mathbf{v}_{c}$, respectively, represents word vector and context vector, and $\boldsymbol{\mathcal{D}}$ represents a dataset of observed $(w,c)$ pairs of words $w$ and contexts $c$, which appeared in a large body of text (in this case, a word $w$ in $\boldsymbol{\mathcal{D}}$ only have one context $c$, so it can be treated as unigram).</p>
+
+<p>In the skip-gram model, each word $w\in\boldsymbol{\mathcal{W}}$ is associated with a vector $\mathbf{v}_{w}\in\mathbb{R}^{d}$ and similarly each context $c\in\boldsymbol{\mathcal{C}}$ is represented as a vector $\mathbf{v}_{c}\in\mathbb{R}^{d}$. The entries in the vectors are latent, and treated as parameters to be learned, the author aims to seek the vector representations for both words and contexts such that the dot product $\mathbf{v}_{w}\cdot\mathbf{v}_{c}$ associated with &ldquo;good&rdquo; word-context pairs is maximized.</p>
+
+<p>For example, consider a word-context pair $(w,c)$, the probability that $(w,c)$ is from the dataset denotes by $P(1|w,c)$, while the probability that $(w,c)$ did not is given by $P(0|w,c)=1-P(1|w,c)$, this is the idea of negative sampling, and it&rsquo;s also a binary classification problem. Note that $P(1|w,c)=\frac{1}{1+exp(-\mathbf{v}_{w}^{T}\cdot\mathbf{v}_{c})}$, and $\mathbf{v}_{w}$, $\mathbf{v}_{c}$ are the model parameters to be learned. Thus, the goal is to maximize the log-probability of the observed pairs belonging to the dataset, leadig to the objective:
+$$
+\arg\max_{\mathbf{v}_{w},\mathbf{v}_{c}}\sum_{(w,c)\in\boldsymbol{\mathcal{D}}}\log\frac{1}{1+e^{-\mathbf{v}_{w}^{T}\cdot\mathbf{v}_{c}}}
+$$
+However, this objective admits a trivial solution where $P(1|w,c)=1$ for every pair $(w,c)$ if $\mathbf{v}_{w}=\mathbf{v}_{c}$ or $\mathbf{v}_{w}^{T}\cdot\mathbf{v}_{c}=K$ for all $w,c$, where $K$ is large enough number. To avoid the trivial solution, the objective is extended with $(w,c)$ pairs for which $P(1|w,c)$ must be low, say, pairs which are not in the dataset, by generating the set $\boldsymbol{\mathcal{D}}’$ of random $(w,c)$ pairs yielding the negative-sampling training objective:
+$$
+\arg\max_{\mathbf{v}_{w},\mathbf{v}_{c}}\big(\prod_{(w,c)\in\boldsymbol{\mathcal{D}}}P(1|w,c)\cdot\prod_{(w,c)\in\boldsymbol{\mathcal{D}}’}P(0|w,c)\big)
+$$
+and its logarithmic form is
+$$
+\arg\max_{\mathbf{v}_{w},\mathbf{v}_{c}}\big(\sum_{(w,c)\in\boldsymbol{\mathcal{D}}}\log\sigma(\mathbf{v}_{w}^{T}\mathbf{v}_{c})+\sum_{(w,c)\in\boldsymbol{\mathcal{D}}’}\log\sigma(-\mathbf{v}_{w}^{T}\mathbf{v}_{c})\big)
+$$
+The objective is trained in the online fashion using stochastic gradient updates over the corpus $\boldsymbol{\mathcal{D}}\cup\boldsymbol{\mathcal{D}}’$. Optimizing this objective makes observed word-context pairs have similar embeddings, while scattering unobserved pairs. Intuitively, words that appear in similar contexts should have similar embeddings, but the author has not yet found a formal proof that skip-gram model does indeed maximize the dot product of similar words.</p>
+
+<h2 id="dependency-based-context">Dependency-based Context</h2>
+
+<p>In the original skip-gram model, the contexts of a word $w$ are the words surrounding it in the text, thus, the context vocabulary $\boldsymbol{\mathcal{C}}$ is identical to the word vocabulary $\boldsymbol{\mathcal{W}}$. However, contexts need to corresponding to words and the number of context-types can be substantially larger than the number of word-types, so the author generalize the skip-gram by replacing the bag-of-words contexts with arbitrary contexts, i.e., dependency-based syntactic contexts, which is capable of capturing different information than bag-of-word contexts. Using the sentence below as an example:</p>
+
+<blockquote>
+<p><em><strong>Australian scientist discovers star with telescope</strong></em>.</p>
+</blockquote>
+
+<p>For bag-of-words contexts, for example, by setting the window equals to 2, the contexts of <em>&ldquo;discovers&rdquo;</em> are <em>&ldquo;Australian&rdquo;</em>, <em>&ldquo;scientist&rdquo;</em>, <em>&ldquo;star&rdquo;</em> and <em>&ldquo;with&rdquo;</em>. the window with size 2 will miss some important contexts ,like <em>&ldquo;telescope&rdquo;</em>, and include some accidental ones, like <em>&ldquo;Australian&rdquo;</em>. Moreover, the contexts are unmarked, resulting in <em>&ldquo;discovers&rdquo;</em> being a context of both <em>&ldquo;stars&rdquo;</em> and <em>&ldquo;scientist&rdquo;</em>, which may result in <em>&ldquo;stars&rdquo;</em> and <em>&ldquo;scientists&rdquo;</em> ending up as neighbours in the embedded space. By setting the window equals to 5, it is able to capture broad topicalcontent, but may weaken the importance of focused information about the target word.</p>
+
+<p>For dependency-based contexts, an alternative to the bag-of-words approach is to derive contexts based on the syntactic relations the word participates in. This type of contexts can be derived by some parsing technology. After parsing sentence, the derived word contexts is: for a target word $w$ with modifier $m_{1},\dots ,m_{k}$ and a head $h$, consider the contexts $(m_{1},lbl_{1}),\dots ,(m_{k},lbl_{k}),(h,lbl_{h}^{-1})$, where $lbl$ is the type of the dependency relation between the head and the modifier (e.g., <em>nsubj</em>, <em>dobj</em>, <em>amod</em> and etc., see <a href="https://nlp.stanford.edu/software/lex-parser.html" target="_blank">link</a> to get more information) and $lbl^{-1}$ is used to mark the inverse-relation.
+<img src="/img/nlp/word2vecf/parse.png" alt="parse" />
+Relations that include a preposition are “collapsed” prior to context extraction, by directly connecting the head and the object of the preposition, and subsuming the preposition itself into the dependency label. The dependency-based contexts are able to capture relations to words that are far apart and thus “out-of-reach” with small window bag-of-words (like <em>discovers</em> and <em>telescope</em>) and also filter out coincidental contexts which are within the window but not directly related to the target word (like <em>Australian</em> and <em>discovers</em>). Thus, this syntactic contexts may yield more focused embeddings and capture more functional and less topical similarity.</p>
+
+<p>So, this is the general idea of dependency-based word embeddings, to build this improved skip-gram model, the author keeps the initial parameters setting in the original skip-gram model, and before using the corpus to train word vectors, the pre-process is needed, say, the dependency-based contexts extraction, and also construct the word and context vocabularies. All of those details are given in the author Python codes except the derivation of dependency-based contexts, however, in my Java implementation, I already cover all of them in my repository and make the model more flexiable.</p>
+
+<h1 id="lexical-substitute">Lexical Substitute</h1>
+
+<p>Lexical substitution tasks are used for evaluating context-sensitive lexical inference models since the introduction of the original task in <a href="http://nlp.cs.swarthmore.edu/semeval/" target="_blank">SemEval-2007</a> and additional later variants (<a href="http://www.aclweb.org/anthology/E14-1057" target="_blank">Kremer et al.</a>, <a href="http://dl.acm.org/citation.cfm?id=2447295" target="_blank">Biemann</a>). In these tasks, systems are required to predict substitutes for a target word instance, which preserve its meaning in a given sentential context. To address this challenge, several models, like <a href="http://www.aclweb.org/anthology/I11-1127" target="_blank">sparse syntax-based vector models</a>, <a href="http://delivery.acm.org/10.1145/2490000/2483675/a42-moon.pdf?ip=192.122.131.129&amp;id=2483675&amp;acc=ACTIVE%20SERVICE&amp;key=FF6731C4D3E3CFFF%2E93CCAFF1814A016F%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&amp;CFID=939797143&amp;CFTOKEN=87880992&amp;__acm__=1495525783_5f62129b620aace2b701e9291ee4493f" target="_blank">probabilistic graphical models</a>, <a href="http://delivery.acm.org/10.1145/2690000/2687974/coli_a_00194.pdf?ip=192.122.131.129&amp;id=2687974&amp;acc=PUBLIC&amp;key=FF6731C4D3E3CFFF%2E93CCAFF1814A016F%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&amp;CFID=939797143&amp;CFTOKEN=87880992&amp;__acm__=1495525739_8fecaa2857873496f910249d31e87670" target="_blank">LDA topic models</a>, were proposed recent years, these models typically generated a word instance representation, which is biased towards its given context, and then identified substitute words based on their similarity to this biased representation.</p>
+
+<p>In this paper, the author directly utilize the skip-gram model with dependency-based context for the context-sensitive lexical substitution by make use of the learned context embeddings in conjunction with the target word embeddings to model target word instances, instead of discarding them. The suitable substitute is identified via its combined similarity to the embeddings of both the target and its given context. The model supposes that a good lexical substitute for a target word instance under a given context needs to be both <strong>semantically similar to the target word</strong> and <strong>compatible with the given context</strong>.
+<img src="/img/nlp/word2vecf/example.png" alt="example" />
+Above is an example of identifying substitutes for target word <code>acquire</code> under the syntactic context <code>dobj_company</code>, visualized in a 2-dimensional embedded space. Even though <code>learn</code> is the closest word to <code>acquire</code>, the word <code>buy</code> is both reasonably close to <code>acquire</code> as well as to the context <code>dobj_company</code> and is therefore considered a better substitute.</p>
+
+<p>In order to satisfy the assumptions, the model estimates the semantic similarity between a substitute word and the target word using a second-order target-to-target similarity measure, and the compatibility of a substitute word with the given context using a first-order target-to-context similarity measure. Mathematically, the model contains four methods, and they are defined as
+$$
+\begin{aligned}
+Add &amp; =\frac{\cos (s,t)+\sum_{c\in\mathcal{C}}\cos (s,c)}{|\mathcal{C}|+1}\newline
+BalAdd &amp; =\frac{|\mathcal{C}|\cdot\cos (s,t)+\sum_{c\in\mathcal{C}}\cos (s,c)}{2\cdot |\mathcal{C}|}\newline
+Mult &amp; =\sqrt[|\mathcal{C}|+1]{pcos(s,t)\cdot\prod_{c\in\mathcal{C}}pcos(s,c)}\newline
+BalMult &amp; =\sqrt[2\cdot |\mathcal{C}|]{pcos(s,t)^{|\mathcal{C}|}\cdot\prod_{c\in\mathcal{C}}pcos(s,c)}
+\end{aligned}
+$$
+where $\mathcal{C}$ is the set of the target word’s context elements in the context sentence and $|\mathcal{C}|$ denotes the number of context element, $c$ denotes an individual context element, $pcos(v,v&rsquo;)=\frac{\cos(v,v&rsquo;)+1}{2}$ is used to avoid negative values, $s$ is a lexical substitute and $t$ is the target word. Actually, we can derive from the formula that both target-to-target and target-to-context similarities are estimated by the vector Cosine distance.</p>
+
+<p>These four methods are the context-sensitive substitutability metric for estimating the suitability of a lexical substitute for a target word in a given sentential context. Besides, the $Add$ and $BalAdd$ are called arithmetic mean, $Mult$ and $BalMult$ are named as geometrical mean. Below give two snippets of Java implementation to help you have a better understanding. For $Add$ and $BalAdd$:</p>
+
+<pre><code class="language-java">public INDArray Represent(String target, List&lt;String&gt; deps, boolean avgFlag) {
+    INDArray targetVec = wordVecs.Represent(target);
+    INDArray depVec = contextVecs.Zeros();
+    int depsFound = 0;
+    for (String dep : deps) {
+        if (!contextVecs.Contains(dep)) continue;
+        depsFound++;
+        depVec.addi(contextVecs.Represent(dep).dup()); // each element add with each other
+    }
+    INDArray retVec = targetVec.dup();
+    if (depsFound &gt; 0) {
+        if (avgFlag) depVec.divi(Nd4j.scalar(depsFound));
+        retVec.addi(depVec);
+    }
+    double norm = Math.pow(retVec.mmul(retVec.transpose()).getDouble(0), 0.5);
+    if (norm != 0.0) retVec.divi(Nd4j.scalar(norm));
+    return retVec;
+}
+</code></pre>
+
+<p>For $Mult$ and $BalMult$:</p>
+
+<pre><code class="language-java">public List&lt;Map.Entry&lt;String, Float&gt;&gt; Mult(String target, List&lt;String&gt; deps, boolean geoMeanFlag) {
+    INDArray targetVec = wordVecs.Represent(target);
+    INDArray scores = wordVecs.PosScores(targetVec);
+    for (String dep : deps) {
+        if (!contextVecs.Contains(dep)) continue;
+        INDArray depVec = contextVecs.Represent(dep);
+        INDArray multScores = wordVecs.PosScores(depVec);
+        if (geoMeanFlag) multScores = Transforms.pow(multScores, 1.0 / deps.size());
+        scores.muli(multScores);
+    }
+    return wordVecs.TopScores(scores, -1);
+}
+</code></pre>
+
+<h1 id="java-implementation">Java Implementation</h1>
+
+<p>For &ldquo;Dependency-based Word Embeddings&rdquo;, by referring the Python <a href="https://bitbucket.org/yoavgo/word2vecf" target="_blank">source codes</a> provided by the author on Bitbucket, I wrote a Java version to achieve its functions and make this algorithm more flexiable. In addition, the source provided by the author only implement the core algorithm of dependency-based skip-gram with negative sampling, it does not give any implementation details about how to parse sentences in corpus to the dependency-based context (the author only introduce the parsing technology in brief). So after studying the structure of dependency-based context (CoNLL-U), and search the related information online, I find that <a href="https://stanfordnlp.github.io/CoreNLP/" target="_blank">Stanford CoreNLP</a> toolkit (Java based) powered by the <a href="https://nlp.stanford.edu/" target="_blank">Stanford Natural Language Processing Group</a> provides tools to analyze and parse sentences to generate the dependency-based context (details of CoNLL-U format: <a href="http://universaldependencies.org/docs/format.html" target="_blank">[link]</a>). So I add this function into my Word2Vecf Java repository. Moreover, I also implement the four lexical substitution methods in this repository as well as some similarity functions and measuring tasks, like WS353, Analogy, TOEFL tasks, introduced in Mikolov&rsquo;s <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/rvecs.pdf" target="_blank">Word2Vec</a> paper. Here is the GitHub link of my java codes: <a href="https://github.com/IsaacChanghau/Word2VecfJava/tree/master/src/main/java/com/isaac/word2vecf" target="_blank">Word2VecfJava</a>.</p>
+
+<p>For &ldquo;A Simple Word Embedding Model for Lexical Substitution&rdquo;, the author also provide the Python <a href="https://github.com/orenmel/lexsub" target="_blank">source codes</a>, this source is used to implement the four methods proposed by the author to deal with two datasets, <a href="http://hnk.ffzg.hr/bibl/acl2007/SemEval-2007/pdf/SemEval-200709.pdf" target="_blank">LS-SE</a> and <a href="http://www.aclweb.org/anthology/E14-1057" target="_blank">LS-CIC</a>, and measure the results by &ldquo;Generalized Average Precision (GAP)&rdquo;, &ldquo;BEST&rdquo; and &ldquo;OOT&rdquo; scores to validate the accuracy and reliability of those methods. Here is the GitHub link of my java implementation: <a href="https://github.com/IsaacChanghau/Word2VecfJava/tree/master/src/main/java/com/isaac/lexsub" target="_blank">LexicalSubstitute</a>.</p>
+
+<h1 id="reference">Reference</h1>
+
+<ol>
+<li><a href="http://www.aclweb.org/anthology/P14-2050" target="_blank">Dependency-based Word Embeddings</a></li>
+<li><a href="http://www.aclweb.org/anthology/W15-1501" target="_blank">A Simple Word Embedding Model for Lexical Substitution</a></li>
+</ol>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/deep-learning">deep-learning</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/natural-language-processing">natural-language-processing</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/java">java</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/word2vec/">Word2Vec -- Mathematical Principles and Java Implementation</a></li>
+        
+        <li><a href="/post/ml_zzh_note_3/">Machine Learning Note (3): Support Vector Machine</a></li>
+        
+        <li><a href="/post/ml_zzh_note_2/">Machine Learning Note (2): Linear Regression</a></li>
+        
+        <li><a href="/post/removing_backscatter/">Removing Backscatter to Enhance the Visibility of Underwater Object</a></li>
+        
+        <li><a href="/post/underwater_image_fusion/">Underwater Image Enhance via Fusion and Its Java Implementation</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

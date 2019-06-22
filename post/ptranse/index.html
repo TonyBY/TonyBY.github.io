@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="An efficient and advanced deep learning approach to learn relational representation.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/ptranse/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/ptranse/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/ptranse/">
+  <meta property="og:title" content="PTransE -- Modeling Relation Paths for Representation Learning of Knowledge Bases | Isaac Changhau">
+  <meta property="og:description" content="An efficient and advanced deep learning approach to learn relational representation.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-09-19T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-09-19T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>PTransE -- Modeling Relation Paths for Representation Learning of Knowledge Bases | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">PTransE -- Modeling Relation Paths for Representation Learning of Knowledge Bases</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-09-19 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Tue, Sep 19, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      <p>It is a summary of the paper <strong>Modeling Relation Paths for Representation Learning of Knowledge Bases</strong> (<a href="https://arxiv.org/pdf/1506.00379.pdf" target="_blank"><strong>PTransE</strong></a>). PTransE is a novel extension of <a href="https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf" target="_blank">TransE</a>, which is a path-based representation learning model, to model relation paths for representation learning of knowledge bases. The authors argue that multiple-step relation paths also contain rich inference patterns between entities, thus, PTransE also considers relation paths as translations between entities for representation learning, and addresses two key challenges:</p>
+
+<ul>
+<li>Since not all relation paths are reliable, so a <strong>path-constraint resource allocation</strong> (PCRA) algorithm is designed to measure the reliability of relation paths.</li>
+<li>Relation paths is represented via semantic composition of relation embeddings.</li>
+</ul>
+
+<p>Despite the success of <a href="https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf" target="_blank">TransE</a>, <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.486.2800&amp;rep=rep1&amp;type=pdf" target="_blank">TransH</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9571/9523" target="_blank">TransR</a> and <a href="http://www.aclweb.org/anthology/P15-1067" target="_blank">TransD</a> in modeling relational facts, these methods only take direct relations between entities into consideration. Actually, there are also substantial multiple-step relation paths between entities indicating their semantic relationships. For instance:
+$$
+\mathbf{h}\xrightarrow{BornInCity}\mathbf{e}_{1}\xrightarrow{CityInState}\mathbf{e}_{2}\xrightarrow{StateInCountry}\mathbf{t}
+$$
+which indicates the relation <code>Nationality</code> between $\mathbf{h}$ and $\mathbf{t}$, i.e., $(\mathbf{h},\textrm{Nationality},\mathbf{t})$. However, in PTransE, in addition to direct connected relational facts, the authors also build triples from knowledge bases using entity pairs connected with relation paths. As shown below
+<img src="/img/nlp/transx/ptranse-graph.png" alt="PTransE Graph" />
+TransE only considers direct relations between entities and optimizes the objective $h+r\approx t$, while PTransE generalizes TransE by regarding multiple-step relation paths as connections between entities, where $\circ$ is an operation to join the relations $r_{1}$ and $r_{2}$ together into a unified relation path representation.</p>
+
+<p><strong>PTransE</strong>:<br />
+Define entity set $\mathbf{E}$ and relation set $\mathbf{R}$ are in $\mathbb{R}^{k}$, $S=\{(h,r,t)\}$ represents a set of triples. For each triple $(h,r,t)$, the energy of TransE is computed by
+$$
+E(h,r,t)=\Vert h+r-t\Vert\tag{1}
+$$
+Since TransE only consider the direct relations, PTransE also considers the relation paths for representation. Suppose the multiple relation paths $P(h,t)=\{p_{1},\dots,p_{N}\}$ connecting two entities $h$ and $t$, where relation path $p=\{r_{1},\dots,r_{l}\}$ indicates $h\xrightarrow{r_{1}}\dots\xrightarrow{r_{l}}t$. For each triple $(h,r,t)$, the energy function of PTransE is defined as
+$$
+G(h,r,t)=E(h,r,t)+E(h,P,t)\tag{2}
+$$
+where $E(h,r,t)$ models correlations between relations and entities with direct relation triples, $E(h,P,t)$ models the inference correlations between relations with multiple-step relation path triples:
+$$
+E(h,P,t)=\frac{1}{Z}\sum_{p\in P(h,t)}R(p|h,t)E(h,p,t)\tag{3}
+$$
+where $R(p|h,t)$ indicates the reliability of relation path $p$ given entity pair $(h,t)$, $Z=\sum_{p\in P(h,t)}R(p|h,t)$ is a normalization factor, and $E(h,p,t)$ is the energy function of the triple $(h,p,t)$. The component $R(p|h,t)$ concerns about relation path reliability, and $E(h,p,t)$ concerns about relation path representation.</p>
+
+<p><strong>Relation Path Reliability</strong>:<br />
+Since not all relation paths are meaningful and reliable for learning. the authors propose a <strong>path-constraint resource allocation</strong> (PCRA) algorithm to measure the reliability of relation paths and only the reliable relation paths are selected. The basic idea is that a certain amount of resource is associated with the head entity $h$, and will flow following the given path $p$. Using the resource amount that eventually flows to the tail entity $t$ to measure the reliability of the path $p$ as a meaningful connection between $h$ and $t$.</p>
+
+<p>For a triple $(h,p,t)$, the resource amount flowing from $h$ to $t$ is computed as follows. The flowing path is writen as $S_{0}\xrightarrow{r_{1}}S_{1}\xrightarrow{r_{2}}\dots\xrightarrow{r_{l}}S_{l}$, where $S_{0}=h$ and $t\in S_{l}$. For any entity $m\in S_{i}$, denote its direct predecessors along relation $r_{i}$ in $S_{i-1}$ as $S_{i-1}(\cdot,m)$. The resource flowing to m is defined as
+$$
+R_{p}(m)=\sum_{n\in S_{i-1}(\cdot,m)}\frac{1}{\vert S_{i}(n,\cdot)\vert}R_{p}(n)\tag{4}
+$$
+where $S_{i}(n,\cdot)$ is the direct successors of $n\in S_{i-1}$ following the relation $r_{i}$, and $R_{p}(n)$ is the resource obtained from the entity $n$. For each relation path $p$, we set the initial resource in $h$ as $R_{p}(h)=1$. By performing resource allocation recursively from $h$ through $p$, tail entity $t$ eventually obtains the resource $R_{p}(t)$ which indicates how much information of head entity $h$ can be well translated, thus, using $R_{p}(t)$ to measure the reliability of the path $p$ given $(h,t)$, i.e., $R(p\vert h,t)=R_{p}(t)$.</p>
+
+<p><strong>Relation Path Representation</strong>:<br />
+For <strong>relation path representation</strong>, the authors argue that the semantic meaning of a relation path depends on all relations in this path, thus, given a relation path $p=(r_{1},\dots,r_{l})$, they define and learn a binary (composition) operation function ($\circ$) to obtain the path embedding $p$ by recursively composing multiple relations. Formally, for a path $p=(r_{1},\dots,r_{l})$, the path embeddingas is obtained by $p=r_{1}\circ\cdot\cdot\cdot\circ r_{l}$. As shown below
+<img src="/img/nlp/transx/path-relation.png" alt="Relation Path" />
+The authors propose three types of composition operation:</p>
+
+<ul>
+<li><strong>Addition (ADD)</strong>: The addition operation obtains the vector of a path by summing up the vectors of all relations
+$$
+p=r_{1}+\dots+r_{l}\tag{5}
+$$</li>
+<li><strong>Multiplication (MUL)</strong>: The multiplication operation obtains the vector of a path as the cumulative product of the vectors of all relations
+$$
+p=r_{1}\times\dots\times r_{l}\tag{6}
+$$</li>
+<li><strong>Recurrent Neural Network (RNN)</strong>: RNN is a recent neural-based model for semantic composition. The composition operation is realized using a matrix $\mathbf{W}$:
+$$
+c_{i}=f(\mathbf{W}[c_{i-1};r_{i}])\tag{7}
+$$
+where $f$ is a non-linearity or identical function, and $[a;b]$ represents the concatenation of two vectors. By setting $c_{1}=r_{1}$ and recursively performing RNN following the relation path, finally get $p=c_{n}$.</li>
+</ul>
+
+<p>Since $E(h,p,t)=\Vert h+p-t\Vert$, and $\Vert h+r-t\Vert$ has minimized with the direct relation triple $(h,r,t)$ to make sure $r\approx t-h$. So we can derive
+$$
+E(h,p,t)=\Vert h+p-t\Vert=\Vert p-(t-h)\Vert\approx\Vert p-r\Vert=E(p,r)\tag{8}
+$$
+<strong>Objective Formalization</strong>:<br />
+The objective of PTransE is given as
+$$
+\mathcal{L}(S)=\sum_{(h,r,t)\in S}\big[L(h,r,t)+\frac{1}{Z}\sum_{p\in P(h,t)}R(p\vert h,t)L(p,r)\big]\tag{9}
+$$
+Here the $L(\cdot)$ is the margin-based loss functions
+$$
+\begin{aligned}
+L(h,r,t)&amp;=\sum_{(h&rsquo;,r&rsquo;,t&rsquo;)\in S^{-}}[\gamma+E(h,r,t)-E(h&rsquo;,r&rsquo;,t&rsquo;)]_{+}\newline
+L(p,r)&amp;=\sum_{(h,r&rsquo;,t)\in S^{-}}[\gamma+E(p,r)-E(p,r&rsquo;)]_{+}
+\end{aligned}
+$$
+where $[x]_{+}=\max(0,x)$ returns the maximum between $0$ and $x$, $\gamma$ is the margin, $S$ is the set of valid triples, and $S^{-}$ is the set of invalid triples derived by
+$$
+S^{-}=\{(h&rsquo;,r,t)\}\cup\{(h,r&rsquo;,t)\}\cup\{(h,r,t&rsquo;)\}\tag{10}
+$$
+The objective function is also under the constraints that $\forall h,r,t$, $\Vert h\Vert_{2}\leq 1$, $\Vert r\Vert_{2}\leq 1$, $\Vert t\Vert_{2}\leq 1$.</p>
+
+<p><strong>Reverse Relation Addition</strong>:<br />
+Besides, the authors only consider the relation paths following one direction, so in order to solve the cases, like $e_{1}\xrightarrow{BornInCity}e_{2}\xleftarrow{CityOfCountry}e_{3}$, they add reverse relations for each relation, say, for each triple $(h,r,t)$, build another $(t,r^{-1},h)$, thus, the above-mentioned path can be set as $e_{1}\xrightarrow{BornInCity}e_{2}\xrightarrow{CityOfCountry^{-1}}e_{3}$.</p>
+
+<p><strong>Path Selection Limitation</strong>:<br />
+This process normally depends on the scale of knowledge database, generally, 3-steps are quiet enough for most cases.</p>
+
+<p><strong>Resources</strong>:<br />
+<a href="https://github.com/thunlp/Fast-TransX" target="_blank">Fast-TransX</a>, <a href="https://github.com/thunlp/KB2E" target="_blank">KB2E</a> from Natural Language Processing Lab at Tsinghua University (<a href="https://github.com/thunlp" target="_blank">THUNLP</a>).</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/natural-language-processing">natural-language-processing</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/deep-learning">deep-learning</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/python">python</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/c&#43;&#43;">c&#43;&#43;</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/relation-representation">relation-representation</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/transx/">TransX: Embedding Entities and Relationships of Multi-relational Data</a></li>
+        
+        <li><a href="/post/wolf_warrior/">Analyzing Wolf Warrior II Movie Comments using Python</a></li>
+        
+        <li><a href="/post/beam_search/">Beam Search Algorithms in Sequence to Sequence</a></li>
+        
+        <li><a href="/post/seq2seq_conversation/">Seq2Seq Learning and Neural Conversational Model</a></li>
+        
+        <li><a href="/post/neural_responding_machine/">Neural Responding Machine for Short-Text Conversation -- Summary</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lstm on Isaac Changhau</title>
+    <link>https://isaacchanghau.github.io/tags/lstm/</link>
+    <description>Recent content in lstm on Isaac Changhau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017-2018</copyright>
+    <lastBuildDate>Wed, 02 Aug 2017 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://isaacchanghau.github.io/tags/lstm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Seq2Seq Learning and Neural Conversational Model</title>
+      <link>https://isaacchanghau.github.io/post/seq2seq_conversation/</link>
+      <pubDate>Wed, 02 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/seq2seq_conversation/</guid>
+      <description>Introduction of sequence to sequence learning and its application in conversation generation.</description>
+    </item>
+    
+    <item>
+      <title>Plain Stock Price Prediction via LSTM</title>
+      <link>https://isaacchanghau.github.io/post/stock_price_predict/</link>
+      <pubDate>Wed, 26 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/stock_price_predict/</guid>
+      <description>Stock price prediction using recurrent neural network with LSTM unit.</description>
+    </item>
+    
+    <item>
+      <title>LSTM and GRU -- Formula Summary</title>
+      <link>https://isaacchanghau.github.io/post/lstm-gru-formula/</link>
+      <pubDate>Sat, 22 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/lstm-gru-formula/</guid>
+      <description>Brief summarization of LSTM and GRU in recurrent neural networks.</description>
+    </item>
+    
+    <item>
+      <title>Understanding LSTM Networks</title>
+      <link>https://isaacchanghau.github.io/post/understand_lstm/</link>
+      <pubDate>Tue, 13 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/understand_lstm/</guid>
+      <description>A detailed introduction of LSTM networks, reprinted from colah&amp;rsquo;s blog.</description>
+    </item>
+    
+  </channel>
+</rss>

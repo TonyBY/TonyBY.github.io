@@ -1,0 +1,1239 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Isaac Changhau on Isaac Changhau</title>
+    <link>https://isaacchanghau.github.io/</link>
+    <description>Recent content in Isaac Changhau on Isaac Changhau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017-2018</copyright>
+    <lastBuildDate>Mon, 13 May 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Dual Adversarial Neural Transfer for Low-resource Named Entity Recognition</title>
+      <link>https://isaacchanghau.github.io/publication/datnet/</link>
+      <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/publication/datnet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RoSeq: Robust Sequence  Labeling</title>
+      <link>https://isaacchanghau.github.io/publication/roseq/</link>
+      <pubDate>Sat, 06 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/publication/roseq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Learning with Annotation of Various Degrees</title>
+      <link>https://isaacchanghau.github.io/publication/lavd/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/publication/lavd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PrimeNet: Human-inspired Framework for Commonsense Knowledge Representation and Reasoning</title>
+      <link>https://isaacchanghau.github.io/project/primenet/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/primenet/</guid>
+      <description>&lt;p&gt;Commonsense knowledge bases (KBs) are needed for inference in AI, in contexts such as natural language understanding, image and visual scene understanding, decision-making, etc. For tasks involving real-time interaction and decision-making, especially, the speed of such inference can be critical.&lt;/p&gt;
+
+&lt;p&gt;The goal of PrimeNet is to set out a framework for a commonsense KB that allows for efficient processing, in order to meet the demands of commonsense reasoning and, hence, support intelligent machine performance in real-world tasks. At the same time, the PrimeNet still provide access to a vast knowledge resource of concepts involving specific object instances.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;This project is ongoing&amp;hellip;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Towards Verifying Semantic Roles Co-occurrence</title>
+      <link>https://isaacchanghau.github.io/publication/co-occurrence/</link>
+      <pubDate>Fri, 05 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/publication/co-occurrence/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Variational Autoencoders Explained</title>
+      <link>https://isaacchanghau.github.io/post/vae_explained/</link>
+      <pubDate>Fri, 27 Jul 2018 14:20:36 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/vae_explained/</guid>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This blog article is borrowed from &lt;a href=&#34;http://kvfrans.com/variational-autoencoders-explained/&#34; target=&#34;_blank&#34;&gt;kevin frans blog · Variational Autoencoders Explained&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href=&#34;http://kvfrans.com/generative-adversial-networks-explained/&#34; target=&#34;_blank&#34;&gt;my previous post about generative adversarial networks&lt;/a&gt;, I went over a simple method to training a network that could generate realistic-looking images.&lt;/p&gt;
+
+&lt;p&gt;However, there were a couple of downsides to using a plain GAN.&lt;/p&gt;
+
+&lt;p&gt;First, the images are generated off some arbitrary noise. If you wanted to generate a picture with specific features, there&amp;rsquo;s no way of determining which initial noise values would produce that picture, other than searching over the entire distribution.&lt;/p&gt;
+
+&lt;p&gt;Second, a generative adversarial model only discriminates between &amp;ldquo;real&amp;rdquo; and &amp;ldquo;fake&amp;rdquo; images. There&amp;rsquo;s no constraints that an image of a cat has to look like a cat. This leads to results where there&amp;rsquo;s no actual object in a generated image, but the style just looks like picture.&lt;/p&gt;
+
+&lt;p&gt;In this post, I&amp;rsquo;ll go over the variational autoencoder, a type of network that solves these two problems.&lt;/p&gt;
+
+&lt;h3 id=&#34;what-is-a-variational-autoencoder&#34;&gt;What is a variational autoencoder?&lt;/h3&gt;
+
+&lt;p&gt;To get an understanding of a VAE, we&amp;rsquo;ll first start from a simple network and add parts step by step.&lt;/p&gt;
+
+&lt;p&gt;An common way of describing a neural network is an approximation of some function we wish to model. However, they can also be thought of as a data structure that holds information.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say we had a network comprised of a few &lt;a href=&#34;http://kvfrans.com/generative-adversial-networks-explained/&#34; target=&#34;_blank&#34;&gt;deconvolution layers&lt;/a&gt;. We set the input to always be a vector of ones. Then, we can train the network to reduce the mean squared error between itself and one target image. The &amp;ldquo;data&amp;rdquo; for that image is now contained within the network&amp;rsquo;s parameters.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/deeplearning/vae/1.jpg&#34; alt=&#34;1.jpg&#34; /&gt;
+Now, let&amp;rsquo;s try it on multiple images. Instead of a vector of ones, we&amp;rsquo;ll use a one-hot vector for the input. &lt;code&gt;[1, 0, 0, 0]&lt;/code&gt; could mean a cat image, while &lt;code&gt;[0, 1, 0, 0]&lt;/code&gt; could mean a dog. This works, but we can only store up to 4 images. Using a longer vector means adding in more and more parameters so the network can memorize the different images.&lt;/p&gt;
+
+&lt;p&gt;To fix this, we use a vector of real numbers instead of a one-hot vector. We can think of this as a code for an image, which is where the terms encode/decode come from. For example, &lt;code&gt;[3.3, 4.5, 2.1, 9.8]&lt;/code&gt; could represent the cat image, while &lt;code&gt;[3.4, 2.1, 6.7, 4.2]&lt;/code&gt; could represent the dog. This initial vector is known as our latent variables.&lt;/p&gt;
+
+&lt;p&gt;Choosing the latent variables randomly, like I did above, is obviously a bad idea. In an autoencoder, we add in another component that takes in the original images and encodes them into vectors for us. The deconvolutional layers then &amp;ldquo;decode&amp;rdquo; the vectors back to the original images.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/deeplearning/vae/2.jpg&#34; alt=&#34;1.jpg&#34; /&gt;
+We&amp;rsquo;ve finally reached a stage where our model has some hint of a practical use. We can train our network on as many images as we want. If we save the encoded vector of an image, we can reconstruct it later by passing it into the decoder portion. What we have is the standard autoencoder.&lt;/p&gt;
+
+&lt;p&gt;However, we&amp;rsquo;re trying to build a generative model here, not just a fuzzy data structure that can &amp;ldquo;memorize&amp;rdquo; images. We can&amp;rsquo;t generate anything yet, since we don&amp;rsquo;t know how to create latent vectors other than encoding them from images.&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s a simple solution here. We add a constraint on the encoding network, that forces it to generate latent vectors that roughly follow a unit gaussian distribution. It is this constraint that separates a variational autoencoder from a standard one.&lt;/p&gt;
+
+&lt;p&gt;Generating new images is now easy: all we need to do is sample a latent vector from the unit gaussian and pass it into the decoder.&lt;/p&gt;
+
+&lt;p&gt;In practice, there&amp;rsquo;s a tradeoff between how accurate our network can be and how close its latent variables can match the unit gaussian distribution.&lt;/p&gt;
+
+&lt;p&gt;We let the network decide this itself. For our loss term, we sum up two separate losses: the generative loss, which is a mean squared error that measures how accurately the network reconstructed the images, and a latent loss, which is the KL divergence that measures how closely the latent variables match a unit gaussian.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;generation_loss = mean(square(generated_image - real_image))  
+latent_loss = KL-Divergence(latent_variable, unit_gaussian)  
+loss = generation_loss + latent_loss  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In order to optimize the KL divergence, we need to apply a simple reparameterization trick: instead of the encoder generating a vector of real values, it will generate a vector of means and a vector of standard deviations.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/deeplearning/vae/3.jpg&#34; alt=&#34;3.jpg&#34; /&gt;
+This lets us calculate KL divergence as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# z_mean and z_stddev are two vectors generated by encoder network
+latent_loss = 0.5 * tf.reduce_sum(tf.square(z_mean) + tf.square(z_stddev) - tf.log(tf.square(z_stddev)) - 1,1)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When we&amp;rsquo;re calculating loss for the decoder network, we can just sample from the standard deviations and add the mean, and use that as our latent vector:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;samples = tf.random_normal([batchsize,n_z],0,1,dtype=tf.float32)  
+sampled_z = z_mean + (z_stddev * samples)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In addition to allowing us to generate random latent variables, this constraint also improves the generalization of our network.&lt;/p&gt;
+
+&lt;p&gt;To visualize this, we can think of the latent variable as a transfer of data.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say you were given a bunch of pairs of real numbers between &lt;code&gt;[0, 10]&lt;/code&gt;, along with a name. For example, &lt;code&gt;5.43&lt;/code&gt; means apple, and &lt;code&gt;5.44&lt;/code&gt; means banana. When someone gives you the number &lt;code&gt;5.43&lt;/code&gt;, you know for sure they are talking about an apple. We can essentially encode infinite information this way, since there&amp;rsquo;s no limit on how many different real numbers we can have between &lt;code&gt;[0, 10]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, what if there was a gaussian noise of one added every time someone tried to tell you a number? Now when you receive the number &lt;code&gt;5.43&lt;/code&gt;, the original number could have been anywhere around &lt;code&gt;[4.4 ~ 6.4]&lt;/code&gt;, so the other person could just as well have meant banana (&lt;code&gt;5.44&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;The greater standard deviation on the noise added, the less information we can pass using that one variable.&lt;/p&gt;
+
+&lt;p&gt;Now we can apply this same logic to the latent variable passed between the encoder and decoder. The more efficiently we can encode the original image, the higher we can raise the standard deviation on our gaussian until it reaches one.&lt;/p&gt;
+
+&lt;p&gt;This constraint forces the encoder to be very efficient, creating information-rich latent variables. This improves generalization, so latent variables that we either randomly generated, or we got from encoding non-training images, will produce a nicer result when decoded.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-well-does-it-work&#34;&gt;How well does it work?&lt;/h3&gt;
+
+&lt;p&gt;I ran a few tests to see how well a variational autoencoder would work on the MNIST handwriting dataset.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/deeplearning/vae/4.jpg&#34; alt=&#34;4.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;left: 1st epoch, middle: 9th epoch, right: original&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Looking good! After only 15 minutes on my laptop w/o a GPU, it&amp;rsquo;s producing some nice results on MNIST.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s something convenient about VAEs. Since they follow an encoding-decoding scheme, we can compare generated images directly to the originals, which is not possible when using a GAN.&lt;/p&gt;
+
+&lt;p&gt;A downside to the VAE is that it uses direct mean squared error instead of an adversarial network, so the network tends to produce more blurry images.&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s been some work looking into combining the VAE and the GAN: Using the same encoder-decoder setup, but using an adversarial network as a metric for training the decoder. Check out &lt;a href=&#34;https://arxiv.org/pdf/1512.09300.pdf&#34; target=&#34;_blank&#34;&gt;this paper&lt;/a&gt; or &lt;a href=&#34;http://blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/&#34; target=&#34;_blank&#34;&gt;this blog post&lt;/a&gt; for more on that.&lt;/p&gt;
+
+&lt;p&gt;You can get the code for this post on &lt;a href=&#34;https://github.com/kvfrans/variational-autoencoder&#34; target=&#34;_blank&#34;&gt;kvfrans&amp;rsquo; Github&lt;/a&gt;. It&amp;rsquo;s a cleaned up version of the code from &lt;a href=&#34;https://jmetzen.github.io/2015-11-27/vae.html&#34; target=&#34;_blank&#34;&gt;this post&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Action Hierarchy Extraction and its Application</title>
+      <link>https://isaacchanghau.github.io/publication/action-hierarchy/</link>
+      <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/publication/action-hierarchy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Behavioural Understanding and Narrative Descriptions from Videos</title>
+      <link>https://isaacchanghau.github.io/project/maracana/</link>
+      <pubDate>Fri, 20 Apr 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/maracana/</guid>
+      <description>&lt;p&gt;Current video surveillance systems still require users to monitor an array of video streams from a myraid of cameras to pick out potential threats and other events of interest. Attemps to automate the process typically rely on hand-crafted rules which cannot handle dynamic, uncertain and comples siturations requiring new hand-crafted rules to address each and every new situation. In this project, we apply and extend behavioural learning and commonsense reasoning to video data analysis, which allow video surveillance systems to learn new behaviours without the need to hand craft rules, and to use the learnt behaviours to perform behavioural reasoning in order to predict downstream behaviours and recommend courses of action, and to generate narrative descriptions of visual scenes containing previously learnt behaviours.&lt;/p&gt;
+
+&lt;p&gt;The objective of the project, named MARACANA, is to develop technology components that can analyze and narrate real world events captured in video, and demonstrate these capabilities in a static surveillance scenario. The technology will provide the human user with a rapid understanding of the happenings in an environment. Generally, we focus on addressing the following issues:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Develop components that are not built-in to work on only specific scenarios but are adaptive to various scenarios.&lt;/li&gt;
+&lt;li&gt;Knowledge learnt in one scenario should also be transferrable to other scenarios to effect faster learning.&lt;/li&gt;
+&lt;li&gt;Description of the events happening in the real world is in the form of textual natural language.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In order to tackle those problems, several technology components, including &lt;strong&gt;event/activity recognition and tracking&lt;/strong&gt;, &lt;strong&gt;behaviour extraction&lt;/strong&gt;, &lt;strong&gt;behavioural (causal) learning&lt;/strong&gt;, &lt;strong&gt;commonsense reasoning/learning&lt;/strong&gt;, &lt;strong&gt;behavioural (causal) reasoning&lt;/strong&gt; and &lt;strong&gt;narrative scene description&lt;/strong&gt;, are developed and then integrated to form the whole system. The general architecture is shown in the figure below, it briefly illustrates the overall workflow for training and opration processes.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/surface/maracana.png&#34; alt=&#34;Maracana&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Introduction of TensorFlow Dataset API</title>
+      <link>https://isaacchanghau.github.io/post/tensorflow_dataset_api/</link>
+      <pubDate>Wed, 21 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/tensorflow_dataset_api/</guid>
+      <description>
+
+&lt;p&gt;Reprinted from &lt;a href=&#34;https://towardsdatascience.com/how-to-use-dataset-in-tensorflow-c758ef9e4428&#34; target=&#34;_blank&#34;&gt;Francesco Zuppichini·How to use Dataset in TensorFlow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Based on TensorFlow 1.6&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As you should know, &lt;code&gt;feed-dict&lt;/code&gt; is the slowest possible way to pass information to TensorFlow and it must be avoided. The correct way to feed data into your models is to use an input pipeline to ensure that the GPU has never to wait for new stuff to come in.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, TensorFlow has a built-in API, called &lt;a href=&#34;https://www.tensorflow.org/programmers_guide/datasets&#34; target=&#34;_blank&#34;&gt;Dataset&lt;/a&gt; to make it easier to accomplish this task. In this tutorial, we are going to see how we can create an input pipeline using it and how to feed the data into the model efficiently.&lt;/p&gt;
+
+&lt;p&gt;This article will explain the basic mechanics of the Dataset, covering the most common use cases. You can found all the code as a jupyter notebook here: &lt;a href=&#34;https://github.com/FrancescoSaverioZuppichini/Tensorflow-Dataset-Tutorial/blob/master/dataset_tutorial.ipynb&#34; target=&#34;_blank&#34;&gt;[link]&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;generic-overview&#34;&gt;Generic Overview&lt;/h3&gt;
+
+&lt;p&gt;In order to use a Dataset we need three steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Importing Data&lt;/strong&gt;. Create a Dataset instance from some data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Create an Iterator&lt;/strong&gt;. By using the created dataset to make an Iterator instance to iterate thought the dataset&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consuming Data&lt;/strong&gt;. By using the created iterator we can get the elements from the dataset to feed the model&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;importing-data&#34;&gt;Importing Data&lt;/h3&gt;
+
+&lt;p&gt;We first need some data to put inside our dataset&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;From &lt;code&gt;Numpy&lt;/code&gt;&lt;/strong&gt;：This is the common case, we have a numpy array and we want to pass it to tensorflow.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# create a random vector of shape (100,2)
+x = np.random.sample((100,2))
+# make a dataset from a numpy array
+dataset = tf.data.Dataset.from_tensor_slices(x)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can also pass more than one &lt;code&gt;numpy&lt;/code&gt; array, one classic example is when we have a couple of data divided into features and labels&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;features, labels = (np.random.sample((100,2)), np.random.sample((100,1)))
+dataset = tf.data.Dataset.from_tensor_slices((features,labels))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;From &lt;code&gt;tensors&lt;/code&gt;&lt;/strong&gt;: We can, of course, initialise our dataset with some tensor&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# using a tensor
+dataset = tf.data.Dataset.from_tensor_slices(tf.random_uniform([100, 2]))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;From a &lt;code&gt;placeholder&lt;/code&gt;&lt;/strong&gt;: This is useful when we want to dynamic change the data inside the Dataset, we will se later how.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;x = tf.placeholder(tf.float32, shape=[None,2])
+dataset = tf.data.Dataset.from_tensor_slices(x)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;From &lt;code&gt;generator&lt;/code&gt;&lt;/strong&gt;: We can also initialise a Dataset from a &lt;code&gt;generator&lt;/code&gt;, this is useful when we have an array of different elements lenght (e.g a sequence):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sequence = np.array([[1],[2,3],[3,4]])
+
+
+def generator():
+    for el in sequence:
+        yield el
+
+
+dataset = tf.data.Dataset().from_generator(generator, output_types=tf.float32, output_shapes=[tf.float32])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this case you also need specify the types and the shapes of your data that will be used to create the correct &lt;code&gt;tensors&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;create-an-iterator&#34;&gt;Create an Iterator&lt;/h3&gt;
+
+&lt;p&gt;We have seen how to create a dataset, but how to get our data back? We have to use an &lt;code&gt;Iterator&lt;/code&gt;, that will give us the ability to iterate through the dataset and retrieve the real values of the data. There exist four types of iterators.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;One shot Iterator&lt;/strong&gt;: This is the easiest iterator. Using the first example&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;x = np.random.sample((100,2))
+# make a dataset from a numpy array
+dataset = tf.data.Dataset.from_tensor_slices(x)
+# create the iterator
+iter = dataset.make_one_shot_iterator()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you need to call &lt;code&gt;get_next()&lt;/code&gt; to get the tensor that will contain your data&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;...
+# create the iterator
+iter = dataset.make_one_shot_iterator()
+el = iter.get_next()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can run &lt;code&gt;el&lt;/code&gt; in order to see its value.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;with tf.Session() as sess:
+    print(sess.run(el)) # output: [ 0.42116176  0.40666069]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Initializable Iterator&lt;/strong&gt;: In case we want to build a dynamic dataset in which we can change the data sourceat runtime, we can create a dataset with a &lt;code&gt;placeholder&lt;/code&gt;. Then we can initialize the &lt;code&gt;placeholder&lt;/code&gt; using the common &lt;code&gt;feed-dict&lt;/code&gt; mechanism. This is done with an initializable iterator. Using example three from last section&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# using a placeholder
+x = tf.placeholder(tf.float32, shape=[None,2])
+dataset = tf.data.Dataset.from_tensor_slices(x)
+data = np.random.sample((100,2))
+iter = dataset.make_initializable_iterator() # create the iterator
+el = iter.get_next()
+with tf.Session() as sess:
+    # feed the placeholder with data
+    sess.run(iter.initializer, feed_dict={ x: data }) 
+    print(sess.run(el)) # output [ 0.52374458  0.71968478]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This time we call &lt;code&gt;make_initializable_iterator&lt;/code&gt;. Then, inside the &lt;code&gt;sess&lt;/code&gt; scope, we run the initializer operation in order to pass our data, in this case a random &lt;code&gt;numpy&lt;/code&gt; array.&lt;/p&gt;
+
+&lt;p&gt;Imagine that now we have a train set and a test set, a real common scenario:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;train_data = (np.random.sample((100,2)), np.random.sample((100,1)))
+test_data = (np.array([[1,2]]), np.array([[0]]))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we would like to train the model and then evaluate it on the test dataset, this can be done by initialising the iterator again after training&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# initializable iterator to switch between dataset
+EPOCHS = 10
+x, y = tf.placeholder(tf.float32, shape=[None,2]), tf.placeholder(tf.float32, shape=[None,1])
+dataset = tf.data.Dataset.from_tensor_slices((x, y))
+train_data = (np.random.sample((100,2)), np.random.sample((100,1)))
+test_data = (np.array([[1,2]]), np.array([[0]]))
+iter = dataset.make_initializable_iterator()
+features, labels = iter.get_next()
+with tf.Session() as sess:
+    # initialise iterator with train data
+    sess.run(iter.initializer, feed_dict={ x: train_data[0], y: train_data[1]})
+    for _ in range(EPOCHS):
+        sess.run([features, labels])
+    # switch to test data
+    sess.run(iter.initializer, feed_dict={ x: test_data[0], y: test_data[1]})
+    print(sess.run([features, labels]))
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Reinitializable Iterator&lt;/strong&gt;: The concept is similar to before, we want to dynamic switch between data. But instead of feed new data to the same dataset, we switch dataset. As before, we want to have a train dataset and a test dataset&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# making fake data using numpy
+train_data = (np.random.sample((100,2)), np.random.sample((100,1)))
+test_data = (np.random.sample((10,2)), np.random.sample((10,1)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can create two Datasets&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# create two datasets, one for training and one for test
+train_dataset = tf.data.Dataset.from_tensor_slices(train_data)
+test_dataset = tf.data.Dataset.from_tensor_slices(test_data)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now this is the trick, we create a generic &lt;code&gt;Iterator&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# create a iterator of the correct shape and type
+iter = tf.data.Iterator.from_structure(train_dataset.output_types, train_dataset.output_shapes)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and then two initialisation operations:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# create the initialisation operations
+train_init_op = iter.make_initializer(train_dataset)
+test_init_op = iter.make_initializer(test_dataset)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We get the next element as before&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;features, labels = iter.get_next()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, we can directly run the two initialisation operation using our &lt;code&gt;session&lt;/code&gt;. Putting all together we get:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Reinitializable iterator to switch between Datasets
+EPOCHS = 10
+# making fake data using numpy
+train_data = (np.random.sample((100,2)), np.random.sample((100,1)))
+test_data = (np.random.sample((10,2)), np.random.sample((10,1)))
+# create two datasets, one for training and one for test
+train_dataset = tf.data.Dataset.from_tensor_slices(train_data)
+test_dataset = tf.data.Dataset.from_tensor_slices(test_data)
+# create a iterator of the correct shape and type
+iter = tf.data.Iterator.from_structure(train_dataset.output_types, train_dataset.output_shapes)
+features, labels = iter.get_next()
+# create the initialisation operations
+train_init_op = iter.make_initializer(train_dataset)
+test_init_op = iter.make_initializer(test_dataset)
+with tf.Session() as sess:
+    sess.run(train_init_op) # switch to train dataset
+    for _ in range(EPOCHS):
+        sess.run([features, labels])
+    sess.run(test_init_op) # switch to val dataset
+    print(sess.run([features, labels]))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Feedable Iterator&lt;/strong&gt;: Honestly, I don’t think they are useful. Basically instead of switch between datasets they switch between iterators so you can have, for example, one iterator from &lt;code&gt;make_one_shot_iterator()&lt;/code&gt; and one from &lt;code&gt;make_initializable_iterator()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;consuming-data&#34;&gt;Consuming data&lt;/h3&gt;
+
+&lt;p&gt;In the previous example we have used the &lt;code&gt;session&lt;/code&gt; to print the value of the &lt;code&gt;next&lt;/code&gt; element in the Dataset.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;...
+next_el = iter.get_next()
+...
+print(sess.run(next_el)) # will output the current element
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In order to pass the data to a model we have to just pass the tensors generated from &lt;code&gt;get_next()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the following snippet we have a Dataset that contains two numpy arrays, using the same example from the first section. Notice that we need to wrap the &lt;code&gt;.random.sample&lt;/code&gt; in another numpy array to add a dimension that we is needed to batch the data&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# using two numpy arrays
+features, labels = (np.array([np.random.sample((100,2))]), np.array([np.random.sample((100,1))]))
+dataset = tf.data.Dataset.from_tensor_slices((features,labels)).repeat().batch(BATCH_SIZE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then as always we create an iterator&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;iter = dataset.make_one_shot_iterator()
+x, y = iter.get_next()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We make a model, a simple neural network&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# make a simple model
+net = tf.layers.dense(x, 8) # pass the first value from iter.get_next() as input
+net = tf.layers.dense(net, 8)
+prediction = tf.layers.dense(net, 1)
+loss = tf.losses.mean_squared_error(prediction, y) # pass the second value from iter.get_net() as label
+train_op = tf.train.AdamOptimizer().minimize(loss)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We &lt;strong&gt;directly&lt;/strong&gt; use the Tensors from &lt;code&gt;iter.get_next()&lt;/code&gt; as input to the first layer and as labels for the loss function. Wrapping all together:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;EPOCHS = 10
+BATCH_SIZE = 16
+# using two numpy arrays
+features, labels = (np.array([np.random.sample((100,2))]), 
+                    np.array([np.random.sample((100,1))]))
+dataset = tf.data.Dataset.from_tensor_slices((features,labels)).repeat().batch(BATCH_SIZE)
+iter = dataset.make_one_shot_iterator()
+x, y = iter.get_next()
+# make a simple model
+net = tf.layers.dense(x, 8, activation=tf.tanh) # pass the first value from iter.get_next() as input
+net = tf.layers.dense(net, 8, activation=tf.tanh)
+prediction = tf.layers.dense(net, 1, activation=tf.tanh)
+loss = tf.losses.mean_squared_error(prediction, y) # pass the second value from iter.get_net() as label
+train_op = tf.train.AdamOptimizer().minimize(loss)
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    for i in range(EPOCHS):
+        _, loss_value = sess.run([train_op, loss])
+        print(&amp;quot;Iter: {}, Loss: {:.4f}&amp;quot;.format(i, loss_value))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Iter: 0, Loss: 0.1328 
+Iter: 1, Loss: 0.1312 
+Iter: 2, Loss: 0.1296 
+Iter: 3, Loss: 0.1281 
+Iter: 4, Loss: 0.1267 
+Iter: 5, Loss: 0.1254 
+Iter: 6, Loss: 0.1242 
+Iter: 7, Loss: 0.1231 
+Iter: 8, Loss: 0.1220 
+Iter: 9, Loss: 0.1210
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;useful-stuff&#34;&gt;Useful Stuff&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Batch&lt;/strong&gt;: Usually batching data is a pain in the ass, with the Dataset API we can use the method &lt;code&gt;batch(BATCH_SIZE)&lt;/code&gt; that automatically batches the dataset with the provided size. The default value is one. In the following example, we use a batch size of 4&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# BATCHING
+BATCH_SIZE = 4
+x = np.random.sample((100,2))
+# make a dataset from a numpy array
+dataset = tf.data.Dataset.from_tensor_slices(x).batch(BATCH_SIZE)
+iter = dataset.make_one_shot_iterator()
+el = iter.get_next()
+with tf.Session() as sess:
+    print(sess.run(el)) 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[[ 0.65686128  0.99373963]
+ [ 0.69690451  0.32446826]
+ [ 0.57148422  0.68688242]
+ [ 0.20335116  0.82473219]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Repeat&lt;/strong&gt;: Using &lt;code&gt;.repeat()&lt;/code&gt; we can specify the number of times we want the dataset to be iterated. If no parameter is passed it will loop forever, usually is good to just loop forever and directly control the number of epochs with a standard loop.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Shuffle&lt;/strong&gt;: We can shuffle the Dataset by using the method &lt;code&gt;shuffle()&lt;/code&gt; that shuffles the dataset by default every epoch.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Remember: shuffle the dataset is very important to avoid overfitting.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;We can also set the parameter &lt;code&gt;buffer_size&lt;/code&gt;, a fixed size buffer from which the next element will be uniformly chosen from. Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# BATCHING
+BATCH_SIZE = 4
+x = np.array([[1],[2],[3],[4]])
+# make a dataset from a numpy array
+dataset = tf.data.Dataset.from_tensor_slices(x)
+dataset = dataset.shuffle(buffer_size=100)
+dataset = dataset.batch(BATCH_SIZE)
+iter = dataset.make_one_shot_iterator()
+el = iter.get_next()
+with tf.Session() as sess:
+    print(sess.run(el))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First run output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[[4]
+ [2]
+ [3]
+ [1]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Second run output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[[3]
+ [1]
+ [2]
+ [4]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yep. It was shuffled. If you want, you can also set the &lt;code&gt;seed&lt;/code&gt; parameter.&lt;/p&gt;
+
+&lt;h3 id=&#34;mapping&#34;&gt;Mapping&lt;/h3&gt;
+
+&lt;p&gt;You can apply a custom function to each member of a dataset using the &lt;code&gt;map()&lt;/code&gt; method. In the following example we multiply each element by two:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# MAP
+x = np.array([[1],[2],[3],[4]])
+# make a dataset from a numpy array
+dataset = tf.data.Dataset.from_tensor_slices(x)
+dataset = dataset.map(lambda x: x*2)
+iter = dataset.make_one_shot_iterator()
+el = iter.get_next()
+with tf.Session() as sess:
+    # this will run forever
+    for _ in range(len(x)):
+        print(sess.run(el))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[2]
+[4]
+[6]
+[8]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;full-example&#34;&gt;Full example&lt;/h3&gt;
+
+&lt;p&gt;In the example below we train a simple model using batching and we switch between train and test dataset&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Wrapping all together -&amp;gt; Switch between train and test set
+EPOCHS = 10
+BATCH_SIZE = 16
+x, y = tf.placeholder(tf.float32, shape=[None,2]), tf.placeholder(tf.float32, shape=[None,1])
+dataset = tf.data.Dataset.from_tensor_slices((x, y)).batch(BATCH_SIZE).repeat()
+# using two numpy arrays
+train_data = (np.random.sample((100,2)), np.random.sample((100,1)))
+test_data = (np.random.sample((20,2)), np.random.sample((20,1)))
+n_batches = len(train_data[0]) // BATCH_SIZE
+iter = dataset.make_initializable_iterator()
+features, labels = iter.get_next()
+
+# make a simple model
+net = tf.layers.dense(features, 8, activation=tf.tanh) # pass the first value from iter.get_next() as input
+net = tf.layers.dense(net, 8, activation=tf.tanh)
+prediction = tf.layers.dense(net, 1, activation=tf.tanh)
+loss = tf.losses.mean_squared_error(prediction, labels) # pass the second value from iter.get_net() as label
+train_op = tf.train.AdamOptimizer().minimize(loss)
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    # initialise iterator with train data
+    sess.run(iter.initializer, feed_dict={ x: train_data[0], y: train_data[1]})
+    print(&#39;Training...&#39;)
+    for i in range(EPOCHS):
+        tot_loss = 0
+        for _ in range(n_batches):
+            _, loss_value = sess.run([train_op, loss])
+            tot_loss += loss_value
+        print(&amp;quot;Iter: {}, Loss: {:.4f}&amp;quot;.format(i, tot_loss / n_batches))
+    # initialise iterator with test data
+    sess.run(iter.initializer, feed_dict={ x: test_data[0], y: test_data[1]})
+    print(&#39;Test Loss: {:4f}&#39;.format(sess.run(loss)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Training...
+Iter: 0, Loss: 0.5199
+Iter: 1, Loss: 0.4504
+Iter: 2, Loss: 0.3418
+Iter: 3, Loss: 0.2889
+Iter: 4, Loss: 0.2352
+Iter: 5, Loss: 0.1722
+Iter: 6, Loss: 0.1605
+Iter: 7, Loss: 0.1234
+Iter: 8, Loss: 0.1192
+Iter: 9, Loss: 0.0968
+Test Loss: 0.115165
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;other-resources&#34;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;TensorFlow dataset tutorial: &lt;a href=&#34;https://www.tensorflow.org/programmers_guide/datasets&#34; target=&#34;_blank&#34;&gt;[link]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dataset docs: &lt;a href=&#34;https://www.tensorflow.org/api_docs/python/tf/data/Dataset&#34; target=&#34;_blank&#34;&gt;[link]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;The Dataset API gives us a fast and robust way to create optimized input pipeline to train, evaluate and test our models. In this article, we have seen most of the common operation we can do with them.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Neural Sequence Labeling</title>
+      <link>https://isaacchanghau.github.io/project/neural_seq_labeling/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/neural_seq_labeling/</guid>
+      <description>&lt;p&gt;Sequence labeling is a type of pattern recognition task that involves the algorithmic assignment of a categorical label to each member of a sequence of observed values. It includes but not limit to Part Of Speech (POS) tagging, Chunking, Named Entity Recognition (NER), Semantic Role Labeling (SRL) and Punctuation Restoration. Those tasks can be treated as the pre-processing for various natural language processing tasks, which are capable of providing aplenty syntatic or semantic information and greatly improving the performance of subsequent tasks.&lt;/p&gt;
+
+&lt;p&gt;In this project, we investigated a unified neural network architecture and learning algorithm that can be applied to various sequence labeling tasks including Part of Speech (POS) Tagging, Chunking, Named Entity Recognition (NER) and so on. The aim of this project is to build an effective and versatile module that is able to learn and performance well among various seqeuence labeling datasets without exploiting man-made input features, carefully tuning parameters or setting up different model structures. This versatility is achieved by trying to avoid task-specific engineering and therefore disregarding a lot of prior knowledge.&lt;/p&gt;
+
+&lt;p&gt;We did experiments on different publicly available sequence labeling datasets, like &lt;a href=&#34;https://github.com/teropa/nlp/tree/master/resources/corpora/conll2002&#34; target=&#34;_blank&#34;&gt;CoNLL2002 shared task dataset&lt;/a&gt;, &lt;a href=&#34;https://cogcomp.org/page/resource_view/81&#34; target=&#34;_blank&#34;&gt;CoNLL2003 shared task dataset&lt;/a&gt;, &lt;a href=&#34;http://hltc.cs.ust.hk/iwslt/index.php/evaluation-campaign/ted-task.html#MTtrack&#34; target=&#34;_blank&#34;&gt;IWSLT dataset&lt;/a&gt;, &lt;a href=&#34;https://github.com/EuropeanaNewspapers/ner-corpora&#34; target=&#34;_blank&#34;&gt;Europeana Newspapers dataset&lt;/a&gt; and etc., which include POS tagging, chunking, NER and Punctuation Restoration tasks, and achieve convincing results, which are comparable or better than the the state-of-the-arts with carefully hyperparameters tuning and configuration modifying.&lt;/p&gt;
+
+&lt;p&gt;Generally, our model follows the structure of &lt;a href=&#34;https://arxiv.org/pdf/1603.01354.pdf&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;BiRNN-CNNs-CRF&lt;/code&gt;&lt;/a&gt; with some modifications, as well as additional and optional modules, such as &lt;code&gt;highway network&lt;/code&gt;, &lt;code&gt;attention mechanism&lt;/code&gt; and &lt;code&gt;residual connections&lt;/code&gt;. For example, we use the four layers structure for Punctuation Restoration task, which contains character-level CNN and word embeddings with highway layer for optimization (&lt;code&gt;1st layer&lt;/code&gt;), 4-layer &lt;a href=&#34;https://github.com/IsaacChanghau/Dense_BiLSTM&#34; target=&#34;_blank&#34;&gt;densely conntected bidirectional LSTM&lt;/a&gt; network to encode past and future contextual information for feature representations (&lt;code&gt;2nd layer&lt;/code&gt;), unidirectional LSTM layer with &lt;a href=&#34;https://arxiv.org/pdf/1409.0473.pdf&#34; target=&#34;_blank&#34;&gt;attention mechanism&lt;/a&gt; to learn more informative and contextual feature representations (&lt;code&gt;3rd layer&lt;/code&gt;) and a &lt;a href=&#34;http://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/&#34; target=&#34;_blank&#34;&gt;conditional random field (CRF) layer&lt;/a&gt; to decode the outputs (&lt;code&gt;4th layer&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://isaacchanghau.github.io/img/surface/punctuation.png&#34; alt=&#34;punctuation restoration model&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Details and source codes&lt;/strong&gt;: &lt;a href=&#34;https://github.com/IsaacChanghau/neural_sequence_labeling&#34; target=&#34;_blank&#34;&gt;IsaacChanghau/neural_sequence_labeling&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>TensorFlow Updates Multiple Tensors Using Scan</title>
+      <link>https://isaacchanghau.github.io/post/tensorflow_scan/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/tensorflow_scan/</guid>
+      <description>&lt;p&gt;This post is reprinted from &lt;a href=&#34;https://wcarvalho.github.io/tutorial/2017/06/30/tf_scan/&#34; target=&#34;_blank&#34;&gt;Wilka Carvalho · How to update multiple tensors using a single value with tf.scan&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/wcarvalho/jupyter_notebooks/blob/master/tf.scan/Tensorflow%20Scan.ipynb&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Corresponding Jupyter Notebook&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I assume that you have a set of Tensors that you want to update with a sequence iteratively. E.g. you have a neural network that you’d like to update with a point at time &lt;code&gt;t&lt;/code&gt; in a sequence and values from the network at time &lt;code&gt;t-1&lt;/code&gt;. If you want to see this in full-fledged use, look at my jupyter notebook where I recreate the Variational Recurrent Neural Network!&lt;/p&gt;
+
+&lt;p&gt;This is &lt;a href=&#34;https://www.tensorflow.org/api_docs/python/tf/scan&#34; target=&#34;_blank&#34;&gt;the definition of scan&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tf.scan(
+    fn,
+    elems,
+    initializer=None,
+    parallel_iterations=10,
+    back_prop=True,
+    swap_memory=False,
+    infer_shape=True,
+    name=None
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;fn&lt;/code&gt; should follow the form &lt;code&gt;fn(parameter_that_changes,parameter_you_change_with)&lt;/code&gt;. This means that you can assume that your input from elem will always go to parameter_you_change_with, and that what you return should be &lt;code&gt;parameter_that_changes&lt;/code&gt;. Writing it like a function looks something like the following&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def fn(x, elem):
+    return new_x
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where &lt;code&gt;new_x&lt;/code&gt; will be &lt;code&gt;x&lt;/code&gt; the next time &lt;code&gt;fn&lt;/code&gt; is called. That took me some time to figure out.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import tensorflow as tf
+import numpy as np
+
+
+# Super Simple scan example as per: https://stackoverflow.com/questions/43841782/scan-function-in-theano-and-tensorflow
+def f(x, ys):
+  (y1, y2) = ys
+  return x + y1 * y2
+
+
+a = tf.constant([1, 2, 3, 4, 5])
+b = tf.constant([2, 3, 2, 2, 1])
+c = tf.scan(f, (a, b), initializer=0)
+with tf.Session() as sess:
+      print(sess.run(c))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[ 2  8 14 22 27]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Another example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# updating 3 tensors with a single sequence
+a1 = tf.Variable([0,0])
+a2 = tf.Variable([1,1])
+a3 = tf.Variable([2,2])
+
+sequence = tf.Variable([1,2,3])
+
+
+# using tf.multiply istead of &#39;*&#39;, e.g. tf.multiply(x,2) instead of 2*x was key to this compiling...
+def replace_one(old, x):
+    a1, a2, a3 = old
+    a1 = tf.add(a1,tf.multiply(x,1))
+    a2 = tf.add(a2,tf.multiply(x,2))
+    a3 = tf.add(a3,tf.multiply(x,3))
+
+    return [a1,a2,a3]
+
+
+# key things that worked: initializer needed to match output. 
+# dumb mistake I can see tripping up many people
+update = tf.scan(replace_one, sequence, initializer=[a1, a2, a3])
+
+a1 = a1.assign(a2)
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    print(sess.run(update))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;outputs:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[array([[1, 1],
+       [3, 3],
+       [6, 6]], dtype=int32), array([[ 3,  3],
+       [ 7,  7],
+       [13, 13]], dtype=int32), array([[ 5,  5],
+       [11, 11],
+       [20, 20]], dtype=int32)]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;A few notes&lt;/strong&gt;
+So this ws more difficult to implement than I expected. I had to get all the ingredients perfectly right.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;While I can assign outside of scan, for some reason the tensors &lt;code&gt;a1, a2, a3&lt;/code&gt; couldn’t be assigned, i.e. &lt;code&gt;a1.assign(tf.add(a1,tf.multiply(x,1)))&lt;/code&gt;, inside of scan&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;You can have all your values inside a single tensor for the initializer and update them via indexing. This also doesn’t work. i.e. with &lt;code&gt;T=tf.concat([a1,a2,a3])&lt;/code&gt;, you can’t do &lt;code&gt;T[0]=x&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;I spent a long time trying to manually concatonate the values so that I could track them in the future only to learn that scan does this by default!! E.g., for &lt;code&gt;a1&lt;/code&gt;, the corresponding output vector is &lt;code&gt;[a1+1, a1+1+2, a1+1+2+3]&lt;/code&gt; since the elements were &lt;code&gt;[1,2,3]&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Examples of Using &lt;code&gt;tf.scan&lt;/code&gt;&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gist.github.com/JonathanRaiman/04f59b5141bea6b767dca6af25cfebf5&#34; target=&#34;_blank&#34;&gt;[JonathanRaiman/awesome_scan.py]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/suriyadeepan/rnn-from-scratch&#34; target=&#34;_blank&#34;&gt;[suriyadeepan/rnn-from-scratch]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Useful Tricks for Operating Mac OS and Linux (Ubuntu)</title>
+      <link>https://isaacchanghau.github.io/post/useful_commands/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/useful_commands/</guid>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;Useful commands and tricks to raise efficiency under Mac OS and Linux&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;keep updating!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;mac-os-tricks&#34;&gt;Mac OS Tricks&lt;/h2&gt;
+
+&lt;h3 id=&#34;terminal-themes-and-vim&#34;&gt;Terminal Themes and VIM&lt;/h3&gt;
+
+&lt;p&gt;Follow this GitHub repository to build your own powerful and colorful Terminal: &lt;a href=&#34;https://github.com/lysyi3m/osx-terminal-themes&#34; target=&#34;_blank&#34;&gt;[color-theme-link]&lt;/a&gt;, &lt;a href=&#34;https://github.com/amix/vimrc&#34; target=&#34;_blank&#34;&gt;[vimrc-link]&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;generate-new-ssh-key-and-add-to-github&#34;&gt;Generate New SSH-Key and Add to GitHub&lt;/h3&gt;
+
+&lt;p&gt;Please refer the link (based on Mac OS platform):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac&#34; target=&#34;_blank&#34;&gt;Generating a new SSH key and adding it to the ssh-agent&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/working-with-ssh-key-passphrases/#platform-mac&#34; target=&#34;_blank&#34;&gt;Working with SSH key passphrases&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/#platform-mac&#34; target=&#34;_blank&#34;&gt;Adding a new SSH key to your GitHub account&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;shut-down-and-turn-on-local-backup&#34;&gt;Shut Down and Turn on Local Backup&lt;/h3&gt;
+
+&lt;p&gt;shut down:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo tmutil disablelocal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;trun on:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo tmutil enablelocal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;modify-launchpad-icon-size&#34;&gt;Modify Launchpad Icon Size&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ defaults write com.apple.dock springboard-rows -int 7 # change the size by modifying the number
+$ defaults write com.apple.dock springboard-columns -int 6 # change the size by modifying the number
+$ killall Dock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Reset:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ defaults write com.apple.dock ResetLaunchPad -bool TRUE
+$ killall Dock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;change-source-bash-profile-to-source-profile&#34;&gt;Change Source &amp;lsquo;.bash_profile&amp;rsquo; to Source &amp;lsquo;.profile&amp;rsquo;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cat .bash_profile &amp;gt;&amp;gt; .profile
+$ rm .bash_profile (optional)
+$ echo &amp;quot;source ~/.profile&amp;quot; &amp;gt;&amp;gt; .bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;open-port-22&#34;&gt;Open Port 22&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: most information is borrowed from &lt;a href=&#34;https://stackoverflow.com/questions/6313929/how-do-i-open-port-22-in-os-x-10-6-7&#34; target=&#34;_blank&#34;&gt;[How do I open port 22 in OS X 10.6.7]&lt;/a&gt;.&lt;br /&gt;
+Handling the problem of:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ssh localhost
+ssh: connect to host localhost port 22: Connection refused
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above problem happens since the remote login is closed in Mac OS X&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo systemsetup -getremotelogin
+Remote Login: off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the solution:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo systemsetup -setremotelogin on
+$ ssh localhost
+Last login: ......
+$ _
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;uninstall-mysql-using-terminal-completely&#34;&gt;Uninstall MySQL using Terminal Completely&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ~/
+$ sudo rm /usr/local/mysql
+$ sudo rm -rf /usr/local/var/mysql
+$ sudo rm -rf /usr/local/mysql*
+$ sudo rm -rf /Library/StartupItems/MySQLCOM
+$ sudo rm -rf /Library/PreferencePanes/My*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then open hostconfig:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vim /etc/hostconfig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and removed the line: &lt;code&gt;MYSQLCOM=-YES-rm -rf ~/Library/PreferencePanes/My*&lt;/code&gt;, after that, removing following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo rm -rf /Library/Receipts/mysql*
+$ sudo rm -rf /Library/Receipts/MySQL*
+$ sudo rm -rf /var/db/receipts/com.mysql.*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;homebrew-rollback&#34;&gt;Homebrew: Rollback&lt;/h3&gt;
+
+&lt;p&gt;For example: rollback from Python 3.7 to Python 3.6.5_1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew switch python 3.6.5_1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ref: &lt;a href=&#34;https://apple.stackexchange.com/questions/329187/homebrew-rollback-from-python-3-7-to-python-3-6-5-x&#34; target=&#34;_blank&#34;&gt;Homebrew: Rollback from Python 3.7 to Python 3.6.5.x?&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;terminal-cheatsheet&#34;&gt;Terminal Cheatsheet&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Information from &lt;a href=&#34;https://github.com/0nn0/terminal-mac-cheatsheet&#34; target=&#34;_blank&#34;&gt;[0nn0/terminal-mac-cheatsheet]&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Letters are shown capitalized for readability only.&lt;/em&gt;  &lt;em&gt;Capslock should be off.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Contains: &lt;strong&gt;SHORTCUTS&lt;/strong&gt;, &lt;strong&gt;CORE COMMANDS&lt;/strong&gt;, &lt;strong&gt;CHAINING COMMANDS&lt;/strong&gt;, &lt;strong&gt;PIPING COMMANDS&lt;/strong&gt;, &lt;strong&gt;COMMAND HISTORY&lt;/strong&gt;, &lt;strong&gt;FILE MANAGEMENT&lt;/strong&gt;, &lt;strong&gt;DIRECTORY MANAGEMENT&lt;/strong&gt;, &lt;strong&gt;SEARCH&lt;/strong&gt;, &lt;strong&gt;HELP&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;mac-close-system-integrity-protection-sip&#34;&gt;Mac Close System Integrity Protection (SIP)&lt;/h3&gt;
+
+&lt;p&gt;苹果电脑从 macOS 10.11 开始引入了系统完整性保护机制System Integrity Protection (SIP)，目的是帮助普通用户避免恶意app通过用户授权的方式获得所有系统权限。通过SIP，苹果实现了对第三方软件的限制，有一些操作永远不被允许，恶意软件无法通过用户授权的方式从而获得所有系统权限了。但同时也影响到了一些我们平常要用到的第三方软件。SIP技术主要分为文件系统保护，运行时保护，内核扩展签名，文件系统保护主要是通过沙盒机制限制root权限，运行时保护，主要就是保护关键进程无法被进程代码注入，挂调试器以及内核调试等，内核扩展签名，所有的第三方kext必须被安装到&lt;code&gt;/Library/Extensions&lt;/code&gt;，并强制使用签名。简单的来说，就是限制，那为什么限制呢，当然也是为你的安全。那我为什么又要告诉你关闭SIP呢，因为它会影响到我们无法使用部分第三方应用。&lt;/p&gt;
+
+&lt;p&gt;禁用关闭SIP保护机制的方法：
+重启你的Mac，当听到第一声响后（或者说在开机的时候），按住&lt;code&gt;Command + R&lt;/code&gt;键，按住不动，稍待片刻，电脑会进入到恢复模式。点击顶部菜单栏&lt;code&gt;实用工具&lt;/code&gt;中的&lt;code&gt;终端&lt;/code&gt;。在&lt;code&gt;终端&lt;/code&gt;中输入下面一行命令，然后按回车。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;csrutil disable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后正常重启你的电脑，重启后，会回到正常的Mac系统。这样就已经关闭了SIP系统保护机制。&lt;/p&gt;
+
+&lt;p&gt;重新打开SIP的方法和上面的步骤一样，只是&lt;code&gt;终端&lt;/code&gt;中输入的命令改为以下命令即可。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;csrutil enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;linux-ubuntu-tricks&#34;&gt;Linux (Ubuntu) Tricks&lt;/h2&gt;
+
+&lt;h3 id=&#34;format-usb-flash-drive&#34;&gt;Format USB Flash Drive&lt;/h3&gt;
+
+&lt;p&gt;Please refer the link: &lt;a href=&#34;https://www.wikihow.com/Format-a-USB-Flash-Drive-in-Ubuntu&#34; target=&#34;_blank&#34;&gt;wikiHow · How to Format a USB Flash Drive in Ubuntu&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordNet Troponymy and Extraction of Manner-Result Relations</title>
+      <link>https://isaacchanghau.github.io/publication/wordnet/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/publication/wordnet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PTransE -- Modeling Relation Paths for Representation Learning of Knowledge Bases</title>
+      <link>https://isaacchanghau.github.io/post/ptranse/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ptranse/</guid>
+      <description>&lt;p&gt;It is a summary of the paper &lt;strong&gt;Modeling Relation Paths for Representation Learning of Knowledge Bases&lt;/strong&gt; (&lt;a href=&#34;https://arxiv.org/pdf/1506.00379.pdf&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;PTransE&lt;/strong&gt;&lt;/a&gt;). PTransE is a novel extension of &lt;a href=&#34;https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf&#34; target=&#34;_blank&#34;&gt;TransE&lt;/a&gt;, which is a path-based representation learning model, to model relation paths for representation learning of knowledge bases. The authors argue that multiple-step relation paths also contain rich inference patterns between entities, thus, PTransE also considers relation paths as translations between entities for representation learning, and addresses two key challenges:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Since not all relation paths are reliable, so a &lt;strong&gt;path-constraint resource allocation&lt;/strong&gt; (PCRA) algorithm is designed to measure the reliability of relation paths.&lt;/li&gt;
+&lt;li&gt;Relation paths is represented via semantic composition of relation embeddings.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Despite the success of &lt;a href=&#34;https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf&#34; target=&#34;_blank&#34;&gt;TransE&lt;/a&gt;, &lt;a href=&#34;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.486.2800&amp;amp;rep=rep1&amp;amp;type=pdf&#34; target=&#34;_blank&#34;&gt;TransH&lt;/a&gt;, &lt;a href=&#34;https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9571/9523&#34; target=&#34;_blank&#34;&gt;TransR&lt;/a&gt; and &lt;a href=&#34;http://www.aclweb.org/anthology/P15-1067&#34; target=&#34;_blank&#34;&gt;TransD&lt;/a&gt; in modeling relational facts, these methods only take direct relations between entities into consideration. Actually, there are also substantial multiple-step relation paths between entities indicating their semantic relationships. For instance:
+$$
+\mathbf{h}\xrightarrow{BornInCity}\mathbf{e}_{1}\xrightarrow{CityInState}\mathbf{e}_{2}\xrightarrow{StateInCountry}\mathbf{t}
+$$
+which indicates the relation &lt;code&gt;Nationality&lt;/code&gt; between $\mathbf{h}$ and $\mathbf{t}$, i.e., $(\mathbf{h},\textrm{Nationality},\mathbf{t})$. However, in PTransE, in addition to direct connected relational facts, the authors also build triples from knowledge bases using entity pairs connected with relation paths. As shown below
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/ptranse-graph.png&#34; alt=&#34;PTransE Graph&#34; /&gt;
+TransE only considers direct relations between entities and optimizes the objective $h+r\approx t$, while PTransE generalizes TransE by regarding multiple-step relation paths as connections between entities, where $\circ$ is an operation to join the relations $r_{1}$ and $r_{2}$ together into a unified relation path representation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;PTransE&lt;/strong&gt;:&lt;br /&gt;
+Define entity set $\mathbf{E}$ and relation set $\mathbf{R}$ are in $\mathbb{R}^{k}$, $S=\{(h,r,t)\}$ represents a set of triples. For each triple $(h,r,t)$, the energy of TransE is computed by
+$$
+E(h,r,t)=\Vert h+r-t\Vert\tag{1}
+$$
+Since TransE only consider the direct relations, PTransE also considers the relation paths for representation. Suppose the multiple relation paths $P(h,t)=\{p_{1},\dots,p_{N}\}$ connecting two entities $h$ and $t$, where relation path $p=\{r_{1},\dots,r_{l}\}$ indicates $h\xrightarrow{r_{1}}\dots\xrightarrow{r_{l}}t$. For each triple $(h,r,t)$, the energy function of PTransE is defined as
+$$
+G(h,r,t)=E(h,r,t)+E(h,P,t)\tag{2}
+$$
+where $E(h,r,t)$ models correlations between relations and entities with direct relation triples, $E(h,P,t)$ models the inference correlations between relations with multiple-step relation path triples:
+$$
+E(h,P,t)=\frac{1}{Z}\sum_{p\in P(h,t)}R(p|h,t)E(h,p,t)\tag{3}
+$$
+where $R(p|h,t)$ indicates the reliability of relation path $p$ given entity pair $(h,t)$, $Z=\sum_{p\in P(h,t)}R(p|h,t)$ is a normalization factor, and $E(h,p,t)$ is the energy function of the triple $(h,p,t)$. The component $R(p|h,t)$ concerns about relation path reliability, and $E(h,p,t)$ concerns about relation path representation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Relation Path Reliability&lt;/strong&gt;:&lt;br /&gt;
+Since not all relation paths are meaningful and reliable for learning. the authors propose a &lt;strong&gt;path-constraint resource allocation&lt;/strong&gt; (PCRA) algorithm to measure the reliability of relation paths and only the reliable relation paths are selected. The basic idea is that a certain amount of resource is associated with the head entity $h$, and will flow following the given path $p$. Using the resource amount that eventually flows to the tail entity $t$ to measure the reliability of the path $p$ as a meaningful connection between $h$ and $t$.&lt;/p&gt;
+
+&lt;p&gt;For a triple $(h,p,t)$, the resource amount flowing from $h$ to $t$ is computed as follows. The flowing path is writen as $S_{0}\xrightarrow{r_{1}}S_{1}\xrightarrow{r_{2}}\dots\xrightarrow{r_{l}}S_{l}$, where $S_{0}=h$ and $t\in S_{l}$. For any entity $m\in S_{i}$, denote its direct predecessors along relation $r_{i}$ in $S_{i-1}$ as $S_{i-1}(\cdot,m)$. The resource flowing to m is defined as
+$$
+R_{p}(m)=\sum_{n\in S_{i-1}(\cdot,m)}\frac{1}{\vert S_{i}(n,\cdot)\vert}R_{p}(n)\tag{4}
+$$
+where $S_{i}(n,\cdot)$ is the direct successors of $n\in S_{i-1}$ following the relation $r_{i}$, and $R_{p}(n)$ is the resource obtained from the entity $n$. For each relation path $p$, we set the initial resource in $h$ as $R_{p}(h)=1$. By performing resource allocation recursively from $h$ through $p$, tail entity $t$ eventually obtains the resource $R_{p}(t)$ which indicates how much information of head entity $h$ can be well translated, thus, using $R_{p}(t)$ to measure the reliability of the path $p$ given $(h,t)$, i.e., $R(p\vert h,t)=R_{p}(t)$.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Relation Path Representation&lt;/strong&gt;:&lt;br /&gt;
+For &lt;strong&gt;relation path representation&lt;/strong&gt;, the authors argue that the semantic meaning of a relation path depends on all relations in this path, thus, given a relation path $p=(r_{1},\dots,r_{l})$, they define and learn a binary (composition) operation function ($\circ$) to obtain the path embedding $p$ by recursively composing multiple relations. Formally, for a path $p=(r_{1},\dots,r_{l})$, the path embeddingas is obtained by $p=r_{1}\circ\cdot\cdot\cdot\circ r_{l}$. As shown below
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/path-relation.png&#34; alt=&#34;Relation Path&#34; /&gt;
+The authors propose three types of composition operation:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Addition (ADD)&lt;/strong&gt;: The addition operation obtains the vector of a path by summing up the vectors of all relations
+$$
+p=r_{1}+\dots+r_{l}\tag{5}
+$$&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multiplication (MUL)&lt;/strong&gt;: The multiplication operation obtains the vector of a path as the cumulative product of the vectors of all relations
+$$
+p=r_{1}\times\dots\times r_{l}\tag{6}
+$$&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Recurrent Neural Network (RNN)&lt;/strong&gt;: RNN is a recent neural-based model for semantic composition. The composition operation is realized using a matrix $\mathbf{W}$:
+$$
+c_{i}=f(\mathbf{W}[c_{i-1};r_{i}])\tag{7}
+$$
+where $f$ is a non-linearity or identical function, and $[a;b]$ represents the concatenation of two vectors. By setting $c_{1}=r_{1}$ and recursively performing RNN following the relation path, finally get $p=c_{n}$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Since $E(h,p,t)=\Vert h+p-t\Vert$, and $\Vert h+r-t\Vert$ has minimized with the direct relation triple $(h,r,t)$ to make sure $r\approx t-h$. So we can derive
+$$
+E(h,p,t)=\Vert h+p-t\Vert=\Vert p-(t-h)\Vert\approx\Vert p-r\Vert=E(p,r)\tag{8}
+$$
+&lt;strong&gt;Objective Formalization&lt;/strong&gt;:&lt;br /&gt;
+The objective of PTransE is given as
+$$
+\mathcal{L}(S)=\sum_{(h,r,t)\in S}\big[L(h,r,t)+\frac{1}{Z}\sum_{p\in P(h,t)}R(p\vert h,t)L(p,r)\big]\tag{9}
+$$
+Here the $L(\cdot)$ is the margin-based loss functions
+$$
+\begin{aligned}
+L(h,r,t)&amp;amp;=\sum_{(h&amp;rsquo;,r&amp;rsquo;,t&amp;rsquo;)\in S^{-}}[\gamma+E(h,r,t)-E(h&amp;rsquo;,r&amp;rsquo;,t&amp;rsquo;)]_{+}\newline
+L(p,r)&amp;amp;=\sum_{(h,r&amp;rsquo;,t)\in S^{-}}[\gamma+E(p,r)-E(p,r&amp;rsquo;)]_{+}
+\end{aligned}
+$$
+where $[x]_{+}=\max(0,x)$ returns the maximum between $0$ and $x$, $\gamma$ is the margin, $S$ is the set of valid triples, and $S^{-}$ is the set of invalid triples derived by
+$$
+S^{-}=\{(h&amp;rsquo;,r,t)\}\cup\{(h,r&amp;rsquo;,t)\}\cup\{(h,r,t&amp;rsquo;)\}\tag{10}
+$$
+The objective function is also under the constraints that $\forall h,r,t$, $\Vert h\Vert_{2}\leq 1$, $\Vert r\Vert_{2}\leq 1$, $\Vert t\Vert_{2}\leq 1$.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reverse Relation Addition&lt;/strong&gt;:&lt;br /&gt;
+Besides, the authors only consider the relation paths following one direction, so in order to solve the cases, like $e_{1}\xrightarrow{BornInCity}e_{2}\xleftarrow{CityOfCountry}e_{3}$, they add reverse relations for each relation, say, for each triple $(h,r,t)$, build another $(t,r^{-1},h)$, thus, the above-mentioned path can be set as $e_{1}\xrightarrow{BornInCity}e_{2}\xrightarrow{CityOfCountry^{-1}}e_{3}$.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Path Selection Limitation&lt;/strong&gt;:&lt;br /&gt;
+This process normally depends on the scale of knowledge database, generally, 3-steps are quiet enough for most cases.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;:&lt;br /&gt;
+&lt;a href=&#34;https://github.com/thunlp/Fast-TransX&#34; target=&#34;_blank&#34;&gt;Fast-TransX&lt;/a&gt;, &lt;a href=&#34;https://github.com/thunlp/KB2E&#34; target=&#34;_blank&#34;&gt;KB2E&lt;/a&gt; from Natural Language Processing Lab at Tsinghua University (&lt;a href=&#34;https://github.com/thunlp&#34; target=&#34;_blank&#34;&gt;THUNLP&lt;/a&gt;).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>TransX: Embedding Entities and Relationships of Multi-relational Data</title>
+      <link>https://isaacchanghau.github.io/post/transx/</link>
+      <pubDate>Thu, 14 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/transx/</guid>
+      <description>
+
+&lt;p&gt;It is a summary of several papers about embedding entities and relationships of multi-relational knowledge database, while each paper contains one kind of specific method. Generally, the set of methods are called TransX. Here, I only describe the general idea and mathematical process of each method, for more information about those methods in parameters setting, experiment results and discussion, you can directly read the original papers through the links I provide.&lt;/p&gt;
+
+&lt;h1 id=&#34;multi-relational-data-overview&#34;&gt;Multi-relational Data Overview&lt;/h1&gt;
+
+&lt;p&gt;There are a lot of relational knowledge database available nowadays, like:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://conceptnet.io&#34; target=&#34;_blank&#34;&gt;ConceptNet&lt;/a&gt;, which is a freely-available semantic network, designed to help computers understand the meanings of words that people use.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wordnet.princeton.edu&#34; target=&#34;_blank&#34;&gt;WordNet&lt;/a&gt;, which is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into sets of cognitive synonyms (synsets), each expressing a distinct concept. WordNet&amp;rsquo;s structure makes it a useful tool for computational linguistics and natural language processing.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://verbs.colorado.edu/verbnet/&#34; target=&#34;_blank&#34;&gt;VerbNet&lt;/a&gt;, which is the largest on-line verb lexicon currently available for English. It is a hierarchical domain-independent, broad-coverage verb lexicon with mappings to other lexical resources such as WordNet, &lt;a href=&#34;http://www.cis.upenn.edu/~xtag/&#34; target=&#34;_blank&#34;&gt;Xtag&lt;/a&gt; and &lt;a href=&#34;https://framenet.icsi.berkeley.edu/fndrupal/&#34; target=&#34;_blank&#34;&gt;FrameNet&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Freebase&#34; target=&#34;_blank&#34;&gt;FreeBase&lt;/a&gt;, which is a large collaborative knowledge base consisting of data composed mainly by its community members. It was an online collection of structured data harvested from many sources, including individual, user-submitted wiki contributions. Freebase aimed to create a global resource that allowed people (and machines) to access common information more effectively.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/research/yago-naga/yago/&#34; target=&#34;_blank&#34;&gt;YaGo&lt;/a&gt;, which is a huge semantic knowledge base, derived from Wikipedia, WordNet and GeoNames. It has knowledge of more than 10 million entities and contains more than 120 million facts about these entities.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Actually, there are still a lot of different relational knowledge database exist, here we only show some representative databases above. Before we discuss those algorithms, let&amp;rsquo;s see some examples of multi-relational knowledge database to get the idea about how the database looks like.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/conceptnet-wordnet.png&#34; alt=&#34;conceptnet and wordnet&#34; /&gt;
+In the graph above, I show an example of two knowledge DB. For ConceptNet, each entity (or, node) is a concept, and entities are connected to each other through some specific relations, like, &lt;code&gt;oven--UsedFor--&amp;gt;cook&lt;/code&gt;, &lt;code&gt;cake--IsA--&amp;gt;dessert&lt;/code&gt;, here &lt;code&gt;oven&lt;/code&gt;, &lt;code&gt;cook&lt;/code&gt;, &lt;code&gt;cake&lt;/code&gt; and &lt;code&gt;dessert&lt;/code&gt; are entities, while &lt;code&gt;UsedFor&lt;/code&gt; and &lt;code&gt;IsA&lt;/code&gt; are relations. For WordNet, there are two different entities, one is called Synset (blue node), another is Word (green one). Each synset in WordNet is connected with other synsets through &lt;strong&gt;hypernym&lt;/strong&gt; and &lt;strong&gt;hyponym&lt;/strong&gt; relations, while Word only connect to its own synset and has some links with other words in the same synset, but never connected to words outside.&lt;/p&gt;
+
+&lt;p&gt;Although there are amount of relations and connections within a knowledge database, generally, all of the relations are in the several certain forms, like &lt;strong&gt;one-to-many relation&lt;/strong&gt;, &lt;strong&gt;many-to-one relation&lt;/strong&gt;, &lt;strong&gt;one-to-one relation&lt;/strong&gt;, &lt;strong&gt;co-relation&lt;/strong&gt;, &lt;strong&gt;reflexive relation&lt;/strong&gt; and so on.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/relation-forms.png&#34; alt=&#34;relation-forms&#34; /&gt;
+For example, one-to-many relation, which means one entity with one relation, links to several different entities, say, &lt;code&gt;apple--is_a--&amp;gt;fruit&lt;/code&gt;, &lt;code&gt;apple--is_a--&amp;gt;computer_brand&lt;/code&gt;, &lt;code&gt;apple--is_a--&amp;gt;computer_manufacturer&lt;/code&gt; and so on. For many-to-one relation, it is similar. However, the reflexive relation is unique, since two entities connect to each other with same relation, like &lt;code&gt;plate--is_a-&amp;gt;dish&lt;/code&gt;, while &lt;code&gt;dish--is_a--&amp;gt;plate&lt;/code&gt; too.&lt;/p&gt;
+
+&lt;p&gt;Dispite the scale of relational knowledge databases and how many different relation forms they have, all of them are able to be decomposed to the &lt;strong&gt;basic component&lt;/strong&gt; (triple), i.e., an entity connect to another entity with a certain relation, as shown below
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/basic-component.png&#34; alt=&#34;basic-component&#34; /&gt;
+In order to convert those relational data into embeddings, which are convenient and easy to access via statistical approach, researchers proposed several methods to handle this issue, like &lt;a href=&#34;http://machinelearning.wustl.edu/mlpapers/paper_files/ICML2011Nickel_438.pdf&#34; target=&#34;_blank&#34;&gt;RESCAL&lt;/a&gt;, &lt;a href=&#34;https://pdfs.semanticscholar.org/057a/c29c84084a576da56247bdfd63bf17b5a891.pdf&#34; target=&#34;_blank&#34;&gt;SE&lt;/a&gt;, &lt;a href=&#34;http://www.thespermwhale.com/jaseweston/papers/ebrm_mlj.pdf&#34; target=&#34;_blank&#34;&gt;SME(linear)&lt;/a&gt;, &lt;a href=&#34;http://www.thespermwhale.com/jaseweston/papers/ebrm_mlj.pdf&#34; target=&#34;_blank&#34;&gt;SME(bilinear)&lt;/a&gt;, &lt;a href=&#34;https://hal.inria.fr/hal-00776335/document&#34; target=&#34;_blank&#34;&gt;LFM&lt;/a&gt;, &lt;a href=&#34;https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf&#34; target=&#34;_blank&#34;&gt;TransE&lt;/a&gt;, &lt;a href=&#34;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.486.2800&amp;amp;rep=rep1&amp;amp;type=pdf&#34; target=&#34;_blank&#34;&gt;TransH&lt;/a&gt;, &lt;a href=&#34;https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9571/9523&#34; target=&#34;_blank&#34;&gt;TransR&lt;/a&gt;, &lt;a href=&#34;http://www.aclweb.org/anthology/P15-1067&#34; target=&#34;_blank&#34;&gt;TransD&lt;/a&gt; and so on, while the TransE, TransH, TransR, TransD are a group of similar methods, thus, we put them together and named as &lt;strong&gt;TransX&lt;/strong&gt;. So, TransX is a set of methods to create embeddings for entities and relations while remembering their connection information.&lt;/p&gt;
+
+&lt;h1 id=&#34;transe&#34;&gt;TransE&lt;/h1&gt;
+
+&lt;p&gt;TransE &amp;ndash; &lt;a href=&#34;https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf&#34; target=&#34;_blank&#34;&gt;Translating Embeddings for Modeling Multi-relational Data&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This paper considers the problem of embedding entities and relationships of multi-relational data in low-dimensional vector spaces, its objective is to propose a canonical model which is easy to train, contains a reduced number of parameters and can scale up to very large databases. So the TransE is proposed, which models relationships by interpreting them as translations operating on the low-dimensional embeddings of the entities.&lt;/p&gt;
+
+&lt;p&gt;TransE, an energy-based model for learning low-dimensional embeddings of entities.  In TransE, relationships are represented as translations in the embedding space:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;if $(h,r,t)$ holds, then the embedding of the tail entity $t$ should be &lt;strong&gt;close to&lt;/strong&gt; the embedding of the head entity $h$ &lt;strong&gt;plus&lt;/strong&gt; some vector that depends on the relationship $r$, while it is also the general idea of the training process of TransE.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The main motivation behind this translation-based parameterization is that hierarchical relationships are extremely common in KBs and translations are the natural transformations for representing them. Another motivation comes from &lt;a href=&#34;https://arxiv.org/abs/1310.4546&#34; target=&#34;_blank&#34;&gt;Distributed Representations of Words and Phrases and Their Compositionality&lt;/a&gt;, in which the authors learn word embeddings from free text, and some &lt;em&gt;1-to-1&lt;/em&gt; relationships between entities of different types are (coincidentally rather than willingly) represented by the model as translations in the embedding space. This suggests that there may exist embedding spaces in which &lt;em&gt;1-to-1&lt;/em&gt; relationships between entities of different types may, as well, be represented by translations.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Translation-based model&lt;/strong&gt;:
+Given a training set $S$ of triplets $(h,r,t)$ composed of two entities $h,t\in E$ (the set of entities) and a relationship $r\in R$ (the set of relationships), TransE learns vector embeddings of the entities and the relationships. The embeddings take values in $\mathbb{R}^{k}$ ($k$ is a model hyperparameter) and are denoted with the same letters, in boldface characters.&lt;/p&gt;
+
+&lt;p&gt;The basic idea behind the model is that the functional relation induced by the $r$-labeled edges corresponds to a translation of the embeddings, i.e. &lt;strong&gt;$h+r\approx t$ when $(h,r,t)$ holds ($t$ should be a nearest neighbor of $h+r$), while $h+r$ should be far away from $t$ otherwise&lt;/strong&gt;, as the graph below shows. Following an energy-based framework, the energy of a triplet is equal to $d(h+r,t)$ for some dissimilarity measure $d$, which we take to be either the $L_{1}$ or the $L_{2}$-norm.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transe-translation-graph.png&#34; alt=&#34;TransE Translation&#34; /&gt;
+To learn such embeddings, we minimize a margin-based ranking criterion over the training set:
+$$
+\mathcal{L}=\sum_{(h,r,t)\in S}\sum_{(h&amp;rsquo;,r,t&amp;rsquo;)\in S&amp;rsquo;_{(h,r,t)}}\big[\gamma+d(h+r,t)-d(h&amp;rsquo;+r,t&amp;rsquo;)\big]_{+}\tag{1}
+$$
+where $[x]_{+}$ denotes the positive part of $x$, $\gamma&amp;gt;0$ is a margin hyperparameter, and the dissimilarity measure $d$ is the squared euclidean distance, which computed by
+$$
+d(h+r,t)=\lVert h\rVert^{2}_{2}+\lVert r\rVert^{2}_{2}+\lVert t\rVert^{2}_{2}-2\big(h^{T}t+r^{T}(t-h)\big)\tag{2}
+$$
+with the norm constraints that $\lVert h\rVert^{2}_{2}=\lVert t\rVert^{2}_{2}=1$, and the set of corrupted triplets, constructed according to the equation (3) below, is composed of training triplets with either the head or tail replaced by a random entity (but not both at the same time)
+$$
+S&amp;rsquo;_{(h,r,t)}=\big\{(h&amp;rsquo;,r,t)\vert h&amp;rsquo;\in E\big\}\bigcup\big\{(h,r,t&amp;rsquo;)\vert t&amp;rsquo;\in E\big\}\tag{3}
+$$
+The loss function (1) favors lower values of the energy for training triplets than for corrupted triplets, and is thus a natural implementation of the intended criterion.&lt;/p&gt;
+
+&lt;p&gt;The optimization is carried out by stochastic gradient descent (in minibatch mode), over the possible $h$, $r$, and $t$, with the additional constraints that the $L_{2}$-norm of the embeddings of the entities is 1 (no regularization or norm constraints are given to the label embeddings $r$). This constraint is important, because it prevents the training process to trivially minimize $\mathcal{L}$ by artificially increasing entity embeddings norms. The detailed optimization procedure is described in the graph below.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/process.png&#34; alt=&#34;Process Graph&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;transh&#34;&gt;TransH&lt;/h1&gt;
+
+&lt;p&gt;TransH &amp;ndash; &lt;a href=&#34;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.486.2800&amp;amp;rep=rep1&amp;amp;type=pdf&#34; target=&#34;_blank&#34;&gt;Knowledge Graph Embedding by Translating on Hyperplanes&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Before talking about TransH, let&amp;rsquo;s see some problems that TransE holds. TransE models a relation $r$ as a translation vector $r\in\mathbb{R}^{k}$, and assumes the error $\Vert h+r-t\Vert_{l_{1}/l_{2}}$ is low if $(h,r,t)$ is a golden triple. It applies well to irreflexive and one-to-one relations but has problems when dealing with reflexive or many-to-one, one-to-many, many-to-many relations. Considering the ideal case of no-error embedding where $h+r-t=0$, if $(h,r,t)\in\Delta$, we can get the following consequences directly from TransE model.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If $(h,r,t)\in\Delta$ and $(t,r,h)\in\Delta$, i.e., $r$ is a reflexive map, then $r=0$ and $h=t$.&lt;/li&gt;
+&lt;li&gt;If $\forall i\in\{0,1,\dots,m\}$, $(h_{i},r,t)\in\Delta$, i.e., $r$ is a many-to-one map, then $h_{0}=\dots=h_{m}$. Similarly, if $(h,r,t_{i})\in\Delta$, i.e., $r$ is a one-to-many map, then $t_{0}=\dots=t_{m}$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The reason leading to the above consequences is, in TransE, the representation of an entity is the same when involved in any relations, ignoring &lt;em&gt;distributed representations of entities when involved in different relations&lt;/em&gt;. Hence, TransH is proposed to handle the problems of TransE in modeling reflexive, one-to-many, many-to-one and many-to-many relations. The general idea of TransH is shown below, which introduces a &lt;strong&gt;relation-specific hyperplane&lt;/strong&gt; to project the entities to the hyperplane, and the translation process is done in such hyperplane too. For a relation $r$, the authors position the relation-specific translation vector $d_{r}$ in the relation-specific hyperplane $w_{r}$ (the normal vector) rather than in the same space of entity embeddings.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transh-graph.png&#34; alt=&#34;TransH Graph&#34; /&gt;
+Specifically, for a triplet $(h,r,t)$, the embedding $h$ and $t$ are first projected to the hyperplane $w_{r}$. The projections are denoted as $h_{\bot}$ and $t_{\bot}$, respectively, while
+$$
+\begin{aligned}
+h_{\bot} &amp;amp;=h-w_{r}^{T}hw_{r}\newline
+t_{\bot} &amp;amp;=t-w_{r}^{T}tw_{r}
+\end{aligned}
+$$
+The authors expect $h_{\bot}$ and $t_{\bot}$ can be connected by a translation vector $d_{r}$ on the hyperplane with low error if $(h,r,t)$ is a golden triplet. And the graph below shows how the TransH sloves the problems in TransE.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transh-solve-problem.png&#34; alt=&#34;TransH Solve Problems&#34; /&gt;
+Thus, in TransH, by introducing the mechanism of projecting to the relation-specific hyperplane, it enables different roles of an entity in different relations/triplets. Generally, the training process of TransH is similar to TransE, its cost function is also a margin-based ranking loss
+$$
+\mathcal{L}=\sum_{(h,r,t)\in S}\sum_{(h&amp;rsquo;,r,t&amp;rsquo;)\in S&amp;rsquo;_{(h,r,t)}}\big[f_{r}(h,t)+\gamma-f_{r&amp;rsquo;}(h&amp;rsquo;,t&amp;rsquo;)\big]_{+}\tag{4}
+$$
+where $[x]_{+}=\max(0,x)$, $S$ is a set of golden triples, $S&amp;rsquo;_{(h,r,t)}$ denotes the set of negative triplets constructed by corrupting $(h,r,t)$, $\gamma$ is the margin separating positive and negative triplets, and $f_{r}(h,t)$ is a score function and derived by
+$$
+f_{r}(h,t)=\Vert h_{\bot}+d_{r}-t_{\bot}\Vert_{2}^{2}=\Vert(h-w_{r}^{T}hw_{r})+d_{r}-(t-w_{r}^{T}tw_{r})\Vert_{2}^{2}\tag{5}
+$$
+When minimizing the loss $\mathcal{L}$, the following constraints are considered:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$\forall e\in E$, $\Vert e\Vert_{2}\leq 1$&lt;/li&gt;
+&lt;li&gt;$\forall r\in R$, $\vert w_{r}^{T}d_{r}\vert/\Vert d_{r}\Vert_{2}\leq\epsilon$&lt;/li&gt;
+&lt;li&gt;$\forall r\in R$, $\Vert w_{r}\Vert_{2}=1$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Reducing False Negative Labels&lt;/strong&gt;:
+Here shows a new method to sample the corrupted triples to reduce the false.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Give more chance to replacing the head entity if the relation is one-to-many and give more chance to replacing the tail entity if the relation is many-to-one.&lt;/li&gt;
+&lt;li&gt;Among all the triplets of a relation r, we first get the following two statistics:
+
+&lt;ol&gt;
+&lt;li&gt;the average number of tail entities per head entity, denoted as $tph$&lt;/li&gt;
+&lt;li&gt;the average number of head entities per tail entity, denoted as $hpt$&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Then defining a Bernoulli distribution with parameter $\frac{thp}{thp+hpt}$ for sampling: given a golden triplet $(h,r,t)$ of the relation $r$, with probability $\frac{thp}{thp+hpt}$ to corrupt the triplet by replacing the head, and with probability $\frac{pht}{thp+hpt}$ to corrupt the triplet by replacing the tail.&lt;/p&gt;
+
+&lt;h1 id=&#34;transr-and-ctransr&#34;&gt;TransR and CTransR&lt;/h1&gt;
+
+&lt;p&gt;TransR &amp;ndash; &lt;a href=&#34;https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9571/9523&#34; target=&#34;_blank&#34;&gt;Learning Entity and Relation Embeddings for Knowledge Graph Completion&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;TransR is proposed since the authors realize that TransH still have some limitations, since both TransE and TransH assume embeddings of entities and relations being in the same space. However, an entity may have multiple aspects, and various relations focus on different aspects of entities. Hence, it is intuitive that some entities are similar and thus close to each other in the entity space, but are &lt;strong&gt;comparably different in some specific aspects&lt;/strong&gt; and thus &lt;strong&gt;far away from each other in the corresponding relation spaces&lt;/strong&gt;.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/limitation-transh.png&#34; alt=&#34;TransH Limitations&#34; /&gt;
+Thus, TransR models entities and relations in distinct spaces, i.e., entity space and multiple relation spaces (i.e., relation-specific entity spaces), and performs translation in the corresponding relation space. In TransR, for each triple $(h,r,t)$, entities embeddings are set as $h,t\in\mathbb{R}^{k}$, and relation embedding is set as $r\in\mathbb{R}^{d}$, while the dimensions of entity embeddings and relation embeddings are not necessarily identical. For each relation $r$, set a projection matrix $M_{r}\in\mathbb{R}^{k\times d}$ maps entities from entity space to relation space.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transr.png&#34; alt=&#34;TransR Limitations&#34; /&gt;
+With the mapping matrix, the projected vectors of entities are computed by
+$$
+h_{r}=hM_{r},\quad t_{r}=tM_{r}
+$$
+And the score function is correspondingly defined as
+$$
+f_{r}(h,t)=\Vert h_{r}+r-t_{r}\Vert_{2}^{2}\tag{6}
+$$
+with the constraints that $\forall h,r,t$, $\Vert h\Vert_{2}\leq 1$, $\Vert r\Vert_{2}\leq 1$, $\Vert t\Vert_{2}\leq 1$, $\Vert hM_{r}\Vert_{2}\leq 1$, $\Vert tM_{r}\Vert_{2}\leq 1$. And the following margin-based score function as objective for training:
+$$
+\mathcal{L}=\sum_{(h,r,t)\in S}\sum_{(h&amp;rsquo;,r,t&amp;rsquo;)\in S&amp;rsquo;_{(h,r,t)}}\max\big[0, f_{r}(h,t)+\gamma-f_{r}(h&amp;rsquo;,t&amp;rsquo;)\big]\tag{7}
+$$
+where $\max(x, y)$ aims to get the maximum between $x$ and $y$, $\gamma$ is the margin, $S$ is the set of correct triples and $S&amp;rsquo;$ is the set of incorrect triples.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Cluster-based TransR (CTransR)&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;The above mentioned models, including TransE, TransH and TransR, learn a unique vector for each relation, which may be under-representative to fit all entity pairs under this relation, because these relations are usually rather diverse. In order to better model these relations, the authors incorporate the idea of piecewise linear regression to extend TransR.&lt;/p&gt;
+
+&lt;p&gt;The basic idea is that first segment input instances into several groups. Formally, for a specific relation $r$, all entity pairs $(h,t)$ in the training data are clustered into multiple groups, and entity pairs in each group are expected to exhibit similar $r$ relation. All entity pairs $(h,t)$ are represented with their vector offsets $(h−t)$ for clustering, where $h$ and $t$ are obtained with TransE. Afterwards, learn a separate relation vector $r_{c}$ for each cluster and matrix $M_{r}$ for each relation, respectively. The authors define the projected vectors of entities as $h_{r,c}=hM_{r}$, $t_{r,c}=tM_{r}$ and the score function is defined as
+$$
+f_{r}(h,t)=\Vert h_{r,c}+r_{c}-t_{r,c}\Vert_{2}^{2}+\alpha\Vert r_{c}-r\Vert_{2}^{2}\tag{8}
+$$
+where $\Vert r_{c}-r\Vert_{2}^{2}$ aims to ensure cluster-specific relation vector $r_{c}$ not too far away from the original relation vector $r$, and $\alpha$ controls the effect of this constraint. Besides, same to TransR, CTransR also enforce constraints on norm of embeddings $h$, $r$, $t$ and mapping matrices.&lt;/p&gt;
+
+&lt;h1 id=&#34;transd&#34;&gt;TransD&lt;/h1&gt;
+
+&lt;p&gt;TransD &amp;ndash; &lt;a href=&#34;http://www.aclweb.org/anthology/P15-1067&#34; target=&#34;_blank&#34;&gt;Knowledge Graph Embedding via Dynamic Mapping Matrix&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Despite that TransR/CTransR has significant improvements compared with previous state-of-the-art models. However, it also has several flaws:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;For a typical relation $r$, all entities share the same mapping matrix $M_{r}$. However, the entities linked by a relation always contains various types and attributes.&lt;/li&gt;
+&lt;li&gt;The projection operation is an interactive process between an entity and a relation, it is unreasonable that the mapping matrices are determined only by relations.&lt;/li&gt;
+&lt;li&gt;Matrix-vector multiplication makes it has large amount of calculation, and when relation number is large, it also has much more parameters than TransE and TransH.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To solve these flaws, TransD is proposed and its basic idea is shown in the graph below. In TransD, &lt;strong&gt;two vectors&lt;/strong&gt; are defined for each entity and relation. The first vector represents the meaning of an entity or a relation, the other one (called &lt;strong&gt;projection vector&lt;/strong&gt;) represents the way that how to project a entity embedding into a relation vector space and it will be used to construct mapping matrices. Therefore, every entity-relation pair has an unique mapping matrix. In addition, TransD has no matrix-by-vector operations which can be replaced by vectors operations.
+&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transd-graph.png&#34; alt=&#34;TransD Graph&#34; /&gt;
+In the graph above, each shape represents an entity pair appearing in a triplet of relation $r$. $M_{rh}$ and $M_{rt}$ are mapping matrices of $h$ and $t$, respectively. $h_{ip}$, $t_{ip}$ ($i=1,2,3$) and $r_{p}$ are projection vectors. $h_{i\bot}$ and $t_{i\bot}$ ($i=1,2,3$) are projected vectors of entities. The projected vectors satisfy $h_{i\bot}+r\approx t_{i\bot}$ ($i=1,2,3$).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TransD Model&lt;/strong&gt;: each named symbol object (entities and relations) is represented by &lt;em&gt;two&lt;/em&gt; vectors. The first one captures the meaning of entity (relation), the other one is used to construct mapping matrices. For example, given a triplet $(h,r,t)$, its vectors are $h$, $h_{p}$, $r$, $r_{p}$, $t$, $t_{p}$, where subscript $p$ marks the projection vectors, $h,h_{p},t,t_{p}\in\mathbb{R}^{n}$ and $r,r_{p}\in\mathbb{R}^{m}$. For each triplet $(h,r,t)$ the authors set two mapping matrices $M_{rh},M_{rt}\in\mathbb{R}^{m\times n}$ to project entities from entity space to relation space:
+$$
+\begin{aligned}
+M_{rh}&amp;amp;=r_{p}h_{p}^{T}+I^{m\times n}\newline
+M_{rt}&amp;amp;=r_{p}t_{p}^{T}+I^{m\times n}
+\end{aligned}\tag{9}
+$$
+Therefore, the mapping matrices are determined by both entities and relations, and this kind of operation makes the two projection vectors interact sufficiently because each element of them can meet every entry comes from another vector. As the authors initialize each mapping matrix with an identity matrix, thus, the $I^{m\times n}$ is added to $M_{rh}$ and $M_{rt}$. With the mapping matrices, the projected vectors are defined as follows:
+$$
+\begin{aligned}
+h_{\bot}&amp;amp;=M_{rh}h\newline
+t_{\bot}&amp;amp;=M_{rt}t
+\end{aligned}\tag{10}
+$$
+and the score function is set as
+$$
+f_{r}(h,t)=-\Vert h_{\bot}+r-t_{\bot}\Vert_{2}^{2}\tag{11}
+$$
+with the constraints that $\Vert h\Vert_{2}\leq 1$, $\Vert t\Vert_{2}\leq 1$, $\Vert r\Vert_{2}\leq 1$, $\Vert h_{\bot}\Vert_{2}\leq 1$ and $\Vert t_{\bot}\Vert_{2}\leq 1$.&lt;/p&gt;
+
+&lt;p&gt;For training process, the authors first denote that $S=\{(h_{i},r_{i},t_{i})\vert y_{i}=1\}$ as the golden triples, and $S&amp;rsquo;=\{(h_{i},r_{i},t_{i})\vert y_{i}=0\}$ as the negative triples, and the negative triples is derived by
+$$
+S&amp;rsquo;=\{(h_{l},r_{k},t_{k})\vert h_{l}\neq h_{k}\land y_{k}=1\}\cup\{(h_{k},r_{k},t_{l})\vert t_{l}\neq t_{k}\land y_{k}=1\}
+$$
+while the authors also use two strategies &amp;ldquo;unif&amp;rdquo; and &amp;ldquo;bern&amp;rdquo; described in TransH to replace the head or tail entity. using $\xi$ and $\xi&amp;rsquo;$ to denote a golden triplet and a corresponding negative triplet, respectively. The training objective is
+$$
+\mathcal{L}=\sum_{\xi\in S}\sum_{\xi&amp;rsquo;\in S&amp;rsquo;}\big[\gamma+f_{r}(\xi&amp;rsquo;)-f_{r}(\xi)\big]_{+}\tag{12}
+$$
+&lt;strong&gt;Connections with TransE/H/R and CTransR&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;TransE is a special case of TransD when the dimension of vectors satisfies $m=n$ and all projection vectors are set zero.&lt;/li&gt;
+&lt;li&gt;TransH is related to TransD when we set $m=n$. Under the setting, projected vectors of entities can be rewritten as follows:
+$$\begin{aligned}
+h_{\bot}&amp;amp;=M_{rh}h=h+h_{p}^{T}hr_{p}\newline
+t_{\bot}&amp;amp;=M_{rt}t=t+t_{p}^{T}tr_{p}
+\end{aligned}
+$$
+Hence, when $m = n$, the difference between TransD and TransH is that projection vectors are determinded only by relations in TransH, but TransD’s projection vectors are determinded by both entities and relations.&lt;/li&gt;
+&lt;li&gt;As to TransR/CTransR, TransD is an improvement of it. TransR/CTransR directly defines a mapping matrix for each relation, TransD consturcts two mapping matrices dynamically for each triplet by setting a projection vector for each entity and relation. In addition, TransD has no matrix-vector multiplication operation which can be replaced by vector operations. Without loss of generality, assuming $m\geq n$, the projected vectors can be computed as follows:
+$$
+\begin{aligned}
+h_{\bot}&amp;amp;=M_{rh}h=h_{p}^{T}hr_{p}+\big[h^{T},0^{T}\big]^{T}\newline
+t_{\bot}&amp;amp;=M_{rt}t=t_{p}^{T}tr_{p}+\big[t^{T},0^{T}\big]^{T}
+\end{aligned}
+$$
+Therefore, TransD has less calculation than TransR/CTransR, which makes it train faster and can be applied on large-scale knowledge graphs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;source-codes&#34;&gt;Source Codes&lt;/h1&gt;
+
+&lt;p&gt;The Python and C++ codes of the methods above are available in the GitHub page of Natural Language Processing Lab at Tsinghua University (&lt;a href=&#34;https://github.com/thunlp&#34; target=&#34;_blank&#34;&gt;THUNLP&lt;/a&gt;).&lt;br /&gt;
+Python version: &lt;a href=&#34;https://github.com/thunlp/TensorFlow-TransX&#34; target=&#34;_blank&#34;&gt;TensorFlow-TransX&lt;/a&gt;.&lt;br /&gt;
+Converted TensorFlow-TransX for Python 2 and Tensorflow 0.12.0: &lt;a href=&#34;https://github.com/IsaacChanghau/AmusingPythonCodes/tree/master/transx&#34; target=&#34;_blank&#34;&gt;link&lt;/a&gt;.&lt;br /&gt;
+C++ version: &lt;a href=&#34;https://github.com/thunlp/Fast-TransX&#34; target=&#34;_blank&#34;&gt;Fast-TransX&lt;/a&gt;, &lt;a href=&#34;https://github.com/thunlp/KB2E&#34; target=&#34;_blank&#34;&gt;KB2E&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

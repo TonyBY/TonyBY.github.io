@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>deep-learning on Isaac Changhau</title>
+    <link>https://isaacchanghau.github.io/tags/deep-learning/</link>
+    <description>Recent content in deep-learning on Isaac Changhau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017-2018</copyright>
+    <lastBuildDate>Thu, 10 Jan 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://isaacchanghau.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PrimeNet: Human-inspired Framework for Commonsense Knowledge Representation and Reasoning</title>
+      <link>https://isaacchanghau.github.io/project/primenet/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/primenet/</guid>
+      <description>A human-inspired framework for commonsense knowledge representation and reasoning.</description>
+    </item>
+    
+    <item>
+      <title>Variational Autoencoders Explained</title>
+      <link>https://isaacchanghau.github.io/post/vae_explained/</link>
+      <pubDate>Fri, 27 Jul 2018 14:20:36 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/vae_explained/</guid>
+      <description>Explanation of variational autoencoders.</description>
+    </item>
+    
+    <item>
+      <title>Behavioural Understanding and Narrative Descriptions from Videos</title>
+      <link>https://isaacchanghau.github.io/project/maracana/</link>
+      <pubDate>Fri, 20 Apr 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/maracana/</guid>
+      <description>An effectively and flexibly multimodal system to analyze and narrate real world events captured in video.</description>
+    </item>
+    
+    <item>
+      <title>Neural Sequence Labeling</title>
+      <link>https://isaacchanghau.github.io/project/neural_seq_labeling/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/neural_seq_labeling/</guid>
+      <description>An unified and accurate deep learning based approach for various sequence labeling tasks such as POS, Chunking, NER, SRL, Punctuation Restoration and etc.</description>
+    </item>
+    
+    <item>
+      <title>PTransE -- Modeling Relation Paths for Representation Learning of Knowledge Bases</title>
+      <link>https://isaacchanghau.github.io/post/ptranse/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ptranse/</guid>
+      <description>An efficient and advanced deep learning approach to learn relational representation.</description>
+    </item>
+    
+    <item>
+      <title>TransX: Embedding Entities and Relationships of Multi-relational Data</title>
+      <link>https://isaacchanghau.github.io/post/transx/</link>
+      <pubDate>Thu, 14 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/transx/</guid>
+      <description>Summarization of several similar algorithms to learn relational representation.</description>
+    </item>
+    
+    <item>
+      <title>Autoencoder and Sparsity</title>
+      <link>https://isaacchanghau.github.io/post/autoencoder_and_sparsity/</link>
+      <pubDate>Sat, 19 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/autoencoder_and_sparsity/</guid>
+      <description>Mathematical reasoning of autoencoder and its back-propagation.</description>
+    </item>
+    
+    <item>
+      <title>Backpropagation in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/backpropagation/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/backpropagation/</guid>
+      <description>Mathematical derivation of backpropagation</description>
+    </item>
+    
+    <item>
+      <title>Beam Search Algorithms in Sequence to Sequence</title>
+      <link>https://isaacchanghau.github.io/post/beam_search/</link>
+      <pubDate>Thu, 10 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/beam_search/</guid>
+      <description>Introduction of beam search algorithms in sequence to seqeunce framework.</description>
+    </item>
+    
+    <item>
+      <title>Seq2Seq Learning and Neural Conversational Model</title>
+      <link>https://isaacchanghau.github.io/post/seq2seq_conversation/</link>
+      <pubDate>Wed, 02 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/seq2seq_conversation/</guid>
+      <description>Introduction of sequence to sequence learning and its application in conversation generation.</description>
+    </item>
+    
+    <item>
+      <title>Plain Stock Price Prediction via LSTM</title>
+      <link>https://isaacchanghau.github.io/post/stock_price_predict/</link>
+      <pubDate>Wed, 26 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/stock_price_predict/</guid>
+      <description>Stock price prediction using recurrent neural network with LSTM unit.</description>
+    </item>
+    
+    <item>
+      <title>LSTM and GRU -- Formula Summary</title>
+      <link>https://isaacchanghau.github.io/post/lstm-gru-formula/</link>
+      <pubDate>Sat, 22 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/lstm-gru-formula/</guid>
+      <description>Brief summarization of LSTM and GRU in recurrent neural networks.</description>
+    </item>
+    
+    <item>
+      <title>Neural Responding Machine for Short-Text Conversation -- Summary</title>
+      <link>https://isaacchanghau.github.io/post/neural_responding_machine/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/neural_responding_machine/</guid>
+      <description>A simple conversation system using seq2seq encoder-decoder framework with attention mechanism.</description>
+    </item>
+    
+    <item>
+      <title>Understanding LSTM Networks</title>
+      <link>https://isaacchanghau.github.io/post/understand_lstm/</link>
+      <pubDate>Tue, 13 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/understand_lstm/</guid>
+      <description>A detailed introduction of LSTM networks, reprinted from colah&amp;rsquo;s blog.</description>
+    </item>
+    
+    <item>
+      <title>Loss Functions in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/loss_functions/</link>
+      <pubDate>Wed, 07 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/loss_functions/</guid>
+      <description>Summarization of several commonly-used loss functions in neural networks</description>
+    </item>
+    
+    <item>
+      <title>Parameter Update Methods in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/parameters_update/</link>
+      <pubDate>Mon, 29 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/parameters_update/</guid>
+      <description>Summarization of several commonly-used parameter update methods in neural network.</description>
+    </item>
+    
+    <item>
+      <title>Weight Initialization Methods in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/weight_initialization/</link>
+      <pubDate>Wed, 24 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/weight_initialization/</guid>
+      <description>&lt;p&gt;This is a summary of weight initialization in aritifical neural networks.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Activation Functions in Neural Networks</title>
+      <link>https://isaacchanghau.github.io/post/activation_functions/</link>
+      <pubDate>Mon, 22 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/activation_functions/</guid>
+      <description>Summarization of several commonly-used activation functions in neural networks.</description>
+    </item>
+    
+    <item>
+      <title>Word2Vecf -- Dependency-Based Word Embeddings and Lexical Substitute</title>
+      <link>https://isaacchanghau.github.io/post/word2vecf/</link>
+      <pubDate>Thu, 18 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/word2vecf/</guid>
+      <description>Summarization of dependency-based word embeddings algorithms and its application in lexical substitution.</description>
+    </item>
+    
+    <item>
+      <title>Word2Vec -- Mathematical Principles and Java Implementation</title>
+      <link>https://isaacchanghau.github.io/post/word2vec/</link>
+      <pubDate>Sat, 13 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/word2vec/</guid>
+      <description>Summarization of word2vec algorithms, mathematical principles and its implementation.</description>
+    </item>
+    
+  </channel>
+</rss>

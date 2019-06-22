@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="House Prices: Advanced Regression Techniques is a kaggle competition to predict the house prices, which aims to practice feature engineering, RFs, and gradient boosting.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/house_price_data_analysis/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/house_price_data_analysis/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/house_price_data_analysis/">
+  <meta property="og:title" content="House Prices Advanced Regression Techniques -- Data Analysis | Isaac Changhau">
+  <meta property="og:description" content="House Prices: Advanced Regression Techniques is a kaggle competition to predict the house prices, which aims to practice feature engineering, RFs, and gradient boosting.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-07-08T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-07-08T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>House Prices Advanced Regression Techniques -- Data Analysis | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">House Prices Advanced Regression Techniques -- Data Analysis</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-07-08 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Sat, Jul 8, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    16 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      <p><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques" target="_blank">House Prices: Advanced Regression Techniques</a> is a <a href="https://www.kaggle.com/" target="_blank">kaggle</a> competition to predict the house prices, which aims to practice feature engineering, RFs, and gradient boosting.</p>
+
+<p>After exploring and referring others&rsquo; methods, I decide to do it by myself to improve my python skill in data science and data analysis ability.</p>
+
+<h1 id="competition-description">Competition Description</h1>
+
+<p>Ask a home buyer to describe their dream house, and they probably won&rsquo;t begin with the height of the basement ceiling or the proximity to an east-west railroad. But this playground competition&rsquo;s dataset proves that much more influences price negotiations than the number of bedrooms or a white-picket fence. With 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa, this competition challenges you to predict the final price of each home.</p>
+
+<p>The data contains three parts, one is <code>data_description.txt</code>, which gives brief summary of the data information, another two, <code>train.csv</code> and <code>test.csv</code>, are the datasets used to train and test. More details of the data fields&rsquo; description are available here: <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data" target="_blank">[link]</a>.</p>
+
+<h1 id="data-analysis-and-feature-extraction">Data Analysis and Feature Extraction</h1>
+
+<h2 id="preliminary-analysis">Preliminary Analysis</h2>
+
+<h3 id="data-preview">Data Preview</h3>
+
+<p>First of all, we need to load the data and have a glance of it.</p>
+
+<pre><code class="language-python">import pandas as pd
+train = pd.read_csv('train.csv')
+test = pd.read_csv('test.csv')
+train_labels = train.pop('SalePrice') # separate labels from train dataset
+data = pd.concat([train, test], keys=['train', 'test'])
+print(data.columns) # check column decorations
+print('rows:', data.shape[0], ', columns:', data.shape[1]) # count rows of total dataset
+print('rows in train dataset:', train.shape[0])
+print('rows in test dataset:', test.shape[0])
+</code></pre>
+
+<p>the output is shown below:</p>
+
+<pre><code class="language-bash">Index(['Id', 'MSSubClass', 'MSZoning', 'LotFrontage', 'LotArea', 'Street',
+       'Alley', 'LotShape', 'LandContour', 'Utilities', 'LotConfig',
+       'LandSlope', 'Neighborhood', 'Condition1', 'Condition2', 'BldgType',
+       'HouseStyle', 'OverallQual', 'OverallCond', 'YearBuilt', 'YearRemodAdd',
+       'RoofStyle', 'RoofMatl', 'Exterior1st', 'Exterior2nd', 'MasVnrType',
+       'MasVnrArea', 'ExterQual', 'ExterCond', 'Foundation', 'BsmtQual',
+       'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinSF1',
+       'BsmtFinType2', 'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', 'Heating',
+       'HeatingQC', 'CentralAir', 'Electrical', '1stFlrSF', '2ndFlrSF',
+       'LowQualFinSF', 'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath',
+       'HalfBath', 'BedroomAbvGr', 'KitchenAbvGr', 'KitchenQual',
+       'TotRmsAbvGrd', 'Functional', 'Fireplaces', 'FireplaceQu', 'GarageType',
+       'GarageYrBlt', 'GarageFinish', 'GarageCars', 'GarageArea', 'GarageQual',
+       'GarageCond', 'PavedDrive', 'WoodDeckSF', 'OpenPorchSF',
+       'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'PoolQC',
+       'Fence', 'MiscFeature', 'MiscVal', 'MoSold', 'YrSold', 'SaleType',
+       'SaleCondition'],
+      dtype='object')
+rows: 2919, columns: 80
+rows in train dataset: 1460
+rows in test dataset: 1459
+</code></pre>
+
+<p>Here we have 2919 lines records in total, 1460 lines for training and 1459 lines for testing. Each line has 79 properties (<code>Id</code> is eliminated). Then we take a look at the situation of data missing:</p>
+
+<pre><code class="language-python">nans = pd.concat([train.isnull().sum(), train.isnull().sum() / train.shape[0], test.isnull().sum(), test.isnull().sum() / test.shape[0]], axis=1, keys=['Train', 'Percentage', 'Test', 'Percentage'])
+print(nans[nans.sum(axis=1) &gt; 0])
+</code></pre>
+
+<p>we find that <code>Alley</code>, <code>FireplaceQu</code>, <code>PoolQC</code>, <code>Fence</code> and <code>MiscFeature</code> suffer almost or more than 50% data missing. Normally, if the property has more 15% information loss, we should delete it.</p>
+
+<pre><code class="language-bash">              Train  Percentage  Test  Percentage
+MSZoning          0    0.000000     4    0.002742
+LotFrontage     259    0.177397   227    0.155586
+Alley          1369    0.937671  1352    0.926662
+Utilities         0    0.000000     2    0.001371
+Exterior1st       0    0.000000     1    0.000685
+Exterior2nd       0    0.000000     1    0.000685
+MasVnrType        8    0.005479    16    0.010966
+MasVnrArea        8    0.005479    15    0.010281
+BsmtQual         37    0.025342    44    0.030158
+BsmtCond         37    0.025342    45    0.030843
+BsmtExposure     38    0.026027    44    0.030158
+BsmtFinType1     37    0.025342    42    0.028787
+BsmtFinSF1        0    0.000000     1    0.000685
+BsmtFinType2     38    0.026027    42    0.028787
+BsmtFinSF2        0    0.000000     1    0.000685
+BsmtUnfSF         0    0.000000     1    0.000685
+TotalBsmtSF       0    0.000000     1    0.000685
+Electrical        1    0.000685     0    0.000000
+BsmtFullBath      0    0.000000     2    0.001371
+BsmtHalfBath      0    0.000000     2    0.001371
+KitchenQual       0    0.000000     1    0.000685
+Functional        0    0.000000     2    0.001371
+FireplaceQu     690    0.472603   730    0.500343
+GarageType       81    0.055479    76    0.052090
+GarageYrBlt      81    0.055479    78    0.053461
+GarageFinish     81    0.055479    78    0.053461
+GarageCars        0    0.000000     1    0.000685
+GarageArea        0    0.000000     1    0.000685
+GarageQual       81    0.055479    78    0.053461
+GarageCond       81    0.055479    78    0.053461
+PoolQC         1453    0.995205  1456    0.997944
+Fence          1179    0.807534  1169    0.801234
+MiscFeature    1406    0.963014  1408    0.965045
+SaleType          0    0.000000     1    0.000685
+</code></pre>
+
+<h3 id="labels-saleprice">Labels (&ldquo;SalePrice&rdquo;)</h3>
+
+<p>After that, let&rsquo;s extract some information from the <code>SalePrice</code>, which is also the most important thing, since our task is to predict it. From the information shown below, we can derive the data summary of <code>SalePrice</code>, which provides <code>mean</code>, <code>standard deviation</code>, <code>minimum</code>, <code>maximum</code> and so forth.</p>
+
+<pre><code class="language-python">print(train_labels.describe())
+
+count      1460.000000
+mean     180921.195890
+std       79442.502883
+min       34900.000000
+25%      129975.000000
+50%      163000.000000
+75%      214000.000000
+max      755000.000000
+Name: SalePrice, dtype: float64
+</code></pre>
+
+<p>Then we plot its distribution histogram and normal probalility graph.</p>
+
+<pre><code class="language-python">from scipy import stats
+import seaborn as sns
+sns.plt.figure()
+sns.plt.subplot(1, 2, 1)
+sns.plt.title(&quot;Sale Prices Dist&quot;)
+sns.distplot(train_labels, fit=stats.norm)
+sns.plt.subplot(1, 2, 2)
+stats.probplot(train_labels, plot=sns.plt)
+sns.plt.show()
+print(&quot;Skewness: %f&quot; % train_labels.skew())
+print(&quot;Kurtosis: %f&quot; % train_labels.kurt())
+# Skewness and Kurtosis
+Skewness: 1.882876
+Kurtosis: 6.536282
+</code></pre>
+
+<p>The graph shows that the distribution of <code>SalePrice</code> deviates from the normal distribution, it has peak value and it is positive biased, but it does not follow the diagonal line (right side), the diagonal line represents the normal distribution in normal probability graph, and a good data distribution should follow this line closely.
+<img src="/img/machinelearning/houseprices/salepricedist.png" alt="Sale Prices Distribution" />
+In order to solve such problems, we can explore to use the <strong>logarithmic transformation</strong> to see if it is able to handle these problems.</p>
+
+<pre><code class="language-python">sns.plt.figure()
+sns.plt.subplot(1, 2, 1)
+sns.plt.title(&quot;Sale Prices Dist&quot;)
+sns.distplot(np.log(train_labels), fit=stats.norm)
+sns.plt.subplot(1, 2, 2)
+stats.probplot(np.log(train_labels), plot=sns.plt)
+sns.plt.show()
+print(&quot;Skewness: %f&quot; % np.log(train_labels).skew())
+print(&quot;Kurtosis: %f&quot; % np.log(train_labels).kurt())
+# Skewness and Kurtosis
+Skewness: 0.121335
+Kurtosis: 0.809532
+</code></pre>
+
+<p>See the graph below, it is obvious that the data distribution follows diagonal line better than the previous one, although some outliers exist. thus, it seems that the log transformation is a good choice to transform the data.
+<img src="/img/machinelearning/houseprices/salepricedistlog.png" alt="Sale Prices Distribution after Log" /></p>
+
+<h2 id="systematic-analysis">Systematic Analysis</h2>
+
+<h3 id="data-clean-integration-and-correlation-analysis">Data Clean, Integration and Correlation Analysis</h3>
+
+<p>After having some preliminary understanding of the data, next step, we need to explore the relationship between those properties and labels, as well as the internal relationship among those properties and so forth. In the preliminary analysis, we did the analysis on the overall dataset (training dataset + testing dataset). However, in this part, we should only consider the training part (To make the analysis more fair).
+There are (generally) two types of properties, one is numeric and another is categorical. First of all, we need to drop some unused properties according to the data missing information. As mentioned before, <code>Alley</code>, <code>FireplaceQu</code>, <code>PoolQC</code>, <code>Fence</code> and <code>MiscFeature</code> suffer almost or more than 50% data loss:</p>
+
+<ul>
+<li><strong>Alley</strong>: Type of alley access</li>
+<li><strong>FireplaceQu</strong>: Fireplace quality</li>
+<li><strong>PoolQC</strong>: Pool quality</li>
+<li><strong>Fence</strong>: Fence quality</li>
+<li><strong>MiscFeature</strong>: Miscellaneous feature not covered in other categories</li>
+</ul>
+
+<p>Under normal conditions, those features are not within the scope of our consideration when we buy a house, so these features are not important and should be eliminated from the dataset.</p>
+
+<pre><code class="language-python">train.drop(['Id', 'MiscFeature', 'Fence', 'PoolQC', 'FireplaceQu', 'Alley'], axis=1, inplace=True)
+</code></pre>
+
+<p>Here we draw the correlation coefficient matrix to explore the coorelation among different properties:</p>
+
+<pre><code class="language-python"># draw correlation coefficient matrix
+corrmat = train.corr()
+f, ax = sns.plt.subplots(figsize=(12, 9))
+sns.heatmap(corrmat, vmax=.8, square=True)
+sns.plt.yticks(rotation=0)
+sns.plt.xticks(rotation=90)
+sns.plt.show()
+</code></pre>
+
+<p>From the graph below, we can clearly see that there are two group of features show high correlation (the two big red blocks), one is the correlation coefficient between <code>TotalBsmtSF</code> and <code>1stFlrSF</code>, another is <code>Garage...</code> feature group.
+<img src="/img/machinelearning/houseprices/correlation1.png" alt="correlation coefficient matrix" />
+The two examples indicate that these features have strong correlation with each other, actually, the degree of correlation reaches the situation of multicollinearity, thus, we can treat that those features contains almost the same information. If you see the <code>SalePrice</code>, you will find that the <code>SalePrice</code> has strong correlations not only <code>GrLivArea</code>, <code>TotalBsmtSF</code> and <code>OverallQual</code>, but also some other features, here we draw the correlation coefficient matrix of <code>SalePrice</code> to show the top 10 features:</p>
+
+<pre><code class="language-python">cols = corrmat.nlargest(10, 'SalePrice')['SalePrice'].index
+cm = np.corrcoef(train[cols].values.T)
+sns.set(font_scale=1.25)
+hm = sns.heatmap(cm, cbar=True, annot=True, square=True, fmt='.2f', annot_kws={'size': 10}, yticklabels=cols.values,
+                 xticklabels=cols.values)
+sns.plt.yticks(rotation=0)
+sns.plt.xticks(rotation=90)
+sns.plt.show()
+</code></pre>
+
+<p>The graph below gives top 10 features which have strong correlation with each other.
+<img src="/img/machinelearning/houseprices/correlation2.png" alt="correlation coefficient matrix of SalePrice" />
+We can derive here that</p>
+
+<ul>
+<li><code>OverallQual</code>, <code>GrLivArea</code> and <code>TotalBsmtSF</code> have strong correlation with <code>SalePrice</code>.</li>
+<li><code>GarageCars</code> and <code>GarageArea</code> not only have strong correlation with <code>SalePrice</code>, but also have strong correlation with each other. It is easy to imagine that the number of cars store in garage is strong depends on the area of garage, which means that one of them is enough to represent the relationship between <code>SalePrice</code> and <code>Garage...</code>. Here, we choose <code>GarageCars</code>, since it has slightly higher score (Same for other <code>Garage...</code> features).</li>
+<li>The relationship between <code>TotalBsmtSF</code> and <code>1stFlrSF</code> is almost same as <code>GarageCars</code> and <code>GarageArea</code>, we can also choose one of them, but here we will use another strategy, and will be discussed later.</li>
+<li>According to the data description and the graph here, we find that <code>GrLivArea</code> and <code>TotRmsAbvGrd</code> are the similar features too. Their correlation is <strong>0.83</strong>, and the <code>GrLivArea</code> represents the &ldquo;Above grade (ground) living area square feet&rdquo;, while <code>TotRmsAbvGrd</code> indicates &ldquo;Total rooms above grade (does not include bathrooms)&rdquo;.</li>
+<li>Another thing is that the <code>FullBath</code> and <code>YearBuilt</code> do not have siginificantly strong correlation with <code>SalePrice</code>.</li>
+</ul>
+
+<p>Here we also show the scatter graph between <code>SalePrice</code> and the most important features:</p>
+
+<pre><code class="language-python">sns.set()
+cols = ['SalePrice', 'OverallQual', 'GrLivArea', 'GarageCars', 'TotalBsmtSF', 'FullBath', 'YearBuilt']
+sns.pairplot(train[cols], size=2.5)
+sns.plt.show()
+</code></pre>
+
+<p><img src="/img/machinelearning/houseprices/scatters.png" alt="Scatters" />
+This scatters graph gives much more affluent information of the relationships among those features.
+As mentioned just now, we will drop the feature <code>GarageArea</code>. For <code>Bsmt...</code> features group, if you have studied the data in Excel carefully, you will find that <code>TotalBsmtSF</code> equals to the sum of <code>BsmtFinSF1</code>, <code>BsmtFinSF2</code> and <code>BsmtUnfSF</code>, which means that by keeping the <code>TotalBsmtSF</code>, <code>BsmtFinSF1</code>, <code>BsmtFinSF2</code> and <code>BsmtUnfSF</code> are able to be eliminated. Since we also need to handle <code>TotalBsmtSF</code> and <code>1stFlrSF</code>, here we visually show their relationship with <code>SalePrice</code>:</p>
+
+<pre><code class="language-python">f, (ax1, ax2, ax3) = sns.plt.subplots(1, 3)
+data_total = pd.concat([train['SalePrice'], train['TotalBsmtSF']], axis=1)
+data_total.plot.scatter(x='TotalBsmtSF', y='SalePrice', ylim=(0, 800000), ax=ax1)
+data1 = pd.concat([train['SalePrice'], train['1stFlrSF']], axis=1)
+data1.plot.scatter(x='1stFlrSF', y='SalePrice', ylim=(0, 800000), ax=ax2)
+data2 = pd.concat([train['SalePrice'], train['2ndFlrSF']], axis=1)
+data2.plot.scatter(x='2ndFlrSF', y='SalePrice', ylim=(0, 800000), ax=ax3)
+sns.plt.show()
+</code></pre>
+
+<p>we can derive the fighre below, the first graph is <code>TotalBsmtSF</code>-<code>SalePrice</code>, the second is <code>1stFlrSF</code>-<code>SalePrice</code> and the last one is <code>2ndFlrSF</code>-<code>SalePrice</code>. Generally, all of these three features have closely relationship with <code>SalePrice</code>, and follow the exponential distribution. Only some specific situations that the <code>TotalBsmtSF</code> has no influence on <code>SalePrice</code> (those zero values), while <code>2ndFlrSF</code> does also (although there are much more zero values in <code>2ndFlrSF</code>, the trend is similar).
+<img src="/img/machinelearning/houseprices/bsmt.png" alt="Basement, 1st, 2nd" />
+The description of <code>TotalBsmtSF</code>, <code>1stFlrSF</code> and <code>2ndFlrSF</code>:</p>
+
+<ul>
+<li><strong>TotalBsmtSF</strong>: Total square feet of basement area.</li>
+<li><strong>1stFlrSF</strong>: First Floor square feet.</li>
+<li><strong>2ndFlrSF</strong>: Second floor square feet.</li>
+</ul>
+
+<p>In this case, since all of them are the area information of the house and their relationships with <code>SalePrice</code> are similar, so our strategy is creating a new feature named as <code>TotalSF</code> to add those three features, then drop them.</p>
+
+<pre><code class="language-python">train.drop(['BsmtFinSF1', 'BsmtFinSF2', 'BsmtUnfSF'], axis=1, inplace=True)
+train['TotalBsmtSF'] = train['TotalBsmtSF'].fillna(0)
+train['1stFlrSF'] = train['1stFlrSF'].fillna(0)
+train['2ndFlrSF'] = train['2ndFlrSF'].fillna(0)
+train['TotalSF'] = train['TotalBsmtSF'] + train['1stFlrSF'] + train['2ndFlrSF']
+train.drop(['TotalBsmtSF', '1stFlrSF', '2ndFlrSF'], axis=1, inplace=True)
+train.drop(['GarageArea'], axis=1, inplace=True) # as analysis before
+</code></pre>
+
+<p>and the relationship between <code>TotalSF</code> and <code>SalePrice</code> is show below:
+<img src="/img/machinelearning/houseprices/totalsf.png" alt="TotalSF" />
+Intuitively, the merged feature has a better exponential relationship with <code>SalePrice</code>, compare to the previous three fatures. The two outliers appear in the graph can be considered as the abnormal values and delete them.
+In the discuss above, we only anslysis and clear some of the most important numeric features, other numeric also needs to be analyzed as well as the categorical features. Becasue of the space limit, here we do not talk much on this process, and below gives some features that I choose to get rid of, since I think they do not have much correlation to <code>SalePrice</code> or some of these features have strong correlation with the features we already decide to retain (which means they are similar, so keep one of them is enough).</p>
+
+<pre><code class="language-python">train.drop(['Utilities', 'RoofMatl', 'MasVnrArea', 'MasVnrType', 'Heating', 'LowQualFinSF',
+            'BsmtFullBath', 'BsmtHalfBath', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2',
+            'Functional', 'GarageYrBlt', 'GarageCond', 'GarageType', 'GarageFinish', 'GarageQual', 'WoodDeckSF',
+            'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea',
+            'MiscVal'], axis=1, inplace=True)
+</code></pre>
+
+<p>After this process, the following features are remains:</p>
+
+<pre><code class="language-python">print(train.columns)
+
+Index(['MSSubClass', 'MSZoning', 'LotFrontage', 'LotArea', 'Street',
+       'LotShape', 'LandContour', 'LotConfig', 'LandSlope', 'Neighborhood',
+       'Condition1', 'Condition2', 'BldgType', 'HouseStyle', 'OverallQual',
+       'OverallCond', 'YearBuilt', 'YearRemodAdd', 'RoofStyle', 'Exterior1st',
+       'Exterior2nd', 'ExterQual', 'ExterCond', 'Foundation', 'HeatingQC',
+       'CentralAir', 'Electrical', 'GrLivArea', 'FullBath', 'HalfBath',
+       'BedroomAbvGr', 'KitchenAbvGr', 'KitchenQual', 'TotRmsAbvGrd',
+       'Fireplaces', 'GarageCars', 'PavedDrive', 'MoSold', 'YrSold',
+       'SaleType', 'SaleCondition', 'SalePrice', 'TotalSF'],
+      dtype='object')
+</code></pre>
+
+<p>There is another important process is to fill the <code>NA</code> values within those features, normally, for categorical features, we can fill the <code>NA</code> with <strong>most frequent values</strong> or <strong>No(such feature)</strong>, while for the numeric features, we can fill <code>NA</code> with <strong>mean value</strong> or <strong>zero</strong>. And we do not talk too much about this here. Next step, we will analysis the relationship between each feature and <code>SalePrice</code>.</p>
+
+<h3 id="univariate-analysis">Univariate Analysis</h3>
+
+<p>Actually, there are four features which act as siginificantly important roles in this issue. Those four features are <code>OverallQual</code>, <code>YearBuilt</code>, <code>TotalBsmtSF</code> (after data integration process, it becomes <code>TotalSF</code>) and <code>GrLivArea</code>.</p>
+
+<p><strong>OverallQual and SalePrice</strong><br />
+Here we explore the relationship between <code>OverallQual</code> and <code>SalePrice</code>:</p>
+
+<pre><code class="language-python">overall_qual = pd.concat([train['SalePrice'], train['OverallQual']], axis=1)
+f, ax = sns.plt.subplots(figsize=(8, 6))
+fig = sns.boxplot(x='OverallQual', y=&quot;SalePrice&quot;, data=overall_qual)
+fig.axis(ymin=0, ymax=800000)
+sns.plt.show()
+</code></pre>
+
+<p>It is obvious that the distribution trends of <code>OverallQual</code> and <code>SalePrice</code> are same. Generally, the <code>SalePrice</code> increase while <code>OverallQual</code> increase.
+<img src="/img/machinelearning/houseprices/overallqual.png" alt="OverallQual-SalePrice" /></p>
+
+<p><strong>YearBuilt and SalePrice</strong><br />
+Here is the relationship between <code>YearBuilt</code> and <code>SalePrice</code>:</p>
+
+<pre><code class="language-python">year_built = pd.concat([train['SalePrice'], train['YearBuilt']], axis=1)
+f, ax = sns.plt.subplots(figsize=(16, 8))
+fig = sns.boxplot(x='YearBuilt', y=&quot;SalePrice&quot;, data=year_built)
+fig.axis(ymin=0, ymax=800000)
+sns.plt.xticks(rotation=90)
+sns.plt.show()
+</code></pre>
+
+<p>Although they do not show a strong following trends, this graph also indicates that, generally, the house price is higher while the built year is later.
+<img src="/img/machinelearning/houseprices/yearbuilt.png" alt="YearBuilt-SalePrice" /></p>
+
+<p><strong>TotalSF and SalePrice</strong><br />
+Here is the relationship between <code>TotalSF</code> and <code>SalePrice</code>:
+<img src="/img/machinelearning/houseprices/totalsf.png" alt="TotalSF" />
+As discussed before, this two features have strong correlation, and their trends are same. Since <code>TotalSF</code> is one of the most important feature, so let&rsquo;s go deep. Here we show the distribution histogram and normal probalility graph of <code>TotalSF</code> to explore its normality:</p>
+
+<pre><code class="language-python">sns.plt.figure()
+sns.plt.subplot(1, 2, 1)
+sns.plt.title(&quot;TotalSF Dist&quot;)
+sns.distplot(train['TotalSF'], fit=stats.norm)
+sns.plt.subplot(1, 2, 2)
+stats.probplot(train['TotalSF'], plot=sns.plt)
+sns.plt.show()
+print(&quot;Skewness: %f&quot; % train['TotalSF'].skew())
+print(&quot;Kurtosis: %f&quot; % train['TotalSF'].kurt())
+# Skewness and Kurtosis
+Skewness: 1.776700
+Kurtosis: 12.621968
+</code></pre>
+
+<p>Compare with the distribution histogram and normal probalility graph of <code>SalePrice</code> we draw before, you will find that their situation are exactly similar， <code>TotalSF</code> shows positive biased, deviates from the normal distribution, has peak value.
+<img src="/img/machinelearning/houseprices/totalsf-dist.png" alt="TotalSF Distribution" />
+Same as <code>SalePrice</code>, we process <strong>logarithmic transformation</strong> on <code>TotalSF</code> and draw the graph again:
+<img src="/img/machinelearning/houseprices/totalsf-dist-log.png" alt="TotalSF Distribution Log" />
+The graph above shows that after log transformation, the normality of <code>TotalSF</code> becomes better. And below is the homoscedasticity of variance graph of <code>TotalSF</code> and <code>SalePrice</code>:</p>
+
+<pre><code class="language-python">sf = np.log(train['TotalSF'])
+sp = np.log(train['SalePrice'])
+sns.plt.scatter(sf[sf &gt; 0], sp[sf &gt; 0])
+sns.plt.show()
+</code></pre>
+
+<p><img src="/img/machinelearning/houseprices/homoscedasticity-totalsf.png" alt="Homoscedasticity TotalSF" />
+This graph shows that <code>SalePrice</code> performs the same level of change within variable range of <code>TotalSF</code>. In this case, we may take the <strong>logarithmic transformation</strong> for <code>TotalSF</code> to fit <code>SalePrice</code> well.</p>
+
+<p><strong>GrLivArea and SalePrice</strong><br />
+Here we do the same thing as <code>TotalSF</code> for <code>GrLivArea</code>. First, we draw the relationship between <code>GrLivArea</code> and <code>SalePrice</code>:
+<img src="/img/machinelearning/houseprices/grlivarea.png" alt="GrLivArea" />
+Then plot the distribution histogram and normal probalility graph of <code>GrLivArea</code> to show its normality.</p>
+
+<pre><code class="language-python"># Skewness and Kurtosis
+Skewness: 1.366560
+Kurtosis: 4.895121
+</code></pre>
+
+<p><img src="/img/machinelearning/houseprices/grlivarea-dist.png" alt="GrLivArea Distribution" />
+And do the <strong>logarithmic transformation</strong> on <code>GrLivArea</code> and show the graph again:
+<img src="/img/machinelearning/houseprices/grlivarea-dist-log.png" alt="GrLivArea Distribution Log" />
+Samely, the normality of <code>GrLivArea</code> becomes better after log transformation. Next, we explore the homoscedasticity of variance graph of <code>GrLivArea</code> and <code>SalePrice</code>:
+<img src="/img/machinelearning/houseprices/homoscedasticity-grlivarea.png" alt="Homoscedasticity GrLivArea" />
+This graph shows that <code>SalePrice</code> performs the same level of change within variable range of <code>GrLivArea</code>. In this case, we may take the <strong>logarithmic transformation</strong> for <code>GrLivArea</code> to fit <code>SalePrice</code> well.</p>
+
+<p><strong>Others Univariables analysis</strong><br />
+Below shows the relationships between <code>SalePrice</code> and <code>LotFrontage</code>, <code>LotArea</code>, <code>LotShape</code>, <code>LandContour</code>, <code>LandShape</code> and <code>LotConfig</code>. From graph, we can derive that the <code>LogFrontage</code> shows slightly similar trends as <code>SalePrice</code>, it tends to increase while <code>SalePrice</code> increase. However, others do not have such feature, while each value in each feature does not give a clear trends.
+<img src="/img/machinelearning/houseprices/1.png" alt="1" />
+And the following six features also do not have a clear relationship on <code>SalePrice</code>:
+<img src="/img/machinelearning/houseprices/2.png" alt="2" />
+However, although <code>YearRemodAdd</code> feature does not give a clear trends, compare to <code>YearBuilt</code> feature, it still indicates that the house price is higher while the <code>RemodAdd</code> year is later.
+<img src="/img/machinelearning/houseprices/yearremodadd.png" alt="YearRemodAdd" />
+There are still many features do not show here, but each of them are worth to analyze. For analysis, we stop here and make a short summary.</p>
+
+<ul>
+<li>For <code>Bsmt...</code> feature group, drop all of them, except <code>TotalBsmtSF</code>, then merge <code>TotalBsmtSF</code> with <code>1stFlrSF</code> and <code>2ndFlrSF</code> to create a new feature named as <code>TotalSF</code>.</li>
+<li>For <code>Garage...</code> feature group, drop all of them, except <code>GarageCars</code>.</li>
+<li>Drop the features whose missing percentage is large than 20%.</li>
+<li>Drop the features that we treat them as the trivial features for the house prices predictation.</li>
+<li>Fill <code>NA</code> with most frequent value or zero or mean.</li>
+</ul>
+
+<p>and so forth.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>In the above, I describe a procedure to analysis the data and the machine learning model for training and predicting the data will be introduced in next article. Actually, with the data process procedures introduced above and the machine learning model (I choose a model with combination of gradient boosting regressor and elastic net), I achieve the score <strong>0.126</strong>. It is not a very good result, but, anyway, this is just a practice after learning the basic knowledge of data science and mechine learning. Below is the data clean, integration and transformation codes:</p>
+
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+from sklearn import ensemble, linear_model
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.utils import shuffle
+from method2.functions import train_test
+import warnings
+warnings.filterwarnings('ignore')
+# load data
+train = pd.read_csv('train.csv')
+test = pd.read_csv('test.csv')
+train_labels = train.pop('SalePrice')
+data = pd.concat([train, test], keys=['train', 'test'])
+# drop the data with high missing percentage
+data.drop(['Id', 'MiscFeature', 'Fence', 'PoolQC', 'FireplaceQu', 'Alley'], axis=1, inplace=True)
+# drop the Bsmt feature group, Garage feature group as well as some trivial features
+data.drop(['Utilities', 'RoofMatl', 'MasVnrArea', 'MasVnrType', 'Heating', 'LowQualFinSF', 'BsmtFullBath',
+           'BsmtHalfBath', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinSF1', 'BsmtFinSF2',
+           'BsmtUnfSF', 'BsmtFinType2', 'Functional', 'WoodDeckSF', 'OpenPorchSF',
+           'GarageYrBlt', 'GarageCond', 'GarageType', 'GarageFinish', 'GarageQual', 'GarageArea',
+           'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'MiscVal'], axis=1, inplace=True)
+# merge TotalBsmtSF, 1stFlrSF, 2ndFlrSF to TotalSF
+data['TotalBsmtSF'] = data['TotalBsmtSF'].fillna(0)
+data['1stFlrSF'] = data['1stFlrSF'].fillna(0)
+data['2ndFlrSF'] = data['2ndFlrSF'].fillna(0)
+data['TotalSF'] = data['TotalBsmtSF'] + data['1stFlrSF'] + data['2ndFlrSF']
+data.drop(['TotalBsmtSF', '1stFlrSF', '2ndFlrSF'], axis=1, inplace=True)
+# MSSubClass as categorical
+data['MSSubClass'] = data['MSSubClass'].astype(str)
+# MSZoning: filling NA with most popular values
+data['MSZoning'] = data['MSZoning'].fillna(data['MSZoning'].mode()[0])
+# LotFrontage: fill NA with mean value
+data['LotFrontage'] = data['LotFrontage'].fillna(data['LotFrontage'].mean())
+# OverallCond as categorical
+data['OverallCond'] = data['OverallCond'].astype(str)
+# Electrical: fill NA with most popular values
+data['Electrical'] = data['Electrical'].fillna(data['Electrical'].mode()[0])
+# KitchenAbvGr as categorical
+data['KitchenAbvGr'] = data['KitchenAbvGr'].astype(str)
+# KitchenQual: fill NA with most popular values
+data['KitchenQual'] = data['KitchenQual'].fillna(data['KitchenQual'].mode()[0])
+# GarageCars: fill NA with 0
+data['GarageCars'] = data['GarageCars'].fillna(0.0)
+# SaleType: fill NA with most popular values
+data['SaleType'] = data['SaleType'].fillna(data['SaleType'].mode()[0])
+# Year and Month as categorical
+data['YrSold'] = data['YrSold'].astype(str)
+data['MoSold'] = data['MoSold'].astype(str)
+# Exterior1st and Exterior2nd: fill NA with most popular values
+data['Exterior1st'] = data['Exterior1st'].fillna(data['Exterior2nd'].mode()[0])
+data['Exterior2nd'] = data['Exterior2nd'].fillna(data['Exterior2nd'].mode()[0])
+# Standardizing LotFrontage and LotArea
+numeric_data = data.loc[:, ['LotFrontage', 'LotArea', 'GrLivArea', 'TotalSF']]
+numeric_data_standardized = (numeric_data - numeric_data.mean())/numeric_data.std()
+# Log transformation of labels, GrLivArea and TotalSF
+train_labels = np.log(train_labels)
+# data['GrLivArea'] = np.log(data['GrLivArea'])
+# data['TotalSF'] = np.log(data['TotalSF'])
+# Getting Dummies from Condition1 and Condition2
+conditions = set([x for x in data['Condition1']] + [x for x in data['Condition2']])
+dummies = pd.DataFrame(data=np.zeros((len(data.index), len(conditions))), index=data.index, columns=conditions)
+for i, cond in enumerate(zip(data['Condition1'], data['Condition2'])):
+    dummies.ix[i, cond] = 1
+data = pd.concat([data, dummies.add_prefix('Condition_')], axis=1)
+data.drop(['Condition1', 'Condition2'], axis=1, inplace=True)
+# Getting Dummies from Exterior1st and Exterior2nd
+exteriors = set([x for x in data['Exterior1st']] + [x for x in data['Exterior2nd']])
+dummies = pd.DataFrame(data=np.zeros((len(data.index), len(exteriors))), index=data.index, columns=exteriors)
+for i, ext in enumerate(zip(data['Exterior1st'], data['Exterior2nd'])):
+    dummies.ix[i, ext] = 1
+data = pd.concat([data, dummies.add_prefix('Exterior_')], axis=1)
+data.drop(['Exterior1st', 'Exterior2nd'], axis=1, inplace=True)
+# Getting Dummies from all other categorical vars
+for col in data.dtypes[data.dtypes == 'object'].index:
+    for_dummy = data.pop(col)
+    data = pd.concat([data, pd.get_dummies(for_dummy, prefix=col)], axis=1)
+# copy data
+data_standardized = data.copy()
+# Replacing numeric feature by standardized values
+data_standardized.update(numeric_data_standardized)
+# Splitting dataset to train and test
+train_data = data.loc['train'].select_dtypes(include=[np.number]).values
+test_data = data.loc['test'].select_dtypes(include=[np.number]).values
+# Splitting standardized features
+train_data_st = data_standardized.loc['train'].select_dtypes(include=[np.number]).values
+test_data_st = data_standardized.loc['test'].select_dtypes(include=[np.number]).values
+</code></pre>
+
+<p>I also explored others methods and make a midification to improve the result to <strong>0.116</strong>. I will describe it in the future.</p>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/kernels" target="_blank">Kaggle Kernels of House Prices</a></li>
+<li><a href="https://www.leiphone.com/news/201704/Py7Mu3TwRF97pWc7.html" target="_blank">Comprehensive Data Exploration using Python</a></li>
+<li><a href="https://www.kaggle.com/neviadomski/how-to-get-to-top-25-with-simple-model-sklearn" target="_blank">How to get to TOP 25% with Simple Model (sklearn)</a></li>
+<li><a href="https://www.kaggle.com/miguelangelnieto/pca-and-regression" target="_blank">PCA and Regression</a></li>
+</ul>
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/machine-learning">machine-learning</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/python">python</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/ml_zzh_note_4/">Machine Learning Note (4): Ensemble Learning</a></li>
+        
+        <li><a href="/post/understand_lstm/">Understanding LSTM Networks</a></li>
+        
+        <li><a href="/post/loss_functions/">Loss Functions in Neural Networks</a></li>
+        
+        <li><a href="/post/parameters_update/">Parameter Update Methods in Neural Networks</a></li>
+        
+        <li><a href="/post/weight_initialization/">Weight Initialization Methods in Neural Networks</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

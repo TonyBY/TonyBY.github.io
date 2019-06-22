@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="This is a summary of weight initialization in aritifical neural networks.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/weight_initialization/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/weight_initialization/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/weight_initialization/">
+  <meta property="og:title" content="Weight Initialization Methods in Neural Networks | Isaac Changhau">
+  <meta property="og:description" content="This is a summary of weight initialization in aritifical neural networks.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-05-24T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-05-24T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>Weight Initialization Methods in Neural Networks | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Weight Initialization Methods in Neural Networks</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-05-24 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Wed, May 24, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      <p>This is a summary of weight initialization in aritifical neural networks.</p>
+
+<p><strong>All Zero Initialization (Pitfall)</strong>: Note that we do not know what the final value of every weight should be in the trained network, but with proper data normalization it is reasonable to assume that approximately half of the weights will be positive and half of them will be negative. A reasonable-sounding idea then might be to set all the initial weights to zero, which we expect to be the “best guess” in expectation. This turns out to be a mistake, because if every neuron in the network computes the same output, then they will also all compute the same gradients during backpropagation and undergo the exact same parameter updates. In other words, there is no source of asymmetry between neurons if their weights are initialized to be the same. In deeplearning4j, it corresponds to <code>WeightInit.ZERO</code>. (<strong>However, this method is NOT recommended</strong>)</p>
+
+<p><strong>Small random numbers</strong>: Therefore, we still want the weights to be very close to zero, but as we have argued above, not identically zero. As a solution, it is common to initialize the weights of the neurons to small numbers and refer to doing so as symmetry breaking. The idea is that the neurons are all random and unique in the beginning, so they will compute distinct updates and integrate themselves as diverse parts of the full network. For example, $W\sim\mathcal{N}(0,\sigma)$. With this formulation, every neuron’s weight vector is initialized as a random vector sampled from a multi-dimensional gaussian, so the neurons point in random direction in the input space. It is also possible to use small numbers drawn from a uniform distribution, but this seems to have relatively little impact on the final performance in practice.</p>
+
+<p><em>Warning</em> that it is not necessarily the case that smaller numbers will work strictly better. For example, a Neural Network layer that has very small weights will during backpropagation compute very small gradients on its data (since this gradient is proportional to the value of the weights). This could greatly diminish the &ldquo;gradient signal&rdquo; flowing backward through a network, and could become a concern for deep networks.</p>
+
+<p>Below introduces several weight initialization techniques that are commonly used in neural networks and perform well. It is worth mentioning that if you do not know which technique should be chosen as weight initilalizaion method, <em>Xaiver</em> is often choosed as a initial try.</p>
+
+<h1 id="uniform-distribution-initialization">Uniform Distribution Initialization</h1>
+
+<p>It is a commonly used heuristic, which is defined as
+$$
+W\sim U\big[-\frac{1}{\sqrt{n_{in}}},\frac{1}{\sqrt{n_{in}}}\big]
+$$
+where $U[−a,a]$ is the uniform distribution in the interval $(−a,a)$ and $n$ is the size of the previous layer. Corresponds to <code>WeightInit.UNIFORM</code> in deeplearning4j.</p>
+
+<h1 id="xavier-initialization">Xavier Initialization</h1>
+
+<p>Assigning the network weights before training sometimes can be treated as a random process, since we do not know anything about the data, so we are not sure how to assign the weights that would work in that particular case. And there are some problems when initializing the weights:</p>
+
+<ol>
+<li>If the weights in a network start too small, then the signal shrinks as it passes through each layer until it’s too tiny to be useful.</li>
+<li>If the weights in a network start too large, then the signal grows as it passes through each layer until it’s too massive to be useful.</li>
+</ol>
+
+<p>In this case, assigning the weights follow a Gaussian distribution with zero mean and a finite variance is a good choice. Here, the Xavier initialization, proposed by <em>Xavier Glorot</em> and <em>Yoshua Bengio</em>, is a Gaussian distribution with zero mean and a suitable variance, which makes sure the weights are &ldquo;just right&rdquo;, keeping the signal in a reasonable range of values through many layers.</p>
+
+<p>Consider a layer of neural networks with $n_{in}=n$ inputs and $n_{out}=m$ outputs, and suppose we have an initialized random weights $\mathbf{W}\in\mathbb{R}^{n\cdot m}$. For an input $\mathbf{x}=(x_{1},\dots ,x_{n})$, we have
+$$
+\mathbf{y}=\mathbf{W}^{T}\mathbf{x}
+$$
+where $\mathbf{y}$ is the output vector with dimension $m$. To simplify this, let&rsquo;s assume that $m=1$, then it degrades to a linear neuron where
+$$
+y=\mathbf{W}^{T}\mathbf{x}=w_{1}x_{1}+w_{2}x_{2}+\dots +w_{n}x_{n}
+$$
+Since we want the variance to remain the same after passing the layer to help to keep the signal from exploding to a high value or a vanishing to zero, so we need the generated weights to satisfy
+$$
+var(y)=var(w_{1}x_{1}+\dots +w_{n}x_{n})=var(w_{1}x_{1})+\dots +var(w_{n}x_{n})
+$$
+assume that $\mathbf{W}$ and $\mathbf{x}$ are independent and both of them have zero mean, then for $var(w_{i}x_{i})$:
+$$
+var(w_{i}x_{i})=E[x_{i}]^{2}var(w_{i})+E[w_{i}]^{2}var(x_{i})+var(w_{i})var(x_{i})=var(w_{i})var(x_{i})
+$$
+Then if we make a further assumption that the $w_{i}$ and $x_{i}$ are all independent and identically distributed, we can work out that the variance of $y$ is
+$$
+var(y)=n\cdot var(w_{i})var(x_{i})
+$$
+So if we want to make sure the variance of $y$ to be the same as $\mathbf{x}$, then we need $n\cdot var(w_{i})=1$. Hence,
+$$
+var(w_{i})=\frac{1}{n}=\frac{1}{n_{in}}
+$$
+and using this, the weights can be initialized by the Gaussian distribution with zero mean and variance $\frac{1}{n_{in}}$. Actually, in deeplearning4j, the weight initialization function <code>WeightInit.XAVIER_FAN_IN</code> is using the formula above. Samely, if you go through the same steps for the backpropagated signal, you find that you need
+$$
+var(w_{i})=\frac{1}{n_{out}}
+$$
+to keep he variance of the input gradient and the output gradient the same. These two constraints can only be satisfied simultaneously if $n_{in}=n_{out}$, so as a compromise, the author takes the average of the two:
+$$
+var(w_{i})=\frac{2}{n_{in}+n_{out}}
+$$
+So the weight is initialized by the Gaussian distribution with zero mean and variance $\frac{2}{n_{in}+n_{out}}$. This is corresponding to the function <code>WeightInit.XAVIER</code> in deeplearning4j.</p>
+
+<p>Moreover, the author also introduced a normalized initialization version follows uniform distribution, which is corresponding to the <code>WeightInit.XAVIER_UNIFORM</code> in deeplearning4j.
+$$
+\mathbf{W}\sim U\big[-\frac{\sqrt{6}}{\sqrt{n_{in}+n_{out}}},\frac{\sqrt{6}}{\sqrt{n_{in}+n_{out}}}\big]
+$$
+In the paper, the author describes that &ldquo;The normalization factor may therefore be important when initializing deep networks because of the multiplicative effect through layers, and we suggest the following initialization procedure to approximately satisfy our objectives of maintaining activation variances and back-propagated gradients variance as one moves up or down the network&rdquo;. More details you can get from the paper: <a href="http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf" target="_blank">Understanding the difficulty of training deep feedforward neural networks</a>. (Note that, since Xavier is aimed to deal with gradient vanishing or exploding problems, however, if you use ReLU as the activation function, which would not lead to vanishing or exploding gradients, so normally, <strong>Xavier initialization would not be use with ReLU activation</strong>).
+What&rsquo;s more, here is another version of Xavier with uniform distribution in deeplearning4j weight initialization function list: <code>WeightInit.SIGMOID_UNIFORM</code>, which is defined as
+$$
+\mathbf{W}\sim U\big[-\frac{4\cdot\sqrt{6}}{\sqrt{n_{in}+n_{out}}},\frac{4\cdot\sqrt{6}}{\sqrt{n_{in}+n_{out}}}\big]
+$$</p>
+
+<h1 id="relu-initialization">ReLU Initialization</h1>
+
+<p>It is proposed by <a href="http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf" target="_blank">He et al.</a> to handle the issue that for some very deep CNNs initialized by random weights drawn from Gaussian distributions with fixed standard deviations, have difficulties to converge, (<strong>Typically, used for the layers with ReLU activation function</strong>).</p>
+
+<p>Consider a layer in neural networks with initialized weights $\mathbf{W}_{l}$, where $l$ denotes a layer, elements in $\mathbf{W}_{l}\in\mathbb{R}^{d\cdot n}$ are independent and identical destributed (i.i.d.), and ignore $d_{l}$. Suppose that we have an input $\mathbf{x}_{l}=f(\mathbf{y}_{l-1})\in\mathbb{R}^{n}$, where $\mathbf{x}_{l}$ is the input of current layer and also the output of previous layer, so we have $\mathbf{x}_{l}=f(\mathbf{y}_{l-1})$, $f(\cdot)$ is the activaion function. Assume the elements in $\mathbf{x}_{l}$ are also i.i.d., and $\mathbf{W}_{l}$ and $\mathbf{x}_{l}$ are independent of each other. Then,
+$$
+var(y_{l})=n_{l}\cdot var(w_{l}x_{l})
+$$
+where $y_{l}$, $x_{l}$ and $w_{l}$ represent the elements in $\mathbf{y}_{l}$, $\mathbf{x}_{l}$ and $\mathbf{W}_{l}$ respectively. Let $w_{l}$ has zero mean, then the variance of the product of independent variables gives
+$$
+var(y_{l})=n_{l}\cdot var(w_{l})\cdot E\big[x_{l}^{2}\big]
+$$
+where the $E\big[x_{l}^{2}\big]$ denotes the expectation of the square of $x_{l}$. Note that $E\big[x_{l}^{2}\big]\neq var(x_{l})$ unless $x_{l}$ has zero mean. However, for ReLU, $x_{l}=max(0,y_{l-1})$ and thus it does not have zero mean.</p>
+
+<p>If let $w_{l-1}$ has a symmetric distribution around zero, then $y_{l-1}$ has zero mean and has a symmetric distribution around zero. This leads to $E\big[x_{l}^{2}\big]=\frac{1}{2}var(y_{l-1})$ when $f$ is ReLU, then we will obtain
+$$
+var(y_{l})=\frac{1}{2}n_{l}\cdot var(w_{l})\cdot var(y_{l-1})
+$$
+With $L$ layers put together, we have
+$$
+var(y_{L})=var(y_{1})\cdot\big(\prod_{l=2}^{L}\frac{1}{2}n_{l}\cdot var(w_{l})\big)
+$$
+This product is the key to the initialization design. A proper initialization method should avoid reducing or magnifying the magnitudes of input signals exponentially. So the author expects the above product to take a proper scalar (<em>e.g.</em>, 1). A sufficient condition is
+$$
+\frac{1}{2}n_{l}\cdot var(w_{l})=1, \forall l.
+$$
+This leads to a zero-mean Gaussian distribution whose standard deviation is $\sqrt{\frac{2}{n_{l}}}$. And this is a general idea of ReLU initilization, which is corresponding to <code>WeightInit.RELU</code> in deeplearning4j. Similar to Xavier, the author also provides a unifrom destribution version
+$$
+W\sim U\big[-\sqrt{\frac{6}{n_{l}}},\sqrt{\frac{6}{n_{l}}}\big]
+$$
+which is correspoinding to the initialization function <code>WeightInit.RELU_UNIFORM</code> in deeplearning4j. More details you can get from the paper: <a href="http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf" target="_blank">Delving Deep into Rectifiers</a></p>
+
+<h1 id="reference">Reference</h1>
+
+<ol>
+<li><a href="http://cs231n.github.io/neural-networks-2/#init" target="_blank">CS231n Convolutional Neural Networks for Visual Recognition</a></li>
+<li><a href="http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf" target="_blank">Understanding the difficulty of training deep feedforward neural networks</a></li>
+<li><a href="http://andyljones.tumblr.com/post/110998971763/an-explanation-of-xavier-initialization" target="_blank">An Explanation of Xavier Initialization</a></li>
+<li><a href="http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf" target="_blank">Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification</a></li>
+</ol>
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/deep-learning">deep-learning</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/machine-learning">machine-learning</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/activation_functions/">Activation Functions in Neural Networks</a></li>
+        
+        <li><a href="/post/ml_zzh_note_4/">Machine Learning Note (4): Ensemble Learning</a></li>
+        
+        <li><a href="/post/word2vecf/">Word2Vecf -- Dependency-Based Word Embeddings and Lexical Substitute</a></li>
+        
+        <li><a href="/post/ml_zzh_note_3/">Machine Learning Note (3): Support Vector Machine</a></li>
+        
+        <li><a href="/post/word2vec/">Word2Vec -- Mathematical Principles and Java Implementation</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

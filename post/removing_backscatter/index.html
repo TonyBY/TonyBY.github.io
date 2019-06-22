@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="A novel method based on underwater optical model for underwater object visibility enhancement and its implementation.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/removing_backscatter/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/removing_backscatter/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/removing_backscatter/">
+  <meta property="og:title" content="Removing Backscatter to Enhance the Visibility of Underwater Object | Isaac Changhau">
+  <meta property="og:description" content="A novel method based on underwater optical model for underwater object visibility enhancement and its implementation.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-04-20T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-04-20T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>Removing Backscatter to Enhance the Visibility of Underwater Object | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Removing Backscatter to Enhance the Visibility of Underwater Object</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-04-20 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Thu, Apr 20, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    17 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>This is a novel method based on underwater optical model for underwater object visibility enhancement based on single image.</p>
+
+<h2 id="general-schema">General Schema</h2>
+
+<p>For an underwater distorted image, it is firstly decomposed to reflectance and illuminance. Then color correction and dehazing methods are utilized to process each component separately, according to their specific features. Finally, we calculate the weights of two components and apply an efficient image fusion method to obtain the enhanced image.
+<img src="/img/imageprocessing/backscatter/schema.png" alt="The general procedures of objects visibility enhancement process" /></p>
+
+<h2 id="image-decomposition">Image Decomposition</h2>
+
+<p>Here we introduce a weighted image decomposition method, which separates original image into two parts, one expresses the illumination component of image while another expresses the reflectance component of image. Since the process of camera captures scenes is based on the luminance of light which is reflected from objects or scenes to camera. For a clear environment, the radiance intensity of scenes spread widely in the display range, which makes captured image shows good contrast information and mean value is closed to middle gray according to gray world assumption. However, for the situations with hazy case, the reflectance would be distorted. In order to obtain accurate luminance and reflectance, we should derive the reflectance component and illumination component by decomposing original image. Firstly, an image can be expressed as:
+$$
+I_{\lambda}(x)=I_{\lambda}^{R}(x)+I_{\lambda}^{I}(x) \tag{1}
+$$
+where $\lambda\in\{r,g,b\}$ represents each color component of image, $I_{\lambda}^{R}(x)$ is the reflectance component and $I_{\lambda}^{I}(x)$ is the illumination component:
+$$
+I_{\lambda}^{R}(x)=\gamma\cdot I_{\lambda}(x) \tag{2}
+$$
+$$
+I_{\lambda}^{I}(x)=(1-\gamma)\cdot I_{\lambda}(x) \tag{3}
+$$
+where $\gamma$ is a weighted parameter, which maintains bright areas remains brighter than dark areas and enhances the contrast of reflectance component to remove the backscatter effect from it as much as possible. So $\gamma$ can be derived by
+$$
+\gamma=\zeta\cdot\frac{I_{\lambda}(x)}{I_{\lambda}^{\max}} \tag{4}
+$$
+where $I_{\lambda}^{\max}$ is the maximal pixel value of $\lambda$ color channel, and $\zeta$ is a control parameter to determine the weight of reflectance component, and $\zeta\in[0,1]$. If $\zeta=0$, the whole image is treated as illuminance component, while $\zeta=1$ , the whole image is otherwise treated as reflectance component. For further image process, we consider that the backscatter effect only exists in the illuminance component, while reflectance component only suffers from color distortion.
+<img src="/img/imageprocessing/backscatter/image-decomposition.png" alt="Image Decomposition" />
+Above is an example of image decomposition, from left to right: original image and its corresponding histogram, illuminance component and its corresponding histogram, reflectance component and its corresponding histogram.</p>
+
+<h2 id="dehazing-and-color-correction-for-illuminance-component">Dehazing and Color Correction for Illuminance Component</h2>
+
+<h3 id="global-underwater-background-light-estimation">Global Underwater Background Light Estimation</h3>
+
+<p>In order to estimate the background light, an ideal way is to pick up a pixel or an area lies as the maximum depth with regard to the camera, since color distortion and contrast degradation are distance dependent. With distance increases, the haze is denser due to the scattering of turbid medium, which causes relatively brighter color. However, in this scheme, objects or scenes, which are brighter than the background light, may lead to an undesirable selection result. In order to obtain accurate result, this scheme should be eliminated. Since the variance of objects and scenes pixel values are lower with denser haze, we utilize a hierarchical searching method based on the quad-tree subdivision to execute this process. Firstly, the image is separated into four equal rectangular regions, then for each region, we compute the average value subtract the standard deviation values as shown below:
+$$
+Score_{l}=\frac{1}{3N}\sum_{\lambda\in{r,g,b}}\sum_{x=1}^{N}I_{l}^{\lambda}(x)-\frac{1}{3}\sum_{\lambda\in\{r,g,b\}}\sqrt{\frac{\sum_{x=1}^{N}(I_{l}^{\lambda}(x)-\bar{I}_{l}^{\lambda})^{2}}{N}} \tag{5}
+$$
+where $l=1,2,3,4$ represents to the four image regions, $N$ is the pixel number within the region, $I_{l}^{\lambda}(x)$ is the pixel value of $x$ point of $\lambda$ component of $l$ region, $\bar{I}_{l}^{\lambda}$ is the average pixel value of $\lambda$ component of $l$ region. After that, we select the region with the lowest variance, and divide it into four regions as done before. These processes are repeated till the size is less than the threshold, and normally we set this threshold to 100. Within the determined region, we calculate mean value vector as the final obtained background light and this vector can be considered as the approximately brightest value with the full image. Image below is choosing background light from proper image block.
+<img src="/img/imageprocessing/backscatter/background-light.png" alt="Background Light" /></p>
+
+<h3 id="transmission-map-estimation">Transmission Map Estimation</h3>
+
+<h4 id="coarse-estimation">Coarse Estimation</h4>
+
+<p>Assuming the background light is given, according to the underwater optical model formation
+$$
+I_{\lambda}(x)=\big(J_{\lambda}(x)\cdot T_{\lambda}(x)+L_{\lambda}(x)\cdot t_{\lambda}(x)\big)\cdot t_{\lambda}(x)+A(\lambda)\cdot(1-t_{\lambda}(x))\tag{6}
+$$
+where $I_{\lambda}(x)$ represent each color component of captured image, $J_{\lambda}(x)$ is the scene radiance, $L_{\lambda}(x)$ is the possible existence of artificial light, $A(\lambda)$ is the background light, $T_{\lambda}(x)=e^{-c(\lambda)\cdot D(x)}$ expresses the light attenuation in the vertical direction, i.e., vertical transmission and $t_{\lambda}(x)=e^{-c(\lambda)\cdot d(x)}$ is transmission map in the horizontal direction $c(\lambda)$ is attenuation coefficient for $\lambda$ component, $D(x)$ is vertical depth and $d(x)$ is horizontal depth. In order to recover scenes or objects radiance from the captured image, we still need to estimate the $T_{\lambda}(x)$, $t_{\lambda}(x)$ and the effect of artificial light. However, for most case, especially in the swallow underwater environment, there is little effect of artificial light. Simply, we eliminate the impact of artificial light and derive the simplified model as:
+$$
+I_{\lambda}(x)=\big(J_{\lambda}(x)\cdot T_{\lambda}(x)\big)\cdot t_{\lambda}(x)+A(\lambda)\cdot(1-t_{\lambda}(x))\tag{7}
+$$
+where $A(\lambda)$ is already known after background light estimation, we firstly consider $J_{\lambda}(x)\cdot T_{\lambda}(x)$ to be one part, denotes as $J_{\lambda}^{T}(x)$, then the formation can be written as:
+$$
+I_{\lambda}(x)=J_{\lambda}^{T}(x)\cdot t_{\lambda}(x)+A(\lambda)\cdot(1-t_{\lambda}(x))\tag{8}
+$$
+It has the similar format as hazy formation model and we can derive $J_{\lambda}^{T}(x)$ by estimating the transmission map in the horizontal direction, $t_{\lambda}(x)$. In such scheme, the transmission map estimation for dehazing in the atmospheric environment can be utilized to compute the transmission map of underwater case after some modifications, since both of these two environments are similar to each other.</p>
+
+<p>To estimate the transmission map of each color channel more accurate, we choose an optimal transmission estimation (OTS) method to prevent the over-enhancement and obtain optimized estimation. This method is a generalized dark channel prior (DCP), and in the DCP, scene depth is considered to be local similar, and some pixels within the local area of at least one color channel is nearly to be zero. Since the backscatters due to dust-like particles tend to reduce the contrast of local area, inversely, the contrast information of a degraded area also seems to implicit the effect of backscatters. So the mean square error (MSE) is utilized to measure the contrast of local scene area. The MSE contrast represents the variance of pixel values, which is given by:
+$$
+\mathcal{C}_{MSE}=\sum_{x=1}^{N}\frac{\big(J_{\lambda}^{T}(x)-\bar{J}_{\lambda}^{T}\big)^{2}}{N} \tag{9}
+$$
+where $\bar{J}_{\lambda}^{T}$ is the average pixel value of $J_{\lambda}^{T}(x)$, $N$ is the pixel amount within the local area. By transforming the $(8)$, we can derive the expression of $J_{\lambda}^{T}(x)$:
+$$
+J_{\lambda}^{T}(x)=\frac{1}{t_{\lambda}(x)}\cdot\big(I_{\lambda}(x)-A(\lambda)\big)+A(\lambda) \tag{10}
+$$
+then, $\mathcal{C}_{MSE}$ can be written as
+$$
+\mathcal{C}_{MSE}=\sum_{x=1}^{N}\frac{\big(I_{\lambda}(x)-\bar{I}_{\lambda}\big)^{2}}{N\cdot t_{\lambda}(x)^{2}} \tag{11}
+$$
+Considering the transmission value is locally same and MSE contrast is inversely proportional to the transmission value $t_{\lambda}(x)$, which means the contrast of local area is greater with smaller $t_{\lambda}(x)$. However, $t_{\lambda}(x)$ can not be arbitrarily small because it may cause some pixel values of restored image out of the full dynamic range, and further lead information loss, as shown in the figure below, only pixel values within $[\alpha,\beta]$ can be enhanced after mapping process, other pixels will be truncated. In general, choosing a larger transmission value is able to reduce the information loss, but contrast is enhanced by choose smaller transmission value.
+<img src="/img/imageprocessing/backscatter/truncate.png" alt="Truncated" />
+The red regions represent the information loss due to the truncation of output pixel values, and input pixel values are mapped to output pixel values according to a transformation function. Thus, the transmission value of $t_{\lambda}(x)$ can not be chosen arbitrarily, contrast enhancement and information loss reduction should be taken into consideration at the same time. First, the contrast enhancement cost function, $E_{c}$ and information loss cost function, $E_{i}$ are designed and then minimize the two functions simultaneously, where contrast enhancement cost is defined as the negative sum of $\mathcal{C}_{MSE}$ of all color channels and information loss cost is defined as the sum of square value of truncated pixel values.
+$$
+E_{c}=-\sum_{\lambda\in\{r,g,b\}}\sum_{x=1}^{N}\frac{\big(J_{\lambda}^{T}(x)-\bar{J}_{\lambda}^{T}\big)^{2}}{N}=-\sum_{\lambda\in\{r,g,b\}}\sum_{x=1}^{N}\frac{\big(I_{\lambda}(x)-\bar{I}_{\lambda}\big)^{2}}{N\cdot t_{\lambda}(x)^{2}} \tag{12}
+$$
+$$E_{i}=-\sum_{\lambda\in\{r,g,b\}}\sum_{x=1}^{N}\bigg\{\big(\min\{0,J_{\lambda}^{T}(x)\}\big)^{2}+\big(\max\{0,J_{\lambda}^{T}(x)-255\}\big)^{2}\bigg\} \tag{13}
+$$
+Finally, for each local area, the optimal transmission value $t_{\lambda}(x)$ is estimated by minimizing the following function
+$$
+E=E_{c}+\kappa\cdot E_{i} \tag{14}
+$$
+where $\kappa$ is a weighted parameter to control the influence of information loss cost.
+<img src="/img/imageprocessing/backscatter/coarse-transmission.png" alt="Coarse Transmission" />
+The graph above is coarse transmission map generated by general dark channel prior, left: illuminance component, right: corresponding coarse transmission map.</p>
+
+<h4 id="transmission-map-refinement">Transmission Map Refinement</h4>
+
+<p>In the previous sub-section, the transmission value is treated to be local constant of a block. However, the scene depths within each local area are vary spatially and block-based local constant transmission value is likely to yield block artifact, further to weaken the contrast of restoring image. In order to solve this problem, different methods have been proposed to refine the transmission map. Here, image guided filtering is used to refine the transmission map, which also uses an input image as a guidance. The transmission map refinement can be executed by solving a sparse linear system
+$$
+(\mathbf{L}+\lambda\cdot\mathbf{U})\cdot t=\lambda\cdot\tilde{t} \tag{15}
+$$
+where $\mathbf{L}$ is matting Laplacian matrix, and $\mathbf{U}$ is the identity matrix with the same size as $\mathbf{L}$, and $\lambda$ is a regularization parameter. Since in image guided filter, it kernel has the similar form of the elements of matting Laplacian matrix, thus its elements can be represented by:
+$$
+L_{ij}=|\omega|\cdot(\delta_{ij}-W_{ij}) \tag{16}
+$$
+where $|\omega|$ is the number of pixels in a block, $\delta_{ij}$ is Kronecker delta, and $W_{ij}$ is the guided filter kernel weight, which is defined as:
+$$
+W_{ij}=\frac{1}{|\omega|^{2}}\cdot\sum_{k:(i,j)\in\omega_{k}}\bigg(1+\frac{(I_{i}-\mu_{k})\cdot(I_{j}-\mu_{k})}{\delta_{k}^{2}+\tau}\bigg) \tag{17}
+$$
+where $\mu_{k}$ is mean of $I$, $\delta_{k}^{2}$ is variance of $I$, $\tau$ is the regularization parameter and $I$ the guidance image. Thus, the transmission map is refined by computing $(15)$.
+<img src="/img/imageprocessing/backscatter/refinement-transmission.png" alt="Refinement Transmission" />
+The graph above is the transmission map refinement via image guided filtering, left: coarse transmission map, right: refined transmission map.</p>
+
+<h4 id="transmission-map-enhancement">Transmission Map Enhancement</h4>
+
+<p>After refinement, the transmission is relatively smoothed. In order to obtain a more accurate transmission map and extract more details from it, the refined transmission map should further be enhanced to improve its texture and details. Since an image can be separated into two parts, one is smooth component, another is detailed component, the transmission map also can be rewritten as this type.
+$$
+t=t_{smooth}+t_{detail} \tag{18}
+$$
+where $t_{smooth}$ is the smooth component of transmission map while $t_{detail}$ is the detailed component. For smooth component, we can derive it by using a blur filter. Gaussian low-pass filter (GLPF) is an effective smoothing filter, the idea of Gaussian blur is computing the mean value of center pixel and its surround pixels by utilizing a convolution kernel, and larger the kernel is, smoother the image is. The Gaussian convolution kernel can be represented as:
+$$
+G(x,y)=\frac{1}{2\pi\sigma^{2}}\cdot e^{-\frac{(x^{2}+y^{2})}{2\sigma^{2}}} \tag{19}
+$$
+where $\sigma$ is the scale parameter of Gaussian blur. Therefore, the smooth component can be obtained by smoothing the refined transmission map with Gaussian low-pass filter.
+$$
+t_{smooth}=t*G \tag{20}
+$$
+Then the detailed component can be derived as the difference between $t$ and $t_{smooth}$
+$$
+t_{detail}=t-t_{smooth} \tag{21}
+$$
+After that, the enhanced transmission map is calculated by:
+$$
+t_{enhanced}=t_{smooth}+\alpha\cdot t_{detail} \tag{22}
+$$
+where $\alpha$ is the enhancement parameter to control the amplified degree of detailed component. The graph below is the enhanced transmission map, left one is refined transmission map, right one is enhanced transmission map.
+<img src="/img/imageprocessing/backscatter/enhanced-transmission.png" alt="Enhanced Transmission" /></p>
+
+<h4 id="enhanced-transmission-map-for-each-color-component">Enhanced Transmission Map for Each Color Component</h4>
+
+<p>The transmission maps are various among different color components due to different light absorption abilities for light beams with different wavelength. After obtaining the enhanced transmission map, each color component’s transmission map can be derived by exploring the intrinsic relationship and difference among color components. Since underwater images always dominated by one color, i.e., greenish or bluish, and other color components are attenuated, the average pixel value of each color component, although not very accurate, can reflect the attenuation ratio of each color component in water. And it is known that the vertical depth of a given underwater image is hard to estimate due to insufficient prior knowledge and information provided by the image, so the average pixel value can further be utilized to estimate the transmission map for each color component.
+<img src="/img/imageprocessing/backscatter/channels.png" alt="Channels" />
+<img src="/img/imageprocessing/backscatter/channels-histogram.png" alt="Channels Histogram" />
+As in the graph above, using a reference line, we can derive the intensity of each color component, since underwater images often show bluish or greenish, the average intensity of the image, green channel is highest, following by blue channel and red channel is lowest. We are able to get the intrinsic information that the average pixel intensities also contain the attenuation coefficient of each color component.</p>
+
+<p>In the underwater optical model, the formation of transmission map can be simplified as $t(x)=e^{-c\cdot d(x)}$, where $c$ is the total attenuation coefficient and $d(x)$ is the distance from camera to the objects. Due to different light absorption abilities of water for different wavelength light beams, the total attenuation coefficients of different color components are diverse. Meanwhile, the average pixel value generally reflects the relative attenuation ratio of each color component, and the lower value of transmission map is, the higher contrast of restored image is. We firstly define the enhanced transmission map is transmission map of the color component with highest average pixel value. In order to define simply, we suppose that blue component has the highest average pixel value.
+$$
+t_{b}(x)=t_{enhanced}(x)=e^{-c_{b}\cdot d(x)} \tag{23}
+$$
+At the same time, the transmission map of other color components can be written as
+$$
+t_{r}(x)=e^{-c_{r}\cdot d(x)},\quad t_{g}(x)=e^{-c_{g}\cdot d(x)} \tag{24}
+$$
+then using $t_{b}(x)$ to express $t_{r}(x)$ and $t_{g}(x)$
+$$
+t_{r}(x)=\big(t_{b}(x)\big)^{\frac{c_{r}}{c_{b}}}=\big(t_{b}(x)\big)^{\beta_{r}},\quad t_{g}(x)=\big(t_{b}(x)\big)^{\frac{c_{g}}{c_{b}}}=\big(t_{b}(x)\big)^{\beta_{g}} \tag{25}
+$$
+where $\beta_{r}$ and $\beta_{g}$ are the relative attenuation ratios and can be estimated by average pixel value. To simplify the computation, we define that $\beta_{r}=\frac{mean(I_{b})}{mean(I_{r})}$, $\beta_{g}=\frac{mean(I_{b})}{mean(I_{g})}$. The graph below is the transmission map of each color component, from left to right: red channel, green channel and blue channel.
+<img src="/img/imageprocessing/backscatter/transmissions.png" alt="Transmissions" /></p>
+
+<h3 id="dehazing-and-color-correction">Dehazing and Color Correction</h3>
+
+<p>After estimating the background light and transmission map of each color component, we can restore the underwater image via the simplified physical model formation $(10)$, say, $J_{\lambda}^{T}(x)=\frac{1}{t_{\lambda}(x)}\cdot\big(I_{\lambda}(x)-A(\lambda)\big)+A(\lambda)$. However, the result of this formation can not guarantee the intensities of restored image lie in the display area $[0,1]$ or $[0,255]$, so a simple minimum-maximum normalization of intensity values is utilized to map them to the display interval. Meanwhile, although normalization method shows some effect on color correction, $J_{\lambda}^{T}(x)$ still suffers from part of light attenuation in the vertical direction and cause color distortion. Thus, color correction method should be introduced to solve this problem. For this case, a white balance method is used to execute the vertical direction compensation to obtain the final enhanced illuminance component $J_{\lambda}(x)$, which can achieve good results. The graph below is the processed result of illuminance component, left one is input image and its histogram, right one is output image and its histogram.
+<img src="/img/imageprocessing/backscatter/illuminance-component.png" alt="Illuminance Component" /></p>
+
+<h2 id="color-correction-for-reflectance-component">Color Correction for Reflectance Component</h2>
+
+<p>The reflectance component reflects the texture and details of underwater scenes, and we have mentioned that it is considered to be free of backscatter. Thus, the reflectance component only suffers from color distortion caused by energy absorption of water. In order to deal with this issue, the color correction method should be introduced. Color constancy based color correction methods are excellent way to handle this process, which shows great balance between the correction performance and information loss, since the general procedures of such methods include darkest and brightest pixels’ truncation and histogram stretch, which may cause some undesired phenomena of texture information loss.</p>
+
+<p>By comparison, the simplest color balance (SCB) method is a better method for this case. The algorithm is fast and efficient, since it only simply stretches the pixel values of the three color channels while preserves the information of image as much as possible by manually setting different truncation ratio of different color channel, so that their histograms are able to occupy the maximal display range $[0,255]$ (or $[0,1]$). In order to execute fast stretch process, an affine transform function $ax+b$ is applied on each color channel to map pixel values from minimum 0 to maximum 255 (or 1) by computing proper $a$ and $b$. However, few aberrant pixels of many images already map the maximum and minimum values, so truncation is used to improve color performance by &ldquo;clipping&rdquo; a small percentage of pixels with highest values and lowest values before applying affine transform function. Actually, this process will cause more or less white and black regions in images, which may look unnatural. Thus, the number of truncated pixels must be as less as possible. In general, although this algorithm is not real white balance algorithm since it does not focus on correcting the color distributions, it can provide white balance effect and contrast enhancement to some degree. The graph above is the processed result of reflectance component, left one is input image and its histogram, right one is output image and its histogram.
+<img src="/img/imageprocessing/backscatter/reflectance-component.png" alt="Reflectance Component" /></p>
+
+<h2 id="fusion-process">Fusion Process</h2>
+
+<h3 id="weights-of-the-fusion-process">Weights of the Fusion Process</h3>
+
+<p>After deriving the enhanced illuminance and reflectance components, a fusion-based method is introduced to combine these two images and generate the final free backscatter and color distortion image. For fusion techniques, one of the crucial steps is computing the weight maps of input images. In order to represent different features of input images well, we use several weight map methods to measure the features of input images and then combine them together to derive the normalized weighted maps. In practice, we choose three weight maps, luminance weight map, saliency weight map and exposedness weight map.</p>
+
+<p>Luminance weight map, $W_{L}$, which represents the luminance parameter of each image component. This weight map is generated by calculating STD between $r$, $g$ and $b$ color channels and the luminance value $l$, where the luminance value $l$ is derived by:
+$$
+l=\alpha\cdot r+\beta\cdot g+\gamma\cdot b \tag{26}
+$$
+where $\alpha+\beta+\gamma=1$, each represents the weight parameter of each color component, and normally we set $\alpha=0.299$, $\beta=0.587$ and $\gamma=0.114$. It generates high values correlated with the preservation degree of each input region, while the multi-scale blending ensures a seamless transition between the inputs. However, this weight map is able to correctly reflect the luminance degree of image and show greater enhancement for degraded image, it shows negative effects on contrast and colorfulness. In order to compensate the drawbacks, following weight maps are introduced.
+Saliency weight map, $W_{S}$, which reflects the salient objects and points in an image, and it aims to emphasize these discriminating objects of underwater scenes. In order to obtain the saliency map, the algorithm of Achanta et al. based on biological concept of center-surround contrast is applied due to its computationally efficient and time saving. One of the drawbacks of applying saliency map is over-estimation of highlighted areas, thus exposedness weight map is utilized to guarantee the accuracy and protect the mid tones of image.</p>
+
+<p>Exposedness weight map, $W_{E}$, which evaluates the status of exposed pixels. It provides an operator to protect local contrast to be non-exaggerated or non-understated. Generally, pixel values close to mean value is likely to have higher exposed appearance. The map is written as Gaussian-modeled distance to the mean value:
+$$
+W_{E}=e^{-\frac{(I(x)-\bar{I})^{2}}{2\cdot\sigma^{2}}} \tag{27}
+$$
+where $\sigma$ is the standard deviation, $I(x)$ denotes pixel value locates at position $x$ and $\bar{I}$ represents mean value. From the formation, pixels close to mean value have higher weight while pixels with larger distances are associated with over-exposed and under-exposed regions. Consequently, these three weight maps are able to produce well preserved appearance of fused images.</p>
+
+<h3 id="multi-scale-fusion-process">Multi-scale Fusion Process</h3>
+
+<p>Practically, in order to prevent undesirable halos and improve the performance, we utilize a multi-scale Gaussian and Laplacian pyramid decomposition technology to execute fusion process. In this method, each input is decomposed to several layers with different scales by Laplacian operator and Gaussian kernel. Meanwhile, higher layers are generated by differentiating the original image and filtered image of lower layer in Gaussian pyramid. Thus, the Laplacian pyramid is a set of quasi-bandpass versions of image.</p>
+
+<p>At the same time, the Gaussian pyramid of normalized weight map $W_{norm}$ is calculated, so that both Laplacian and Gaussian pyramids have same levels, and fusion process can be written as:
+$$
+\mathcal{R}_{\lambda}^{l}=\sum_{n=1}^{N}G^{l}\{W_{norm}^{n}\}\cdot L^{l}\{J_{\lambda}^{n}\} \tag{28}
+$$
+where $L^{l}\{J_{\lambda}^{n}\}$ is Laplacian pyramid of the $\lambda$ component of $n^{th}$ input image, $G^{l}\{W_{norm}^{n}\}$ is $n^{th}$ normalized weight map and $l$ is pyramid levels. Since Laplacian multi-scale strategy performs relatively fast and balances a good trade-off between speed and accuracy, the restored output image can achieve excellent result. The graph below is the final output image via multi-scale Gaussian and Laplacian fusion process.
+<img src="/img/imageprocessing/backscatter/final-result.png" alt="Final Result" />
+The Java Implementation of this method and the experiment results as well as evaluation and analysis is available on my GitHub repository: <a href="https://github.com/IsaacChanghau/OptimizedImageEnhance/blob/master/src/main/java/com/isaac/models/RemoveBackScatter.java" target="_blank">RemoveBackScatter</a>, the Matlab codes are available here: <a href="https://github.com/IsaacChanghau/OptimizedImageEnhance/tree/master/matlab/RemoveBackScatter" target="_blank">[link]</a></p>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://www.researchgate.net/profile/John_Y_Chiang2/publication/51899044_Underwater_Image_Enhancement_by_Wavelength_Compensation_and_Dehazing/links/0046352c761722d626000000.pdf" target="_blank">Underwater Image Enhancement by Wavelength Compensation and Dehazing</a></li>
+<li><a href="http://dl.acm.org/citation.cfm?id=2808548" target="_blank">Review on Underwater Image Restoration and Enhancement Algorithms</a></li>
+<li><a href="https://asp-eurasipjournals.springeropen.com/articles/10.1155/2010/746052" target="_blank">Underwater Image Processing: State of the Art of Restoration and Image Enhancement Methods</a></li>
+<li><a href="https://www.robots.ox.ac.uk/~vgg/rg/papers/hazeremoval.pdf" target="_blank">Single Image Haze Removal Using Dark Channel Prior</a></li>
+<li><a href="http://www.computervisionbytecnalia.com/wp-content/uploads/2015/02/JVCI-14-173.pdf" target="_blank">Automatic Red-Channel Underwater Image Restoration</a></li>
+<li><a href="http://www.sciencedirect.com/science/article/pii/S0030402613013843" target="_blank">Region-specialized Underwater Image Restoration in Inhomogeneous Optical Environments</a></li>
+<li><a href="http://f4k.dieei.unict.it/proceedings/ICIP2013/pdfs/0003412.pdf" target="_blank">Underwater Image Enhancement Using Guided Trigonometric Bilateral Filter and Fast Automatic Color Correction</a></li>
+<li><a href="http://www.sciencedirect.com/science/article/pii/S0029801814004491" target="_blank">Deriving Inherent Optical Properties from Background Color and Underwater Image Enhancement</a></li>
+<li><a href="https://staff.science.uva.nl/th.gevers/pub/GeversTIP07.pdf" target="_blank">Edge-based Color Constancy</a></li>
+<li><a href="http://www.sciencedirect.com/science/article/pii/0016003280900587" target="_blank">A Spatial Processor Model for Object Colour Perception</a></li>
+<li><a href="http://www.ipol.im/pub/art/2012/g-ace/" target="_blank">Automatic Color Enhancement (ACE) and Its Fast Implementation</a></li>
+<li><a href="http://www.ipol.im/pub/art/2011/llmps-scb/" target="_blank">Simplest Color Balance</a></li>
+<li><a href="http://dl.acm.org/citation.cfm?id=29046" target="_blank">Adaptive Histogram Equalization and Its Variations</a></li>
+<li><a href="http://dl.acm.org/citation.cfm?id=180940" target="_blank">Contrast Limited Adaptive Histogram Equalization</a></li>
+<li><a href="http://ieeexplore.ieee.org/document/6115744/" target="_blank">Fusion-based Restoration of the Underwater Images</a></li>
+<li><a href="http://perso.telecom-paristech.fr/~Gousseau/ProjAnim/2015/ImageSousMarine.pdf" target="_blank">Enhancing Underwater Images and Videos by Fusion</a></li>
+<li><a href="http://smartdsp.xmu.edu.cn/memberpdf/fuxueyang/1.pdf" target="_blank">A Retinex-based Enhancing Approach for Single Underwater Image</a></li>
+<li><a href="http://mccannimaging.com/Retinex/Retinex_files/L%26M1971.pdf" target="_blank">Lightness and Retinex Theory</a></li>
+<li><a href="http://www.sciencedirect.com/science/article/pii/S1568494614005821" target="_blank">Underwater Image Quality Enhancement through Integrated Color Model with Rayleigh Distribution</a></li>
+<li><a href="http://www.sciencedirect.com/science/article/pii/S1568494615005347" target="_blank">Enhancement of Low Quality Underwater Image through Integrated Global and Local Contrast Correction</a></li>
+<li><a href="http://mcl.korea.ac.kr/~dotol1216/Publications/2013_JVCIR_JHKIM.pdf" target="_blank">Optimized Contrast Enhancement for Real-time Image and Video Dehazing</a></li>
+<li><a href="http://www.ics.uci.edu/~majumder/docs/peli.pdf" target="_blank">Contrast in Complex Images</a></li>
+<li><a href="http://students.cec.wustl.edu/~jwaldron/559/project_final/assets/defog_fattal.pdf" target="_blank">Single Image Dehazing</a></li>
+<li><a href="http://kaiminghe.com/eccv10/" target="_blank">Guided Image Filtering</a></li>
+<li><a href="http://ivrlwww.epfl.ch/supplementary_material/RK_CVPR09/" target="_blank">Frequency-tuned Salient Region Detection</a></li>
+<li><a href="https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20030015730.pdf" target="_blank">The Statistics of Visual Representation</a></li>
+<li><a href="http://ieeexplore.ieee.org/abstract/document/7305804/" target="_blank">Human Visual System Inspired Underwater Image Quality Measures</a></li>
+<li><a href="http://ieeexplore.ieee.org/abstract/document/1164279/" target="_blank">Alpha-trimmed Means and Their Relationship to Median Filters</a></li>
+</ul>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/computer-vision">computer-vision</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/java">java</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/opencv">opencv</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/underwater_image_fusion/">Underwater Image Enhance via Fusion and Its Java Implementation</a></li>
+        
+        <li><a href="/post/altm/">Adaptive Local Tone Mapping Technique for HDR Image and Java Implementation</a></li>
+        
+        <li><a href="/post/install_opencv_java/">Installation of OpenCV for Java</a></li>
+        
+        <li><a href="/post/skiing_in_singapore/">Skiing In Singapore</a></li>
+        
+        <li><a href="/project/backscatter/">Removing Backscatter to Enhance the Visibility of Underwater Object</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

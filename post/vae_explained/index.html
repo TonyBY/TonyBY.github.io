@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Explanation of variational autoencoders.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/vae_explained/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/vae_explained/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/vae_explained/">
+  <meta property="og:title" content="Variational Autoencoders Explained | Isaac Changhau">
+  <meta property="og:description" content="Explanation of variational autoencoders.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-07-27T14:20:36&#43;08:00">
+  
+  <meta property="article:modified_time" content="2018-07-27T14:20:36&#43;08:00">
+  
+
+  
+
+  <title>Variational Autoencoders Explained | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Variational Autoencoders Explained</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2018-07-27 14:20:36 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Fri, Jul 27, 2018
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p><strong>Note</strong>: This blog article is borrowed from <a href="http://kvfrans.com/variational-autoencoders-explained/" target="_blank">kevin frans blog · Variational Autoencoders Explained</a>.</p>
+
+<p>In <a href="http://kvfrans.com/generative-adversial-networks-explained/" target="_blank">my previous post about generative adversarial networks</a>, I went over a simple method to training a network that could generate realistic-looking images.</p>
+
+<p>However, there were a couple of downsides to using a plain GAN.</p>
+
+<p>First, the images are generated off some arbitrary noise. If you wanted to generate a picture with specific features, there&rsquo;s no way of determining which initial noise values would produce that picture, other than searching over the entire distribution.</p>
+
+<p>Second, a generative adversarial model only discriminates between &ldquo;real&rdquo; and &ldquo;fake&rdquo; images. There&rsquo;s no constraints that an image of a cat has to look like a cat. This leads to results where there&rsquo;s no actual object in a generated image, but the style just looks like picture.</p>
+
+<p>In this post, I&rsquo;ll go over the variational autoencoder, a type of network that solves these two problems.</p>
+
+<h3 id="what-is-a-variational-autoencoder">What is a variational autoencoder?</h3>
+
+<p>To get an understanding of a VAE, we&rsquo;ll first start from a simple network and add parts step by step.</p>
+
+<p>An common way of describing a neural network is an approximation of some function we wish to model. However, they can also be thought of as a data structure that holds information.</p>
+
+<p>Let&rsquo;s say we had a network comprised of a few <a href="http://kvfrans.com/generative-adversial-networks-explained/" target="_blank">deconvolution layers</a>. We set the input to always be a vector of ones. Then, we can train the network to reduce the mean squared error between itself and one target image. The &ldquo;data&rdquo; for that image is now contained within the network&rsquo;s parameters.
+<img src="/img/deeplearning/vae/1.jpg" alt="1.jpg" />
+Now, let&rsquo;s try it on multiple images. Instead of a vector of ones, we&rsquo;ll use a one-hot vector for the input. <code>[1, 0, 0, 0]</code> could mean a cat image, while <code>[0, 1, 0, 0]</code> could mean a dog. This works, but we can only store up to 4 images. Using a longer vector means adding in more and more parameters so the network can memorize the different images.</p>
+
+<p>To fix this, we use a vector of real numbers instead of a one-hot vector. We can think of this as a code for an image, which is where the terms encode/decode come from. For example, <code>[3.3, 4.5, 2.1, 9.8]</code> could represent the cat image, while <code>[3.4, 2.1, 6.7, 4.2]</code> could represent the dog. This initial vector is known as our latent variables.</p>
+
+<p>Choosing the latent variables randomly, like I did above, is obviously a bad idea. In an autoencoder, we add in another component that takes in the original images and encodes them into vectors for us. The deconvolutional layers then &ldquo;decode&rdquo; the vectors back to the original images.
+<img src="/img/deeplearning/vae/2.jpg" alt="1.jpg" />
+We&rsquo;ve finally reached a stage where our model has some hint of a practical use. We can train our network on as many images as we want. If we save the encoded vector of an image, we can reconstruct it later by passing it into the decoder portion. What we have is the standard autoencoder.</p>
+
+<p>However, we&rsquo;re trying to build a generative model here, not just a fuzzy data structure that can &ldquo;memorize&rdquo; images. We can&rsquo;t generate anything yet, since we don&rsquo;t know how to create latent vectors other than encoding them from images.</p>
+
+<p>There&rsquo;s a simple solution here. We add a constraint on the encoding network, that forces it to generate latent vectors that roughly follow a unit gaussian distribution. It is this constraint that separates a variational autoencoder from a standard one.</p>
+
+<p>Generating new images is now easy: all we need to do is sample a latent vector from the unit gaussian and pass it into the decoder.</p>
+
+<p>In practice, there&rsquo;s a tradeoff between how accurate our network can be and how close its latent variables can match the unit gaussian distribution.</p>
+
+<p>We let the network decide this itself. For our loss term, we sum up two separate losses: the generative loss, which is a mean squared error that measures how accurately the network reconstructed the images, and a latent loss, which is the KL divergence that measures how closely the latent variables match a unit gaussian.</p>
+
+<pre><code>generation_loss = mean(square(generated_image - real_image))  
+latent_loss = KL-Divergence(latent_variable, unit_gaussian)  
+loss = generation_loss + latent_loss  
+</code></pre>
+
+<p>In order to optimize the KL divergence, we need to apply a simple reparameterization trick: instead of the encoder generating a vector of real values, it will generate a vector of means and a vector of standard deviations.
+<img src="/img/deeplearning/vae/3.jpg" alt="3.jpg" />
+This lets us calculate KL divergence as follows:</p>
+
+<pre><code class="language-python"># z_mean and z_stddev are two vectors generated by encoder network
+latent_loss = 0.5 * tf.reduce_sum(tf.square(z_mean) + tf.square(z_stddev) - tf.log(tf.square(z_stddev)) - 1,1)  
+</code></pre>
+
+<p>When we&rsquo;re calculating loss for the decoder network, we can just sample from the standard deviations and add the mean, and use that as our latent vector:</p>
+
+<pre><code class="language-python">samples = tf.random_normal([batchsize,n_z],0,1,dtype=tf.float32)  
+sampled_z = z_mean + (z_stddev * samples)  
+</code></pre>
+
+<p>In addition to allowing us to generate random latent variables, this constraint also improves the generalization of our network.</p>
+
+<p>To visualize this, we can think of the latent variable as a transfer of data.</p>
+
+<p>Let&rsquo;s say you were given a bunch of pairs of real numbers between <code>[0, 10]</code>, along with a name. For example, <code>5.43</code> means apple, and <code>5.44</code> means banana. When someone gives you the number <code>5.43</code>, you know for sure they are talking about an apple. We can essentially encode infinite information this way, since there&rsquo;s no limit on how many different real numbers we can have between <code>[0, 10]</code>.</p>
+
+<p>However, what if there was a gaussian noise of one added every time someone tried to tell you a number? Now when you receive the number <code>5.43</code>, the original number could have been anywhere around <code>[4.4 ~ 6.4]</code>, so the other person could just as well have meant banana (<code>5.44</code>).</p>
+
+<p>The greater standard deviation on the noise added, the less information we can pass using that one variable.</p>
+
+<p>Now we can apply this same logic to the latent variable passed between the encoder and decoder. The more efficiently we can encode the original image, the higher we can raise the standard deviation on our gaussian until it reaches one.</p>
+
+<p>This constraint forces the encoder to be very efficient, creating information-rich latent variables. This improves generalization, so latent variables that we either randomly generated, or we got from encoding non-training images, will produce a nicer result when decoded.</p>
+
+<h3 id="how-well-does-it-work">How well does it work?</h3>
+
+<p>I ran a few tests to see how well a variational autoencoder would work on the MNIST handwriting dataset.
+<img src="/img/deeplearning/vae/4.jpg" alt="4.jpg" /></p>
+
+<blockquote>
+<p>left: 1st epoch, middle: 9th epoch, right: original</p>
+</blockquote>
+
+<p>Looking good! After only 15 minutes on my laptop w/o a GPU, it&rsquo;s producing some nice results on MNIST.</p>
+
+<p>Here&rsquo;s something convenient about VAEs. Since they follow an encoding-decoding scheme, we can compare generated images directly to the originals, which is not possible when using a GAN.</p>
+
+<p>A downside to the VAE is that it uses direct mean squared error instead of an adversarial network, so the network tends to produce more blurry images.</p>
+
+<p>There&rsquo;s been some work looking into combining the VAE and the GAN: Using the same encoder-decoder setup, but using an adversarial network as a metric for training the decoder. Check out <a href="https://arxiv.org/pdf/1512.09300.pdf" target="_blank">this paper</a> or <a href="http://blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/" target="_blank">this blog post</a> for more on that.</p>
+
+<p>You can get the code for this post on <a href="https://github.com/kvfrans/variational-autoencoder" target="_blank">kvfrans&rsquo; Github</a>. It&rsquo;s a cleaned up version of the code from <a href="https://jmetzen.github.io/2015-11-27/vae.html" target="_blank">this post</a>.</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/deep-learning">deep-learning</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/autoencoder">autoencoder</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/machine-learning">machine-learning</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/autoencoder_and_sparsity/">Autoencoder and Sparsity</a></li>
+        
+        <li><a href="/post/backpropagation/">Backpropagation in Neural Networks</a></li>
+        
+        <li><a href="/post/stock_price_predict/">Plain Stock Price Prediction via LSTM</a></li>
+        
+        <li><a href="/post/lstm-gru-formula/">LSTM and GRU -- Formula Summary</a></li>
+        
+        <li><a href="/post/understand_lstm/">Understanding LSTM Networks</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

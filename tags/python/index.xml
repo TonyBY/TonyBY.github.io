@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Isaac Changhau</title>
+    <link>https://isaacchanghau.github.io/tags/python/</link>
+    <description>Recent content in python on Isaac Changhau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017-2018</copyright>
+    <lastBuildDate>Wed, 21 Feb 2018 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://isaacchanghau.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introduction of TensorFlow Dataset API</title>
+      <link>https://isaacchanghau.github.io/post/tensorflow_dataset_api/</link>
+      <pubDate>Wed, 21 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/tensorflow_dataset_api/</guid>
+      <description>An introduction of TensorFlow dataset API.</description>
+    </item>
+    
+    <item>
+      <title>TensorFlow Updates Multiple Tensors Using Scan</title>
+      <link>https://isaacchanghau.github.io/post/tensorflow_scan/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/tensorflow_scan/</guid>
+      <description>Tutorial about how to update multiple tensors using tensorflow scan function.</description>
+    </item>
+    
+    <item>
+      <title>PTransE -- Modeling Relation Paths for Representation Learning of Knowledge Bases</title>
+      <link>https://isaacchanghau.github.io/post/ptranse/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ptranse/</guid>
+      <description>An efficient and advanced deep learning approach to learn relational representation.</description>
+    </item>
+    
+    <item>
+      <title>TransX: Embedding Entities and Relationships of Multi-relational Data</title>
+      <link>https://isaacchanghau.github.io/post/transx/</link>
+      <pubDate>Thu, 14 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/transx/</guid>
+      <description>Summarization of several similar algorithms to learn relational representation.</description>
+    </item>
+    
+    <item>
+      <title>Analyzing Wolf Warrior II Movie Comments using Python</title>
+      <link>https://isaacchanghau.github.io/post/wolf_warrior/</link>
+      <pubDate>Mon, 11 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/wolf_warrior/</guid>
+      <description>Tutorial to analyze 170000+ movie comments of Wolf Warrior II from Douban website.</description>
+    </item>
+    
+    <item>
+      <title>Analyzing Your Friends Information in WeChat using Python</title>
+      <link>https://isaacchanghau.github.io/post/wechat_analysis/</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/wechat_analysis/</guid>
+      <description>Tutorial to analyze your friends information in WeChat using python itchat toolkit.</description>
+    </item>
+    
+    <item>
+      <title>House Prices Advanced Regression Techniques -- Modeling and Prediction</title>
+      <link>https://isaacchanghau.github.io/post/house_price_modeling/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/house_price_modeling/</guid>
+      <description>A practice to build machine learning model to predict house price trends, following the post: House Prices Advanced Regression Techniques &amp;ndash; Data Analysis</description>
+    </item>
+    
+    <item>
+      <title>House Prices Advanced Regression Techniques -- Data Analysis</title>
+      <link>https://isaacchanghau.github.io/post/house_price_data_analysis/</link>
+      <pubDate>Sat, 08 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/house_price_data_analysis/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques&#34; target=&#34;_blank&#34;&gt;House Prices: Advanced Regression Techniques&lt;/a&gt; is a &lt;a href=&#34;https://www.kaggle.com/&#34; target=&#34;_blank&#34;&gt;kaggle&lt;/a&gt; competition to predict the house prices, which aims to practice feature engineering, RFs, and gradient boosting.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Machine Learning Note (4): Ensemble Learning</title>
+      <link>https://isaacchanghau.github.io/post/ml_zzh_note_4/</link>
+      <pubDate>Thu, 18 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ml_zzh_note_4/</guid>
+      <description>Machine learning note: ensemble learning.</description>
+    </item>
+    
+  </channel>
+</rss>

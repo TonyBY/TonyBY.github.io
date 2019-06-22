@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.51" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Date: Oct. 2017 - Jan. 2018
+ Collaborators: Huminski Aliaksandr, Hao Zhang
+This project is part of exploration of PrimeNet. The PrimeNet is one of the projects I am involved in, which aims to build a comprehensive and accurate commonsense knowledge graph database to encode and link the concepts, relations and knowledge of the real-world as much as possibale and help machines to understand the world easier and better.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/project/action_hierarchy/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/project/action_hierarchy/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@https://twitter.com/IsaacChanghau">
+  <meta property="twitter:creator" content="@https://twitter.com/IsaacChanghau">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/project/action_hierarchy/">
+  <meta property="og:title" content="WordNet Troponymy and Action Hierarchy Extraction | Isaac Changhau">
+  <meta property="og:description" content="Date: Oct. 2017 - Jan. 2018
+ Collaborators: Huminski Aliaksandr, Hao Zhang
+This project is part of exploration of PrimeNet. The PrimeNet is one of the projects I am involved in, which aims to build a comprehensive and accurate commonsense knowledge graph database to encode and link the concepts, relations and knowledge of the real-world as much as possibale and help machines to understand the world easier and better.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-01-07T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2018-01-07T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>WordNet Troponymy and Action Hierarchy Extraction | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article article-project" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+
+    <div class="pub-title">
+      <h1 itemprop="name">WordNet Troponymy and Action Hierarchy Extraction</h1>
+      
+      
+      <span class="pull-right">
+        
+
+      </span>
+    </div>
+
+    
+
+    <div class="article-style" itemprop="articleBody">
+      <p><i class="fa fa-calendar"></i> <strong>Date</strong>: Oct. 2017 - Jan. 2018<br><i class="fa fa-user"></i> <strong>Collaborators</strong>: <a href="https://www.a-star.edu.sg/ihpc/People/tid/390" target="_blank">Huminski Aliaksandr</a>, Hao Zhang</p>
+
+<p>This project is part of exploration of <a href="/project/primenet"><strong><em>PrimeNet</em></strong></a>. The PrimeNet is one of the projects I am involved in, which aims to build a comprehensive and accurate commonsense knowledge graph database to encode and link the concepts, relations and knowledge of the real-world as much as possibale and help machines to understand the world easier and better.</p>
+
+<p>Commonsense knowledge bases need to have relations that allow to predict the consequences of specific actions (say, <em>if John stabbed Peter, Peter might be killed</em>) and to unfold the possible actions for the specific results (<em>Peter was killed. It could happen because of poisoning, stabbing, shooting, etc.</em>) This kind of causal relations are established between manner verbs and result verbs: manner-result relations.</p>
+
+<p>Modeling action as an important topic in robotics and human-computer communication assumes by default examining a large set of actions as described by natural language.</p>
+
+<p><img src="/img/surface/wordnet.png" alt="sample" /></p>
+
+<p>In this project, we use <a href="https://wordnet.princeton.edu/" target="_blank">WordNet</a> as resources, investigate its structure and the natural relations among actions, then offer a procedure for how to extract manner-result relations through the analysis of the troponym glosses and for how to extract actions from WordNet.</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/natural-language-processing">natural-language-processing</a>
+  
+</div>
+
+
+
+
+    
+    
+    
+
+    
+      
+      
+      
+      
+        <h2>Publications</h2>
+        
+          
+            <div class="pub-list-item" style="margin-bottom: 1rem" itemscope itemtype="http://schema.org/CreativeWork">
+  <i class="fa fa-file-text-o pub-icon" aria-hidden="true"></i>
+  <span itemprop="author">
+    Huminski Aliaksandr, <strong>Hao Zhang</strong></span>.
+  <a href="https://isaacchanghau.github.io/publication/action-hierarchy/" itemprop="name">Action Hierarchy Extraction and its Application</a>.
+  In <em>LREC</em>,
+  2018.
+  <p>
+
+
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="http://lrec-conf.org/workshops/lrec2018/W7/pdf/3_W7.pdf" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+
+<button type="button" class="btn btn-primary btn-outline btn-xs js-cite-modal"
+        data-filename="/files/citations/action-hierarchy.bib">
+  Cite
+</button>
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="https://github.com/IsaacChanghau/WordNetExtension" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="https://wordnet.princeton.edu/" target="_blank" rel="noopener">
+  Dataset
+</a>
+
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="/project/action_hierarchy/">
+  Project
+</a>
+
+
+
+
+
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="https://verbs.colorado.edu/~mpalmer/projects/verbnet.html" target="_blank" rel="noopener">
+  Supplement
+</a>
+
+<a class="btn btn-primary btn-outline btn-xs" href="http://www.areaworkshop.org" target="_blank" rel="noopener">
+  Website
+</a>
+
+</p>
+</div>
+
+          
+        
+          
+            <div class="pub-list-item" style="margin-bottom: 1rem" itemscope itemtype="http://schema.org/CreativeWork">
+  <i class="fa fa-file-text-o pub-icon" aria-hidden="true"></i>
+  <span itemprop="author">
+    Huminski Aliaksandr, <strong>Hao Zhang</strong></span>.
+  <a href="https://isaacchanghau.github.io/publication/wordnet/" itemprop="name">WordNet Troponymy and Extraction of Manner-Result Relations</a>.
+  In <em>GWC</em>,
+  2018.
+  <p>
+
+
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="http://compling.hss.ntu.edu.sg/events/2018-gwc/pdfs/GWC2018_paper_29.pdf" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+
+<button type="button" class="btn btn-primary btn-outline btn-xs js-cite-modal"
+        data-filename="/files/citations/wordnet.bib">
+  Cite
+</button>
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="https://github.com/IsaacChanghau/WordNetExtension" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="https://wordnet.princeton.edu/" target="_blank" rel="noopener">
+  Dataset
+</a>
+
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="/project/action_hierarchy/">
+  Project
+</a>
+
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="http://compling.hss.ntu.edu.sg/events/2018-gwc/presentations/GWC2018_29.pdf" target="_blank" rel="noopener">
+  Poster
+</a>
+
+
+
+
+
+<a class="btn btn-primary btn-outline btn-xs" href="http://compling.hss.ntu.edu.sg/events/2018-gwc/" target="_blank" rel="noopener">
+  Website
+</a>
+
+</p>
+</div>
+
+          
+        
+      
+
+      
+      
+      
+      
+    
+
+  </div>
+</article>
+
+
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

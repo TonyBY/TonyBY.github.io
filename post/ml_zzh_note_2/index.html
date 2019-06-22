@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Machine learning note: linear regression.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/ml_zzh_note_2/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/ml_zzh_note_2/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/ml_zzh_note_2/">
+  <meta property="og:title" content="Machine Learning Note (2): Linear Regression | Isaac Changhau">
+  <meta property="og:description" content="Machine learning note: linear regression.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-05-04T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-05-04T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>Machine Learning Note (2): Linear Regression | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Machine Learning Note (2): Linear Regression</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-05-04 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Thu, May 4, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    11 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>摘自周志华《机器学习》第三章&ndash;线性模型。</p>
+
+<h1 id="线性模型">线性模型</h1>
+
+<p>给定由$d$个属性描述的示例$\mathbf{x}=(x_{1};x_{2};\dots ;x_{d})$，其中$x_{i}$是$\mathbf{x}$在第$i$个属性上的取值，线性模型(linear model)试图学的一个通过属性的线性组合来进行预测的函数，即
+$$
+f(\mathbf{x})=\mathbf{w}^{T}\mathbf{x}+b
+$$
+其中$\mathbf{w}=(w_{1};w_{2};\dots ;w_{d})$。$\mathbf{w}$和$b$学得之后，模型就可以确定。</p>
+
+<h1 id="线性回归">线性回归</h1>
+
+<p>给定数据集$D={(\mathbf{x}_{1},y_{1}),(\mathbf{x}_{2},y_{2}),\dots ,(\mathbf{x}_{m},y_{m})}$，其中$\mathbf{x}_{i}=(x_{i1};x_{i2};\dots ;x_{id}), y_{i}\in \mathbb{R}$。“线性回归” (linear regression)试图学得
+$$
+f(\mathbf{x}_{i})=\mathbf{w}^{T}\mathbf{x}_{i}+b, 使得f(\mathbf{x}_{i})\simeq y_{i}
+$$
+接下来的任务是确定$\mathbf{w}$和$b$，其关键在于衡量$f(x)$和$y$之间的差别，而均方误差是回归任务中最常用的性能度量，它对应了常用的“欧式距离” (Euclidean distance)，因此可以试图让均方误差最小化。均方误差最小化进行模型求解的方法称为“最小二乘法” (least square method)。在线性回归中，最小二乘法就是试图找到一条直线，使所有样本到直线上的欧式距离之和最小。这里，我们将$\mathbf{w}$和$b$吸收入向量形式$\mathbf{\hat{w}}=(b;\mathbf{w})=(b;w_{1};w_{2};\dots ;w_{d})$，相应的，将数据集$D$中的$\mathbf{x}_{i}$表示为$\mathbf{x}_{i}=(1;x_{i1};x_{i2};\dots ;x_{id})$，因此数据集$D$可以表示为一个$m\times (d+1)$的矩阵$\mathbf{X}=(\mathbf{x}_{1};\mathbf{x}_{2};\dots ;\mathbf{x}_{m})^{T}$，再把标记也写成向量形式$\mathbf{y}=(y_{1};y_{2};\dots ;y_{m})$。于是有
+$$
+f(\mathbf{X})=\mathbf{X}\mathbf{\hat{w}}, 使得f(\mathbf{X})\simeq\mathbf{y}
+$$
+最小化均方误差，有
+$$
+\mathbf{\hat{w}}^{*}=\arg\min_{\mathbf{\hat{w}}}(f(\mathbf{X})-\mathbf{y})^{2}=\arg\min_{\mathbf{\hat{w}}}(\mathbf{y}-\mathbf{X}\mathbf{\hat{w}})^{T}(\mathbf{y}-\mathbf{X}\mathbf{\hat{w}})
+$$
+令$E_{\mathbf{\hat{w}}}=(\mathbf{y}-\mathbf{X}\mathbf{\hat{w}})^{T}(\mathbf{y}-\mathbf{X}\mathbf{\hat{w}})$，对$\mathbf{\hat{w}}$求导得到
+$$\frac{\partial E_{\mathbf{\hat{w}}}}{\partial \mathbf{\hat{w}}}=2\mathbf{X}^{T}(\mathbf{X}\mathbf{\hat{w}}-\mathbf{y})
+$$
+令上式为零可得$\mathbf{\hat{w}}$最优解的封闭式。当$\mathbf{X}^{T}\mathbf{X}$为<strong>满秩矩阵</strong> (full-rank matrix)或<strong>正定矩阵</strong> (positive definite matrix)时，可得到
+$$
+\mathbf{\hat{w}}^{*}=(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{y}
+$$
+其中$(\mathbf{X}^{T}\mathbf{X})^{-1}$是$\mathbf{X}^{T}\mathbf{X}$的逆矩阵。然而现实任务中，$\mathbf{X}^{T}\mathbf{X}$往往不是满秩矩阵，此时可解出多个$\mathbf{\hat{w}}$，都能使均方误差最小化，而选择哪一个解作为输出将由算法的归纳偏好决定，常见的做法是引入正则化(regularization)项。</p>
+
+<p>线性模型预测值不仅可以逼近$y$，也可以使其逼近$y$的衍生物。比如，可将输出标记的对数作为线性模型逼近的目标，即“对数线性回归” (log-linear regression)
+$$
+\ln y=\mathbf{w}^{T}\mathbf{x}+b
+$$
+它实际上是让$e^{\mathbf{w}^{T}\mathbf{x}+b}$逼近$y$，形式上它仍是线性回归，但实质上已是在求取输入空间到输出空间的非线性函数映射，如图
+<img src="/img/machinelearning/linear/log-linear-regression.png" alt="log-linear regression" />
+更一般地，考虑单调可微函数$g(\cdot)$，令$$y=g^{-1}(\mathbf{w}^{T}\mathbf{x}+b)$$这样得到的模型称为“广义线性模型” (generalized linear model)，其中函数$g(\cdot)$称为“联系函数” (link function)。对数线性回归是广义线性模型在$g(\cdot)=\ln (\cdot)$时的特例。</p>
+
+<h1 id="对数几率回归">对数几率回归</h1>
+
+<p>将线性回归应用到分类任务的方法: 找到一个单调可微函数将分类任务的真实标记$y$与线性回归模型的预测值联系起来。例如，对于二分类任务，$y\in {0,1}$，使用“<a href="https://en.wikipedia.org/wiki/Heaviside_step_function" target="_blank">单位阶跃函数</a>” (unit-step/Heaviside function)可将模型预测值转换为0/1值。但是单位阶跃函数不连续，于是使用近似单位阶跃函数的替代函数，如使用“对数机率函数”$$y=\frac{1}{1+e^{-z}}$$它是一种“<a href="https://en.wikipedia.org/wiki/Sigmoid_function" target="_blank">Sigmoid函数</a>”，用对数机率函数作为$g^{-1}$得到
+$$
+y=\frac{1}{1+e^{-(\mathbf{w}^{T}\mathbf{x}+b)}}
+$$
+变换得
+$$
+\ln \frac{y}{1-y}=\mathbf{w}^{T}\mathbf{x}+b
+$$
+这种模型称为“对数机率回归” (<a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank">logistic regression</a>)。虽然它的名字是“回归”但实际上是一种分类学习方法。对数函数是任意阶可导的凸函数，许多数值优化算法均可以求解其最优解。</p>
+
+<p>重写上式，有:
+$$
+\ln\frac{p(y=1|\mathbf{x})}{p(y=0|\mathbf{x})}=\boldsymbol{\mathcal{w}}^{T}\mathbf{x}+b
+$$
+其中:
+$$
+\begin{aligned}
+p(y=1|\mathbf{x}) &amp;=\frac{e^{(\mathbf{w}^{T}\mathbf{x}+b)}}{1+e^{(\mathbf{w}^{T}\mathbf{x}+b)}}\newline
+p(y=0|\mathbf{x}) &amp;=\frac{1}{1+e^{(\mathbf{w}^{T}\mathbf{x}+b)}}
+\end{aligned}
+$$
+于是，可通过“极大似然法”(maximum likelihood method)来估计$\boldsymbol{\mathcal{w}}$和$b$。给定数据集$\{(\mathbf{x}_{i},y_{i})\}_{i=1}^{m}$，对数回归模型最大化“对数似然”(log-likelihood):
+$$
+\mathcal{l}(\boldsymbol{\mathcal{w}},b)=\sum_{i=1}^{m}\ln p(y_{i}|\mathbf{x}_{i};\boldsymbol{\mathcal{w}},b)
+$$
+即令每个样本属于其真实标记的概率越大越好。这里令$\boldsymbol{\beta}=(\boldsymbol{\mathcal{w}};b)$，$\hat{\mathbf{x}}=(\mathbf{x};1)$，则$\boldsymbol{\mathcal{w}}^{T}\mathbf{x}+b$简写为$\boldsymbol{\beta}^{T}\hat{\mathbf{x}}$。再令$p_{1}(\hat{\mathbf{x}};\boldsymbol{\beta})=p(y=1|\hat{\mathbf{x}};\boldsymbol{\beta})$，$p_{0}(\hat{\mathbf{x}};\boldsymbol{\beta})=p(y=0|\hat{\mathbf{x}};\boldsymbol{\beta})=1-p_{1}(\hat{\mathbf{x}};\boldsymbol{\beta})$，则:
+$$
+p(y_{i}|\mathbf{x}_{i};\boldsymbol{\mathcal{w}},b)=y_{i}p_{1}(\hat{\mathbf{x}}_{i};\boldsymbol{\beta})+(1-y_{i})p_{0}(\hat{\mathbf{x}}_{i};\boldsymbol{\beta})
+$$
+该问题可转化为最小化:
+$$
+\mathcal{l}(\boldsymbol{\beta})=\sum_{i=1}^{m}\bigg(-y_{i}\boldsymbol{\beta}^{T}\hat{\mathbf{x}}_{i}+\ln\big(1+e^{\boldsymbol{\beta}^{T}\hat{\mathbf{x}}_{i}}\big)\bigg)
+$$
+上式为关于$\boldsymbol{\beta}$的高阶可导连续凸函数，根据凸优化理论，经典的数值优化方法如“<a href="https://en.wikipedia.org/wiki/Gradient_descent" target="_blank">梯度下降法</a>” (gradient descent method)、“<a href="https://en.wikipedia.org/wiki/Newton%27s_method" target="_blank">牛顿法</a>” (Newton method)等都可以求得其最优解，于是有:
+$$
+\boldsymbol{\beta}^{*}=\arg\min_{\boldsymbol{\beta}}\mathcal{l}(\boldsymbol{\beta})
+$$
+以牛顿法为例，其第$t+1$轮迭代解的更新公式为:
+$$
+\boldsymbol{\beta}^{t+1}=\boldsymbol{\beta}^{t}-\bigg(\frac{\partial^{2}\mathcal{l}(\boldsymbol{\beta})}{\partial\boldsymbol{\beta}\partial\boldsymbol{\beta}^{T}}\bigg)^{-1}\frac{\partial\mathcal{l}(\boldsymbol{\beta})}{\partial\boldsymbol{\beta}}
+$$
+其中关于$\boldsymbol{\beta}$的一阶、二阶导数分别为:
+$$
+\begin{aligned}
+\frac{\partial\mathcal{l}(\boldsymbol{\beta})}{\partial\boldsymbol{\beta}} &amp; =-\sum_{i=1}^{m}\hat{\mathbf{x}}_{i}(y_{i}-p_{1}(\hat{\mathbf{x}}_{i};\boldsymbol{\beta}))\newline
+\frac{\partial^{2}\mathcal{l}(\boldsymbol{\beta})}{\partial\boldsymbol{\beta}\partial\boldsymbol{\beta}^{T}} &amp; =\sum_{i=1}^{m}\hat{\mathbf{x}}_{i}\hat{\mathbf{x}}_{i}^{T}p_{1}(\hat{\mathbf{x}}_{i};\boldsymbol{\beta})(1-p_{1}(\hat{\mathbf{x}}_{i};\boldsymbol{\beta}))
+\end{aligned}
+$$</p>
+
+<h1 id="线性判别分析-lda">线性判别分析 (LDA)</h1>
+
+<p>线性判别分析 (<a href="https://en.wikipedia.org/wiki/Linear_discriminant_analysis" target="_blank">Linear Discriminant Analysis</a>, LDA)是一种经典的线性学习方法，其思想非常朴素: 给定训练样例集，设法将样例投影到一条直线上，使得同类样例的投影点尽可能接近、异类样例的投影点尽可能的远离；在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来判断新样本的类别。如图为二分类例子
+<img src="/img/machinelearning/linear/lda.png" alt="linear discriminant analysis" />
+其中“+”、“-”分别表示正例和反例，椭圆表示数据簇的外轮廓，虚线表示投影，红色实心圆盒实心三角形分别表示两类样本投影后的中心点。(略)</p>
+
+<h1 id="多分类学习任务">多分类学习任务</h1>
+
+<p>对于多分类学习，一些二分类学习方法可以直接应用于多分类任务，但更多情况下，需要将多分类任务进行“拆解”，再使用二分类学习器来解决。考虑$N$个类别$C_{1},C_{2},\dots,C_{N}$，“拆解法”将多分类任务拆为若干个二分类任务， 然后为每个二分类任务训练一个分类器，测试时将这些分类器预测结果进行集成从而获得最终的结果。最经典的拆分策略有三种: “一对一”(One v.s. One, OvO)、“一对其余”(One v.s. Rest, OvR)、“多对多”(Many v.s. Many, MvM)。</p>
+
+<p>给定数据集$D=\{(x_{1},y_{1}),(x_{2},y_{2}),\dots,(x_{m},y_{m})\},y_{i}\in\{C_{1},C_{2},\dots,C_{N}\}$:</p>
+
+<ul>
+<li>OvO将$N$个类别两两配对产生$\frac{N\cdot(N-1)}{2}$个二分类任务，例如，OvO中区分$C_{i}$和$C_{j}$的一个分类器，该分类器把$D$中的$C_{i}$类样例作为正例，$C_{j}$类样例作为负例。测试阶段，新样本同时提交给所有分类器，然后得到$\frac{N\cdot(N-1)}{2}$个分类结果，最终结果投票产生 (多者胜)。</li>
+<li>OvR则是每次将一个类的样例作为正例，其余样例作为负例来训练$N$个分类器。测试时，若仅有一个分类器预测为正类，则对应的类别标记作为最终分类结果；若多个分类器预测为正类，则根据分类器的预测置信度，选择置信度最大的类别标记为分类结果。</li>
+<li>MvM是每次将若干个类作为正类，其余作为反类。显然<strong>OvO和OvR是MvM的特例</strong>。MvM的正、负类构造需要有特殊设计，不能随意选择，“纠错输出码”(Error Correcting Output Codes, ECOC)是最常用的MvM技术。</li>
+</ul>
+
+<p><img src="/img/machinelearning/linear/ovoovr.png" alt="OvO and OvR" />
+比较OvO和OvR，OvR只需要$N$个分类器，而OvO需要$\frac{N\cdot(N-1)}{2}$个分类器，因此<strong>OvO的存储开销和测试时间开销通常比OvR更大</strong>。但训练时，OvR的每个分类器都需要使用全部的样例，而OvO的每个分类器之需要两个类的样例，因此<strong>OvO的训练时间开销通常小于OvR</strong>。而预测性能， 则取决于具体的数据分布，多数情况下<strong>两者性能相近</strong>。</p>
+
+<p>这里介绍ECOC技术，ECOC是将编码的思想引入类别拆分，并尽可能在解码过程中具有容错性。其主要分两步:</p>
+
+<ol>
+<li>编码: 对$N$个类别做$M$次划分，每次划分将一部分类别划为正类，一部分划为负类，从而形成一个二分类训练集，这样一共产生$M$个训练集，可训练出$M$个分类器。</li>
+<li>解码: $M$个分类器分别对测试样本进行预测，这些预测标记组成一个编码。将这个预测编码与每个列别各自的编码进行比较，返回其中距离最小的类别作为最终预测结果。</li>
+</ol>
+
+<p>类别划分通过“编码矩阵”(coding matrix)指定。常见的编码矩阵有二元编码和三元编码。前者将每个类别划分为正类的负类，后者在正、负类之外，还可指定“停用类”。如图所示
+<img src="/img/machinelearning/linear/ecoc.png" alt="ECOC Coding Graph" />
+(a)中分类器$f_{2}$将$C_{1}$类和$C_{3}$类的样例作为正例，$C_{2}$类和$C_{4}$类的样例作为负例。(b)中分类器$f_{4}$将$C_{1}$类和$C_{4}$类作为正例，$C_{3}$类作为负例。在解码阶段，各分类器的预测结果联合起来形成了测试示例的编码，该编码与各类对应的编码进行比较，将距离最小的编码所对应的类别作为预测结果。距离计算一般采用采用欧式距离(Euclidean distance)或海明距离(Hamming distance)。如(a)中，若基于欧式距离，预测结果为$C_{3}$。</p>
+
+<p>该方法之所以称为“纠错输出码”，是因为在测试阶段，ECOC编码对分类的错误有一定的容忍和修正能力。例如在(a)中对测试示例的正确预测编码是$(-1,+1,+1,-1,+1)$，假设在预测时某个分类器出错了，例如$f_{2}$出错从而导致了错误编码$(-1,-1,+1,-1,+1)$，但居于这个编码仍能产生正确的最终分类结果$C_{3}$。一般来说，对同一个学习任务，ECOCO编码越长，纠错能力越强。但是，编码越长，意味着需要训练的分类器越多，计算和存储开销都会增大。此外，对有限类别数，可能的组合数目有限，码长超过一定范围后就失去了意义。</p>
+
+<p>对同等长度的编码，任意两个类别间的编码距离越远，则纠错能力越强。因此，在码长较小时可根据这个原则计算出理论最优编码。然而，码长稍大一些就难以有效地确定最优编码，事实上这是一个NP难问题。不过，通常我们不需获得理论最优编码，因为非最优编码在实践中往往已能产生足够好的分类器。另一方面，并不是编码的理论性质越好，分类器性能就越好，因为机器学习问题涉及很多因素，例如将多个类拆解为两个“类别子集”，不同拆解方法所形成的连个类别自己的区分难度往往不同，及其导致的二分类问题的难度不同。于是，一个理论纠错性质好，但导致二分类问题较难的编码，与另一个理论纠错性质差一些，但导致的二分类问题较简单的编码，最终产生的模型性能孰强孰弱很难说。</p>
+
+<h1 id="类别不平衡问题">类别不平衡问题</h1>
+
+<p>类别不平衡(class-imbalance)指分类任务中不同类别的训练样例数目差别很大的情况。这样的情况很常见，例如用拆分解决多分类问题时，即使原数据集中不同类别的训练样例数相当，在使用OvR、MvM策略后产生的二分类任务仍有可能出现类别不平衡现象。从线性分类器的角度，用$y=\boldsymbol{\mathcal{w}}^{T}\mathbf{x}+b$对新样本$\mathbf{x}$进行分类时，事实上是在用预测出的$y$值与一个阈值进行比较，通常$y&gt;0.5$判别为正例，否则为负例。$y$实际上表达了正例的可能性，几率$\frac{y}{1-y}$反映了正例和负例可能性的比值，阈值设置$0.5$表明分类器认为正、负；例可能性高相同，即分类器决策规则为：若$\frac{y}{1-y}&gt;1$则预测为正例。
+但是，当正反例数目不同时，令$m^{+}$表示正例数目，$m^{-}$表示负例数目，则观测几率为$\frac{m^{+}}{m^{-}}$，假设训练集时真实样本总体的无偏采样，因为观测几率代表例真实几率，所以只要分类器预测几率高于观测几率就因该判定为正例：若$\frac{y}{1-y}&gt;\frac{m^{+}}{m^{-}}$则预测为正例。然而，分类器通常基于阈值$0.5$进行决策，因此需要对预测值进行调整，令$\frac{y&rsquo;}{1-y&rsquo;}=\frac{y}{1-y}\times\frac{m^{-}}{m^{+}}$，这是类别不平衡学习的一个基本策略——“再缩放”(rescaling, or rebalance)。
+再缩放思想虽然简单，但实际操作中，之前假设的“训练集是真实样本总体的无偏采样”往往不成立，即我们未必能有效地基于训练集观测几率来推断真实几率。现有技术大体上有三类做法 (假设负例样本数目大于正例样本数目):
+1. 直接对训练集例的反例样本进行“欠采样”(undersampling)，即去除部分反例，使得正、负例数目接近，然后再进行学习。
+2. 对训练集例正例样本进行“过采样”(oversampling)，即增加一些正例，使得正、负例数目接近，然后再进行学习。
+3. 直接给予原始训练集进行学习，但在用训练好的分类器进行预测时，将$\frac{y&rsquo;}{1-y&rsquo;}=\frac{y}{1-y}\times\frac{m^{-}}{m^{+}}$嵌入到决策过程中，称为“阈值移动”(threshold-moving)。</p>
+
+<p>欠采样的时间开销远小于过采样，因为前者丢弃了很多负例，使得分类器徐连击远小于初始训练集，而过采样法增加了很多正例，其训练集大于初始训练集。需要注意的是:</p>
+
+<ul>
+<li>过采样法不能简单的对初始正例样本进行重复采样，否则会导致严重的过拟合。过采样法的代表性算法SMOTE是通过对训练集里的正例进行插值来产生额外的正例。</li>
+<li>欠采样法若随机丢弃负例，可能会丢失一些重要信息。欠采样法的代表性算法EasyEnsemble则是利用集成学习机制，将负例划分为若干个集合供不同的学习器使用，这样对每个学习器都进行了欠采样，但在全局来看却不会丢失重要信息。</li>
+</ul>
+
+<p>值得一提的是，“再缩放”也是“代价敏感学习”(cost-sensitive learning)的基础。在代价敏感学习中将$\frac{y&rsquo;}{1-y&rsquo;}=\frac{y}{1-y}\times\frac{m^{-}}{m^{+}}$中的$\frac{m^{-}}{m^{+}}$用$\frac{cost^{+}}{cost^{-}}$代替即可，其中$cost^{+}$是将正例误分为负例的代价，$cost^{-}$是将负例误分为正例的代价。</p>
+
+<h1 id="习题">习题</h1>
+
+<p><strong>3.1</strong> 试分析在什么情况下$y=w^{T}x+b$中不必考虑偏置项$b$。<br />
+Ans: 对于线性模型$y=w^{T}x+b$，第$i$个实例减去第一个实例可得$y_{i}-y_{0}=w^{T}(x_{i}-x_{0})$，这里偏置项被消除，因此，可以对于每一个样本数据，均和第一个样本相减，然后对新的样本进行线性回归，就只需要使用模型$y=w^{T}x$。</p>
+
+<p><strong>3.2</strong> 试证明，对于参数$\boldsymbol{\mathcal{w}}$，对数几率回归的目标函数
+$$
+y=\frac{1}{1+e^{-(w^{T}x+b)}}\tag{1}
+$$
+是非凸的，但是对数似然函数
+$$
+\mathcal{l}(\beta)=\sum_{i=1}^{m}\bigg(-y_{i}\beta^{T}\hat{x}_{i}+\ln\big(1+e^{\beta^{T}\hat{x}_{i}}\big)\bigg)\tag{2}
+$$
+是凸的。<br />
+Ans: 如果一个多元函数是凸的，那么它的Hessian矩阵是半正定的。对(1)关于$w$求偏导:
+$$
+\frac{\partial y}{\partial w}=x(y-y^{2})
+$$
+并对上式求关于$w^{T}$的偏导有：
+$$
+\frac{\partial}{\partial w^{T}}\big(\frac{\partial y}{\partial w}\big)=x(1-2y)\big(\frac{\partial y}{\partial w}\big)^{T}=xx^{T}y(y-1)(1-2y)
+$$
+这里，$xx^{T}$合同为单位矩阵，所以$xx^{T}$是半正定的。而$y\in(0,1)$，当$y\in{0.5,1}$时，$y(y-1)(1-2y)&lt;0$，使得$\frac{\partial}{\partial w^{T}}\big(\frac{\partial y}{\partial w}\big)$为半负定的，因此$y=\frac{1}{1+e^{-(w^{T}x+b)}}$为非凸的。
+对于(2)，有
+$$
+\frac{\partial}{\partial\beta^{T}}\big(\frac{\partial\mathcal{l}(\beta)}{\partial\beta}\big)=\sum_{i=1}^{m}\hat{x}_{i}\hat{x}_{i}^{T}\mathcal{p}_{1}(\hat{x}_{i};\beta)(1-\mathcal{p}_{1}(\hat{x}_{i};\beta))
+$$
+显然$\mathcal{p}_{1}\in(0,1)$，且$\mathcal{p}_{1}(\hat{x}_{i};\beta)(1-\mathcal{p}_{1}(\hat{x}_{i};\beta))\geq0$，因此$\mathcal{l}(\beta)$是凸的。</p>
+
+<p><strong>3.3</strong> 编程实现对率回归，并给出西瓜数据集$3.0\alpha$上的数据结果。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Id</th>
+<th align="center">Density</th>
+<th align="center">Sugar Content</th>
+<th align="center">Good Melon</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">0.697</td>
+<td align="center">0.460</td>
+<td align="center">yes</td>
+</tr>
+
+<tr>
+<td align="center">2</td>
+<td align="center">0.774</td>
+<td align="center">0.376</td>
+<td align="center">yes</td>
+</tr>
+
+<tr>
+<td align="center">3</td>
+<td align="center">0.634</td>
+<td align="center">0.264</td>
+<td align="center">yes</td>
+</tr>
+
+<tr>
+<td align="center">4</td>
+<td align="center">0.608</td>
+<td align="center">0.318</td>
+<td align="center">yes</td>
+</tr>
+
+<tr>
+<td align="center">5</td>
+<td align="center">0.556</td>
+<td align="center">0.215</td>
+<td align="center">yes</td>
+</tr>
+
+<tr>
+<td align="center">6</td>
+<td align="center">0.403</td>
+<td align="center">0.237</td>
+<td align="center">yes</td>
+</tr>
+
+<tr>
+<td align="center">7</td>
+<td align="center">0.481</td>
+<td align="center">0.149</td>
+<td align="center">yes</td>
+</tr>
+
+<tr>
+<td align="center">8</td>
+<td align="center">0.437</td>
+<td align="center">0.211</td>
+<td align="center">yes</td>
+</tr>
+
+<tr>
+<td align="center">9</td>
+<td align="center">0.666</td>
+<td align="center">0.091</td>
+<td align="center">no</td>
+</tr>
+
+<tr>
+<td align="center">10</td>
+<td align="center">0.243</td>
+<td align="center">0.267</td>
+<td align="center">no</td>
+</tr>
+
+<tr>
+<td align="center">11</td>
+<td align="center">0.245</td>
+<td align="center">0.057</td>
+<td align="center">no</td>
+</tr>
+
+<tr>
+<td align="center">12</td>
+<td align="center">0.343</td>
+<td align="center">0.099</td>
+<td align="center">no</td>
+</tr>
+
+<tr>
+<td align="center">13</td>
+<td align="center">0.639</td>
+<td align="center">0.161</td>
+<td align="center">no</td>
+</tr>
+
+<tr>
+<td align="center">14</td>
+<td align="center">0.657</td>
+<td align="center">0.198</td>
+<td align="center">no</td>
+</tr>
+
+<tr>
+<td align="center">15</td>
+<td align="center">0.360</td>
+<td align="center">0.370</td>
+<td align="center">no</td>
+</tr>
+
+<tr>
+<td align="center">16</td>
+<td align="center">0.593</td>
+<td align="center">0.042</td>
+<td align="center">no</td>
+</tr>
+
+<tr>
+<td align="center">17</td>
+<td align="center">0.719</td>
+<td align="center">0.103</td>
+<td align="center">no</td>
+</tr>
+</tbody>
+</table>
+
+<p>Ans: 西瓜数据集$3.0\alpha$的数据量太小，这里我没用采用，而是使用<a href="https://archive.ics.uci.edu/ml/datasets.html" target="_blank">UCI数据集</a>的<a href="https://archive.ics.uci.edu/ml/datasets/iris" target="_blank">Iris数据集</a>作为对率回归的训练和测试集。算法包使用Spark MLlib，代码由Scala实现:</p>
+
+<pre><code class="language-bash">// data preview
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+</code></pre>
+
+<p>Spark MLlib实现对率回归:</p>
+
+<pre><code class="language-scala">object LogisticRegressionIris {
+  case class Iris (features: Vector, classes: Double)
+  def parsingIris (str: String): Iris = {
+    val fields = str.split(&quot;,&quot;)
+    assert(fields.size == 5)
+    val label = fields(4) match {
+      case &quot;Iris-setosa&quot; =&gt; 0.0
+      case &quot;Iris-versicolor&quot; =&gt; 1.0
+      case &quot;Iris-virginica&quot; =&gt; 2.0
+    }
+    Iris(Vectors.dense(fields(0).toDouble, fields(1).toDouble, fields(2).toDouble, fields(3).toDouble), label)
+  }
+  def main (args: Array[String]): Unit = {
+    Logger.getLogger(&quot;org&quot;).setLevel(Level.OFF) // close logger
+    /** create spark session */
+    val spark = SparkSession.builder().master(&quot;local&quot;).appName(&quot;LogisticRegressionIris&quot;).getOrCreate()
+    import spark.implicits._
+    val iris = spark.read.textFile(new ClassPathResource(&quot;iris.txt&quot;).getFile.getAbsolutePath) // load data and transform to dataframe
+      .map(parsingIris).toDF().select(&quot;features&quot;, &quot;classes&quot;)
+    val Array(training, test) = iris.randomSplit(Array(0.8, 0.2)) // 0.8 for training, 0.2 for testing
+    val lr = new LogisticRegression() // logistic regression model
+      .setMaxIter(100)
+      .setRegParam(0.01)
+      .setFamily(&quot;multinomial&quot;)
+      .setFeaturesCol(&quot;features&quot;)
+      .setLabelCol(&quot;classes&quot;)
+    val model = lr.fit(training) // fitting dataset
+    val predictions = model.transform(test) // predict
+    predictions.select(&quot;classes&quot;, &quot;prediction&quot;).collect().foreach(e =&gt; println(e.get(0) + &quot;\t&quot; + e.get(1)))
+    val evaluator = new RegressionEvaluator().setMetricName(&quot;rmse&quot;).setLabelCol(&quot;classes&quot;).setPredictionCol(&quot;prediction&quot;)
+    val rmse = evaluator.evaluate(predictions)
+    println(s&quot;Root-mean-square error = $rmse&quot;)
+    spark.stop() // stop spark
+  }
+}
+</code></pre>
+
+<p><strong>3.4</strong> 选择两个UCI数据集，比较10折交叉验证法和留一法所估计出的对率回归的错误率。<br />
+Ans: 这里只选用一个UCI数据集Iris进行实验。留一法思想在3.3题中已经体现(80% for training, 20% for testing)，这里只做10折交叉验证:</p>
+
+<pre><code class="language-scala">object LogisticRegressionIrisCV {
+  case class Iris (features: Vector, classes: Double)
+  def parsingIris (str: String): Iris = {
+    val fields = str.split(&quot;,&quot;)
+    assert(fields.size == 5)
+    val label = fields(4) match {
+      case &quot;Iris-setosa&quot; =&gt; 0.0
+      case &quot;Iris-versicolor&quot; =&gt; 1.0
+      case &quot;Iris-virginica&quot; =&gt; 2.0
+    }
+    Iris(Vectors.dense(fields(0).toDouble, fields(1).toDouble, fields(2).toDouble, fields(3).toDouble), label)
+  }
+  def main (args: Array[String]): Unit = {
+    Logger.getLogger(&quot;org&quot;).setLevel(Level.OFF) // close logger
+    /** create spark session */
+    val spark = SparkSession.builder().master(&quot;local&quot;).appName(&quot;LogisticRegressionIris&quot;).getOrCreate()
+    import spark.implicits._
+    /** load data and transform to dataframe */
+    val iris = spark.read.textFile(new ClassPathResource(&quot;iris.txt&quot;).getFile.getAbsolutePath)
+      .map(parsingIris).toDF().select(&quot;features&quot;, &quot;classes&quot;)
+    val Array(training, test) = iris.randomSplit(Array(0.9, 0.1)) // 90% for training, 10% for testing
+    val lr = new LogisticRegression() // build logistic regression model
+      .setMaxIter(20)
+      .setFamily(&quot;multinomial&quot;)
+      .setFeaturesCol(&quot;features&quot;)
+      .setLabelCol(&quot;classes&quot;)
+    val pipeline = new Pipeline().setStages(Array(lr)) // build pipeline
+    val paramGrid = new ParamGridBuilder() // set parameters map
+      .addGrid(lr.regParam, Array(0.01, 0.02, 0.05, 0.1, 0.2))
+      .build()
+    val cv = new CrossValidator() // build cross validator for logistic regression
+      .setEstimator(pipeline)
+      .setEvaluator(new RegressionEvaluator()
+        .setLabelCol(&quot;classes&quot;)
+        .setPredictionCol(&quot;prediction&quot;)
+        .setMetricName(&quot;rmse&quot;))
+      .setEstimatorParamMaps(paramGrid)
+      .setNumFolds(10)
+    val cvModel = cv.fit(training) // training
+    val predictions = cvModel.transform(test) // prediction
+    val evaluator = new RegressionEvaluator() // evaluating
+      .setMetricName(&quot;rmse&quot;)
+      .setLabelCol(&quot;classes&quot;)
+      .setPredictionCol(&quot;prediction&quot;)
+    val rmse = evaluator.evaluate(predictions)
+    println(s&quot;Root-mean-square error = $rmse&quot;)
+  }
+}
+</code></pre>
+
+<p><strong>3.5</strong> 编程实现线性判别分析，并给出西瓜数据集$3.0\alpha$上的结果。<br />
+略</p>
+
+<p><strong>3.6</strong> 线性判别分析仅在线性可分的数据上能获得理想结果，试设计一个改进的方法能使其较好的应用于非线性可分数据。<br />
+Ans: 在当前维度线性不可分，可以使用适当的映射方法，使其在更高一维上可分，典型的方法有$KLDA$，可以很好的划分数据。</p>
+
+<p><strong>3.7</strong> 令码长为9，类别数位4，试给出海明距离意义下理论最优的ECOC二元码并证明之。<br />
+Ans: 对于ECOC二元码，当码长为$2^{n}$时，至少可以使$2n$个类别达到最优间隔，他们的海明距离为$2^{n-1}$，比如长度为8时，可以的序列为</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Column 1</th>
+<th align="center">Column 2</th>
+<th align="center">Column 3</th>
+<th align="center">Column 4</th>
+<th align="center">Column 5</th>
+<th align="center">Column 6</th>
+<th align="center">Column 7</th>
+<th align="center">Column 8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+</tr>
+
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+</tr>
+
+<tr>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+</tr>
+
+<tr>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+
+<tr>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+
+<tr>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>其中4,5,6行是对1,2,3行的取反。若分类数为4，一共可能的分类器共有$2^{4}−2$种(排除了全1和全0)，在码长为8的最优分类器后添加一列没有出现过的分类器，就是码长为9的最优分类器。</p>
+
+<p><strong>3.8</strong> ECOC编码能起到理想纠错作用的重要条件是：在每一位编码上出错的概率相当且独立。试分析多分类任务经ECOC编码后产生的二分类器满足该条件的可能性及由此产生的影响。<br />
+Ans: 理论上的ECOC码能理想纠错的重要条件是每个码位出错的概率相当，因为如果某个码位的错误率很高，会导致这位始终保持相同的结果，不再有分类作用，这就相当于全0或者全 1的分类器，这点和NFL的前提很像。但由于事实的样本并不一定满足这些条件，所以书中提到了有多种问题依赖的ECOC被提出。</p>
+
+<p><strong>3.9</strong> 使用OvR和MvM将多分类任务分解为二分类任务求解时，试描述为何无需专门针对类别不平衡性进行处理。<br />
+Ans: 对于OvR，MvM来说，由于对每个类进行了相同的处理，其拆解出的二分类任务中类别不平衡的影响会相互抵消，因此通常不需要专门处理。以ECOC编码为例，每个生成的二分类器会将所有样本分成较为均衡的二类，使类别不平衡的影响减小。当然拆解后仍然可能出现明显的类别不平衡现象，比如一个超级大类和一群小类。</p>
+
+<p><strong>3.10</strong> 试推到出多分类代价敏感学习(仅考虑基于类别的误分类代价)使用“再缩放”能获得理论最优解的条件。<br />
+Ans: 仅考虑类别分类的误分类代价，那么就默认正确分类的代价为0。于是得到分类表，(假设为3类)</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Column 1</th>
+<th align="center">Column 2</th>
+<th align="center">Column 3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">$c_{12}$</td>
+<td align="center">$c_{13}$</td>
+</tr>
+
+<tr>
+<td align="center">$c_{21}$</td>
+<td align="center">0</td>
+<td align="center">$c_{23}$</td>
+</tr>
+
+<tr>
+<td align="center">$c_{31}$</td>
+<td align="center">$c_{32}$</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+
+<p>对于二分类而言，将样本为正例的后验概率设为是p,那么预测为正的代价是$(1-p)\cdot\mathcal{c}_{12}$。预测为负的代价是$p\cdot\mathcal{c}_{21}$。当$(1-p)\cdot\mathcal{c}_{12}\leq p\cdot\mathcal{c}_{21}$样本就会被预测成正例，因为他的代价更小。当不等式取等号时，得到了最优划分，这个阀值$p_{r}=\frac{\mathcal{c}_{12}}{\mathcal{c}_{12}+\mathcal{c}_{21}}$，这表示正例与反例的划分比例应该是初始的$\frac{\mathcal{c}_{12}}{\mathcal{c}_{21}}$倍。假设分类器预设的阀值是$p_{0}$，不考虑代价敏感时，当$\frac{y}{1-y}&gt;\frac{p_{0}}{1-p_{0}}$时取正例。当考虑代价敏感，则应该是$\frac{y}{1-y}&gt;\frac{p_{r}}{1-p_{r}}\cdot\frac{p_{0}}{1-p_{0}}=\frac{\mathcal{c}_{12}}{\mathcal{c}_{21}}\cdot\frac{p_{0}}{1-p_{0}}$。</p>
+
+<p>推广到对于多分类，任意两类的最优再缩放系数$t_{ij}=\frac{c_{ij}}{c_{ji}}$，然而所有类别的最优缩放系数并不一定能同时满足。当代价表满足下面条件时，能通过再缩放得到最优解。设$t_{ij}=\frac{w_{i}}{w_{j}}$，则$\frac{w_{i}}{w_{j}}=\frac{c_{ij}}{c_{ji}}$对所有$i,j$成立，假设有k类，共$C_{2}^{k}$个等式，此时代价表中$k(k−1)$个数，最少只要知道$2(k−1)$就能推出整张表。</p>
+
+<h1 id="基于神经网络的逻辑回归分类">基于神经网络的逻辑回归分类</h1>
+
+<h2 id="dl4j实现">DL4J实现</h2>
+
+<p>以下是使用DeepLearning4J实现的基于神经网络的逻辑回归分类算法。</p>
+
+<pre><code class="language-java">/**
+ * @author ZHANG HAO
+ * link: https://www.kaggle.com/uciml/iris
+ */
+public class IrisClassification {
+    private static Logger log = LoggerFactory.getLogger(IrisClassification.class);
+    public static void main(String[] args) throws Exception {
+        int numLinesToSkip = 0;
+        String delimiter = &quot;,&quot;;
+        RecordReader recordReader = new CSVRecordReader(numLinesToSkip,delimiter);
+        recordReader.initialize(new FileSplit(new ClassPathResource(&quot;iris.txt&quot;).getFile()));
+        int labelIndex = 4;
+        int numClasses = 3;
+        int batchSize = 150;
+        DataSetIterator iterator = new RecordReaderDataSetIterator(recordReader,batchSize,labelIndex,numClasses);
+        DataSet allData = iterator.next();
+        allData.shuffle();
+        SplitTestAndTrain testAndTrain = allData.splitTestAndTrain(0.65);
+        DataSet trainingData = testAndTrain.getTrain();
+        DataSet testData = testAndTrain.getTest();
+        //We need to normalize our data. We'll use NormalizeStandardize (which gives us mean 0, unit variance):
+        DataNormalization normalizer = new NormalizerStandardize();
+        normalizer.fit(trainingData);//Collect the statistics (mean/stdev) from the training data. This does not modify the input data
+        normalizer.transform(trainingData);     //Apply normalization to the training data
+        normalizer.transform(testData);         //Apply normalization to the test data. This is using statistics calculated from the *training* set
+        final int numInputs = 4;
+        int outputNum = 3;
+        int iterations = 1000;
+        long seed = 6;
+        int epochs = 100;
+        log.info(&quot;Build model....&quot;);
+        MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
+                .seed(seed)
+                .iterations(iterations)
+                .weightInit(WeightInit.XAVIER)
+                .learningRate(0.1)
+                .regularization(true)
+                .l2(1e-4)
+                .list()
+                .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(20).activation(Activation.TANH).build())
+                .layer(1, new DenseLayer.Builder().nOut(10).activation(Activation.TANH).build())
+                .layer(2, new OutputLayer.Builder().lossFunction(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD).activation(Activation.SOFTMAX).nOut(outputNum).build())
+                .backprop(true)
+                .pretrain(false)
+                .build();
+        //run the model
+        MultiLayerNetwork model = new MultiLayerNetwork(conf);
+        model.init();
+        model.setListeners(new ScoreIterationListener(100));
+        for (int epoch = 0; epoch &lt; epochs; epoch++) { model.fit(trainingData); }
+        //evaluate the model on the test set
+        Evaluation eval = new Evaluation(numClasses);
+        INDArray output = model.output(testData.getFeatureMatrix());
+        eval.eval(testData.getLabels(), output);
+        log.info(eval.stats());
+    }
+}
+/*
+==========================Scores========================================
+ Accuracy:        0.9811
+ Precision:       0.9815
+ Recall:          0.9792
+ F1 Score:        0.9803
+========================================================================
+ */
+</code></pre>
+
+<p>详细代码请浏览我的GitHub repository: <a href="https://github.com/IsaacChanghau/NeuralNetworksLite/blob/master/src/main/java/com/isaac/dl4j/IrisClassification.java" target="_blank">[link]</a>。</p>
+
+<h2 id="pure-java实现">Pure-Java实现</h2>
+
+<p>以下是一个Java demo实现利用逻辑机率回归(logistic regression)处理分类问题(3个类别)。这3个类别的数据是我随机生成的，每个类别的数据均服从特定的uu和σσ的高斯分布。首先定义三组数据，每组数组400个用于训练，60个用于测试，每个输入数据均为2维的向量。输出结果为3维向量: $(1,0,0)$表示class-1，$(0,1,0)$表示class-2，$(0,0,1)$表示class-3。每类数据均服从一个特定的高斯分布:</p>
+
+<pre><code class="language-java">final int patterns = 3; // number of classes
+final int train_N = 400 * patterns;
+final int test_N = 60 * patterns;
+final int nIn = 2; // input dim.
+final int nOut = patterns; // output dim
+double[][] train_X = new double[train_N][nIn]; // training matrix --&gt; X
+int[][] train_T = new int[train_N][nOut]; // training label --&gt; y
+double[][] test_X = new double[test_N][nIn];
+Integer[][] test_T = new Integer[test_N][nOut];
+Integer[][] predicted_T = new Integer[test_N][nOut];
+...
+// Training data for demo
+// class 1 : x1 ~ N(-2.0, 1.0), y1 ~ N(+2.0, 1.0)
+// class 2 : x2 ~ N(+2.0, 1.0), y2 ~ N(-2.0, 1.0)
+// class 3 : x3 ~ N( 0.0, 1.0), y3 ~ N( 0.0, 1.0)
+GaussianDistribution g1 = new GaussianDistribution(-2.0, 1.0, rng);
+GaussianDistribution g2 = new GaussianDistribution(2.0, 1.0, rng);
+GaussianDistribution g3 = new GaussianDistribution(0.0, 1.0, rng);
+// data set in class 1
+for (int i = 0; i &lt; train_N / patterns - 1; i++) {
+    train_X[i][0] = g1.random();
+    train_X[i][1] = g2.random();
+    train_T[i] = new int[] { 1, 0, 0 };
+}
+for (int i = 0; i &lt; test_N / patterns - 1; i++) {
+    test_X[i][0] = g1.random();
+    test_X[i][1] = g2.random();
+    test_T[i] = new Integer[] { 1, 0, 0 };
+}
+// data set in class 2
+for (int i = train_N / patterns - 1; i &lt; train_N / patterns * 2 - 1; i++) { ... }
+for (int i = test_N / patterns - 1; i &lt; test_N / patterns * 2 - 1; i++) { ... }
+...
+</code></pre>
+
+<p>其中上面代码使用的GaussianDistribution定义如下:</p>
+
+<pre><code class="language-java">public final class GaussianDistribution {
+    private final double mean;
+    private final double var;
+    private final Random rng;
+    public GaussianDistribution(double mean, double var, Random rng) {
+        if (var &lt; 0.0) { throw new IllegalArgumentException(&quot;Variance must be non-negative value.&quot;); }
+        this.mean = mean;
+        this.var = var;
+        if (rng == null) { rng = new Random(); }
+        this.rng = rng;
+    }
+    public double random() {
+        double r = 0.0;
+        while (r == 0.0) { r = rng.nextDouble(); }
+        double c = Math.sqrt(-2.0 * Math.log(r));   
+        if (rng.nextDouble() &lt; 0.5) { return c * Math.sin(2.0 * Math.PI * rng.nextDouble()) * var + mean; } 
+        return c * Math.cos(2.0 * Math.PI * rng.nextDouble()) * var + mean;
+    }
+}
+</code></pre>
+
+<p>回归的数值优化使用了“随机梯度下降法” (<a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent" target="_blank">Stochastic Gradient Descent</a>)，为了降低每次循环的梯度的计算复杂度(特别是在数据集很大的时候)，这里将数据拆分成若干batch，每个batch的大小为50。关于mini-batch的trade-off请参照:<a href="https://www.quora.com/Intuitively-how-does-mini-batch-size-affect-the-performance-of-stochastic-gradient-descent" target="_blank">[link]</a>。代码中的具体做法是:</p>
+
+<pre><code class="language-java">int minibatchSize = 50; // number of data in each minibatch
+int minibatch_N = train_N / minibatchSize; // number of minibatches
+double[][][] train_X_minibatch = new double[minibatch_N][minibatchSize][nIn]; // minibatches of train data
+int[][][] train_T_minibatch = new int[minibatch_N][minibatchSize][nOut]; // minibatches of output data for training
+List&lt;Integer&gt; minibatchIndex = new ArrayList&lt;Integer&gt;(); // data index for minibatch to apply SGD
+for (int i = 0; i &lt; train_N; i++) { minibatchIndex.add(i); }
+Collections.shuffle(minibatchIndex, rng); // shuffle data index for SGD
+// create minibatches with training data
+for (int i = 0; i &lt; minibatch_N; i++) {
+    for (int j = 0; j &lt; minibatchSize; j++) {
+        train_X_minibatch[i][j] = train_X[minibatchIndex.get(i * minibatchSize + j)];
+        train_T_minibatch[i][j] = train_T[minibatchIndex.get(i * minibatchSize + j)];
+    }
+}
+</code></pre>
+
+<p>前面介绍的逻辑机率回归使用的是Sigmoid函数，对于多分类任务，我们使用Softmax函数，两者区别和关系请参照: <a href="https://stats.stackexchange.com/questions/233658/softmax-vs-sigmoid-function-in-logistic-classifier" target="_blank">[link]</a>。使用Sigmoid能得到每个类别的一个值，而使用softmax能得到每个类的概率，其Java实现如下</p>
+
+<pre><code class="language-java">public final class ActivationFunction {
+    public static double sigmoid(double x) { return 1.0 / (1.0 + Math.pow(Math.E, -x)); }
+    public static double dsigmoid(double y) { return y * (1.0 - y); }
+    public static double[] softmax(double[] x, int n) {
+        double[] y = new double[n];
+        double max = 0.0;
+        double sum = 0.0;
+        for (int i = 0; i &lt; n; i++) { if (max &lt; x[i]) { max = x[i]; } } // prevent overflow
+        for (int i = 0; i &lt; n; i++) { y[i] = Math.exp(x[i] - max);    sum += y[i]; }
+        for (int i = 0; i &lt; n; i++) { y[i] /= sum; }
+        return y;
+    }
+}
+</code></pre>
+
+<p>接下来，逻辑机率回归函数用于学习特征向量，数值优化使用基于Mini-batch的随机梯度下降法。</p>
+
+<pre><code class="language-java">public class LogisticRegression {
+    public int nIn;
+    public int nOut;
+    public double[][] W;
+    public double[] b;
+    public LogisticRegression(int nIn, int nOut) {
+        this.nIn = nIn;
+        this.nOut = nOut;
+        W = new double[nOut][nIn];
+        b = new double[nOut];
+    }
+    public double[][] train(double[][] X, int T[][], int minibatchSize, double learningRate) {
+        double[][] grad_W = new double[nOut][nIn];
+        double[] grad_b = new double[nOut];
+        double[][] dY = new double[minibatchSize][nOut];
+        // train with SGD
+        for (int n = 0; n &lt; minibatchSize; n++) { // 1. calculate gradient of W, b
+            double[] predicted_Y_ = output(X[n]);
+            for (int j = 0; j &lt; nOut; j++) {
+                dY[n][j] = predicted_Y_[j] - T[n][j];
+                for (int i = 0; i &lt; nIn; i++) { grad_W[j][i] += dY[n][j] * X[n][i]; }
+                grad_b[j] += dY[n][j];
+            }
+        }
+        for (int j = 0; j &lt; nOut; j++) { // 2. update params
+            for (int i = 0; i &lt; nIn; i++) { W[j][i] -= learningRate * grad_W[j][i] / minibatchSize; }
+            b[j] -= learningRate * grad_b[j] / minibatchSize;
+        }
+        return dY;
+    }
+    public double[] output(double[] x) {
+        double[] preActivation = new double[nOut];
+        for (int j = 0; j &lt; nOut; j++) {
+            for (int i = 0; i &lt; nIn; i++) { preActivation[j] += W[j][i] * x[i]; }
+            preActivation[j] += b[j]; // linear output
+        }
+        return ActivationFunction.softmax(preActivation, nOut);
+    }
+    public Integer[] predict(double[] x) {
+        double[] y = output(x); // activate input data through learned networks
+        Integer[] t = new Integer[nOut]; // output is the probability, so cast it to label
+        int argmax = -1;
+        double max = 0.0;
+        for (int i = 0; i &lt; nOut; i++) {
+            if (max &lt; y[i]) { max = y[i]; argmax = i; }
+        }
+        for (int i = 0; i &lt; nOut; i++) {
+            if (i == argmax) { t[i] = 1; } 
+            else { t[i] = 0; }
+        }
+        return t;
+    }
+}
+</code></pre>
+
+<p>构建完logistic regression后就可将数据读入进行训练:</p>
+
+<pre><code class="language-java">int epochs = 2000; // number of epoches
+double learningRate = 0.2; // initial learning rate
+// Build Logistic Regression model
+LogisticRegression classifier = new LogisticRegression(nIn, nOut); // construct logistic regression
+for (int epoch = 0; epoch &lt; epochs; epoch++) { // train
+    for (int batch = 0; batch &lt; minibatch_N; batch++) classifier.train(train_X_minibatch[batch], train_T_minibatch[batch], minibatchSize, learningRate);
+    learningRate *= 0.95;
+}
+</code></pre>
+
+<p>训练结束后进行测试和评估:</p>
+
+<pre><code class="language-java">for (int i = 0; i &lt; test_N; i++) { predicted_T[i] = classifier.predict(test_X[i]); }
+int[][] confusionMatrix = new int[patterns][patterns]; // define confusion matrix
+double accuracy = 0.0;
+double[] precision = new double[patterns];
+double[] recall = new double[patterns];
+for (int i = 0; i &lt; test_N; i++) {
+    int predicted_ = Arrays.asList(predicted_T[i]).indexOf(1);
+    int actual_ = Arrays.asList(test_T[i]).indexOf(1);
+    confusionMatrix[actual_][predicted_] += 1;
+}
+for (int i = 0; i &lt; patterns; i++) {
+    double col_ = 0.;
+    double row_ = 0.;
+    for (int j = 0; j &lt; patterns; j++) {
+        if (i == j) {
+            accuracy += confusionMatrix[i][j];
+            precision[i] += confusionMatrix[j][i];
+            recall[i] += confusionMatrix[i][j];
+        }
+        col_ += confusionMatrix[j][i];
+        row_ += confusionMatrix[i][j];
+    }
+    precision[i] /= col_;
+    recall[i] /= row_;
+}
+accuracy /= test_N;
+</code></pre>
+
+<p>最终得到评估结果为</p>
+
+<pre><code class="language-bash">Logistic Regression model evaluation
+------------------------------------
+Accuracy: 91.1
+Precision:
+class 1: 95.0
+class 2: 91.5
+class 3: 86.9
+Recall:
+class 1: 96.6
+class 2: 90.0
+class 3: 86.9
+</code></pre>
+
+<p>以上是Logistic Regression的Java实现，该代码仅仅实现了其功能，并没有过多的考虑优化使其准确度达到更高，由于测试数据相对简单，稍作修改很容易就达到更高的准确度。详细代码请参照我的GitHub Repository: <a href="https://github.com/IsaacChanghau/NeuralNetworksLite/blob/master/src/main/java/com/isaac/nns/examples/basic/LogisticRegressionExample.java" target="_blank">Logistic Regression</a>。</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/machine-learning">machine-learning</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/java">java</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/scala">scala</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/ml_zzh_note_1/">Machine Learning Note (1): Model Evaluation and Selection</a></li>
+        
+        <li><a href="/post/removing_backscatter/">Removing Backscatter to Enhance the Visibility of Underwater Object</a></li>
+        
+        <li><a href="/post/underwater_image_fusion/">Underwater Image Enhance via Fusion and Its Java Implementation</a></li>
+        
+        <li><a href="/post/altm/">Adaptive Local Tone Mapping Technique for HDR Image and Java Implementation</a></li>
+        
+        <li><a href="/post/skiing_in_singapore/">Skiing In Singapore</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

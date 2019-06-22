@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Summarization of word2vec algorithms, mathematical principles and its implementation.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/word2vec/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/word2vec/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/word2vec/">
+  <meta property="og:title" content="Word2Vec -- Mathematical Principles and Java Implementation | Isaac Changhau">
+  <meta property="og:description" content="Summarization of word2vec algorithms, mathematical principles and its implementation.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-05-13T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-05-13T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>Word2Vec -- Mathematical Principles and Java Implementation | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Word2Vec -- Mathematical Principles and Java Implementation</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-05-13 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Sat, May 13, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    38 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>I began to get to know the natural language process area when I started to work as a research engineer around one year ago, and the first technique I was asked to learn is the Word2Vec. Since the Word2Vec was proposed amost four years ago, there are already amount of research reports, papers, tutorials and even applications are available online. In order to understand this technique well, I explored and studied many of those online resources at that time. Now, one year later, I find that the details of Word2Vec have disappeared from my mind when I reviewed it a few days ago, and consider that the knowledge I gained from Word2Vec helps me a lot in my futher work since I studied it, thus, it is a good choice for me to write something about Word2Vec down and cement the impression of it. Note that Word2Vec does not belong to deep learning methods strictly, it is only a two-layer, shallow neural networks, I also tag this article to <em>Deep Learning</em> for convenience.</p>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Word2Vec was created by a team of researchers led by Tomas Mikolov at Google. It is a shallow, two-layer neural networks that are trained to reconstruct linguistic contexts of words. Word2Vec takes as its input a large corpus of text and produces a vector space, typically of several hundred dimensions, with each unique word in the corpus being assigned a corresponding vector in the space.</p>
+
+<h1 id="prerequisites">Prerequisites</h1>
+
+<p>Here I will introduce the knowledge used in Word2Vec, including <em>Sigmoid</em>, <em>Softmax</em>, <em>Logistic Regression</em>, <em>Huffman Coding</em>, and so forth.</p>
+
+<h2 id="sigmoid">Sigmoid</h2>
+
+<p>A <a href="https://en.wikipedia.org/wiki/Sigmoid_function" target="_blank">Sigmoid function</a> is a special case of the <a href="https://en.wikipedia.org/wiki/Logistic_function" target="_blank">logistic function</a> having a characteristic &ldquo;S&rdquo;-shaped curve. It is defined by the formula
+$$
+\sigma (x)=\frac{1}{1+e^{-x}}
+$$
+And its derivaitve is $\sigma&rsquo;(x)=\sigma (x)\cdot (1-\sigma (x))$, the graph of Sigmoid and its derivative are shown below
+<img src="/img/nlp/word2vec/sigmoid.png" alt="Sigmoid" />
+Sigmoid function takes a real-valued number and “squashes” it into range between 0 and 1, i.e., $\sigma (x)\in (0,1)$. Approximately, we can derive from the graph that large negative numbers (e.g. $x&lt;-6, \sigma (-6)\approx 0.0025$) become 0 and large positive numbers (e.g. $x&gt;6, \sigma (6)\approx 0.9975$) become 1. Thus, in practice, considering that we need to compute a mass of $\sigma (x)$ of various $x$ and the required precision is not strict, thus we can apply an approximate computation method (as Mikolov did). Here we assume that $\sigma (x)=0, x&lt;-6$ and $\sigma (x)=1, x&gt;6$, then, for $x\in [-6,6]$, we isometrically cut into 1000 parts, as shown in the graph,
+<img src="/img/nlp/word2vec/partition.png" alt="Partition" />
+compute $\sigma (x)$ for each $x_{i}$, and store them into an array, which can be expediently used for further process. Below is the Java implementation.</p>
+
+<pre><code class="language-java">/** Boundary for maximum exponent allowed */
+static final int MAX_EXP = 6;
+/** Size of the pre-cached exponent table */
+static final int EXP_TABLE_SIZE = 1_000;
+static final double[] EXP_TABLE = new double[EXP_TABLE_SIZE];
+static {
+    for (int i = 0; i &lt; EXP_TABLE_SIZE; i++) {
+        // Precompute the exp() table
+        EXP_TABLE[i] = Math.exp((i / (double) EXP_TABLE_SIZE * 2 - 1) * MAX_EXP);
+        // Precompute f(x) = x / (x + 1)
+        EXP_TABLE[i] /= EXP_TABLE[i] + 1;
+    }
+}
+</code></pre>
+
+<h2 id="softmax">Softmax</h2>
+
+<p>The Softmax function is a generalization of the logistic function that &ldquo;squashes&rdquo; a K-dimensional vector $\mathbf{z}$ from arbitrary real values to a K-dimensional vector $\sigma (\mathbf{z})$ of real values in the range $[0,1]$ that add up to 1. For more details about Softmax, you can refer <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Wikipedia·Softmax Function</a>.</p>
+
+<h2 id="logistic-regression">Logistic Regression</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank">Logistic regression</a> is the appropriate regression analysis to conduct when the dependent variable is dichotomous. In logistic regression, the dependent variable is binary or dichotomous, i.e. it only contains data coded as 1 (true, success, etc.) or 0 (false, failure, etc.). The goal of logistic regression is to find the best fitting model to describe the relationship between the dichotomous characteristic of interest and a set of independent variables. Note that there is a related method named <a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression" target="_blank">Multinomial Logistic Regression</a>, which is a classification method that generalizes logistic regression to multiclass problems, i.e. with more than two possible discrete outcomes. Here we only discuss the binary logistic regression. For instance, considering a binary classification problem, like spam classification, suppose that $\{\mathbf{x}_{i},y_{i}\}_{i=1}^{m}$ is the sample data of a binary classification problem, where $\mathbf{x}_{i}\in \mathbb{R}^{n}$, $y_{i}\in \{0,1\}$.</p>
+
+<p>Using Sigmoid function, for an arbitrary sample $\mathbf{x}=(x_{1},x_{2},\dots ,x_{n})^{T}$, we can write the hypothesis function of such binary classification problem as
+$$
+h_{\theta}(\mathbf{x})=\sigma (\theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+\dots +\theta_{n}x_{n})
+$$
+where $\theta=(\theta_{0},\theta_{1},\dots ,\theta_{n})^{T}$ is the coefficient. Briefly, we introduce $x_{0}=1$ and extend $\mathbf{x}$ to $(x_{0},x_{1},x_{2},\dots ,x_{n})^{T}$, thus, $h_{\theta}$ can be simplified as
+$$
+h_{\theta}(\mathbf{x})=\sigma (\theta^{T}\mathbf{x})=\frac{1}{1+e^{-\theta^{T}\mathbf{x}}}
+$$
+The Sigmoid function maps any values of a real number to a value from 0 to 1, therefore, the output can be regarded as the posterior probability for each class. Assume the sample data follows <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution" target="_blank">Bernoulli distribution</a>, then we have
+$$
+P(Y=y_{i}|\mathbf{x}_{i})=
+\begin{cases}
+h_{\theta}(\mathbf{x}_{i}),&amp;y_{i}=1; \newline
+1-h_{\theta}(\mathbf{x}_{i}),&amp;y_{i}=0.
+\end{cases}
+$$
+Combining the two equations, it can written as
+$$
+P(Y=y_{i}|\mathbf{x}_{i})=\big(h_{\theta}(\mathbf{x}_{i}) \big)^{y_{i}}+\big( 1-h_{\theta}(\mathbf{x}_{i}) \big)^{1-y_{i}}
+$$
+Next step is to compute $\theta$, and the key point of this task is focusing on measuring the performance of model prediction, thus, here we introduce the likelihood function, which estimates the maximum likelihood of the coefficients, can be expressed as
+$$
+L(\theta)=\prod_{i=1}^{m}\bigg(\big( h_{\theta}(\mathbf{x}_{i}) \big)^{y_{i}}+\big( 1-h_{\theta}(\mathbf{x}_{i}) \big)^{1-y_{i}}\bigg)
+$$
+In order to derive the optimized coefficients $\theta$, we need to maximize this likelihood function, but the calculation is complex because of the mathematical product. To make it easier, we take the logarithm of the likelihood function. Additionally, we insert a minus sign to turn the object to minimize the negative log-likelihood function. The equation is defined as
+$$
+J(\theta)=-\log \big(L(\theta)\big)=-\frac{1}{m}\sum_{i=1}^{m}\bigg(y_{i}\cdot\log(h_{\theta}(\mathbf{x}_{i}))+(1-y_{i})\cdot\log(1-h_{\theta}(\mathbf{x}_{i}))\bigg)
+$$
+which is so called logarithmic loss function or log-likelihood loss function, and $\theta$ is computed by optimized this function.</p>
+
+<p>For more datails about Logistic Regression: <a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank">Wikipedia</a>, <a href="http://ufldl.stanford.edu/tutorial/supervised/LogisticRegression/" target="_blank">UFLDL Tutorial</a>.</p>
+
+<p>To help you have a better understanding of how to implement logistic regression. You can get codes of logistic regression from my GitHub repository: <a href="https://github.com/IsaacChanghau/NeuralNetworksLite/blob/master/NeuralNetworks4J/src/test/java/com/isaac/examples/LogisticRegressionExample.java" target="_blank">[Full Java Implementation]</a>, <a href="https://github.com/IsaacChanghau/NeuralNetworksLite/blob/master/NeuralNetworksND4J/src/test/java/com/isaac/examples/LogisticRegressionExample.java" target="_blank">[Java Implementation with ND4J]</a>. Since the codes are fairly long, I do not show them here in order to save space.</p>
+
+<h2 id="bayes-formula">Bayes&rsquo; Formula</h2>
+
+<p>Bayes&rsquo; formula is an important method for computing conditional probabilities. It is often used to compute posterior probabilities (as opposed to priorior probabilities) given observations. Suppose that $P(A)$ and $P(B)$ represent the probability of event $A$ happens and the probability of event $B$ happens respectively, $P(A|B)$ denotes the probability of event $A$ happens given event $B$, $P(A,B)$ denotes the probability that event $A$ and $B$ happen simultaneously, so we have
+$$
+\begin{aligned}
+P(A|B) &amp; =\frac{P(A,B)}{P(B)},\newline
+P(B|A) &amp; =\frac{P(A,B)}{P(A)},\newline
+P(A,B) &amp; =P(B)\cdot P(A|B)=P(A)\cdot P(B|A),\newline
+P(A|B) &amp; =P(A)\cdot\frac{P(B|A)}{P(B)}
+\end{aligned}
+$$
+For four variables, $A_{1}$, $A_{2}$, $A_{3}$, $A_{4}$, using the knowledge above, it is able to compute that
+$$
+P(A_{4},A_{3},A_{2},A_{1})=P(A_{4}|A_{3},A_{2},A_{1})\cdot P(A_{3}|A_{2},A_{1})\cdot P(A_{2}|A_{1})\cdot P(A_{1})
+$$
+Generally, consider an indexed set of sets $A_{1},\dots,A_{n}$, we can derive that
+$$
+P\bigg( \bigcap_{k=1}^{n}A_{k}\bigg) = \prod_{k=1}^{n}P\bigg( A_{k}|\bigcap_{j=1}^{k-1}A_{j}\bigg)
+$$
+This is so called Bayes&rsquo; <a href="https://en.wikipedia.org/wiki/Chain_rule_%28probability%29" target="_blank">Chain Rule</a>.</p>
+
+<h2 id="huffman-coding">Huffman Coding</h2>
+
+<p>In computer science and information theory, a Huffman code is a particular type of optimal prefix code that is commonly used for lossless data compression. The process of finding and/or using such a code proceeds by means of <a href="https://en.wikipedia.org/wiki/Huffman_coding" target="_blank">Huffman coding</a>, a lossless data encoding algorithm, developed by <a href="https://en.wikipedia.org/wiki/David_A._Huffman" target="_blank">David A. Huffman</a> and published in the 1952 paper &ndash; <a href="http://compression.ru/download/articles/huff/huffman_1952_minimum-redundancy-codes.pdf" target="_blank">A Method for the Construction of Minimum-Redundancy Codes</a>.</p>
+
+<h3 id="huffman-tree">Huffman Tree</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Tree_%28data_structure%29" target="_blank">Tree</a> is an important non-linear data structure that simulates a hierarchical tree structure, with a root value and subtrees of children with a parent node, represented as a set of linked nodes.</p>
+
+<p>A tree data structure can be defined recursively (locally) as a collection of nodes (starting at a root node), where each node is a data structure consisting of a value, together with a list of references to nodes (the &ldquo;children&rdquo;), with the constraints that no reference is duplicated, and none points to the root. Alternatively, a tree can be defined abstractly as a whole (globally) as an ordered tree, with a value assigned to each node.</p>
+
+<p>Both these perspectives are useful: while a tree can be analyzed mathematically as a whole, when actually represented as a data structure it is usually represented and worked with separately by node. And here is some common-used concepts in tree:</p>
+
+<ul>
+<li><em>Path</em> and <em>Path Length</em>: the path is a sequence of nodes and edges connecting a node with a descendant, while the number of edges is path length. For example, denote that the level number of root node as 1, then the path length from root node to the node at $L$ level is $L-1$.</li>
+<li><em>Node Weight</em> and <em>Weight Path Length</em> (WPL): give a (non-negative) value with a certain meaning to the nodes in the tree, this value is called weight. The WPL is defined as the product of the node weight and the path length from root node to this node.</li>
+<li><em>WPL of Tree</em>: the WPL of Tree is defined as the sum of WPL of all the leaf nodes.</li>
+</ul>
+
+<p><a href="https://en.wikipedia.org/wiki/Binary_tree" target="_blank">Binary tree</a> is a typical tree data structure in which each node has at most two children, which are referred to as the left child and the right child. Particularly, <a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank">binary search tree</a> (BST), also called ordered or sorted binary tree, is a particular type of binary tree that keep its nodes in sorted order, where the left subtree and right subtree can not interchange of position. Given $n$ weighted nodes as $n$ leaf nodes to construct a binary tree, if WPL of the built binary tree reaches the minimum, such built binary tree is an optimal binary tree, also named as <strong>Huffman Tree</strong>.</p>
+
+<h3 id="construction-of-huffman-tree">Construction of Huffman Tree</h3>
+
+<p>Given $n$ weighted nodes $\{w_{1},w_{2},\dots ,w_{n}\}$ as the leaf nodes of a binary tree, the Huffman tree can be constructed as follow:</p>
+
+<ol>
+<li>Regard $\{w_{1},w_{2},\dots ,w_{n}\}$ as a forest of $n$ trees (each tree has only one node);</li>
+<li>Combine two trees with minimal root node weight in the forest to build a new tree, each of these two tree becomes a subtree, and the root node weight of the new tree is the sum of the root nodes weight of its left and right subtrees;</li>
+<li>Remove the two selected trees in step (2), and add the new tree into the forest;</li>
+<li>Repeat step (2) and (3), till only one tree left in the forest, and this tree is the computed Huffman tree.</li>
+</ol>
+
+<p>For instance, suppose that we have a list of weighted nodes $\{15,8,6,5,3,1\}$, the Huffman tree can be built via this way
+<img src="/img/nlp/word2vec/huffmantree.png" alt="Construction of Huffman Tree" />
+From the graph, we can derive that the node with larger weight is more closer to root node. In the construction process, the additional node generated through merge process is marked as red. Since every two nodes need to be merged one time, thus, if the number of leaf nodes is $n$, then $n-1$ additional nodes will be generated while constructing Huffman tree. In this case, $n=6$, so 5 additional nodes are generated.
+Note that in the above case, we stipulate that the node with higher weight is the left child node, while the node with lower weight is the right child node. Certainly, if you reverse the stipulation, it is also true.</p>
+
+<h3 id="coding-process">Coding Process</h3>
+
+<p>The binary prefix code built by Huffman tree is called Huffman Code, which satisfy the condition of prefix code as well as guarantee the length of message codes is shortest. Given a message &ldquo;AFTER DATA EAR ARE ART AREA&rdquo; to transmit, the character set used here is &ldquo;$A$, $E$, $R$, $T$, $F$, $D$&rdquo;, their frequency are 8, 4, 5, 3, 1, 1, respectively. To transmit the message, we always want to keep the length of such message as short as possible, since the frequency of each character is different, so we try to use short codes for character with high frequency and long codes for character with low frequency in order to optimize whole message codes, then the Huffman coding is used. To construct the Huffman tree, we can derive
+<img src="/img/nlp/word2vec/huffmancoding.png" alt="Huffman Coding" />
+then each character can be represent by a binary code, e.g., $A$ is represented by &ldquo;11&rdquo;, $F$ is represented by &ldquo;0101&rdquo;, etc. The Word2Vec toolkit also use the technology of Huffman coding, it treats the word in the corpus as leaf node, and the frequency of the word in corpus as weight, by constructing Huffman tree to coding each word. There are two stipulations in Word2Vec, one is that the node with large weight is treated as left child node, and another is the left child node is coded as 1. To keep the same, we also follow these stipulations. Here is the Java Implementation of Huffman Coding in Word2Vec: <a href="https://github.com/eikdk/Word2VecJava/blob/master/src/main/java/com/medallia/word2vec/huffman/HuffmanCoding.java" target="_blank">[link]</a>.</p>
+
+<h1 id="natural-language-model">Natural Language Model</h1>
+
+<p>A statistical <a href="https://en.wikipedia.org/wiki/Language_model" target="_blank">language model</a> is a probability distribution over sequences of words. Given such a sequence, say of length $m$, it assigns a probability $P(w_{1},\dots ,w_{m})$ to the whole sequence. Having a way to estimate the relative likelihood of different phrases is useful in many natural language processing applications, especially ones that generate text as an output. Language modeling is used in speech recognition, machine translation, part-of-speech tagging, parsing, hand-writing recognition, information retrieval and other applications.</p>
+
+<p>For example, in speech recognition, the computer tries to match sounds with word sequences. The language model provides context to distinguish between words and phrases that sound similar. For example, in American English, the phrases &ldquo;recognize speech&rdquo; and &ldquo;wreck a nice beach&rdquo; are pronounced almost the same but mean very different things. These ambiguities are easier to resolve when evidence from the language model is incorporated with the pronunciation model and the acoustic model.</p>
+
+<p>Although there are many language models, like N-gram model, decision tree, maximum entropy model, conditional random field, neural network and etc. Here we only discuss N-gram model and neural network based model.</p>
+
+<h2 id="n-gram-model">N-gram Model</h2>
+
+<p>Given a corpus $\boldsymbol{\mathcal{C}}$ and a sentence consist of $N$ words, where $\mathbf{w}=(w_{1},w_{2},\dots ,w_{N})$, then the joint probability of $w_{1},w_{2},\dots ,w_{N}$ is
+$$
+P(\mathbf{w})=P(w_{1},w_{2},\dots ,w_{N})
+$$
+Using <strong>Bayes&rsquo; Formula</strong>, it can be decomposed to
+$$
+P(\mathbf{w})=P(w_{1})\cdot P(w_{2}|w_{1})\cdot P(w_{3}|w_{1},w_{2})\cdot\cdot\cdot P(w_{N}|w_{1},w_{2},\dots ,w_{N-1})
+$$
+where the conditional probabilities $P(w_{1})$, $P(w_{2}|w_{1})$, $\dots$, $P(w_{N}|w_{1},w_{2},\dots ,w_{N-1})$ is the parameters of language model. Once these parameters are determined, then we can derive the probability of $P(\mathbf{w})$.</p>
+
+<p>Take the approximate computation of $P(w_{k}|w_{1}^{k-1})$ first, where $w_{1}^{k-1}=(w_{1},\dots ,w_{k-1})$. By Bayes&rsquo; formula, we have
+$$
+P(w_{k}|w_{1}^{k-1})=\frac{P(w_{1}^{k})}{P(w_{1}^{k-1})}
+$$
+According to the <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers" target="_blank">law of large numbers</a>, when the corpus $\boldsymbol{\mathcal{C}}$ is large enough, then $P(w_{k}|w_{1}^{k-1})$ can be approximately written as
+$$
+P(w_{k}|w_{1}^{k-1})\approx\frac{counter(w_{1}^{k})}{counter(w_{1}^{k-1})}
+$$
+where $counter(w_{1}^{k})$ and $counter(w_{1}^{k-1})$ represent the appearance frequency of $w_{1}^{k}$ and $w_{1}^{k-1}$ in corpus respectively. One can imagine, once $k$ goes larger, the statistics of $counter(w_{1}^{k})$ and $counter(w_{1}^{k-1})$ will become extremely time consuming.</p>
+
+<p>The N-gram model is used to solve this problem, in the previous case, we can see that the appearance probability of a word is related to all the words in front of it. How about assuming that such probability is only related to a certain number of words in front of it. This is the basic idea of N-gram model, who makes a $n-1$ order <a href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank">Markov Hypothesis</a> to restrict that the appearance probability of a word is only related to $n-1$ words in front of it, say
+$$
+P(w_{k}|w_{1}^{k-1})\approx P(w_{k}|w_{k-n+1}^{k-1})\approx\frac{counter(w_{k-n+1}^{k})}{counter(w_{k-n+1}^{k-1})}
+$$
+For example, by setting $n=2$, we will have
+$$
+P(w_{k}|w_{1}^{k-1})\approx\frac{counter(w_{k-1},w_{k})}{counter(w_{k-1})}
+$$
+After simplification, it bacomes easier to compute the single parameter and reduce the total amount of parameters. Below gives the relationship between $n$ and parameter number (suppose that the size of dictionary $\boldsymbol{\mathcal{D}}$ is 200000):
+<img src="/img/nlp/word2vec/ngramparams.png" alt="N-gram parameters" />
+From the table, we can derive that the computational complexity increase with the growth of $n$, say, $\big(\boldsymbol{\mathcal{O}}(|\boldsymbol{\mathcal{D}}|^{n})\big)$, it is an exponentially incremental magnitute, so $n$ can not set too large, normally, $n=3$ (trigram) is enough for most cases. For the model performance, theoretically, $n$ is bigger, the performance will be better. However, when $n$ goes up to some extent, the hoist scope of model performance will decrease. Another thing is that when the number of parameters goes up, the distinguishability of model bacomes better, the reliability goes down, becasue of the instances of the single parameter decrease. Thus, it is needed to make a compromise between distinguishability and reliability.</p>
+
+<p>Moreover, smoothing is needed in N-gram model, because of these reasons:</p>
+
+<ol>
+<li>if $counter(w_{k-n+1}^{k})=0$, we can not say that $P(w_{k}|w_{1}^{k-1})$ is equal to 0;</li>
+<li>if $counter(w_{k-n+1}^{k})=counter(w_{k-n+1}^{k-1})$, we can not say that $P(w_{k}|w_{1}^{k-1})$ is equal to 1.</li>
+</ol>
+
+<p>Thus, the <a href="https://en.wikipedia.org/wiki/N-gram#Smoothing_techniques" target="_blank">smoothing techniques</a> is used to deal with this issue. In practice it is necessary to smooth the probability distributions by also assigning non-zero probabilities to unseen words or n-grams. The reason is that models derived directly from the n-gram frequency counts have severe problems when confronted with any n-grams that have not explicitly been seen before – the zero-frequency problem. Various smoothing methods are used, from simple &ldquo;add-one&rdquo; (Laplace) smoothing (assign a count of 1 to unseen n-grams) to more sophisticated models, such as <a href="https://en.wikipedia.org/wiki/Good%E2%80%93Turing_discounting" target="_blank">Good–Turing discounting</a> or <a href="https://en.wikipedia.org/wiki/Katz%27s_back-off_model" target="_blank">back-off models</a>. Some of these methods are equivalent to assigning a prior distribution to the probabilities of the n-grams and using Bayesian inference to compute the resulting posterior n-gram probabilities. However, the more sophisticated smoothing models were typically not derived in this fashion, but instead through independent considerations.</p>
+
+<p>However, in machine learning field, there is a commonly used method: after constructing a model of the task, then building a objective function for it, trying to optimize this function to got an optimized parameters, and using the model with this optimized parameters to do the further predict task. For statistical language model, using maximal likelihood, the objective function can be set as
+$$
+\prod_{w\in\boldsymbol{\mathcal{C}}}P(w|context(w))
+$$
+where $\boldsymbol{\mathcal{C}}$ represents the corpus, $context(w)$ denotes the context of word $w$, i.e., the set of circumjacent words of $w$. And when $context(w)=\emptyset$, we have $P(w|context(w))=P(w)$. Particularly, for N-gram model, $context(w_{i})=w_{i-n+1}^{i-1}$.</p>
+
+<p>In practice, the maximal logarithm likelihood is often used, i.e., setting the objective function as
+$$
+\mathcal{L}=\sum_{w\in\boldsymbol{\mathcal{C}}}\log P(w|context(w))=\sum_{w\in\boldsymbol{\mathcal{C}}}\log F(w,context(w),\boldsymbol{\theta})
+$$
+and maximizing this function, where $\boldsymbol{\theta}$ is the parameter set to be determined and $P(w|context(w))$ here is treated as the function of $w$ and $context(w)$. Once we obtain the optimized parameter set $\boldsymbol{\theta}^{*}$ by optimizing the objective function above, $F$ is well-determined too, and further any probability $P(w|context(w))$ is able to be computed by $F(w,context(w),\boldsymbol{\theta}^{*})$.</p>
+
+<p>Compare to N-gram model, this method do not need to compute and store all the probability values in advance, it computes the probability directly, and by choosing a suitable model will make the number of parameters in $\boldsymbol{\theta}$ much less than that in N-gram model. Actually, this method is the base of Word2Vec algorithm framework, and we will intruduce it in details in the following part.</p>
+
+<h2 id="neural-probabilistic-based-model">Neural Probabilistic based Model</h2>
+
+<p>In natural language processing task, we need to use machine learning algorithms to deal with natural language, however, machines can not understand human language directly, thus, we have to make the laguage mathematicization. In neural probabilistic language model, there is an important concept named <strong>distributed representation</strong> (word vector). It is a good way to digitalize natural language, unlike the traditional <a href="https://en.wikipedia.org/wiki/One-hot" target="_blank">on-hot representation</a>, which just signify the words, do not contain any semantic information and easily suffer dimensionality curse in deep learning task.</p>
+
+<p>The <a href="https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf" target="_blank">distributed representation</a> method overcomes those drawbacks of on-hot representation, its basic idea is mapping each word of a certain language to a short vector with fixed length through training, all of those vectors consist a word vector space, and each vector can be treated as point in this space, then introducing &ldquo;distance&rdquo; concept, and the &ldquo;distance&rdquo; among words can be used to determine their (grammatical, semantic, and etc.) similarities. Mathematically, for an arbitrary word $w$ the dictionary $\boldsymbol{\mathcal{D}}$, assign a real number vector with fixed length $e(w)\in\mathbb{R}^{m}$, $e(w)$ is called the word vector of $w$, and $m$ is the length of word vector.</p>
+
+<p>In practice, there are many different methods can be used to estimate the word vectors, like Latent Semantic Analysis (<a href="https://en.wikipedia.org/wiki/Latent_semantic_analysis" target="_blank">LSA</a>), Latent Dirichlet Allocation (<a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation" target="_blank">LDA</a>), Vector Space Models (<a href="https://en.wikipedia.org/wiki/Vector_space_model" target="_blank">VSMs</a>), Neural Probabilistic based Model and etc. Since the Word2Vec is kind of the neural probabilistic based language model to obtain the word vectors with distributed representation, so here we only introduce the neural probabilistic model.</p>
+
+<p>Here we use the paper, &ldquo;<a href="http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf" target="_blank">A Neural Probabilistic Language Model</a>&rdquo;, proposed by <a href="http://www.iro.umontreal.ca/~bengioy/yoshua_en/" target="_blank">Bengio</a> in 2003 as an example to introduce the neural probabilistical based language model. Below gives the  architecture graph of this model, it is a four layer neural networks, with input layer, projection layer, hidden layer and output layer.
+<img src="/img/nlp/word2vec/bengio.png" alt="Neural Probabilistic Language Model" />
+In this graph, $tanh$ is the <a href="https://en.wikipedia.org/wiki/Hyperbolic_function" target="_blank">hyperbolic tangent function</a>, which acts as the activation function of hidden layer; $\mathbf{W}$ and $\mathbf{p}$ are the weight matrix and bias vector between projection layer and hidden layer respectively; while $\mathbf{U}$ and $\mathbf{q}$ are the weight matrix and bias vector between hidden layer and output layer respectively. Note that the dimension of projection layer is $(n-1)\cdot m$, the dimension of output layer is $N=|\boldsymbol{\mathcal{D}}|$, where the $|\boldsymbol{\mathcal{D}}|$ denotes the number of words in the dictionary, and the dimension of hidden layer is an adaptive parameter, which can be modified by user. The $w_{t-n+1},\dots ,w_{t-1}$ are the $n-1$ words in front of word $w_{t}$ in corpus $\boldsymbol{\mathcal{C}}$, i.e., $context(w_{t})=\big(w_{t-n+1},\dots ,w_{t-1}\big)$. Here, we simply denotes the $w_{t}$ as $w$, so $\big(w, context(w)\big)$ is a training sample. According to the architecture in the graph
+$$
+\begin{cases}
+\mathbf{z}_{w}=tanh\big(\mathbf{W}\mathbf{X}_{w}+\mathbf{p}\big),\newline
+\mathbf{y}_{w}=\mathbf{U}\mathbf{z}_{w}+\mathbf{q}.
+\end{cases}
+$$
+Here, $\mathbf{y}_{w}=\big(y_{w,1},y_{w,2},\dots ,y_{w,N}\big)^{T}$ is a vector with length $N$, and its element can not represent the probability in this case. In order to make $y_{w,i}$ represents the probability of the target word is $i^{th}$ word in dictionary $\boldsymbol{\mathcal{D}}$ for the given $context(w)$, we need to do a Softmax normalization, after normalizing, $P(w|context(w))$ can be expressed as
+$$
+P(w|context(w))=\frac{exp(y_{w,i_{w}})}{\sum_{i=1}^{N}exp(y_{w,i})}
+$$
+where $i_{w}$ represents the index of word $w$ in dictionary $\boldsymbol{\mathcal{D}}$. Note that, in the last section, we said that $P(w|context(w))$ is treated as the function of $w$ and $context(w)$, i.e., $P(w|context(w))=F(w,context(w),\boldsymbol{\theta})$, so what are the parameters to be determined, i.e, what does $\boldsymbol{\theta}$ contain? In summary, it includes two parts:</p>
+
+<ol>
+<li>word vector: $e(w)\in\mathbb{R}^{m}, w\in\boldsymbol{\mathcal{D}}$ and filled vector.</li>
+<li>neural network parameters: $\mathbf{W}\in\mathbb{R}^{n_{h}\cdot (n-1)m}$, $\mathbf{p}\in\mathbb{R}^{n_{h}}$, $\mathbf{U}\in\mathbb{R}^{N\cdot n_{h}}$, and $\mathbf{q}\in\mathbb{R}^{N}$.</li>
+</ol>
+
+<p>All of those parameters can be obtained through training. And compare to N-gram model, neural probabilistic based model has two major advantages:</p>
+
+<ol>
+<li>the similarities among words can be expressed by word vectors.</li>
+<li>it does not need additional smoothing process.</li>
+</ol>
+
+<h1 id="word2vec">Word2Vec</h1>
+
+<p>In Word2Vec,  Mikolov et al. proposed two models, one is Continuous Bag-of-Words (CBOW) Model and another is Skip-gram (SG) Model. The graph of models are shown below, both of two models have three layers: <strong>Input layer</strong>, <strong>Projection layer</strong> and <strong>Output layer</strong>. From the graph, for CBOW model, it is given the contexts $\{w_{t-2},w_{t-1},w_{t+1},w_{t+2}\}$ to predict the word $w_{t}$, while SG model is given the word $w_{t}$ to predict the contexts $\{w_{t-2},w_{t-1},w_{t+1},w_{t+2}\}$.
+<img src="/img/nlp/word2vec/word2vecmodels.png" alt="Word2Vec Models" />
+Different from other neural network language models, CBOW and SG models do not have hidden layer, by taking out hidden layer, the models convert from neural network structure to logarithmic-linear structure directly, which in accordance with Logistic Regression. Compare to three layer neural networks, the logarithmic-linear structure decreases one layer&rsquo;s matrix manipulation, which significantly improve model&rsquo;s training speed. The second thing is that CBOW and Skip-gram ignore the word order information of context, so they do not concatenate the word vector of each word in context as those neural network language models did, however, they directly sum the word vector of each word in context (in the later version of Word2Vec, it changes to average of word vectors). Another difference is that the output layer of the models are tree structure.</p>
+
+<p>Here we define some notations and symbols: $\boldsymbol{\mathcal{C}}$ represents corpus; $\boldsymbol{\mathcal{D}}$ represents dictionary; $e(w)$ represents word vector of word $w$; $context(w)$ represents a set of words is constituted by before and after $n$ words of word $w$, i.e. $context(w)$ contains a set of words $\{w_{-n},\dots ,w_{-1},w_{1},\dots ,w_{n}\}$; $m$ represents the dimension of word vector.</p>
+
+<h2 id="continuous-bag-of-words-model">Continuous Bag-of-Words Model</h2>
+
+<p>As aforesaid, CBOW model contains three layer: input layer, projection layer and output layer. Given a training sample $(w,context(w))$,</p>
+
+<ol>
+<li><strong>Input layer</strong>: it includes $2n$ word vectors in $context(w)$, i.e., $e(w_{-n}),\dots ,e(w_{n})\in\mathbb{R}^{m}$, where $\mathbb{R}$ is the set of real numbers.</li>
+<li><strong>Projection layer</strong>: accumulate the $2n$ vectors, i.e. $\mathbf{x}_{w}=\sum_{i=-n,i\neq 0}^{n}\big(e(w_{i})\big)$.</li>
+<li><strong>Output layer</strong>: the output corresponds to a Huffman tree, it uses the words appear in the corpus $\mathcal{C}$ as leaf nodes, uses the appearance frequency of word in the corpus as weight. In this Huffman tree, there are $N (=|\boldsymbol{\mathcal{D}}|)$ leaf nodes, each of them is correspond to a word in dictionary $\boldsymbol{\mathcal{D}}$, and there are $N-1$ nonleaf nodes as well.</li>
+</ol>
+
+<p><img src="/img/nlp/word2vec/cbow.png" alt="CBOW" />
+For neural network based language model, most of the calculations are concentrated on the matrix manipulation between hidden layer and output layer, as well as the softmax normalized operation at output layer. From the graph above, CBOW makes specially change on these high computational conplexity field, it takes out hidden layer, and uses Huffman tree at output layer, which lay the foundation of the utilization of Hierarchical Softmax technique.</p>
+
+<p>Since the CBOW does not have hidden layer, so its input layer is the representation of context, and it can predict target word directly. And similar to other neural network based language model, the optimization objective of CBOW is to maximize the following log-likelihood function
+$$
+\mathcal{L}=\sum_{w\in\boldsymbol{\mathcal{C}}}\log P\big(w|context(w)\big)
+$$
+and the key point is to construct and calculate the conditional probability function $P\big(w|context(w)\big)$.</p>
+
+<h3 id="hierarchical-softmax">Hierarchical Softmax</h3>
+
+<p>Hierarchical softmax is an efficient way of computing softmax, a key technique to improve performance in Word2Vec. It uses a binary tree to represent all words in the vocabulary. If there are $V$ words, all of them must be leaf units of the tree. It can be proved that there are $V-1$ inner units. For each leaf unit, there exists a unique path from the root to the unit; and this path is used to estimate the probability of the word represented by the leaf unit. Before talking about this technique, we introduce some related symbols. Considering a leaf node in the Huffman tree, assume this leaf node corresponding to the word $w$ in dictionary $\boldsymbol{\mathcal{D}}$, note that</p>
+
+<ol>
+<li>$\mathbf{p}$: the path from root node to the leaf node corresponding to $w$;</li>
+<li>$l$: the number of nodes within the path $\mathbf{p}$;</li>
+<li>$p_{1},p_{2},\dots ,p_{l}$: $l$ nodes in the path $\mathbf{p}$, where $p_{1}$ represents root node, $p_{l}$ represents the leaf node corresponding to $w$.</li>
+<li>$d_{2},d_{3},\dots ,d_{l}\in\{0,1\}$: the Huffman codes of word $w$, which is consist of $l-1$ codes, where $d_{j}$ represents the code of $j^{th}$ node in the path $\mathbf{p}$ (root node does not have corresponding code);</li>
+<li>$\boldsymbol{\theta}_{1}^{w},\boldsymbol{\theta}_{2}^{w},\dots, \boldsymbol{\theta}_{l-1}^{w}\in\mathbb{R}^{m}$: the corresponding vectors (auxiliary vectors) of nonleaf nodes in path $\mathbf{p}$, where $\boldsymbol{\theta}_{j}^{w}$ represents the corresponding vector of $j^{th}$ nonleaf node in path $\mathbf{p}$.</li>
+</ol>
+
+<p>Then give a training sample &ldquo;I like this girl very much&rdquo;, and each word here has a certain frequency, it is coded into Huffman tree as shown in the graph below, and consider the situation that $w=girl$.
+<img src="/img/nlp/word2vec/cbow-hierarchicalsoftmax.png" alt="CBOW -- Hierarchical Softmax" />
+In the graph, the five nodes are linked by four red thick lines consist the path $\mathbf{p}$, and its length $l=5$. $p_{1},p_{2},p_{3},p_{4},p_{5}$ are the five nodes in the path, while $p_{1}$ corresponding to root node. $d_{2},d_{3},d_{4},d_{5}$ are 1, 0, 0, 1, respectively, which means that the Huffman codes of word &ldquo;girl&rdquo; is 1001. Besides, $\boldsymbol{\theta}_{1}^{w},\boldsymbol{\theta}_{2}^{w},\boldsymbol{\theta}_{3}^{w},\boldsymbol{\theta}_{4}^{w}$ denotes the corresponding vectors of four nonleaf nodes in path $\mathbf{p}$.</p>
+
+<p>Next step is to use vector $\mathbf{x}_{w}\in\mathbb{R}^{m}$ and Huffman tree to define the conditional probability function $P\big(w|context(w)\big)$. Using $w=girl$ as example, from root node to the leaf node &ldquo;girl&rdquo;, it goes through four branches, each branch can be treated as a <strong>dichotomy</strong>. Here we stipulate that the node with Huffman code &ldquo;0&rdquo; is defined as <strong>positive class</strong>, while the node with Huffman code &ldquo;1&rdquo; is defined as <strong>negative class</strong> (same as Word2Vec does), i.e., $Label(p_{i})=1-d_{i}$, where $i=2,3,\dots ,l$. In brief, when classifying a node, if it is classified to left, it is a negative class, otherwise, it is a positive class.</p>
+
+<p>According to logistic regression, the probability of a node to be classified as positive class is
+$$
+\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}\big)=\frac{1}{1+e^{-\mathbf{x}_{w}^{T}\boldsymbol{\theta}}}
+$$
+Otherwise, the probability to be classified as negative class is $1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}\big)$, note that the auxiliary vectors $\boldsymbol{\theta}_{j}^{w}$ we introduce above performs the same role as the undetermined parameter vector $\boldsymbol{\theta}$ here. Since four dichotomies happen from root node to the leaf node &ldquo;girl&rdquo;, the probabbility of each calssification is</p>
+
+<ul>
+<li>$1^{st}$ time: $P(d_{2}|\mathbf{x}_{w},\boldsymbol{\theta}_{1}^{w})=1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{1}^{w}\big)$</li>
+<li>$2^{nd}$ time: $P(d_{3}|\mathbf{x}_{w},\boldsymbol{\theta}_{2}^{w})=\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{2}^{w}\big)$</li>
+<li>$3^{rd}$ time: $P(d_{4}|\mathbf{x}_{w},\boldsymbol{\theta}_{3}^{w})=\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{3}^{w}\big)$</li>
+<li>$4^{th}$ time: $P(d_{5}|\mathbf{x}_{w},\boldsymbol{\theta}_{4}^{w})=1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{4}^{w}\big)$</li>
+</ul>
+
+<p>For $w=girl$, the probability of $P(w|context(w))$ can be written as
+$$
+P(w|context(w))=\prod_{j=2}^{5}P\big(d_{j}|\mathbf{x}_{w},\boldsymbol{\theta}_{j-1}^{w}\big)
+$$
+So this is the basic idea of <strong>Hierarchical Softmax</strong>. Generally, for an arbbitrarily word $w$ in dictionary $\boldsymbol{\mathcal{D}}$, there must be one, and only one, path $\mathbf{p}$ from root node to the leaf node corresponding to the word $w$. $l-1$ branches exist on this path, each breanch is treated as a dichotomy, and each dichotomy generates a probability, then the $P(w|context(w))$ is defined as the product of those probabilities.
+$$
+p(w|context(w))=\prod_{j=2}^{l}P\big(d_{j}|\mathbf{x}_{w},\boldsymbol{\theta}_{j-1}^{w}\big)
+$$
+where,
+$$
+P\big(d_{j}|\mathbf{x}_{w},\boldsymbol{\theta}_{j-1}^{w}\big)=
+\begin{cases}
+\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big),&amp;d_{j}=0; \newline
+1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big),&amp;d_{j}=1.
+\end{cases}
+$$
+or it can be wirtten as
+$$
+P\big(d_{j}|\mathbf{x}_{w},\boldsymbol{\theta}_{j-1}^{w}\big)=\bigg(\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)^{1-d_{j}}\cdot\bigg(1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)^{d_{j}}
+$$
+Then substituting the formula above to the log-likelihood, i.e., the optimization objective of CBOW, then we have
+$$
+\begin{aligned}
+\mathcal{L}
+&amp;=\sum_{w\in\boldsymbol{\mathcal{C}}}\log\prod_{j=2}^{l}\bigg\{\bigg(\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)^{1-d_{j}}\cdot\bigg(1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)^{d_{j}}\bigg\}\newline
+&amp;=\sum_{w\in\boldsymbol{\mathcal{C}}}\sum_{j=2}^{l}\bigg\{(1-d_{j})\cdot\log\big(\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)+d_{j}\cdot\log\big(1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg\}
+\end{aligned}
+$$
+Hereto, the function above is the target function of CBOW, then our task is to optimize it, i.e., maximize this function. In Word2Vec, the author use the <strong>Stochastic Gradient Ascent</strong> method. And the key point of gradient descent/ascent methods are to find the gradient computing formula.</p>
+
+<p>To make further process simple, we denote that
+$$
+\mathcal{L}(w,j)=(1-d_{j})\cdot\log\bigg(\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)+d_{j}\cdot\log\bigg(1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)
+$$
+The procedure of stochastic gradient ascent is: for every sample $(w, context(w))$, update all the related parameters in objective function. Observe the target function $\mathcal{L}$, we can derive that the parameters in this objective function are $\mathbf{x}_{w}$ and $\boldsymbol{\theta}_{j-1}^{w}$. Here we give the gradients of $\mathcal{L}(w,j)$ with regrad to these parameter vectors.</p>
+
+<p>First, consider the gradient computation of $\mathcal{L}(w,j)$ with regard to $\boldsymbol{\theta}_{j-1}^{w}$:
+$$
+\begin{aligned}
+\frac{\partial\mathcal{L}(w,j)}{\partial\boldsymbol{\theta}_{j-1}^{w}}
+&amp;=\frac{\partial}{\partial\boldsymbol{\theta}_{j-1}^{w}}\bigg\{(1-d_{j})\cdot\log\bigg(\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)+d_{j}\cdot\log\bigg(1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)\bigg\}\newline
+&amp;=(1-d_{j})\bigg(1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)\mathbf{x}_{w}-d_{j}\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\mathbf{x}_{w}\newline
+&amp;=\bigg\{(1-d_{j})\bigg(1-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg)-d_{j}\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\bigg\}\mathbf{x}_{w}\newline
+&amp;=\big[1-d_{j}-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\big]\mathbf{x}_{w}
+\end{aligned}
+$$
+Thus the update formula of $\boldsymbol{\theta}_{j-1}^{w}$ can be written as ($\eta$ is learning rate)
+$$
+\boldsymbol{\theta}_{j-1}^{w}:=\boldsymbol{\theta}_{j-1}^{w}+\eta\big[1-d_{j}-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\big]\mathbf{x}_{w}
+$$
+Then consider the gradient of $\mathcal{L}(w,j)$ with regard to $\mathbf{x}_{w}$, since the variable $\mathbf{x}_{w}$ and $\boldsymbol{\theta}_{j-1}^{w}$ are symmetrical, which means that they can change position, so we can derive that
+$$
+\frac{\partial\mathcal{L}(w,j)}{\partial\mathbf{x}_{w}}=\big[1-d_{j}-\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)\big]\boldsymbol{\theta}_{j-1}^{w}
+$$
+So far we have got the gradients of $\mathcal{L}(w,j)$ with regard to $\boldsymbol{\theta}_{j-1}^{w}$ and $\mathbf{x}_{w}$, but our ultimate goal is to compute the word vector for every word in the dictionary $\boldsymbol{\mathcal{D}}$. In order to use $\frac{\partial\mathcal{L}(w,j)}{\partial\mathbf{x}_{w}}$ to update $e(\tilde{w}),\tilde{w}\in context(w)$, in Word2Vec, the author directly use
+$$
+e(\tilde{w}):=e(\tilde{w})+\eta\sum_{j=2}^{l}\frac{\partial\mathcal{L}(w,j)}{\partial\mathbf{x}_{w}},\tilde{w}\in context(w)
+$$
+it contributes $\sum_{j=2}^{l}\frac{\partial\mathcal{L}(w,j)}{\partial\mathbf{x}_{w}}$ to every word vector of word in $context(w)$ (think about if it is more reasonable that change $\eta$ to $\frac{\eta}{|context(w)|}$, where $|context(w)|$ denotes the number of words in $context(w)$, i.e., use average contribution). It is easy to understand, since $\mathbf{x}_{w}$ is the summation of all the word vectors in $context(w)$, it should be contributed to every word after gradient calculation.</p>
+
+<p>Here is the pseudocode about using stochastic gradient ascent method to update the parameters in CBOW:</p>
+
+<blockquote>
+<ol>
+<li>$\mathbf{v}=\boldsymbol{0}$</li>
+<li>$\mathbf{x}_{w}=\sum_{w\in context(w)}e(w)$</li>
+<li>For $j=2:l$ do :
+
+<ul>
+<li>3.1 $q=\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}_{j-1}^{w}\big)$</li>
+<li>3.2 $g=\eta\cdot (1-d_{j}-q)$</li>
+<li>3.3 $\mathbf{v}:=\mathbf{v}+g\cdot\boldsymbol{\theta}_{j-1}^{w}$</li>
+<li>3.4 $\boldsymbol{\theta}_{j-1}^{w}:=\boldsymbol{\theta}_{j-1}^{w}+g\cdot\mathbf{x}_{w}$</li>
+</ul></li>
+<li>For $w\in context(w)$ do :
+
+<ul>
+<li>$e(w):=e(w)+\mathbf{v}$</li>
+</ul></li>
+</ol>
+</blockquote>
+
+<p>Note that $e(w)$ is corresponding to the <em>&ldquo;syn0&rdquo;</em> in Word2Vec source codes, $\boldsymbol{\theta}_{j-1}^{w}$ is corresponding to <em>&ldquo;syn1&rdquo;</em>, $\mathbf{x}_{w}$ is corresponding to <em>&ldquo;neu1&rdquo;</em> and $\mathbf{v}$ is corresponding to <em>&ldquo;neu1e&rdquo;</em>.
+Here shows some java codes of the procedure. For step 1, the vector $\mathbf{v}$ is initialized to zero (&ldquo;layer1_size&rdquo; is dimension of vector, i.e., $m$ in this article):</p>
+
+<pre><code class="language-java">for (int c = 0; c &lt; layer1_size; c++)
+    neu1e[c] = 0;
+</code></pre>
+
+<p>For step 2:</p>
+
+<pre><code class="language-java">for (int c = 0; c &lt; layer1_size; c++)
+    neu1[c] = 0;
+...
+for (int a = b; a &lt; window * 2 + 1 - b; a++) {
+    if (a == window) continue;
+    int c = sentencePosition - window + a;
+    if (c &lt; 0 || c &gt;= sentenceLength) continue;
+    int idx = huffmanNodes.get(sentence.get(c)).idx;
+    for (int d = 0; d &lt; layer1_size; d++) { neu1[d] += syn0[idx][d]; }
+    ...
+}
+</code></pre>
+
+<p>For step 3:</p>
+
+<pre><code class="language-java">for (int d = 0; d &lt; huffmanNode.code.length; d++) {
+    double f = 0;
+    int l2 = huffmanNode.point[d];
+    /**------------------------------3.1--------------------------------------*/
+    // Propagate hidden -&gt; output
+    for (int c = 0; c &lt; layer1_size; c++) f += neu1[c] * syn1[l2][c];
+    if (f &lt;= -MAX_EXP || f &gt;= MAX_EXP) continue;
+    else f = EXP_TABLE[(int)((f + MAX_EXP) * (EXP_TABLE_SIZE / MAX_EXP / 2))];
+    /**------------------------------3.2--------------------------------------*/
+    // 'g' is the gradient multiplied by the learning rate
+    double g = (1 - huffmanNode.code[d] - f) * alpha;
+    /**------------------------------3.3--------------------------------------*/
+    // Propagate errors output -&gt; hidden
+    for (int c = 0; c &lt; layer1_size; c++)
+        neu1e[c] += g * syn1[l2][c];
+    /**------------------------------3.4--------------------------------------*/
+    // Learn weights hidden -&gt; output
+    for (int c = 0; c &lt; layer1_size; c++)
+        syn1[l2][c] += g * neu1[c];
+}
+</code></pre>
+
+<p>For step 4:</p>
+
+<pre><code class="language-java">for (int a = b; a &lt; window * 2 + 1 - b; a++) {
+    if (a == window) continue;
+    int c = sentencePosition - window + a;
+    if (c &lt; 0 || c &gt;= sentenceLength) continue;
+    int idx = huffmanNodes.get(sentence.get(c)).idx;
+    for (int d = 0; d &lt; layer1_size; d++) syn0[idx][d] += neu1e[d]; 
+}
+</code></pre>
+
+<h3 id="negative-sampling">Negative Sampling</h3>
+
+<p>The idea of negative sampling is more straightforward than hierarchical softmax: in order to deal with the difficulty of having too many output vectors that need to be updated per iteration, we only update a sample of them. Apparently the output word (i.e., the ground truth, or positive sample) should be kept in our sample and gets updated, and we need to sample a few words as negative samples (hence “negative sampling”). A probabilistic distribution is needed for the sampling process, and it can be arbitrarily chosen.</p>
+
+<p>For instance, the words in dictionary $\boldsymbol{\mathcal{D}}$ have different appearance frequency in corpus $\boldsymbol{\mathcal{C}}$, some are higher, some are lower. For those words with high frequency, the probability to be chosen as negative sample is high, and vice versa. So the concrete ways in Word2Vec to do negative sampling is: define $len_{0}=0, len_{k}=\sum_{j=1}^{k}ratio(w_{j}), k=1,2,\dots ,N$, where $w_{j}$ means the $j^{th}$ words in dictionary $\boldsymbol{\mathcal{D}}$, $ratio(w)=\frac{counter(w)}{\sum_{w&rsquo;\in\boldsymbol{\mathcal{D}}}counter(w&rsquo;)}$, and $counter(\cdot)$ represents the frequency of a word appears in corpus $\boldsymbol{\mathcal{C}}$. Then using $\big\{len_{j}\big\}_{j=0}^{N}$ as the subdivision nodes, we can derive an unequidistant subdivision in the $[0,1]$ interval. And $I_{i}=(len_{i-1},len_{i}], i=1,2,\dots ,N$ is the $N$ sub-intervals. Further, introducing an equidistant subdivision in this $[0,1]$ interval, and the subdivision nodes are $\big\{m_{j}\big\}_{j=0}^{M}$, where $M\gg N$, see the graph below
+<img src="/img/nlp/word2vec/subdivision.png" alt="Subdivision" />
+Then project the equidistant subdivision nodes into the unequidistant subdivision (as red dot lines), we can derive the mapping relation between $\big\{m_{j}\big\}_{j=0}^{M}$ and $\big\{I_{j}\big\}_{j=1}^{N}$(or $\big\{w_{j}\big\}_{j=1}^{N}$):
+$$
+Table(i)=w_{k}, m_{i}\in I_{k}, i=1,2,\dots ,M-1
+$$
+Once we have this table, it is easy to do sampling: generating a random integer $r$ within $[1,M-1]$, $Table(r)$ is a sample. One thing to mention here is that when doing negative sampling for $w_{j}$, if the random integer index to the $w_{j}$ itself, then skip.</p>
+
+<p>It is also worth mentioning that, in Word2Vec source codes, the authors did not use $counter(w)$ directly to set the weight for word in dictionary $\boldsymbol{\mathcal{D}}$, but powered $counter(w)$ with $\alpha =0.75$. In addition, $M$ (corresponding to &ldquo;table_size&rdquo; in codes) is set to $10^{8}$. See the java codes below:</p>
+
+<pre><code class="language-java">private static final int TABLE_SIZE = (int) 1e8;
+private void initializeUnigramTable() {
+    long trainWordsPow = 0;
+    double power = 0.75;
+    for (HuffmanNode node : huffmanNodes.values()) { trainWordsPow += Math.pow(node.count, power); }
+    Iterator&lt;HuffmanNode&gt; nodeIter = huffmanNodes.values().iterator();
+    HuffmanNode last = nodeIter.next();
+    double d1 = Math.pow(last.count, power) / trainWordsPow;
+    int i = 0;
+    for (int a = 0; a &lt; TABLE_SIZE; a++) {
+        table[a] = i;
+        if (a / (double) TABLE_SIZE &gt; d1) {
+            i++;
+            HuffmanNode next = nodeIter.hasNext() ? nodeIter.next() : last;
+            d1 += Math.pow(next.count, power) / trainWordsPow;
+            last = next;
+        }
+    }
+}
+</code></pre>
+
+<p>In CBOW model, given the $context(w)$, and we need to predict $w$, thus, for the given $context(w)$, $w$ is a positive sample, then other words are negative samples. Suppose that we have selected a negative sample subset $NEG(w)\neq\emptyset$, and for $\forall\tilde{w}\in\boldsymbol{\mathcal{D}}$, define
+$$L^{w}(\tilde{w})=
+\begin{cases}
+1, &amp; \tilde{w}=w;\newline
+0, &amp; \tilde{w}\neq w.
+\end{cases}
+$$
+to represents the label of $\tilde{w}$, i.e., the label of positive sample is 1, negative sample is 0.</p>
+
+<p>For a given positive sample $\big(w, context(w)\big)$, we want to maximize
+$$
+g(w)=\prod_{u\in\{w\}\cup NEG(w)}P(u|context(w))
+$$
+where
+$$
+P(u|context(w))=\big[\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]^{L^{w}(u)}\cdot\big[1-\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]^{1-L^{w}(u)}
+$$
+here the $\mathbf{x}_{w}$ also denotes the sum of vectors of all words in $context(w)$, $\boldsymbol{\theta}^{u}\in\mathbb{R}^{m}$ represents an auxiliary vector, which is corresponding to word $u$. Combine the tow formula above, we have
+$$
+g(w)=\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{w})\prod_{u\in NEG(w)}\big[1-\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]
+$$
+the $\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{w})$ represents the probability when predicted word is $w$, while $\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u}), u\in NEG(w)$ represents the probability when predicted word is $u$. Thus, maximizing $g(w)$ is equal to maximizing $\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{w})$ and minimizing $\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})$ simultaneously.</p>
+
+<p>Actually, this is what we want, say, increase the probability of positive sample while decrease the probability of negative samples. So, for a given $\boldsymbol{\mathcal{C}}$, the overall optimization target function is
+$$
+\begin{aligned}
+\mathcal{L}
+&amp; =\log G=\log\prod_{w\in\boldsymbol{\mathcal{C}}}g(w)=\sum_{w\in\boldsymbol{\mathcal{C}}}\log g(w) \newline
+&amp; =\sum_{w\in\boldsymbol{\mathcal{C}}}\sum_{u\in\{w\}\cup NEG(w)}\big\{L^{w}(u)\cdot\log\big[\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]+\big[1-L^{w}(u)\big]\cdot\big[1-\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]\} \newline
+&amp; =\sum_{w\in\boldsymbol{\mathcal{C}}}\big\{\log\big[\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]+\sum_{u\in NEG(w)}\log\big[\sigma(-\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]\big\}
+\end{aligned}
+$$
+Same as before, we denote
+$$
+\mathcal{L}(w,u)=L^{w}(u)\cdot\log\big[\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]+\big[1-L^{w}(u)\big]\cdot\big[1-\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]
+$$
+and before using stochastic gradient ascent method to optimize this target function, we need to get the gradients of $\mathcal{L}(w,u)$ with regard to $\boldsymbol{\theta}^{u}$ and $\mathbf{x}_{w}$ respectively. Samely, considering the gradient computation of $\mathcal{L}(w,u)$ with regard to $\boldsymbol{\theta}^{u}$:
+$$
+\frac{\partial\mathcal{L}(w,u)}{\partial\boldsymbol{\theta}^{u}}=\big[L^{w}(u)-\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]\mathbf{x}_{w}
+$$
+Hence, the update formula of $\boldsymbol{\theta}^{u}$ can be written as
+$$
+\boldsymbol{\theta}^{u}:=\boldsymbol{\theta}^{u}+\eta\big[L^{w}(u)-\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]\mathbf{x}_{w}
+$$
+Then, using the symmetry of $\boldsymbol{\theta}^{u}$ and $\mathbf{x}_{w}$ in $\mathcal{L}(w,u)$, we have
+$$\frac{\partial\mathcal{L}(w,u)}{\partial\mathbf{x}_{w}}=\big[L^{w}(u)-\sigma(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u})\big]\boldsymbol{\theta}^{u}
+$$
+Hence, using $\frac{\partial\mathcal{L}(w,u)}{\partial\mathbf{x}_{w}}$, we can derive the update formula of $e(\tilde{w}),\tilde{w}\in context(w)$:
+$$
+e(\tilde{w}):=e(\tilde{w})+\eta\sum_{u\in\{w\}\cup NEG(w)}\frac{\partial\mathcal{L}(w,u)}{\partial\mathbf{x}_{w}}, \tilde{w}\in context(w)
+$$
+Below is the pseudocode of negative sampling in CBOW:</p>
+
+<blockquote>
+<ol>
+<li>$\mathbf{v}=\boldsymbol{0}$</li>
+<li>$\mathbf{x}_{w}=\sum_{u\in context(w)}e(u)$</li>
+<li>For $u=\{w\}\cup NEG(w)$ do :
+
+<ul>
+<li>3.1 $q=\sigma\big(\mathbf{x}_{w}^{T}\boldsymbol{\theta}^{u}\big)$</li>
+<li>3.2 $g=\eta\cdot (L^{w}(u)-q)$</li>
+<li>3.3 $\mathbf{v}:=\mathbf{v}+g\cdot\boldsymbol{\theta}^{u}$</li>
+<li>3.4 $\boldsymbol{\theta}^{u}:=\boldsymbol{\theta}^{u}+g\cdot\mathbf{x}_{w}$</li>
+</ul></li>
+<li>For $u\in context(w)$ do :
+
+<ul>
+<li>$e(u):=e(u)+\mathbf{v}$</li>
+</ul></li>
+</ol>
+</blockquote>
+
+<p>And here is the java codes of negative sampling (step 1,2,4 is same as hierarchical softmax above):</p>
+
+<pre><code class="language-java">/**-------------------------------3---------------------------------------*/
+for (int d = 0; d &lt;= config.negativeSamples; d++) {
+    int target;
+    final int label;
+    if (d == 0) {
+        target = huffmanNode.idx;
+        label = 1;
+    } else {
+        nextRandom = incrementRandom(nextRandom);
+        target = table[(int) (((nextRandom &gt;&gt; 16) % TABLE_SIZE) + TABLE_SIZE) % TABLE_SIZE];
+        if (target == 0) target = (int) (((nextRandom % (vocabSize - 1)) + vocabSize - 1) % (vocabSize - 1)) + 1;
+        if (target == huffmanNode.idx) continue;
+        label = 0;
+    }
+    int l2 = target;
+    /**------------------------------3.1--------------------------------------*/
+    double f = 0;
+    for (int c = 0; c &lt; layer1_size; c++) f += neu1[c] * syn1neg[l2][c];
+    /**------------------------------3.2--------------------------------------*/
+    final double g;
+    if (f &gt; MAX_EXP) g = (label - 1) * alpha;
+    else if (f &lt; -MAX_EXP) g = (label - 0) * alpha;
+    else g = (label - EXP_TABLE[(int) ((f + MAX_EXP) * (EXP_TABLE_SIZE / MAX_EXP / 2))]) * alpha;
+    /**------------------------------3.3--------------------------------------*/
+    for (int c = 0; c &lt; layer1_size; c++) neu1e[c] += g * syn1neg[l2][c];
+    /**------------------------------3.4--------------------------------------*/
+    for (int c = 0; c &lt; layer1_size; c++) syn1neg[l2][c] += g * neu1[c];
+}
+</code></pre>
+
+<h2 id="skip-gram-model">Skip-gram Model</h2>
+
+<p>Similar to CBOW model, Skip-gram model contains three layers: input layer, projection layer and output layer. However, given a training sample $\big(w,context(w)\big)$:</p>
+
+<ol>
+<li><strong>Input Layer</strong>: it only contain to vector $e(w)\in\mathbb{R}^{m}$ of central word $w$ in current sample.</li>
+<li><strong>Projection Layer</strong>: it is a identitical projection, which is redundant in Skip-gram model, since it maps $e(w)$ from input layer to this layer directly.</li>
+<li><strong>Output Layer</strong>: Same as CBOW model.</li>
+</ol>
+
+<p><img src="/img/nlp/word2vec/skipgram.png" alt="Skip-gram" />
+Compare to CBOW, the optimization objective of Skip-gram is to maximize the following log-likelihood function
+$$
+\mathcal{L}=\sum_{w\in\boldsymbol{\mathcal{C}}}\log P\big(context(w)|w\big)
+$$
+Samely, the key point is to construct and calculate the conditional probability function $P\big(context(w)|w\big)$.</p>
+
+<h3 id="hierarchical-softmax-1">Hierarchical Softmax</h3>
+
+<p>For Skip-gram model, given the central word $w$, we need to predict the words in $context(w)$. Since Skip-gram is similar to CBOW in inference process, here we use the same notations and symbols in hierarchical softmax of CBOW. In Skip-gram, the conditional probability function $P\big(context(w)|w\big)$ is defineed as
+$$
+P\big(context(w)|w\big)=\prod_{u\in context(w)}P(u|w)
+$$
+and using the idea of hierarchical softmax introduced in CBOW, we can rewrite the $P(u|w)$ as
+$$
+P(u|w)=\prod_{j=2}^{l}P(d_{j}|e(w),\boldsymbol{\theta}_{j-1}^{u})
+$$
+where
+$$
+P(d_{j}|e(w),\boldsymbol{\theta}_{j-1}^{u})=\big[\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]^{1-d_{j}}\cdot\big[1-\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]^{d_{j}}
+$$
+So we can derive the complete expression of log-likelihood target function of Skip-gram model:
+$$
+\begin{aligned}
+\mathcal{L}
+&amp;=\sum_{w\in\boldsymbol{\mathcal{C}}}\log\prod_{u\in context(w)}\prod_{j=2}^{l}\big\{\big[\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]^{1-d_{j}}\cdot\big[1-\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]^{d_{j}}\big\}\newline
+&amp;=\sum_{w\in\boldsymbol{\mathcal{C}}}\sum_{u\in context(w)}\sum_{j=2}^{l}\big\{(1-d_{j})\cdot\log\big[\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]+d_{j}\cdot\log\big[1-\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]\big\}
+\end{aligned}
+$$
+Hereto, the function above is the target function of Skip-gram, then our task is to optimize it, i.e., maximize this function. In Word2Vec, the author use the <strong>Stochastic Gradient Ascent</strong> method. And the key point of gradient descent/ascent methods are to find the gradient computing formula.</p>
+
+<p>To make further process simple, we denote that
+$$
+\mathcal{L}(w,u,j)=(1-d_{j})\cdot\log\big[\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]+d_{j}\cdot\log\big[1-\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]
+$$
+First, same as CBOW, consider the gradient computation of $\mathcal{L}(w,u,j)$ with regard to $\boldsymbol{\theta}_{j-1}^{u}$ (the computing process is same as the related part in CBOW):
+$$
+\frac{\partial\mathcal{L}(w,u,j)}{\partial\boldsymbol{\theta}_{j-1}^{u}}=\big[1-d_{j}-\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]\cdot e(w)
+$$
+So, the update formula of $\boldsymbol{\theta}_{j-1}^{u}$ is
+$$
+\boldsymbol{\theta}_{j-1}^{u}:=\boldsymbol{\theta}_{j-1}^{u}+\eta\big[1-d_{j}-\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]\cdot e(w)
+$$
+Next, we consider the gradient of $\mathcal{L}(w,u,j)$ with regard to $e(w)$, using the symmetry of $e(w)$ and $\boldsymbol{\theta}_{j-1}^{u}$ in $\mathcal{L}(w,u,j)$, we can derive that
+$$
+\frac{\partial\mathcal{L}(w,u,j)}{\partial e(w)}=\big[1-d_{j}-\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)\big]\cdot \boldsymbol{\theta}_{j-1}^{u}
+$$
+Thus, the update function of $e(w)$ is
+$$
+e(w):=e(w)+\eta\sum_{u\in context(w)}\sum_{j=2}^{l}\frac{\partial\mathcal{L}(w,u,j)}{\partial e(w)}
+$$
+Here is the pseudocode about using stochastic gradient ascent method to update the parameters in Skip-gram (note that in Word2Vec source codes, the $e(w)$ will be updated each time when a word $u$ in $context(w)$ is processed, not just updated after all the words in $context(w)$ are processed):</p>
+
+<p>For $u\in context(w)$ do:</p>
+
+<ol>
+<li>$\mathbf{v}=\boldsymbol{0}$</li>
+<li>For $j=2:l$ do:
+
+<ul>
+<li>2.1 $q=\sigma\big(e(w)^{T}\boldsymbol{\theta}_{j-1}^{u}\big)$</li>
+<li>2.2 $g=\eta (1-d_{j}-q)$</li>
+<li>2.3 $\mathbf{v}:=\mathbf{v}+g\cdot\boldsymbol{\theta}_{j-1}^{u}$</li>
+<li>2.4 $\boldsymbol{\theta}_{j-1}^{u}:=\boldsymbol{\theta}_{j-1}^{u}+g\cdot e(w)$</li>
+</ul></li>
+<li>$e(w):=e(w)+\mathbf{v}$</li>
+</ol>
+
+<p>Here is the corresponding relationship between pseudocode and Word2Vec source codes: $e(w)$  is corresponding to the “syn0” in Word2Vec source codes, $\boldsymbol{\theta}_{j-1}^{u}$ is corresponding to “syn1”, while $\mathbf{v}$ is corresponding to “neu1e”.
+Below the java codes of this procedure:</p>
+
+<pre><code class="language-java">for (int a = b; a &lt; window * 2 + 1 - b; a++) {
+    /**--------------------------------1--------------------------------------*/
+    for (int d = 0; d &lt; layer1_size; d++) neu1e[d] = 0;
+    ...
+    /**--------------------------------2--------------------------------------*/
+    for (int d = 0; d &lt; huffmanNode.code.length; d++) {
+        double f = 0;
+        int l2 = huffmanNode.point[d];
+        /**------------------------------2.1--------------------------------------*/
+        // Propagate hidden -&gt; output
+        for (int e = 0; e &lt; layer1_size; e++) f += syn0[l1][e] * syn1[l2][e];
+        if (f &lt;= -MAX_EXP || f &gt;= MAX_EXP) continue;
+        else f = EXP_TABLE[(int)((f + MAX_EXP) * (EXP_TABLE_SIZE / MAX_EXP / 2))];
+        /**------------------------------2.2--------------------------------------*/
+        // 'g' is the gradient multiplied by the learning rate
+        double g = (1 - huffmanNode.code[d] - f) * alpha;
+        /**------------------------------2.3--------------------------------------*/
+        // Propagate errors output -&gt; hidden
+        for (int e = 0; e &lt; layer1_size; e++) neu1e[e] += g * syn1[l2][e];
+        /**------------------------------2.4--------------------------------------*/
+        // Learn weights hidden -&gt; output
+        for (int e = 0; e &lt; layer1_size; e++) syn1[l2][e] += g * syn0[l1][e];
+    }
+    ...
+    /**--------------------------------3--------------------------------------*/
+    // Learn weights input -&gt; hidden
+    for (int d = 0; d &lt; layer1_size; d++) { syn0[l1][d] += neu1e[d]; }
+}
+</code></pre>
+
+<h3 id="negative-sampling-1">Negative Sampling</h3>
+
+<p>Since we already have the experience in negative sampling of CBOW model, for skip-gram model, the derivation process is similar. First of all, we rewrite the optimization target function $G=\prod_{w\in\boldsymbol{\mathcal{C}}}g(w)$ to
+$$
+G=\prod_{w\in\boldsymbol{\mathcal{C}}}\prod_{u\in context(w)}g(u)
+$$
+Here, $\prod_{u\in context(w)}g(u)$ represents a target that we want to maximize for a given sample $\big(w, context(w)\big)$, and $g(u)$ is similar to the $g(w)$ in the corresponding part of CBOW, and $g(u)$ is defined as
+$$
+g(u) =\prod_{z\in\{u\}\cup NEG(u)}P(z|w)
+$$
+where $NEG(u)$ denotes the generated subset of negative sample when deal with word $u$, the conditional probability $P(z|w)$ is
+$$
+P(z|w)=
+\begin{cases}
+\sigma\big(e(w)^{T}\boldsymbol{\theta}^{z}\big), &amp; L^{u}(z)=1;\newline
+1-\sigma\big(e(w)^{T}\boldsymbol{\theta}^{z}\big), &amp; L^{u}(z)=0.
+\end{cases}
+$$
+or simply, we can merge this two expressions:
+$$
+P(z|w)=\big[\sigma\big(e(w)^{T}\boldsymbol{\theta}^{z}\big)\big]^{L^{u}(z)}\cdot\big[1-\sigma\big(e(w)^{T}\boldsymbol{\theta}^{z}\big)\big]^{1-L^{u}(z)}
+$$
+Hence, taking the logarithm of $G$, our ultimate target function is
+$$
+\begin{aligned}
+\mathcal{L}
+&amp; =\log G=\log\prod_{w\in\boldsymbol{\mathcal{C}}}\prod_{u\in context(w)}g(u)=\sum_{w\in\boldsymbol{\mathcal{C}}}\sum_{u\in context(w)}\log g(u)\newline
+&amp; =\sum_{w\in\boldsymbol{\mathcal{C}}}\sum_{u\in context(w)}\log\prod_{z\in{u}\cup NEG(u)}P(z|w)=\sum_{w\in\boldsymbol{\mathcal{C}}}\sum_{u\in context(w)}\sum_{z\in\{u\}\cup NEG(u)}\log P(z|w)\newline
+&amp; =\sum_{w\in\boldsymbol{\mathcal{C}}}\sum_{u\in context(w)}\sum_{z\in\{u\}\cup NEG(u)}\big\{L^{u}(z)\cdot\log\big[\sigma\big(e(w)^{T}\boldsymbol{\theta}^{z}\big)\big]+\big[1-L^{u}(z)\big]\cdot\log\big[1-\sigma\big(e(w)^{T}\boldsymbol{\theta}^{z}\big)\big]\big\}
+\end{aligned}
+$$
+<strong>It is worth to mention that the negative sampling based Skip-gram model in Word2Vec source codes is not coding based on the formula above</strong>. Since, if it is based on the formula above, then for every sample $\big(w, context(w)\big)$, the Word2Vec needs to do the negative sampling for every word in $context(w)$, however, it only do $|context(w)|$ times negative sampling for $w$.</p>
+
+<p>Here gives some thinking about this issue: the essence of Skip-gram is still using the CBOW model, it just change the summation of vectors of $context(w)$ to take them into consideration one by one. In this case, for a given sample $\big(w, context(w)\big)$, we want to maximize
+$$
+g(w)=\prod_{\tilde{w}\in context(w)}\prod_{u\in\{w\}\cup NEG^{\tilde{w}}(w)}P(u|\tilde{w})
+$$
+where
+$$
+P(u|\tilde{w})=
+\begin{cases}
+\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big), &amp; L^{w}(u)=1;\newline
+1-\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big), &amp; L^{w}(u)=0.
+\end{cases}
+$$
+or it can be written as
+$$
+P(u|\tilde{w})=\big[\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)\big]^{L^{w}(u)}\cdot\big[1-\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)\big]^{1-L^{w}(u)}
+$$
+here $NEG^{\tilde{w}}(w)$ represents the subset of negative sample when dealing with word $\tilde{w}$.</p>
+
+<p>Thereoupon, for a given corpus $\boldsymbol{\mathcal{C}}$, function $G=\prod_{w\in\boldsymbol{\mathcal{C}}}g(w)$ can be treated as an overall optimization objective. Similarily, taking the logarithm of $G$, our ultimate objective function is
+$$\begin{aligned}
+\mathcal{L}
+&amp; =\log G=\log\prod_{w\in\boldsymbol{\mathcal{C}}}g(w)=\sum_{w\in\boldsymbol{\mathcal{C}}}g(w)\newline
+&amp; =\sum_{w\in\boldsymbol{\mathcal{C}}}\sum_{\tilde{w}\in context(w)}\sum_{u\in\{w\}\cup NEG^{\tilde{w}}(w)}\big\{L^{w}(u)\cdot\log\big[\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)\big]+\big[1-L^{w}(u)\big]\cdot\log\big[1-\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)\big]\big\}
+\end{aligned}
+$$
+To make it simple, we denotes $\mathcal{L}(w,\tilde{w},u)$:
+$$
+\mathcal{L}(w,\tilde{w},u)=L^{w}(u)\cdot\log\big[\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)\big]+\big[1-L^{w}(u)\big]\cdot\log\big[1-\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)\big]
+$$
+Then we use Stochastic Gradient Ascent method to optimize this objective function.</p>
+
+<p>First, consider the gradient computation of $\mathcal{L}(w,\tilde{w},u)$ with regard to $\boldsymbol{\theta}^{u}$:
+$$
+\frac{\partial\mathcal{L}(w,\tilde{w},u)}{\partial\boldsymbol{\theta}^{u}}=\big[L^{w}(u)-\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)\big]e(\tilde{w})
+$$
+thus, the update formula of $\boldsymbol{\theta}^{u}$ can be written as
+$$
+\boldsymbol{\theta}^{u}:=\boldsymbol{\theta}^{u}+\eta\big[L^{w}(u)-\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)\big]e(\tilde{w})
+$$
+Then, consider the gradient of $\mathcal{L}(w,\tilde{w},u)$ with regard to $e(\tilde{w})$, using the symmetry of $\boldsymbol{\theta}^{u}$ and $e(\tilde{w})$ in $\mathcal{L}(w,\tilde{w},u)$, then we have
+$$
+\frac{\partial\mathcal{L}(w,\tilde{w},u)}{\partial e(\tilde{w})}=\big[L^{w}(u)-\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)\big]\boldsymbol{\theta}^{u}
+$$
+hence, the update formula of $e(\tilde{w})$ can be written as
+$$
+e(\tilde{w}):=e(\tilde{w})+\eta\sum_{u\in\{w\}\cup NEG^{\tilde{w}}(w)}\frac{\partial\mathcal{L}(w,\tilde{w},u)}{\partial e(\tilde{w})}
+$$
+Here we give the pseudocode of using stochastic gradient ascent model to update the parameters in negative sampling based Skip-gram model.</p>
+
+<p>For $\tilde{w}\in context(w)$ do:</p>
+
+<ol>
+<li>$\mathbf{v}=\boldsymbol{0}$</li>
+<li>For $u=\{w\}\cup NEG^{\tilde{w}}(w)$ do:
+
+<ul>
+<li>2.1 $q=\sigma\big(e(\tilde{w})^{T}\boldsymbol{\theta}^{u}\big)$</li>
+<li>2.2 $g=\eta (L^{w}(u)-q)$</li>
+<li>2.3 $\mathbf{v}:=\mathbf{v}+g\cdot\boldsymbol{\theta}^{u}$</li>
+<li>2.4 $\boldsymbol{\theta}^{u}:=\boldsymbol{\theta}^{u}+g\cdot e(\tilde{w})$</li>
+</ul></li>
+<li>$e(\tilde{w}):=e(\tilde{w})+\mathbf{v}$</li>
+</ol>
+
+<p>Below the java codes of this procedure:</p>
+
+<pre><code class="language-java">/**--------------------------------3--------------------------------------*/
+for (int d = 0; d &lt;= config.negativeSamples; d++) {
+    int target;
+    final int label;
+    if (d == 0) {
+        target = huffmanNode.idx;
+        label = 1;
+    } else {
+        nextRandom = incrementRandom(nextRandom);
+        target = table[(int) (((nextRandom &gt;&gt; 16) % TABLE_SIZE) + TABLE_SIZE) % TABLE_SIZE];
+        if (target == 0) target = (int) (((nextRandom % (vocabSize - 1)) + vocabSize - 1) % (vocabSize - 1)) + 1;
+        if (target == huffmanNode.idx) continue;
+        label = 0;
+    }
+    int l2 = target;
+    /**------------------------------3.1--------------------------------------*/
+    double f = 0;
+    for (int c = 0; c &lt; layer1_size; c++) f += neu1[c] * syn1neg[l2][c];
+    final double g;
+    /**------------------------------3.2--------------------------------------*/
+    if (f &gt; MAX_EXP) g = (label - 1) * alpha;
+    else if (f &lt; -MAX_EXP) g = (label - 0) * alpha;
+    else g = (label - EXP_TABLE[(int) ((f + MAX_EXP) * (EXP_TABLE_SIZE / MAX_EXP / 2))]) * alpha;
+    /**------------------------------3.3--------------------------------------*/
+    for (int c = 0; c &lt; layer1_size; c++) neu1e[c] += g * syn1neg[l2][c];
+    /**------------------------------3.4--------------------------------------*/
+    for (int c = 0; c &lt; layer1_size; c++) syn1neg[l2][c] += g * neu1[c];
+}
+</code></pre>
+
+<h2 id="dl4j-implementation">DL4J Implementation</h2>
+
+<p>Nowadays, there are lots of toolkit can be used to construct Word2Vec framework, like <a href="https://radimrehurek.com/gensim/models/word2vec.html" target="_blank">gensim</a> for Python, <a href="https://www.tensorflow.org/tutorials/word2vec" target="_blank">TensorFlow</a> for Python, google Word2Vec open <a href="https://code.google.com/archive/p/word2vec/" target="_blank">source</a> for C(++), <a href="https://deeplearning4j.org/word2vec" target="_blank">deeplearning4j</a> for Scala and Java and etc. In this case, you may not need to implement Word2Vec by writting all the codes youself, what you need to do is using these packages to build your Word2Vec framework effectively.
+Here is an sample codes of using deeplearning4j to implement Word2Vec</p>
+
+<pre><code class="language-java">// wikinotitle is dumped from wikipedia, which is around 13GB, here I just put a 66.6MB sample data
+String filePath = new ClassPathResource(&quot;wikinotitle&quot;).getFile().getAbsolutePath();
+log.info(&quot;Load &amp; Vectorize Sentences....&quot;);
+// Strip white space before and after for each line
+SentenceIterator iter = new BasicLineIterator(filePath);
+// Split on white spaces in the line to get words
+TokenizerFactory t = new DefaultTokenizerFactory();
+// CommonPreprocessor will apply the following regex to each token: [\d\.:,&quot;'\(\)\[\]|/?!;]+
+// So, effectively all numbers, punctuation symbols and some special symbols are stripped off.
+// Additionally it forces lower case for all tokens.
+t.setTokenPreProcessor(new CommonPreprocessor());
+log.info(&quot;Building model....&quot;);
+// for small corpus, load --&gt; w2vBuilder4SmallCorpus(iter, t);
+Word2Vec vec = w2vBuilder(iter, t);
+log.info(&quot;Fitting Word2Vec model....&quot;);
+vec.fit();
+log.info(&quot;done.&quot;);
+// Write word vectors to file
+log.info(&quot;Writing word vectors to file....&quot;);
+WordVectorSerializer.writeWord2VecModel(vec, &quot;src/main/resources/wiki-model&quot;);
+log.info(&quot;done.&quot;);
+</code></pre>
+
+<p>The full codes you can get from my GitHub repository: <a href="https://github.com/IsaacChanghau/Word2VecfJava/tree/master/src/main/java/com/isaac/word2vec" target="_blank">Word2VecExample</a>, or directly go to the Deeplearning4j offical website: <a href="https://deeplearning4j.org/word2vec" target="_blank">[link]</a></p>
+
+<h1 id="reference">Reference</h1>
+
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Word2vec" target="_blank">Word2Vec &ndash; Wikipedia</a></li>
+<li><a href="https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf" target="_blank">Distributed Representations of Words and Phrases and their Compositionality</a></li>
+<li><a href="https://arxiv.org/pdf/1402.3722.pdf" target="_blank">word2vec Explained: Deriving Mikolov et al.’s Negative-Sampling Word-Embedding Method</a></li>
+<li><a href="https://arxiv.org/pdf/1411.2738.pdf" target="_blank">word2vec Parameter Learning Explained</a></li>
+<li><a href="https://arxiv.org/pdf/1301.3781.pdf" target="_blank">Efficient Estimation of Word Representations in Vector Space</a></li>
+<li><a href="http://blog.csdn.net/itplus/article/details/37969519" target="_blank">Explanation of Mathematical Principles in Word2Vec (Chinese)</a></li>
+<li><a href="http://licstar.net/archives/687" target="_blank">Word and Document Embeddings based on Neural Network Approaches (Chinese)</a></li>
+<li><a href="https://github.com/IsaacChanghau/Word2VecJava" target="_blank">Word2VecJava</a></li>
+<li><a href="https://code.google.com/archive/p/word2vec/" target="_blank">Word2Vec Source</a></li>
+</ol>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/deep-learning">deep-learning</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/natural-language-processing">natural-language-processing</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/java">java</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/ml_zzh_note_2/">Machine Learning Note (2): Linear Regression</a></li>
+        
+        <li><a href="/post/removing_backscatter/">Removing Backscatter to Enhance the Visibility of Underwater Object</a></li>
+        
+        <li><a href="/post/underwater_image_fusion/">Underwater Image Enhance via Fusion and Its Java Implementation</a></li>
+        
+        <li><a href="/post/altm/">Adaptive Local Tone Mapping Technique for HDR Image and Java Implementation</a></li>
+        
+        <li><a href="/post/skiing_in_singapore/">Skiing In Singapore</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+

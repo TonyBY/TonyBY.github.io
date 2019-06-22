@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>image-processing on Isaac Changhau</title>
+    <link>https://isaacchanghau.github.io/tags/image-processing/</link>
+    <description>Recent content in image-processing on Isaac Changhau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017-2018</copyright>
+    <lastBuildDate>Thu, 20 Apr 2017 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://isaacchanghau.github.io/tags/image-processing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Removing Backscatter to Enhance the Visibility of Underwater Object</title>
+      <link>https://isaacchanghau.github.io/post/removing_backscatter/</link>
+      <pubDate>Thu, 20 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/removing_backscatter/</guid>
+      <description>This is a novel method based on underwater optical model for underwater object visibility enhancement based on single image.
+General Schema For an underwater distorted image, it is firstly decomposed to reflectance and illuminance. Then color correction and dehazing methods are utilized to process each component separately, according to their specific features. Finally, we calculate the weights of two components and apply an efficient image fusion method to obtain the enhanced image.</description>
+    </item>
+    
+    <item>
+      <title>Underwater Image Enhance via Fusion and Its Java Implementation</title>
+      <link>https://isaacchanghau.github.io/post/underwater_image_fusion/</link>
+      <pubDate>Sat, 15 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/underwater_image_fusion/</guid>
+      <description>This paper &amp;ldquo;Enhancing Underwater Images and Videos by Fusion&amp;rdquo;, published by Ancuti et al. on CVPR, describes a novel strategy, built on the fusion principles, to enhance underwater videos and images. Here I implement this algorithm by Java, and summerize the main idea in this paper.
+General Schema The enhancing approach starts from a single distorted underwater image, first of all, applying white balance to this image to generate the first input of fusion process, denotes as $img_{1}$, and applying a temporal coherent noise reduction method to this $img_{1}$ to derive another input of fusion process, denotes as $img_{2}$; then, obtaining the weights of these two inputs, where Laplacian contrast weight ($W_{L}$), local contrast weight ($W_{LC}$), Saliency weight ($W_{S}$) and exposedness weight ($W_{E}$) are used in this process; finally, the multi-scale fusion process is applied to generate the restored image.</description>
+    </item>
+    
+    <item>
+      <title>Adaptive Local Tone Mapping Technique for HDR Image and Java Implementation</title>
+      <link>https://isaacchanghau.github.io/post/altm/</link>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/altm/</guid>
+      <description>This short paper, published by Ahn et al. on ICCE, introduces a new tone mapping technique for HDR images based on the retinex theory. Here I summarize this paper and show the Java implementation with OpenCV to realize the proposed algorithm.
+Center/Surround Retinex The retinex theory, initially defined by Land et al., explains how the realiable color information from the real world is extracted by human visual system, and Jobson et al.</description>
+    </item>
+    
+    <item>
+      <title>Removing Backscatter to Enhance the Visibility of Underwater Object</title>
+      <link>https://isaacchanghau.github.io/project/backscatter/</link>
+      <pubDate>Tue, 16 Aug 2016 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/backscatter/</guid>
+      <description>Date: Sep. 2015 - Apr. 2016
+ Collaborators: Hao Zhang, Lap Pui Chau
+Underwater vision enhancement via backscatter removing is widely used in ocean engineering. However, due to the existence of dust-like particles and light attenuation, underwater images and videos always suffer from the problems of low contrast and color distortion.
+In this project, we investigated the underwater light propagation process from a physical standpoint, studied the state-of-the-art methods of sloving the problem and finally proposed a novel and effective method based on underwater optical model and fusion technique to overcome the backscatter problem.</description>
+    </item>
+    
+    <item>
+      <title>Image Enhancement based on Retinex Theory and Dual-tree Complex Wavelet Transform</title>
+      <link>https://isaacchanghau.github.io/project/retinex/</link>
+      <pubDate>Fri, 01 May 2015 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/retinex/</guid>
+      <description>Date: Nov. 2014 - May. 2015
+ Collaborators: Hao Zhang, Hongyu Wang
+The task of image enhancement is focus on restoring and clarifying the corrupted images to improve their quality, and image enhancement methods has been widely applied to numerous image analysis techniques including pattern recognition, image fusion, image segmentation, image compression and so forth. Among variety of image enhancement methods, algorithms based on Retinex theory have received more and more attentions and have been commonly used in many applications.</description>
+    </item>
+    
+  </channel>
+</rss>

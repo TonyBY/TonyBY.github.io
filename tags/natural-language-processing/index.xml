@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>natural-language-processing on Isaac Changhau</title>
+    <link>https://isaacchanghau.github.io/tags/natural-language-processing/</link>
+    <description>Recent content in natural-language-processing on Isaac Changhau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017-2018</copyright>
+    <lastBuildDate>Thu, 10 Jan 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://isaacchanghau.github.io/tags/natural-language-processing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PrimeNet: Human-inspired Framework for Commonsense Knowledge Representation and Reasoning</title>
+      <link>https://isaacchanghau.github.io/project/primenet/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/primenet/</guid>
+      <description>A human-inspired framework for commonsense knowledge representation and reasoning.</description>
+    </item>
+    
+    <item>
+      <title>Behavioural Understanding and Narrative Descriptions from Videos</title>
+      <link>https://isaacchanghau.github.io/project/maracana/</link>
+      <pubDate>Fri, 20 Apr 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/maracana/</guid>
+      <description>An effectively and flexibly multimodal system to analyze and narrate real world events captured in video.</description>
+    </item>
+    
+    <item>
+      <title>Neural Sequence Labeling</title>
+      <link>https://isaacchanghau.github.io/project/neural_seq_labeling/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/project/neural_seq_labeling/</guid>
+      <description>An unified and accurate deep learning based approach for various sequence labeling tasks such as POS, Chunking, NER, SRL, Punctuation Restoration and etc.</description>
+    </item>
+    
+    <item>
+      <title>PTransE -- Modeling Relation Paths for Representation Learning of Knowledge Bases</title>
+      <link>https://isaacchanghau.github.io/post/ptranse/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ptranse/</guid>
+      <description>An efficient and advanced deep learning approach to learn relational representation.</description>
+    </item>
+    
+    <item>
+      <title>TransX: Embedding Entities and Relationships of Multi-relational Data</title>
+      <link>https://isaacchanghau.github.io/post/transx/</link>
+      <pubDate>Thu, 14 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/transx/</guid>
+      <description>Summarization of several similar algorithms to learn relational representation.</description>
+    </item>
+    
+    <item>
+      <title>Analyzing Wolf Warrior II Movie Comments using Python</title>
+      <link>https://isaacchanghau.github.io/post/wolf_warrior/</link>
+      <pubDate>Mon, 11 Sep 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/wolf_warrior/</guid>
+      <description>Tutorial to analyze 170000+ movie comments of Wolf Warrior II from Douban website.</description>
+    </item>
+    
+    <item>
+      <title>Beam Search Algorithms in Sequence to Sequence</title>
+      <link>https://isaacchanghau.github.io/post/beam_search/</link>
+      <pubDate>Thu, 10 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/beam_search/</guid>
+      <description>Introduction of beam search algorithms in sequence to seqeunce framework.</description>
+    </item>
+    
+    <item>
+      <title>Seq2Seq Learning and Neural Conversational Model</title>
+      <link>https://isaacchanghau.github.io/post/seq2seq_conversation/</link>
+      <pubDate>Wed, 02 Aug 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/seq2seq_conversation/</guid>
+      <description>Introduction of sequence to sequence learning and its application in conversation generation.</description>
+    </item>
+    
+    <item>
+      <title>Neural Responding Machine for Short-Text Conversation -- Summary</title>
+      <link>https://isaacchanghau.github.io/post/neural_responding_machine/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/neural_responding_machine/</guid>
+      <description>A simple conversation system using seq2seq encoder-decoder framework with attention mechanism.</description>
+    </item>
+    
+    <item>
+      <title>Word2Vecf -- Dependency-Based Word Embeddings and Lexical Substitute</title>
+      <link>https://isaacchanghau.github.io/post/word2vecf/</link>
+      <pubDate>Thu, 18 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/word2vecf/</guid>
+      <description>Summarization of dependency-based word embeddings algorithms and its application in lexical substitution.</description>
+    </item>
+    
+    <item>
+      <title>Word2Vec -- Mathematical Principles and Java Implementation</title>
+      <link>https://isaacchanghau.github.io/post/word2vec/</link>
+      <pubDate>Sat, 13 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/word2vec/</guid>
+      <description>Summarization of word2vec algorithms, mathematical principles and its implementation.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ensemble-learning on Isaac Changhau</title>
+    <link>https://isaacchanghau.github.io/tags/ensemble-learning/</link>
+    <description>Recent content in ensemble-learning on Isaac Changhau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017-2018</copyright>
+    <lastBuildDate>Thu, 18 May 2017 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://isaacchanghau.github.io/tags/ensemble-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Machine Learning Note (4): Ensemble Learning</title>
+      <link>https://isaacchanghau.github.io/post/ml_zzh_note_4/</link>
+      <pubDate>Thu, 18 May 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://isaacchanghau.github.io/post/ml_zzh_note_4/</guid>
+      <description>Machine learning note: ensemble learning.</description>
+    </item>
+    
+  </channel>
+</rss>

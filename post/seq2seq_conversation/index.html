@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="author" content="Zhang Hao">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Introduction of sequence to sequence learning and its application in conversation generation.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://isaacchanghau.github.io/post/seq2seq_conversation/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  <link rel="feed" href="https://isaacchanghau.github.io/index.xml" type="application/rss+xml" title="Isaac Changhau">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://isaacchanghau.github.io/post/seq2seq_conversation/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Isaac Changhau">
+  <meta property="og:url" content="https://isaacchanghau.github.io/post/seq2seq_conversation/">
+  <meta property="og:title" content="Seq2Seq Learning and Neural Conversational Model | Isaac Changhau">
+  <meta property="og:description" content="Introduction of sequence to sequence learning and its application in conversation generation.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-08-02T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2017-08-02T00:00:00&#43;08:00">
+  
+
+  
+
+  <title>Seq2Seq Learning and Neural Conversational Model | Isaac Changhau</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Isaac Changhau</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#tags">
+            
+            <span>Tags</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#achievements">
+            
+            <span>Achievements</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Seq2Seq Learning and Neural Conversational Model</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-08-02 00:00:00 &#43;0800 &#43;08" itemprop="datePublished dateModified">
+      Wed, Aug 2, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhang Hao">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    14 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>It is a summary of two papers: <a href="https://arxiv.org/abs/1409.3215" target="_blank">Sequence to Sequence Learning with Neural Networks</a> and <a href="https://arxiv.org/abs/1506.05869" target="_blank">A Neural Conversational Model</a>, as well as the implementation of Neural Conversation Model via Java with <a href="https://github.com/deeplearning4j/deeplearning4j" target="_blank">deeplearning4j</a> package.</p>
+
+<h1 id="sequence-to-sequence-model">Sequence to Sequence Model</h1>
+
+<p>In this paper, the author presents a general end-to-end approach to sequence learning that makes minimal assumptions on the sequence structure. The method uses a multilayered Long Short-Term Memory (LSTM) to map the input sequence to a vector of a fixed dimensionality, and then another deep LSTM to decode the target sequence from the vector. As an example shown below:
+<img src="/img/nlp/seq2seq-neuralconver/seq2seq.png" alt="1" /></p>
+
+<p><strong>The Model</strong>:
+The author chooses <a href="https://www.cs.toronto.edu/~graves/" target="_blank">GravesLSTM</a> as the network layer to avoid long term dependencies issue (vanishing gradient), where the goal of LSTM is to estimate the conditional probability $p(y_{1},\dots,y_{T&rsquo;}|x_{1},\dots,x_{T})$, here $(x_{1},\dots,x_{T})$ is an input sequence and $(y_{1},\dots,y_{T&rsquo;})$ is its corresponding output sequence whose length $T&rsquo;$ may differ from $T$. The LSTM computes this conditional probability by first obtaining the fixed-dimensional representation $v$ of the input sequence $(x_{1},\dots,x_{T})$ given by the last hidden state of the LSTM, and then computing the probability of $(y_{1},\dots,y_{T&rsquo;})$ with a standard LSTM-LM formulation whose initial hidden state is set to the representation $v$ of $(x_{1},\dots,x_{T})$:
+$$
+p(y_{1},\dots,y_{T&rsquo;}|x_{1},\dots,x_{T})=\prod_{t=1}^{T&rsquo;}p(y_{t}|v,y_{1},\dots,y_{t-1})
+$$
+In this equation, each $p(y_{t}|v,y_{1},\dots,y_{t-1})$ distribution is represented with a softmax over all the words in the vocabulary. It is important to note that each sentence ends with a special end-of-sentence symbol <code>&lt;EOS&gt;</code>, which enables the model to define a distribution over sequences of all possible lengths. As the example shown below
+<img src="/img/nlp/seq2seq-neuralconver/model-example.png" alt="2" />
+The LSTM computes the representation of <code>A</code>, <code>B</code>, <code>C</code>, <code>&lt;EOS&gt;</code> and then uses this representation to compute the probability of <code>W</code>, <code>X</code>, <code>Y</code>, <code>Z</code>, <code>&lt;EOS&gt;</code>. Thus, the model reads an input sentence <code>ABC</code> and produces <code>WXYZ</code> as the output sentence. The model stops making predictions after outputting the end-of-sentence token <code>&lt;EOS&gt;</code>.</p>
+
+<p>The actual model that the author built has three important differences to make the model more sophisticated and robust:</p>
+
+<ul>
+<li>The author used <strong>two different LSTMs</strong>: one for the input sequence and another for the output sequence, because doing so increases the number model parameters at negligible computational cost and makes it natural to train the LSTM on multiple language pairs simultaneously.</li>
+<li>The author chose an <strong>LSTM with four layers</strong>, since <strong>deep LSTMs significantly outperformed shallow LSTMs</strong>.</li>
+<li>The author found <strong>it extremely valuable to reverse the order of the words of the input sentence</strong>. For instance, instead of mapping the sentence ($a$, $b$, $c$) to the sentence ($\alpha$, $\beta$, $\gamma$), the LSTM is asked to map ($c$, $b$, $a$) to ($\alpha$, $\beta$, $\gamma$), where ($\alpha$, $\beta$, $\gamma$) is the translation of ($a$, $b$, $c$). This way, $a$ is in close proximity to $\alpha$, $b$ is fairly close to $\beta$, and so on, a fact that makes it easy for SGD to <em>&ldquo;establish communication&rdquo;</em> between the input and the output.</li>
+</ul>
+
+<p>The author used the <a href="https://github.com/bicici/ParFDAWMT14" target="_blank">WMT&rsquo;14</a> English to French dataset, and trained the model on a subset of <code>12M</code> sentences consisting of <code>348M</code> French words and <code>304M</code> English words, which is a clean “selected” subset from <a href="http://www-lium.univ-lemans.fr/~schwenk/cslm_joint_paper/" target="_blank">here</a>. As typical neural language models rely on a vector representation for each word, the author used a fixed vocabulary for both languages, <code>160K</code> of the most frequent words for the source language and <code>80K</code> of the most frequent words for the target language. Every out-of-vocabulary word was replaced with a special <code>UNK</code> token. With the model and the dataset, the author achieved some good results (<em>the best result achieved by direct translation with large neural networks</em> at that time).</p>
+
+<p>More details about <code>Decoding and Rescoring</code>, <code>Reversing the Source Sentences</code>, <code>Training</code> and so forth are available in the paper.</p>
+
+<h1 id="neural-conversational-model">Neural Conversational Model</h1>
+
+<p>Actually, this paper did not propose any novel idea, however, it did something interesting that the author applied the Seq2Seq model, described in <a href="https://arxiv.org/abs/1409.3215" target="_blank">Sequence to Sequence Learning with Neural Networks</a>, to not translation tasks but the conversation generation tasks. Thus, this paper named as <em>A Neural Conversational Model</em>.</p>
+
+<p>Taking a brief look at the Seq2Seq model, which is based on a recurrent neural network, it reads the input sequence <strong>one token at a time</strong>, and predicts the output sequence, also <strong>one token at a time</strong>. During training, the true output sequence is given to the model, so learning can be done by backpropagation. And the model is trained to maximize the cross entropy of the correct sequence given its context. Since given that the true output sequence is not observed during inference, so the model simply feed the predicted output token as input to predict the next output. This is a &ldquo;greedy&rdquo; inference approach. A less greedy approach would be to use <a href="https://en.wikipedia.org/wiki/Beam_search" target="_blank">beam search</a>, and feed several candidates at the previous step to the next step. The predicted sequence can be selected based on the probability of the sequence.</p>
+
+<p>The author indicated that Seq2Seq model is simple and general, and the way to use Seq2Seq to build conversation modeling is straight: the input sequence can be the concatenation of what has been conversed so far (the context), and the output sequence is the reply. However, the Seq2Seq model will not be able to successfully <em>&ldquo;solve&rdquo;</em> the problem of modeling dialogue due to several obvious simplifications:</p>
+
+<ul>
+<li>The objective function being optimized does not capture the actual objective achieved through human communication, which is typically longer term and based on exchange of information rather than next step prediction.</li>
+<li>The lack of a model to ensure consistency and general world knowledge is another obvious limitation of a purely unsupervised model.</li>
+</ul>
+
+<p>In the paper, the author use this Seq2Seq model to handle two datasets and show the results: one is a closed-domain <a href="https://github.com/rkadlec/ubuntu-ranking-dataset-creator" target="_blank">IT helpdesk troubleshooting dataset</a> and another is an open-domain <a href="https://github.com/Conchylicultor/DeepQA/tree/master/data/opensubs" target="_blank">movie transcript dataset</a>.</p>
+
+<h1 id="deeplearning4j-implementation">DeepLearning4J Implementation</h1>
+
+<p>Note that it is an implementation of <em>A Neural Conversation Model</em> and the corpus used here is <a href="https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html" target="_blank">Cornell Movie Dialogs Corpus</a>, which contains a large metadata-rich collection of fictional conversations extracted from raw movie scripts:</p>
+
+<ul>
+<li>220,579 conversational exchanges between 10,292 pairs of movie characters.</li>
+<li>involves 9,035 characters from 617 movies.</li>
+<li>in total 304,713 utterances and so forth.</li>
+</ul>
+
+<p>To implement the Sequence to Sequence model, we need to process the following steps: corpus pre-process, dataset iterator creation, dictionary construction, building neural networks model and so forth. Here I only focus on the model construction, for other parts, you can get information directly from codes: <a href="https://github.com/IsaacChanghau/NeuralNetworksLite/blob/master/src/main/java/com/isaac/dl4j/encdeclstm/CorpusProcessor.java" target="_blank">CorpusProcessor</a>, <a href="https://github.com/IsaacChanghau/NeuralNetworksLite/blob/master/src/main/java/com/isaac/dl4j/encdeclstm/CorpusIterator.java" target="_blank">CorpusIterator</a> and <a href="https://github.com/IsaacChanghau/NeuralNetworksLite/blob/master/src/main/java/com/isaac/dl4j/encdeclstm/Dictionaries.java" target="_blank">Dictionaries</a>.</p>
+
+<p>Below are some special tokens used in corpus process and training need to be introduced in advance:</p>
+
+<ul>
+<li><code>&lt;unk&gt;</code>: replaces any word or other token that&rsquo;s not in the dictionary (too rare to be included or completely unknown)</li>
+<li><code>&lt;eos&gt;</code>: end of sentence, used only in the output to stop the processing; the model input and output length is limited by the <code>ROW_SIZE</code> constant.</li>
+<li><code>&lt;go&gt;</code>: used only in the decoder input as the first token before the model produced anything</li>
+</ul>
+
+<p>Generally, the model architecture looks like as follow:
+<strong><code>Input Layer =&gt; Embedding Layer =&gt; Encoder (LSTM Layer) =&gt; Decoder (LSTM Layer) =&gt; Output Layer(Softmax)</code></strong>
+The encoder layer produces a so called <strong>&ldquo;thought vector&rdquo;</strong> that contains a neurally-compressed representation of the input. Depending on that vector the model produces different sentences even if they start with the same token. There is one more input, connected directly to the decoder layer, it is used to provide the previous token of the output. For the very first output token, we send a special <code>&lt;go&gt;</code> token there, on the next iteration we use the token that the model produced the last time. On the training stage everything is simple, we apriori know the desired output so the decoder input would be the same token set prepended with the <code>&lt;go&gt;</code> token and without the last <code>&lt;eos&gt;</code> token. For instance:</p>
+
+<blockquote>
+<p>Input: &ldquo;how&rdquo; &ldquo;do&rdquo; &ldquo;you&rdquo; &ldquo;do&rdquo; &ldquo;?&rdquo;</p>
+
+<p>Output: &ldquo;I&rsquo;m&rdquo; &ldquo;fine&rdquo; &ldquo;,&rdquo; &ldquo;thanks&rdquo; &ldquo;!&rdquo; <code>&quot;&lt;eos&gt;&quot;</code></p>
+
+<p>Decoder: <code>&quot;&lt;go&gt;&quot;</code> &ldquo;I&rsquo;m&rdquo; &ldquo;fine&rdquo; &ldquo;,&rdquo; &ldquo;thanks&rdquo; &ldquo;!&rdquo;</p>
+</blockquote>
+
+<p>It is worth to mention that the input is reversed as per <a href="https://arxiv.org/abs/1409.3215" target="_blank">Sequence to Sequence Learning with Neural Networks</a>, since the most important words are usually in the beginning of the phrase and they would get more weight if supplied last (the model &ldquo;forgets&rdquo; tokens that were supplied &ldquo;long ago&rdquo;, i.e. they have lesser weight than the recent ones). The output and decoder input sequence lengths are always equal.</p>
+
+<p>The encoder and decoder layers work sequentially. First the encoder creates the thought vector, that is the last activations of the layer. Those activations are then duplicated for as many time steps as there are elements in the output so that every output element can have its own copy of the thought vector. Then the decoder starts working. It receives two inputs, the thought vector made by the encoder and the token that it <em>should have produced</em> (but usually it outputs something else so we have our loss metric and can compute gradients for the backward pass) on the previous step (or <code>&lt;go&gt;</code> for the very first step). These two vectors are simply concatenated by the merge vertex. The decoder&rsquo;s output goes to the softmax layer and that&rsquo;s it (More details are available <a href="https://github.com/IsaacChanghau/NeuralNetworksLite/blob/master/src/main/resources/encdec/readme.txt" target="_blank">here</a>).</p>
+
+<p>Implementing the Seq2Seq model via deeplearning4j, we need to create a <a href="https://deeplearning4j.org/compgraph" target="_blank">ComputationGraph</a>, which is used to build complex network architectures and allows for greater freedom in network architectures in deeplearning4j. First of all, we need to configure a neural network by setting the <code>iterations</code>, <code>learning rate</code>, <code>optimizations</code>, <code>updater</code>, <code>parameters initialization</code> and etc., as shown below:</p>
+
+<pre><code class="language-java">final NeuralNetConfiguration.Builder builder = new NeuralNetConfiguration.Builder()
+        .iterations(1)
+        .learningRate(LEARNING_RATE)
+        .rmsDecay(RMS_DECAY)
+        .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
+        .miniBatch(true)
+        .updater(Updater.RMSPROP)
+        .weightInit(WeightInit.XAVIER)
+        .gradientNormalization(GradientNormalization.RenormalizeL2PerLayer);
+</code></pre>
+
+<p>Note that those variables are custom defined, you can modify them as you want in order to achieve better results, and if you are not familiar with those variables or settings in deeplearning4j, you can visit the <a href="https://deeplearning4j.org/documentation" target="_blank">official website</a> to get more knowledge.</p>
+
+<p>Next step is to build the ComputationGraph</p>
+
+<pre><code class="language-java">final ComputationGraphConfiguration.GraphBuilder graphBuilder = builder.graphBuilder()
+        .addInputs(&quot;inputLine&quot;, &quot;decoderInput&quot;)
+        .setInputTypes(InputType.recurrent(dict.size()), InputType.recurrent(dict.size()))
+</code></pre>
+
+<p><code>.addInputs</code> <a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/ComputationGraphConfiguration.GraphBuilder.html#addInputs-java.lang.String...-" target="_blank">specify</a> the inputs to the network, and their associated labels, while the names of the inputs also defines their order. Here we have two inputs for the computation graph, <code>inputLine</code> is feed to next layer (embedding layer) directly, while <code>decoderInput</code> will be used later.</p>
+
+<p><code>.setInputTypes</code> <a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/ComputationGraphConfiguration.GraphBuilder.html#setInputTypes-org.deeplearning4j.nn.conf.inputs.InputType...-" target="_blank">specify</a> the types of inputs to the network, so that <strong>preprocessors can be automatically added</strong>, and <strong>the nIns (input size) for each layer can be automatically calculated and set</strong>. Meanwhile <code>InputType</code> is used to <a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/inputs/InputType.html" target="_blank">define</a> the types of activations etc used in a ComputationGraph, <code>.recurrent(...)</code> indicates that it is for recurrent neural network (time series) data.</p>
+
+<p><strong>Add Embedding Layer</strong>:</p>
+
+<pre><code class="language-java">// following previous codes
+.addLayer(&quot;embeddingEncoder&quot;,
+        new EmbeddingLayer.Builder()
+                .nIn(dict.size())
+                .nOut(EMBEDDING_WIDTH)
+                .build(),
+        &quot;inputLine&quot;)
+</code></pre>
+
+<p>Here we use <code>.addLayer</code> to <a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/ComputationGraphConfiguration.GraphBuilder.html#addLayer-java.lang.String-org.deeplearning4j.nn.conf.layers.Layer-java.lang.String...-" target="_blank">add</a> an <a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/layers/EmbeddingLayer.html" target="_blank">Embedding Layer</a> named as <code>embeddingEncoder</code>, where its input is the <code>inputLine</code>, the <code>nIn</code> (input size) is set as the size of dictionary, while <code>nOut</code> (output size) is the pre-defined <code>EMBEDDING_WIDTH</code>. Note that Embedding Layer can only be used as the first layer for a network.</p>
+
+<p><strong>Add Encoder (LSTM) Layer</strong>:</p>
+
+<pre><code class="language-java">// following previous codes
+.addLayer(&quot;encoder&quot;,
+        new GravesLSTM.Builder()
+                .nIn(EMBEDDING_WIDTH)
+                .nOut(HIDDEN_LAYER_WIDTH)
+                .activation(Activation.TANH)
+                .gateActivationFunction(Activation.HARDSIGMOID)
+                .build(),
+        &quot;embeddingEncoder&quot;)
+</code></pre>
+
+<p>After Embedding Layer, we add a <a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/layers/GravesLSTM.html" target="_blank">LSTM</a> as Encoder Layer, which named as <code>encoder</code> and the Embedding Layer act as its input, the activation function of LSTM gates are set as <code>HARDSIGMOID</code>, while the layer activation function is set as <code>TANH</code>.</p>
+
+<p><strong>Add Vertex</strong>:</p>
+
+<pre><code class="language-java">// following previous codes
+.addVertex(&quot;thoughtVector&quot;, new LastTimeStepVertex(&quot;inputLine&quot;), &quot;encoder&quot;)
+.addVertex(&quot;dup&quot;, new DuplicateToTimeSeriesVertex(&quot;decoderInput&quot;), &quot;thoughtVector&quot;)
+.addVertex(&quot;merge&quot;, new MergeVertex(), &quot;decoderInput&quot;, &quot;dup&quot;)
+</code></pre>
+
+<p>This part performs a role of concatenation between Encoder LSTM Layer and Decoder LSTM Layer, it addresses the output from previous layer and does some processes to generate the desired input for next layer. Below is the explanation of three different <a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/graph/GraphVertex.html" target="_blank">GraphVertexs</a> used in the neural network construction:</p>
+
+<ul>
+<li><a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/graph/rnn/LastTimeStepVertex.html" target="_blank">LastTimeStepVertex</a> is used in the context of recurrent neural network activations, to go from 3d (time series) activations to 2d activations, by <strong>extracting out the last time step of activations for each example</strong>. This can be used for example in sequence to sequence architectures, and potentially for sequence classification. <strong>Note that</strong> since RNNs may have masking arrays (to allow for examples/time series of different lengths in the same minibatch), it is necessary to provide the same of the network input that has the corresponding mask array. If this input does not have a mask array, the last time step of the input will be used for all examples; otherwise, the time step of the last non-zero entry in the mask array (for each example separately) will be used. <code>&quot;inputLine&quot;</code> here is the name of the input to look at when determining the last time step. Specifically, the mask array of this time series input is used when determining which time step to extract and return. Meanwhile <code>&quot;thoughtVector&quot;</code> is the Vertex Layer name, <code>&quot;encoder&quot;</code> is the Vertex inputs.</li>
+<li><a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/graph/rnn/DuplicateToTimeSeriesVertex.html" target="_blank">DuplicateToTimeSeriesVertex</a> is a vertex that goes from 2d activations to a 3d time series activations, by means of duplication. That is, given a 2d input with shape <code>[numExamples,nIn]</code> duplicate each row to give output of <code>[numExamples,nIn,timeSeriesLength]</code>, where the activations are the same for all time steps. This method is used for example in sequence to sequence models. <strong>Note that</strong> the length of the output time series (number of time steps) is determined by means of referencing one of the inputs in the ComputationGraph, that is, since the length of the time series may differ at runtime, we generally want the number of time steps to match some other input; here, we are specifying the length of the output time series to be the same as one of the input time series. <code>&quot;decoderInput&quot;</code> is the name of the input in the ComputationGraph network to use, to determine how long the output time series should be. This input should exist, and be a time series input.</li>
+<li><a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/graph/MergeVertex.html" target="_blank">MergeVertex</a> is used to combine the activations of two or more layers/GraphVertex by means of concatenation/merging. Here <code>&quot;decoderInput&quot;</code> and <code>&quot;dup&quot;</code> is the two layers to be merged, <code>&quot;merge&quot;</code> is the name of this Vertex Layer. Exactly how this is done depends on the type of input:
+
+<ul>
+<li>For 2d (feed forward layer) inputs: <strong>MergeVertex([numExamples, layerSize1], [numExamples, layerSize2])-&gt;[numExamples, layerSize1+layerSize2]</strong>.</li>
+<li>For 3d (time series) inputs: <strong>MergeVertex([numExamples, layerSize1, timeSeriesLength], [numExamples, layerSize2, timeSeriesLength])-&gt;[numExamples, layerSize1+layerSize2, timeSeriesLength]</strong>.</li>
+<li>For 4d (convolutional) inputs: <strong>MergeVertex([numExamples, depth1, width, height], [numExamples, depth2, width, height])-&gt;[numExamples, depth1+depth2, width, height]</strong>.</li>
+</ul></li>
+</ul>
+
+<p>So, generally, the LastTimeStepVertex extract out the last time step of activations from Encoder Layer as tge <code>&quot;thoughtVector&quot;</code>, then DuplicateToTimeSeriesVertex duplicates the <code>&quot;thoughtVector&quot;</code> according to the time series length of <code>&quot;decoderInput&quot;</code>, finally, MergeVertex concatenate the duplicated <code>&quot;thoughtVector&quot;</code> and <code>&quot;decoderInput&quot;</code> through the method for 3d (time series) inputs. Then using this <code>&quot;merge&quot;</code> result as the input of Decoder Layer.</p>
+
+<p><strong>Add Decoder (LSTM) Layer</strong>:</p>
+
+<pre><code class="language-java">// following previous codes
+.addLayer(&quot;decoder&quot;,
+        new GravesLSTM.Builder()
+                .nIn(dict.size() + HIDDEN_LAYER_WIDTH)
+                .nOut(HIDDEN_LAYER_WIDTH)
+                .activation(Activation.TANH)
+                .gateActivationFunction(Activation.HARDSIGMOID) // always be a (hard) sigmoid function
+                .build(),
+        &quot;merge&quot;)
+</code></pre>
+
+<p>The structure of Decoder Layer is similar to the Encoder Layer. One thing needs to mention here is that the <code>nIn</code> (input size) is <code>dict.size()+HIDDEN_LAYER_WIDTH</code>, since its input is from the <code>&quot;merge&quot;</code> Vertex Layer, which concatenates the <code>&quot;thoughtVector&quot;</code> and <code>&quot;decoderInput&quot;</code>.</p>
+
+<p><strong>Add Output Layer and Further Settings</strong>:</p>
+
+<pre><code class="language-java">// following previous codes
+.addLayer(&quot;output&quot;,
+        new RnnOutputLayer.Builder()
+                .nIn(HIDDEN_LAYER_WIDTH)
+                .nOut(dict.size())
+                .activation(Activation.SOFTMAX)
+                .lossFunction(LossFunctions.LossFunction.MCXENT) // multi-class cross entropy
+                .build(),
+        &quot;decoder&quot;)
+.setOutputs(&quot;output&quot;)
+.backpropType(BackpropType.Standard)
+.tBPTTForwardLength(TBPTT_SIZE)
+.tBPTTBackwardLength(TBPTT_SIZE)
+.pretrain(false)
+.backprop(true);
+</code></pre>
+
+<p>The last layer is <a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/layers/RnnOutputLayer.html" target="_blank">RnnOutputLayer</a>, which is a type of layer used as the final layer with many recurrent neural network systems (for both regression and classification tasks). RnnOutputLayer <a href="https://deeplearning4j.org/usingrnns#rnnoutputlayer" target="_blank">handles</a> things like score calculation, and error calculation (of prediction vs. actual) given a loss function etc. Functionally, it is very similar to the ‘standard’ OutputLayer class (which is used with feed-forward networks); however it both outputs (and expects as labels/targets) 3d time series data sets. After configuring the last layer, we still need to deal with several proper settings to make the whole computation graph works, like setting backpropagation as <code>.backpropType(BackpropType.Standard)</code>, setting BPTT forward and backward length as <code>.tBPTTForwardLength(TBPTT_SIZE)</code> and <code>.tBPTTBackwardLength(TBPTT_SIZE)</code> and etc.</p>
+
+<p><strong>Build and Initialize ComputetionGraph</strong>:</p>
+
+<pre><code class="language-java">ComputationGraph net = new ComputationGraph(graphBuilder.build());
+net.init();
+</code></pre>
+
+<p>Finally, after configuring all the required settings, we can build the Sequence to Sequence Computation Graph and initialize it. Above is the general graph of building a simple version of Sequence to Sequence model for consersation tasks. More related information are available in <a href="https://deeplearning4j.org/usingrnns" target="_blank">DL4J Guidance</a> and <a href="https://github.com/deeplearning4j/dl4j-examples" target="_blank">DL4J Examples</a>.</p>
+
+<p>Full Codes are available in my GitHub repository: <a href="https://github.com/IsaacChanghau/NeuralNetworksLite/tree/master/src/main/java/com/isaac/dl4j/encdeclstm" target="_blank">EncDecLSTM</a>, and you can also get the original DL4J implementation of <code>encdec</code> based on Seq2Seq as well as <em>Python</em> and <em>Lua</em> implementation codes in the Resources at the end of this article.</p>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://arxiv.org/abs/1409.3215" target="_blank">Sequence to Sequence Learning with Neural Networks</a></li>
+<li><a href="https://arxiv.org/abs/1506.05869" target="_blank">A Neural Conversational Model</a></li>
+<li><a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank">The Unreasonable Effectiveness of Recurrent Neural Networks</a></li>
+<li><a href="https://deeplearning4j.org/usingrnns#recurrent-neural-networks-in-dl4j" target="_blank">Recurrent Neural Networks in DL4J</a></li>
+<li><a href="https://deeplearning4j.org/doc/org/deeplearning4j/nn/conf/ComputationGraphConfiguration.GraphBuilder.html" target="_blank">Class ComputationGraphConfiguration.GraphBuilder &ndash; DL4J API</a></li>
+<li><a href="https://en.wikibooks.org/wiki/Artificial_Intelligence/Search/Heuristic_search/Beam_search" target="_blank">Artificial Intelligence/Search/Heuristic search/Beam search</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Beam_search" target="_blank">Beam search</a></li>
+<li><a href="https://stackoverflow.com/questions/22273119/beam-search-algorithm-how-does-it-work" target="_blank">Beam Search Algorithm, how does it work?</a></li>
+</ul>
+
+<h1 id="resources">Resources</h1>
+
+<p><strong>Python</strong>:<a href="https://github.com/JayParks/tf-seq2seq" target="_blank">JayParks/tf-seq2seq</a>, <a href="https://github.com/farizrahman4u/seq2seq" target="_blank">farizrahman4u/seq2seq</a><br />
+<strong>Java</strong>: <a href="https://github.com/deeplearning4j/dl4j-examples/tree/master/dl4j-examples/src/main/java/org/deeplearning4j/examples/recurrent/encdec" target="_blank">dl4j-examples-encdec</a>, <a href="https://github.com/deeplearning4j/dl4j-examples/tree/master/dl4j-examples/src/main/java/org/deeplearning4j/examples/recurrent/character" target="_blank">dl4j-examples-character</a><br />
+<strong>Lua</strong>: <a href="https://github.com/harvardnlp/seq2seq-attn" target="_blank">harvardnlp/seq2seq-attn</a>, <a href="http://nlp.seas.harvard.edu/code/" target="_blank">harvardnlp</a><br />
+<strong>DataSets</strong>: <a href="https://github.com/rkadlec/ubuntu-ranking-dataset-creator" target="_blank">IT helpdesk troubleshooting dataset</a>, <a href="https://github.com/Conchylicultor/DeepQA/tree/master/data/opensubs" target="_blank">movie transcript dataset</a>, <a href="https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html" target="_blank">Cornell Movie Dialogs Corpus</a></p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/natural-language-processing">natural-language-processing</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/deep-learning">deep-learning</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/lstm">lstm</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/gru">gru</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/java">java</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/seq2seq">seq2seq</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/stock_price_predict/">Plain Stock Price Prediction via LSTM</a></li>
+        
+        <li><a href="/post/lstm-gru-formula/">LSTM and GRU -- Formula Summary</a></li>
+        
+        <li><a href="/post/neural_responding_machine/">Neural Responding Machine for Short-Text Conversation -- Summary</a></li>
+        
+        <li><a href="/post/understand_lstm/">Understanding LSTM Networks</a></li>
+        
+        <li><a href="/post/word2vecf/">Word2Vecf -- Dependency-Based Word Embeddings and Lexical Substitute</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017-2018 &middot; 
+
+      <strong>Isaac Changhau (Zhang Hao)</strong>
+      
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          tex2jax: { 
+            inlineMath: [['$','$'], ['\\(','\\)']] 
+          } 
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+    
+    
+    
+
+  </body>
+</html>
+
