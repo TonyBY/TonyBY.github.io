@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Isaac Changhau on Isaac Changhau</title>
-    <link>https://isaacchanghau.github.io/</link>
+    <link>https://TonyBY.github.io/</link>
     <description>Recent content in Isaac Changhau on Isaac Changhau</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -11,37 +11,37 @@
     
     <item>
       <title>Dual Adversarial Neural Transfer for Low-resource Named Entity Recognition</title>
-      <link>https://isaacchanghau.github.io/publication/datnet/</link>
+      <link>https://TonyBY.github.io/publication/datnet/</link>
       <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://isaacchanghau.github.io/publication/datnet/</guid>
+      <guid>https://TonyBY.github.io/publication/datnet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>RoSeq: Robust Sequence  Labeling</title>
-      <link>https://isaacchanghau.github.io/publication/roseq/</link>
+      <link>https://TonyBY.github.io/publication/roseq/</link>
       <pubDate>Sat, 06 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://isaacchanghau.github.io/publication/roseq/</guid>
+      <guid>https://TonyBY.github.io/publication/roseq/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Learning with Annotation of Various Degrees</title>
-      <link>https://isaacchanghau.github.io/publication/lavd/</link>
+      <link>https://TonyBY.github.io/publication/lavd/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://isaacchanghau.github.io/publication/lavd/</guid>
+      <guid>https://TonyBY.github.io/publication/lavd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PrimeNet: Human-inspired Framework for Commonsense Knowledge Representation and Reasoning</title>
-      <link>https://isaacchanghau.github.io/project/primenet/</link>
+      <link>https://TonyBY.github.io/project/primenet/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0800</pubDate>
       
-      <guid>https://isaacchanghau.github.io/project/primenet/</guid>
+      <guid>https://TonyBY.github.io/project/primenet/</guid>
       <description>&lt;p&gt;Commonsense knowledge bases (KBs) are needed for inference in AI, in contexts such as natural language understanding, image and visual scene understanding, decision-making, etc. For tasks involving real-time interaction and decision-making, especially, the speed of such inference can be critical.&lt;/p&gt;
 
 &lt;p&gt;The goal of PrimeNet is to set out a framework for a commonsense KB that allows for efficient processing, in order to meet the demands of commonsense reasoning and, hence, support intelligent machine performance in real-world tasks. At the same time, the PrimeNet still provide access to a vast knowledge resource of concepts involving specific object instances.&lt;/p&gt;
@@ -52,19 +52,19 @@
     
     <item>
       <title>Towards Verifying Semantic Roles Co-occurrence</title>
-      <link>https://isaacchanghau.github.io/publication/co-occurrence/</link>
+      <link>https://TonyBY.github.io/publication/co-occurrence/</link>
       <pubDate>Fri, 05 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://isaacchanghau.github.io/publication/co-occurrence/</guid>
+      <guid>https://TonyBY.github.io/publication/co-occurrence/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Variational Autoencoders Explained</title>
-      <link>https://isaacchanghau.github.io/post/vae_explained/</link>
+      <link>https://TonyBY.github.io/post/vae_explained/</link>
       <pubDate>Fri, 27 Jul 2018 14:20:36 +0800</pubDate>
       
-      <guid>https://isaacchanghau.github.io/post/vae_explained/</guid>
+      <guid>https://TonyBY.github.io/post/vae_explained/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This blog article is borrowed from &lt;a href=&#34;http://kvfrans.com/variational-autoencoders-explained/&#34; target=&#34;_blank&#34;&gt;kevin frans blog · Variational Autoencoders Explained&lt;/a&gt;.&lt;/p&gt;
@@ -86,13 +86,13 @@
 &lt;p&gt;An common way of describing a neural network is an approximation of some function we wish to model. However, they can also be thought of as a data structure that holds information.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s say we had a network comprised of a few &lt;a href=&#34;http://kvfrans.com/generative-adversial-networks-explained/&#34; target=&#34;_blank&#34;&gt;deconvolution layers&lt;/a&gt;. We set the input to always be a vector of ones. Then, we can train the network to reduce the mean squared error between itself and one target image. The &amp;ldquo;data&amp;rdquo; for that image is now contained within the network&amp;rsquo;s parameters.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/deeplearning/vae/1.jpg&#34; alt=&#34;1.jpg&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/deeplearning/vae/1.jpg&#34; alt=&#34;1.jpg&#34; /&gt;
 Now, let&amp;rsquo;s try it on multiple images. Instead of a vector of ones, we&amp;rsquo;ll use a one-hot vector for the input. &lt;code&gt;[1, 0, 0, 0]&lt;/code&gt; could mean a cat image, while &lt;code&gt;[0, 1, 0, 0]&lt;/code&gt; could mean a dog. This works, but we can only store up to 4 images. Using a longer vector means adding in more and more parameters so the network can memorize the different images.&lt;/p&gt;
 
 &lt;p&gt;To fix this, we use a vector of real numbers instead of a one-hot vector. We can think of this as a code for an image, which is where the terms encode/decode come from. For example, &lt;code&gt;[3.3, 4.5, 2.1, 9.8]&lt;/code&gt; could represent the cat image, while &lt;code&gt;[3.4, 2.1, 6.7, 4.2]&lt;/code&gt; could represent the dog. This initial vector is known as our latent variables.&lt;/p&gt;
 
 &lt;p&gt;Choosing the latent variables randomly, like I did above, is obviously a bad idea. In an autoencoder, we add in another component that takes in the original images and encodes them into vectors for us. The deconvolutional layers then &amp;ldquo;decode&amp;rdquo; the vectors back to the original images.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/deeplearning/vae/2.jpg&#34; alt=&#34;1.jpg&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/deeplearning/vae/2.jpg&#34; alt=&#34;1.jpg&#34; /&gt;
 We&amp;rsquo;ve finally reached a stage where our model has some hint of a practical use. We can train our network on as many images as we want. If we save the encoded vector of an image, we can reconstruct it later by passing it into the decoder portion. What we have is the standard autoencoder.&lt;/p&gt;
 
 &lt;p&gt;However, we&amp;rsquo;re trying to build a generative model here, not just a fuzzy data structure that can &amp;ldquo;memorize&amp;rdquo; images. We can&amp;rsquo;t generate anything yet, since we don&amp;rsquo;t know how to create latent vectors other than encoding them from images.&lt;/p&gt;
@@ -111,7 +111,7 @@ loss = generation_loss + latent_loss
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In order to optimize the KL divergence, we need to apply a simple reparameterization trick: instead of the encoder generating a vector of real values, it will generate a vector of means and a vector of standard deviations.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/deeplearning/vae/3.jpg&#34; alt=&#34;3.jpg&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/deeplearning/vae/3.jpg&#34; alt=&#34;3.jpg&#34; /&gt;
 This lets us calculate KL divergence as follows:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# z_mean and z_stddev are two vectors generated by encoder network
@@ -141,7 +141,7 @@ sampled_z = z_mean + (z_stddev * samples)
 &lt;h3 id=&#34;how-well-does-it-work&#34;&gt;How well does it work?&lt;/h3&gt;
 
 &lt;p&gt;I ran a few tests to see how well a variational autoencoder would work on the MNIST handwriting dataset.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/deeplearning/vae/4.jpg&#34; alt=&#34;4.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/deeplearning/vae/4.jpg&#34; alt=&#34;4.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;left: 1st epoch, middle: 9th epoch, right: original&lt;/p&gt;
@@ -161,19 +161,19 @@ sampled_z = z_mean + (z_stddev * samples)
     
     <item>
       <title>Action Hierarchy Extraction and its Application</title>
-      <link>https://isaacchanghau.github.io/publication/action-hierarchy/</link>
+      <link>https://TonyBY.github.io/publication/action-hierarchy/</link>
       <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://isaacchanghau.github.io/publication/action-hierarchy/</guid>
+      <guid>https://TonyBY.github.io/publication/action-hierarchy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Behavioural Understanding and Narrative Descriptions from Videos</title>
-      <link>https://isaacchanghau.github.io/project/maracana/</link>
+      <link>https://TonyBY.github.io/project/maracana/</link>
       <pubDate>Fri, 20 Apr 2018 00:00:00 +0800</pubDate>
       
-      <guid>https://isaacchanghau.github.io/project/maracana/</guid>
+      <guid>https://TonyBY.github.io/project/maracana/</guid>
       <description>&lt;p&gt;Current video surveillance systems still require users to monitor an array of video streams from a myraid of cameras to pick out potential threats and other events of interest. Attemps to automate the process typically rely on hand-crafted rules which cannot handle dynamic, uncertain and comples siturations requiring new hand-crafted rules to address each and every new situation. In this project, we apply and extend behavioural learning and commonsense reasoning to video data analysis, which allow video surveillance systems to learn new behaviours without the need to hand craft rules, and to use the learnt behaviours to perform behavioural reasoning in order to predict downstream behaviours and recommend courses of action, and to generate narrative descriptions of visual scenes containing previously learnt behaviours.&lt;/p&gt;
 
 &lt;p&gt;The objective of the project, named MARACANA, is to develop technology components that can analyze and narrate real world events captured in video, and demonstrate these capabilities in a static surveillance scenario. The technology will provide the human user with a rapid understanding of the happenings in an environment. Generally, we focus on addressing the following issues:&lt;/p&gt;
@@ -185,16 +185,16 @@ sampled_z = z_mean + (z_stddev * samples)
 &lt;/ol&gt;
 
 &lt;p&gt;In order to tackle those problems, several technology components, including &lt;strong&gt;event/activity recognition and tracking&lt;/strong&gt;, &lt;strong&gt;behaviour extraction&lt;/strong&gt;, &lt;strong&gt;behavioural (causal) learning&lt;/strong&gt;, &lt;strong&gt;commonsense reasoning/learning&lt;/strong&gt;, &lt;strong&gt;behavioural (causal) reasoning&lt;/strong&gt; and &lt;strong&gt;narrative scene description&lt;/strong&gt;, are developed and then integrated to form the whole system. The general architecture is shown in the figure below, it briefly illustrates the overall workflow for training and opration processes.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/surface/maracana.png&#34; alt=&#34;Maracana&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/surface/maracana.png&#34; alt=&#34;Maracana&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Introduction of TensorFlow Dataset API</title>
-      <link>https://isaacchanghau.github.io/post/tensorflow_dataset_api/</link>
+      <link>https://TonyBY.github.io/post/tensorflow_dataset_api/</link>
       <pubDate>Wed, 21 Feb 2018 00:00:00 +0800</pubDate>
       
-      <guid>https://isaacchanghau.github.io/post/tensorflow_dataset_api/</guid>
+      <guid>https://TonyBY.github.io/post/tensorflow_dataset_api/</guid>
       <description>
 
 &lt;p&gt;Reprinted from &lt;a href=&#34;https://towardsdatascience.com/how-to-use-dataset-in-tensorflow-c758ef9e4428&#34; target=&#34;_blank&#34;&gt;Francesco Zuppichini·How to use Dataset in TensorFlow&lt;/a&gt;.&lt;/p&gt;
@@ -618,30 +618,30 @@ Test Loss: 0.115165
     
     <item>
       <title>Neural Sequence Labeling</title>
-      <link>https://isaacchanghau.github.io/project/neural_seq_labeling/</link>
+      <link>https://TonyBY.github.io/project/neural_seq_labeling/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0800</pubDate>
       
-      <guid>https://isaacchanghau.github.io/project/neural_seq_labeling/</guid>
+      <guid>https://TonyBY.github.io/project/neural_seq_labeling/</guid>
       <description>&lt;p&gt;Sequence labeling is a type of pattern recognition task that involves the algorithmic assignment of a categorical label to each member of a sequence of observed values. It includes but not limit to Part Of Speech (POS) tagging, Chunking, Named Entity Recognition (NER), Semantic Role Labeling (SRL) and Punctuation Restoration. Those tasks can be treated as the pre-processing for various natural language processing tasks, which are capable of providing aplenty syntatic or semantic information and greatly improving the performance of subsequent tasks.&lt;/p&gt;
 
 &lt;p&gt;In this project, we investigated a unified neural network architecture and learning algorithm that can be applied to various sequence labeling tasks including Part of Speech (POS) Tagging, Chunking, Named Entity Recognition (NER) and so on. The aim of this project is to build an effective and versatile module that is able to learn and performance well among various seqeuence labeling datasets without exploiting man-made input features, carefully tuning parameters or setting up different model structures. This versatility is achieved by trying to avoid task-specific engineering and therefore disregarding a lot of prior knowledge.&lt;/p&gt;
 
 &lt;p&gt;We did experiments on different publicly available sequence labeling datasets, like &lt;a href=&#34;https://github.com/teropa/nlp/tree/master/resources/corpora/conll2002&#34; target=&#34;_blank&#34;&gt;CoNLL2002 shared task dataset&lt;/a&gt;, &lt;a href=&#34;https://cogcomp.org/page/resource_view/81&#34; target=&#34;_blank&#34;&gt;CoNLL2003 shared task dataset&lt;/a&gt;, &lt;a href=&#34;http://hltc.cs.ust.hk/iwslt/index.php/evaluation-campaign/ted-task.html#MTtrack&#34; target=&#34;_blank&#34;&gt;IWSLT dataset&lt;/a&gt;, &lt;a href=&#34;https://github.com/EuropeanaNewspapers/ner-corpora&#34; target=&#34;_blank&#34;&gt;Europeana Newspapers dataset&lt;/a&gt; and etc., which include POS tagging, chunking, NER and Punctuation Restoration tasks, and achieve convincing results, which are comparable or better than the the state-of-the-arts with carefully hyperparameters tuning and configuration modifying.&lt;/p&gt;
 
-&lt;p&gt;Generally, our model follows the structure of &lt;a href=&#34;https://arxiv.org/pdf/1603.01354.pdf&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;BiRNN-CNNs-CRF&lt;/code&gt;&lt;/a&gt; with some modifications, as well as additional and optional modules, such as &lt;code&gt;highway network&lt;/code&gt;, &lt;code&gt;attention mechanism&lt;/code&gt; and &lt;code&gt;residual connections&lt;/code&gt;. For example, we use the four layers structure for Punctuation Restoration task, which contains character-level CNN and word embeddings with highway layer for optimization (&lt;code&gt;1st layer&lt;/code&gt;), 4-layer &lt;a href=&#34;https://github.com/IsaacChanghau/Dense_BiLSTM&#34; target=&#34;_blank&#34;&gt;densely conntected bidirectional LSTM&lt;/a&gt; network to encode past and future contextual information for feature representations (&lt;code&gt;2nd layer&lt;/code&gt;), unidirectional LSTM layer with &lt;a href=&#34;https://arxiv.org/pdf/1409.0473.pdf&#34; target=&#34;_blank&#34;&gt;attention mechanism&lt;/a&gt; to learn more informative and contextual feature representations (&lt;code&gt;3rd layer&lt;/code&gt;) and a &lt;a href=&#34;http://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/&#34; target=&#34;_blank&#34;&gt;conditional random field (CRF) layer&lt;/a&gt; to decode the outputs (&lt;code&gt;4th layer&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Generally, our model follows the structure of &lt;a href=&#34;https://arxiv.org/pdf/1603.01354.pdf&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;BiRNN-CNNs-CRF&lt;/code&gt;&lt;/a&gt; with some modifications, as well as additional and optional modules, such as &lt;code&gt;highway network&lt;/code&gt;, &lt;code&gt;attention mechanism&lt;/code&gt; and &lt;code&gt;residual connections&lt;/code&gt;. For example, we use the four layers structure for Punctuation Restoration task, which contains character-level CNN and word embeddings with highway layer for optimization (&lt;code&gt;1st layer&lt;/code&gt;), 4-layer &lt;a href=&#34;https://github.com/TonyBY/Dense_BiLSTM&#34; target=&#34;_blank&#34;&gt;densely conntected bidirectional LSTM&lt;/a&gt; network to encode past and future contextual information for feature representations (&lt;code&gt;2nd layer&lt;/code&gt;), unidirectional LSTM layer with &lt;a href=&#34;https://arxiv.org/pdf/1409.0473.pdf&#34; target=&#34;_blank&#34;&gt;attention mechanism&lt;/a&gt; to learn more informative and contextual feature representations (&lt;code&gt;3rd layer&lt;/code&gt;) and a &lt;a href=&#34;http://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/&#34; target=&#34;_blank&#34;&gt;conditional random field (CRF) layer&lt;/a&gt; to decode the outputs (&lt;code&gt;4th layer&lt;/code&gt;).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://isaacchanghau.github.io/img/surface/punctuation.png&#34; alt=&#34;punctuation restoration model&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://TonyBY.github.io/img/surface/punctuation.png&#34; alt=&#34;punctuation restoration model&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Details and source codes&lt;/strong&gt;: &lt;a href=&#34;https://github.com/IsaacChanghau/neural_sequence_labeling&#34; target=&#34;_blank&#34;&gt;IsaacChanghau/neural_sequence_labeling&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Details and source codes&lt;/strong&gt;: &lt;a href=&#34;https://github.com/TonyBY/neural_sequence_labeling&#34; target=&#34;_blank&#34;&gt;TonyBY/neural_sequence_labeling&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>TensorFlow Updates Multiple Tensors Using Scan</title>
-      <link>https://isaacchanghau.github.io/post/tensorflow_scan/</link>
+      <link>https://TonyBY.github.io/post/tensorflow_scan/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0800</pubDate>
       
-      <guid>https://isaacchanghau.github.io/post/tensorflow_scan/</guid>
+      <guid>https://TonyBY.github.io/post/tensorflow_scan/</guid>
       <description>&lt;p&gt;This post is reprinted from &lt;a href=&#34;https://wcarvalho.github.io/tutorial/2017/06/30/tf_scan/&#34; target=&#34;_blank&#34;&gt;Wilka Carvalho · How to update multiple tensors using a single value with tf.scan&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/wcarvalho/jupyter_notebooks/blob/master/tf.scan/Tensorflow%20Scan.ipynb&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Corresponding Jupyter Notebook&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
@@ -755,10 +755,10 @@ So this ws more difficult to implement than I expected. I had to get all the ing
     
     <item>
       <title>Useful Tricks for Operating Mac OS and Linux (Ubuntu)</title>
-      <link>https://isaacchanghau.github.io/post/useful_commands/</link>
+      <link>https://TonyBY.github.io/post/useful_commands/</link>
       <pubDate>Sun, 28 Jan 2018 00:00:00 +0800</pubDate>
       
-      <guid>https://isaacchanghau.github.io/post/useful_commands/</guid>
+      <guid>https://TonyBY.github.io/post/useful_commands/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;Useful commands and tricks to raise efficiency under Mac OS and Linux&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;keep updating!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
@@ -900,19 +900,19 @@ $ sudo rm -rf /var/db/receipts/com.mysql.*
     
     <item>
       <title>WordNet Troponymy and Extraction of Manner-Result Relations</title>
-      <link>https://isaacchanghau.github.io/publication/wordnet/</link>
+      <link>https://TonyBY.github.io/publication/wordnet/</link>
       <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://isaacchanghau.github.io/publication/wordnet/</guid>
+      <guid>https://TonyBY.github.io/publication/wordnet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PTransE -- Modeling Relation Paths for Representation Learning of Knowledge Bases</title>
-      <link>https://isaacchanghau.github.io/post/ptranse/</link>
+      <link>https://TonyBY.github.io/post/ptranse/</link>
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0800</pubDate>
       
-      <guid>https://isaacchanghau.github.io/post/ptranse/</guid>
+      <guid>https://TonyBY.github.io/post/ptranse/</guid>
       <description>&lt;p&gt;It is a summary of the paper &lt;strong&gt;Modeling Relation Paths for Representation Learning of Knowledge Bases&lt;/strong&gt; (&lt;a href=&#34;https://arxiv.org/pdf/1506.00379.pdf&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;PTransE&lt;/strong&gt;&lt;/a&gt;). PTransE is a novel extension of &lt;a href=&#34;https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf&#34; target=&#34;_blank&#34;&gt;TransE&lt;/a&gt;, which is a path-based representation learning model, to model relation paths for representation learning of knowledge bases. The authors argue that multiple-step relation paths also contain rich inference patterns between entities, thus, PTransE also considers relation paths as translations between entities for representation learning, and addresses two key challenges:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -925,7 +925,7 @@ $$
 \mathbf{h}\xrightarrow{BornInCity}\mathbf{e}_{1}\xrightarrow{CityInState}\mathbf{e}_{2}\xrightarrow{StateInCountry}\mathbf{t}
 $$
 which indicates the relation &lt;code&gt;Nationality&lt;/code&gt; between $\mathbf{h}$ and $\mathbf{t}$, i.e., $(\mathbf{h},\textrm{Nationality},\mathbf{t})$. However, in PTransE, in addition to direct connected relational facts, the authors also build triples from knowledge bases using entity pairs connected with relation paths. As shown below
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/ptranse-graph.png&#34; alt=&#34;PTransE Graph&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/ptranse-graph.png&#34; alt=&#34;PTransE Graph&#34; /&gt;
 TransE only considers direct relations between entities and optimizes the objective $h+r\approx t$, while PTransE generalizes TransE by regarding multiple-step relation paths as connections between entities, where $\circ$ is an operation to join the relations $r_{1}$ and $r_{2}$ together into a unified relation path representation.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;PTransE&lt;/strong&gt;:&lt;br /&gt;
@@ -954,7 +954,7 @@ where $S_{i}(n,\cdot)$ is the direct successors of $n\in S_{i-1}$ following the 
 
 &lt;p&gt;&lt;strong&gt;Relation Path Representation&lt;/strong&gt;:&lt;br /&gt;
 For &lt;strong&gt;relation path representation&lt;/strong&gt;, the authors argue that the semantic meaning of a relation path depends on all relations in this path, thus, given a relation path $p=(r_{1},\dots,r_{l})$, they define and learn a binary (composition) operation function ($\circ$) to obtain the path embedding $p$ by recursively composing multiple relations. Formally, for a path $p=(r_{1},\dots,r_{l})$, the path embeddingas is obtained by $p=r_{1}\circ\cdot\cdot\cdot\circ r_{l}$. As shown below
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/path-relation.png&#34; alt=&#34;Relation Path&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/path-relation.png&#34; alt=&#34;Relation Path&#34; /&gt;
 The authors propose three types of composition operation:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1008,10 +1008,10 @@ This process normally depends on the scale of knowledge database, generally, 3-s
     
     <item>
       <title>TransX: Embedding Entities and Relationships of Multi-relational Data</title>
-      <link>https://isaacchanghau.github.io/post/transx/</link>
+      <link>https://TonyBY.github.io/post/transx/</link>
       <pubDate>Thu, 14 Sep 2017 00:00:00 +0800</pubDate>
       
-      <guid>https://isaacchanghau.github.io/post/transx/</guid>
+      <guid>https://TonyBY.github.io/post/transx/</guid>
       <description>
 
 &lt;p&gt;It is a summary of several papers about embedding entities and relationships of multi-relational knowledge database, while each paper contains one kind of specific method. Generally, the set of methods are called TransX. Here, I only describe the general idea and mathematical process of each method, for more information about those methods in parameters setting, experiment results and discussion, you can directly read the original papers through the links I provide.&lt;/p&gt;
@@ -1029,15 +1029,15 @@ This process normally depends on the scale of knowledge database, generally, 3-s
 &lt;/ul&gt;
 
 &lt;p&gt;Actually, there are still a lot of different relational knowledge database exist, here we only show some representative databases above. Before we discuss those algorithms, let&amp;rsquo;s see some examples of multi-relational knowledge database to get the idea about how the database looks like.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/conceptnet-wordnet.png&#34; alt=&#34;conceptnet and wordnet&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/conceptnet-wordnet.png&#34; alt=&#34;conceptnet and wordnet&#34; /&gt;
 In the graph above, I show an example of two knowledge DB. For ConceptNet, each entity (or, node) is a concept, and entities are connected to each other through some specific relations, like, &lt;code&gt;oven--UsedFor--&amp;gt;cook&lt;/code&gt;, &lt;code&gt;cake--IsA--&amp;gt;dessert&lt;/code&gt;, here &lt;code&gt;oven&lt;/code&gt;, &lt;code&gt;cook&lt;/code&gt;, &lt;code&gt;cake&lt;/code&gt; and &lt;code&gt;dessert&lt;/code&gt; are entities, while &lt;code&gt;UsedFor&lt;/code&gt; and &lt;code&gt;IsA&lt;/code&gt; are relations. For WordNet, there are two different entities, one is called Synset (blue node), another is Word (green one). Each synset in WordNet is connected with other synsets through &lt;strong&gt;hypernym&lt;/strong&gt; and &lt;strong&gt;hyponym&lt;/strong&gt; relations, while Word only connect to its own synset and has some links with other words in the same synset, but never connected to words outside.&lt;/p&gt;
 
 &lt;p&gt;Although there are amount of relations and connections within a knowledge database, generally, all of the relations are in the several certain forms, like &lt;strong&gt;one-to-many relation&lt;/strong&gt;, &lt;strong&gt;many-to-one relation&lt;/strong&gt;, &lt;strong&gt;one-to-one relation&lt;/strong&gt;, &lt;strong&gt;co-relation&lt;/strong&gt;, &lt;strong&gt;reflexive relation&lt;/strong&gt; and so on.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/relation-forms.png&#34; alt=&#34;relation-forms&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/relation-forms.png&#34; alt=&#34;relation-forms&#34; /&gt;
 For example, one-to-many relation, which means one entity with one relation, links to several different entities, say, &lt;code&gt;apple--is_a--&amp;gt;fruit&lt;/code&gt;, &lt;code&gt;apple--is_a--&amp;gt;computer_brand&lt;/code&gt;, &lt;code&gt;apple--is_a--&amp;gt;computer_manufacturer&lt;/code&gt; and so on. For many-to-one relation, it is similar. However, the reflexive relation is unique, since two entities connect to each other with same relation, like &lt;code&gt;plate--is_a-&amp;gt;dish&lt;/code&gt;, while &lt;code&gt;dish--is_a--&amp;gt;plate&lt;/code&gt; too.&lt;/p&gt;
 
 &lt;p&gt;Dispite the scale of relational knowledge databases and how many different relation forms they have, all of them are able to be decomposed to the &lt;strong&gt;basic component&lt;/strong&gt; (triple), i.e., an entity connect to another entity with a certain relation, as shown below
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/basic-component.png&#34; alt=&#34;basic-component&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/basic-component.png&#34; alt=&#34;basic-component&#34; /&gt;
 In order to convert those relational data into embeddings, which are convenient and easy to access via statistical approach, researchers proposed several methods to handle this issue, like &lt;a href=&#34;http://machinelearning.wustl.edu/mlpapers/paper_files/ICML2011Nickel_438.pdf&#34; target=&#34;_blank&#34;&gt;RESCAL&lt;/a&gt;, &lt;a href=&#34;https://pdfs.semanticscholar.org/057a/c29c84084a576da56247bdfd63bf17b5a891.pdf&#34; target=&#34;_blank&#34;&gt;SE&lt;/a&gt;, &lt;a href=&#34;http://www.thespermwhale.com/jaseweston/papers/ebrm_mlj.pdf&#34; target=&#34;_blank&#34;&gt;SME(linear)&lt;/a&gt;, &lt;a href=&#34;http://www.thespermwhale.com/jaseweston/papers/ebrm_mlj.pdf&#34; target=&#34;_blank&#34;&gt;SME(bilinear)&lt;/a&gt;, &lt;a href=&#34;https://hal.inria.fr/hal-00776335/document&#34; target=&#34;_blank&#34;&gt;LFM&lt;/a&gt;, &lt;a href=&#34;https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf&#34; target=&#34;_blank&#34;&gt;TransE&lt;/a&gt;, &lt;a href=&#34;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.486.2800&amp;amp;rep=rep1&amp;amp;type=pdf&#34; target=&#34;_blank&#34;&gt;TransH&lt;/a&gt;, &lt;a href=&#34;https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9571/9523&#34; target=&#34;_blank&#34;&gt;TransR&lt;/a&gt;, &lt;a href=&#34;http://www.aclweb.org/anthology/P15-1067&#34; target=&#34;_blank&#34;&gt;TransD&lt;/a&gt; and so on, while the TransE, TransH, TransR, TransD are a group of similar methods, thus, we put them together and named as &lt;strong&gt;TransX&lt;/strong&gt;. So, TransX is a set of methods to create embeddings for entities and relations while remembering their connection information.&lt;/p&gt;
 
 &lt;h1 id=&#34;transe&#34;&gt;TransE&lt;/h1&gt;
@@ -1058,7 +1058,7 @@ In order to convert those relational data into embeddings, which are convenient 
 Given a training set $S$ of triplets $(h,r,t)$ composed of two entities $h,t\in E$ (the set of entities) and a relationship $r\in R$ (the set of relationships), TransE learns vector embeddings of the entities and the relationships. The embeddings take values in $\mathbb{R}^{k}$ ($k$ is a model hyperparameter) and are denoted with the same letters, in boldface characters.&lt;/p&gt;
 
 &lt;p&gt;The basic idea behind the model is that the functional relation induced by the $r$-labeled edges corresponds to a translation of the embeddings, i.e. &lt;strong&gt;$h+r\approx t$ when $(h,r,t)$ holds ($t$ should be a nearest neighbor of $h+r$), while $h+r$ should be far away from $t$ otherwise&lt;/strong&gt;, as the graph below shows. Following an energy-based framework, the energy of a triplet is equal to $d(h+r,t)$ for some dissimilarity measure $d$, which we take to be either the $L_{1}$ or the $L_{2}$-norm.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transe-translation-graph.png&#34; alt=&#34;TransE Translation&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/transe-translation-graph.png&#34; alt=&#34;TransE Translation&#34; /&gt;
 To learn such embeddings, we minimize a margin-based ranking criterion over the training set:
 $$
 \mathcal{L}=\sum_{(h,r,t)\in S}\sum_{(h&amp;rsquo;,r,t&amp;rsquo;)\in S&amp;rsquo;_{(h,r,t)}}\big[\gamma+d(h+r,t)-d(h&amp;rsquo;+r,t&amp;rsquo;)\big]_{+}\tag{1}
@@ -1074,7 +1074,7 @@ $$
 The loss function (1) favors lower values of the energy for training triplets than for corrupted triplets, and is thus a natural implementation of the intended criterion.&lt;/p&gt;
 
 &lt;p&gt;The optimization is carried out by stochastic gradient descent (in minibatch mode), over the possible $h$, $r$, and $t$, with the additional constraints that the $L_{2}$-norm of the embeddings of the entities is 1 (no regularization or norm constraints are given to the label embeddings $r$). This constraint is important, because it prevents the training process to trivially minimize $\mathcal{L}$ by artificially increasing entity embeddings norms. The detailed optimization procedure is described in the graph below.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/process.png&#34; alt=&#34;Process Graph&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/process.png&#34; alt=&#34;Process Graph&#34; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;transh&#34;&gt;TransH&lt;/h1&gt;
 
@@ -1088,7 +1088,7 @@ The loss function (1) favors lower values of the energy for training triplets th
 &lt;/ul&gt;
 
 &lt;p&gt;The reason leading to the above consequences is, in TransE, the representation of an entity is the same when involved in any relations, ignoring &lt;em&gt;distributed representations of entities when involved in different relations&lt;/em&gt;. Hence, TransH is proposed to handle the problems of TransE in modeling reflexive, one-to-many, many-to-one and many-to-many relations. The general idea of TransH is shown below, which introduces a &lt;strong&gt;relation-specific hyperplane&lt;/strong&gt; to project the entities to the hyperplane, and the translation process is done in such hyperplane too. For a relation $r$, the authors position the relation-specific translation vector $d_{r}$ in the relation-specific hyperplane $w_{r}$ (the normal vector) rather than in the same space of entity embeddings.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transh-graph.png&#34; alt=&#34;TransH Graph&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/transh-graph.png&#34; alt=&#34;TransH Graph&#34; /&gt;
 Specifically, for a triplet $(h,r,t)$, the embedding $h$ and $t$ are first projected to the hyperplane $w_{r}$. The projections are denoted as $h_{\bot}$ and $t_{\bot}$, respectively, while
 $$
 \begin{aligned}
@@ -1097,7 +1097,7 @@ t_{\bot} &amp;amp;=t-w_{r}^{T}tw_{r}
 \end{aligned}
 $$
 The authors expect $h_{\bot}$ and $t_{\bot}$ can be connected by a translation vector $d_{r}$ on the hyperplane with low error if $(h,r,t)$ is a golden triplet. And the graph below shows how the TransH sloves the problems in TransE.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transh-solve-problem.png&#34; alt=&#34;TransH Solve Problems&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/transh-solve-problem.png&#34; alt=&#34;TransH Solve Problems&#34; /&gt;
 Thus, in TransH, by introducing the mechanism of projecting to the relation-specific hyperplane, it enables different roles of an entity in different relations/triplets. Generally, the training process of TransH is similar to TransE, its cost function is also a margin-based ranking loss
 $$
 \mathcal{L}=\sum_{(h,r,t)\in S}\sum_{(h&amp;rsquo;,r,t&amp;rsquo;)\in S&amp;rsquo;_{(h,r,t)}}\big[f_{r}(h,t)+\gamma-f_{r&amp;rsquo;}(h&amp;rsquo;,t&amp;rsquo;)\big]_{+}\tag{4}
@@ -1134,9 +1134,9 @@ Here shows a new method to sample the corrupted triples to reduce the false.&lt;
 &lt;p&gt;TransR &amp;ndash; &lt;a href=&#34;https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9571/9523&#34; target=&#34;_blank&#34;&gt;Learning Entity and Relation Embeddings for Knowledge Graph Completion&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;TransR is proposed since the authors realize that TransH still have some limitations, since both TransE and TransH assume embeddings of entities and relations being in the same space. However, an entity may have multiple aspects, and various relations focus on different aspects of entities. Hence, it is intuitive that some entities are similar and thus close to each other in the entity space, but are &lt;strong&gt;comparably different in some specific aspects&lt;/strong&gt; and thus &lt;strong&gt;far away from each other in the corresponding relation spaces&lt;/strong&gt;.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/limitation-transh.png&#34; alt=&#34;TransH Limitations&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/limitation-transh.png&#34; alt=&#34;TransH Limitations&#34; /&gt;
 Thus, TransR models entities and relations in distinct spaces, i.e., entity space and multiple relation spaces (i.e., relation-specific entity spaces), and performs translation in the corresponding relation space. In TransR, for each triple $(h,r,t)$, entities embeddings are set as $h,t\in\mathbb{R}^{k}$, and relation embedding is set as $r\in\mathbb{R}^{d}$, while the dimensions of entity embeddings and relation embeddings are not necessarily identical. For each relation $r$, set a projection matrix $M_{r}\in\mathbb{R}^{k\times d}$ maps entities from entity space to relation space.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transr.png&#34; alt=&#34;TransR Limitations&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/transr.png&#34; alt=&#34;TransR Limitations&#34; /&gt;
 With the mapping matrix, the projected vectors of entities are computed by
 $$
 h_{r}=hM_{r},\quad t_{r}=tM_{r}
@@ -1174,7 +1174,7 @@ where $\Vert r_{c}-r\Vert_{2}^{2}$ aims to ensure cluster-specific relation vect
 &lt;/ol&gt;
 
 &lt;p&gt;To solve these flaws, TransD is proposed and its basic idea is shown in the graph below. In TransD, &lt;strong&gt;two vectors&lt;/strong&gt; are defined for each entity and relation. The first vector represents the meaning of an entity or a relation, the other one (called &lt;strong&gt;projection vector&lt;/strong&gt;) represents the way that how to project a entity embedding into a relation vector space and it will be used to construct mapping matrices. Therefore, every entity-relation pair has an unique mapping matrix. In addition, TransD has no matrix-by-vector operations which can be replaced by vectors operations.
-&lt;img src=&#34;https://isaacchanghau.github.io/img/nlp/transx/transd-graph.png&#34; alt=&#34;TransD Graph&#34; /&gt;
+&lt;img src=&#34;https://TonyBY.github.io/img/nlp/transx/transd-graph.png&#34; alt=&#34;TransD Graph&#34; /&gt;
 In the graph above, each shape represents an entity pair appearing in a triplet of relation $r$. $M_{rh}$ and $M_{rt}$ are mapping matrices of $h$ and $t$, respectively. $h_{ip}$, $t_{ip}$ ($i=1,2,3$) and $r_{p}$ are projection vectors. $h_{i\bot}$ and $t_{i\bot}$ ($i=1,2,3$) are projected vectors of entities. The projected vectors satisfy $h_{i\bot}+r\approx t_{i\bot}$ ($i=1,2,3$).&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;TransD Model&lt;/strong&gt;: each named symbol object (entities and relations) is represented by &lt;em&gt;two&lt;/em&gt; vectors. The first one captures the meaning of entity (relation), the other one is used to construct mapping matrices. For example, given a triplet $(h,r,t)$, its vectors are $h$, $h_{p}$, $r$, $r_{p}$, $t$, $t_{p}$, where subscript $p$ marks the projection vectors, $h,h_{p},t,t_{p}\in\mathbb{R}^{n}$ and $r,r_{p}\in\mathbb{R}^{m}$. For each triplet $(h,r,t)$ the authors set two mapping matrices $M_{rh},M_{rt}\in\mathbb{R}^{m\times n}$ to project entities from entity space to relation space:
@@ -1230,7 +1230,7 @@ Therefore, TransD has less calculation than TransR/CTransR, which makes it train
 
 &lt;p&gt;The Python and C++ codes of the methods above are available in the GitHub page of Natural Language Processing Lab at Tsinghua University (&lt;a href=&#34;https://github.com/thunlp&#34; target=&#34;_blank&#34;&gt;THUNLP&lt;/a&gt;).&lt;br /&gt;
 Python version: &lt;a href=&#34;https://github.com/thunlp/TensorFlow-TransX&#34; target=&#34;_blank&#34;&gt;TensorFlow-TransX&lt;/a&gt;.&lt;br /&gt;
-Converted TensorFlow-TransX for Python 2 and Tensorflow 0.12.0: &lt;a href=&#34;https://github.com/IsaacChanghau/AmusingPythonCodes/tree/master/transx&#34; target=&#34;_blank&#34;&gt;link&lt;/a&gt;.&lt;br /&gt;
+Converted TensorFlow-TransX for Python 2 and Tensorflow 0.12.0: &lt;a href=&#34;https://github.com/TonyBY/AmusingPythonCodes/tree/master/transx&#34; target=&#34;_blank&#34;&gt;link&lt;/a&gt;.&lt;br /&gt;
 C++ version: &lt;a href=&#34;https://github.com/thunlp/Fast-TransX&#34; target=&#34;_blank&#34;&gt;Fast-TransX&lt;/a&gt;, &lt;a href=&#34;https://github.com/thunlp/KB2E&#34; target=&#34;_blank&#34;&gt;KB2E&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
