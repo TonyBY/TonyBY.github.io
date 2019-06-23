@@ -1,0 +1,17 @@
+.DS_Store
+*.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
+files/thesis/bsc-thesis.pdf
+files/thesis/msc-thesis.pdf
+files/thesis/lavd.pdf
+files/achievements/acm_icpc_2012.pdf
+files/achievements/dut_learning_2011_2012.pdf
+files/achievements/dut_tech_2011_2012.pdf
+files/achievements/electrical_innovation.pdf
+files/achievements/research_assistant.pdf
+files/achievements/teaching_assistant.pdf
+files/citations/semantic-roles.bib
+.vscode
+files/achievements/outstanding_graduate.pdf
