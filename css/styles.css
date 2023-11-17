@@ -340,8 +340,8 @@ a[data-fancybox] img {
 }
 
 .home-section:nth-of-type(even) {
-  /* background-color: rgb(247, 247, 247); */
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(247, 247, 247);
+  /* background-color: rgb(255, 255, 255); */
 }
 
 @media screen and (max-width: 768px) {
