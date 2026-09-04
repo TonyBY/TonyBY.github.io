@@ -345,6 +345,10 @@ a[data-fancybox] img {
 }
 
 @media screen and (max-width: 768px) {
+  p {
+    text-align: left;
+  }
+
   .home-section {
     padding: 60px 0 60px 0;
   }

@@ -1,991 +1,206 @@
-<!-- Inspired by https://isaacchanghau.github.io/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="theme" content="hugo-academic">
-    <meta name="generator" content="Hugo 0.55.6" />
-    <meta name="author" content="Yang Bai (Tony)">
-    <meta name="description" content="Research Scientist at Meta | Ph.D. in Computer Science, University of Florida | Machine Learning, NLP, Information Retrieval">
-    <meta name="theme-color" content="#3f51b5">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="og:site_name" content="Yang Bai (Tony)">
-    <meta property="og:url" content="https://TonyBY.github.io/">
-    <meta property="og:title" content="Yang Bai (Tony)">
-    <meta property="og:description" content="Research Scientist at Meta | Ph.D. in Computer Science, University of Florida | Machine Learning, NLP, Information Retrieval">
-    <meta property="og:locale" content="en-us">
-    <meta property="og:updated_time" content="2019-06-21T00:00:00&#43;00:00">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:400,700%7cFauna&#43;One">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="alternate" hreflang="en-us" href="https://TonyBY.github.io/">
-    <link rel="alternate" href="index.xml" type="application/rss+xml" title="Yang Bai (Tony)">
-    <link rel="feed" href="index.xml" type="application/rss+xml" title="Yang Bai (Tony)">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="icon" type="image/png" href="./img/icon_gator.png">
-    <link rel="canonical" href="https://TonyBY.github.io/">
-
-    <title>Yang Bai (Tony), UF</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="Yang Bai (Tony)">
+  <meta name="description" content="Research Scientist at Meta working on machine learning, causal inference, large-scale decision systems, information retrieval, and NLP.">
+  <meta name="theme-color" content="#3f51b5">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="og:site_name" content="Yang Bai (Tony)">
+  <meta property="og:url" content="https://TonyBY.github.io/">
+  <meta property="og:title" content="Yang Bai | Research Scientist at Meta">
+  <meta property="og:description" content="Research Scientist at Meta working on machine learning, causal inference, large-scale decision systems, information retrieval, and NLP.">
+  <meta property="og:locale" content="en-us">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair%20Display:400,700%7cFauna%20One">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="icon" type="image/png" href="./img/icon_gator.png">
+  <link rel="canonical" href="https://TonyBY.github.io/">
+  <title>Yang Bai | Research Scientist at Meta</title>
 </head>
 <body>
-    <!-- Top manue bar -->
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target=".navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Yang Bai (Tony)</a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Home -->
-                        <li class="nav-item">
-                            <a href="/#about" data-target="#about">
-                                <span>Home</span>
-                            </a>
-                        </li>
-
-                    <!-- News -->
-                        <li class="nav-item">
-                            <a href="/#news" data-target="#news">
-                                <span>News</span>
-                            </a>
-                        </li>
-
-                    <!-- Work Experience -->
-                        <li class="nav-item">
-                            <a href="/#experience" data-target="#experience">
-                                <span>Experience</span>
-                            </a>
-                        </li>
-
-                    <!-- Publications -->
-                    <li class="nav-item">
-                        <a href="/#publications" data-target="#publications">
-                            <span>Publications</span>
-                        </a>
-                    </li>
-                    
-                    <!-- Projects -->
-                        <!-- <li class="nav-item">
-                        <a href="/#projects" data-target="#projects">
-                            <span>Projects</span>
-                        </a>
-                    </li> -->
-                    
-                    <!-- Posts -->
-                        <!-- <li class="nav-item">
-                        <a href="/#posts" data-target="#posts">
-                            <span>Posts</span>
-                        </a>
-                    </li> -->
-                    
-                    <!-- Publications -->
-                        <!-- <li class="nav-item">
-                        <a href="/#publications" data-target="#publications">
-                            <span>Publications</span>
-                        </a>
-                    </li> -->
-                    
-                    <!-- Tags -->
-                        <!-- <li class="nav-item">
-                        <a href="/#tags" data-target="#tags">
-                            <span>Tags</span> 
-                        </a>
-                    </li> -->
-                    
-                    <!-- Achievements -->
-                        <li class="nav-item">
-                            <a href="/#achievements" data-target="#achievements">
-                                <span>Achievements</span>
-                            </a>
-                        </li>
-                    
-                    <!-- Contact -->
-                        <li class="nav-item">
-                            <a href="/#contact" data-target="#contact">           
-                                <span>Contact</span>           
-                            </a>
-                        </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Unknown span -->
-    <span id="homepage" style="display: none"></span>
-    
-    <!-- Profile & Biography -->
-    <section id="about" class="home-section">
-        <div class="container">
-            <div class="row" itemprop="author" itemscope itemtype="http://schema.org/Person" itemref="person-email person-address">
-                <!-- Profile -->
-                <div class="col-xs-12 col-md-4">
-                    <div id="profile">
-                        <div class="portrait" style="background-image: url('./img/portrait.jpg');"></div>
-                        <meta itemprop="image" content="./img/portrait.jpg">
-                        
-                        <div class="portrait-title">
-                            <h2 itemprop="name">Yang Bai (Tony)</h2>
-                            <h3 itemprop="jobTitle">Research Scientist at Meta | Ph.D. in Computer Science, University of Florida | Machine Learning, NLP, Information Retrieval</h3>
-                            <!-- <h3 itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
-                                <a href="https://dsr.cise.ufl.edu/" target="_blank" itemprop="url" rel="noopener">
-                                    <span itemprop="name">Data Science Research Lab(DSR)</span>
-                                </a>
-                            </h3> -->
-                        </div>
-            
-                        <link itemprop="url" href="https://TonyBY.github.io/">
-                        
-                        <ul class="network-icon" aria-hidden="true">
-                            <li>
-                                <a itemprop="sameAs" href="mailto:baiyang94@ufl.edu" target="_blank" rel="noopener">
-                                    <i class="fa fa-envelope big-icon"></i>
-                                </a>
-                            </li>
-                
-                            <li>
-                                <a itemprop="sameAs" href="https://www.linkedin.com/in/yang-tony-bai-948865128/" target="_blank" rel="noopener">
-                                    <i class="fa fa-linkedin big-icon"></i>
-                                </a>
-                            </li>
-                                
-                            <li>
-                                <a itemprop="sameAs" href="https://github.com/TonyBY" target="_blank" rel="noopener">
-                                    <i class="fa fa-github big-icon"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a itemprop="sameAs" href="https://scholar.google.com/citations?user=XagJp5MAAAAJ&hl=en" target="_blank" rel="noopener">
-                                    <i class="fa fa-google big-icon"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <br>
-                        <em><a href="./files/cv/cv_2025_FTE_META_ML_Feb.pdf" target="_blank">Resume</a></em>
-                    </div>
-                </div>
-                <!-- Biography -->
-                <div class="col-xs-12 col-md-8" itemprop="description">
-                    <h2 id="biography">Biography</h2>
-                    <p align="justify"> Yang Bai is a Research Scientist at Meta, based in Menlo Park, California.
-                        Yang holds a Ph.D. in Computer Science from the University of Florida, where he conducted research under the guidance of Dr. Daisy Zhe Wang and Dr. Christan Grant. 
-                        His work primarily focused on machine learning, natural language processing, information retrieval, and retrieval-augmented multi-modal generation systems.
-                    </p>
-
-                    <p align="justify">
-                        Prior to his Ph.D., Yang earned a Master of Science (M.S.) degree in Electrical and Computer Engineering from the University of Florida in 2018 and a Bachelor's degree in Microelectronics from Sichuan University in China in 2016.
-                    </p>
-
-                    <p align="justify">
-                        With a strong passion for AI research and its real-world applications, Yang continues to explore innovative solutions at the intersection of machine learning and information retrieval. 
-                    </p>
-
-                    <!-- <p><strong>SOFTWARE PROFICIENCIES</strong><br /> -->
-                    <p><h5>SOFTWARE PROFICIENCIES</h5>
-                    <font size="2.5rem"><strong>Programming Languages</strong>: Python, Java, F#, C/C++, SQL/SPARQ, Matlab, JavaScript, HTML/CSS</font><br />
-                    <font size="2.5rem"><strong>Tools</strong>:  PyTorch, Keras, TensorFlow, Transformers, Scikit-learn, Scipy, NumPy, Pandas, Pillow, OpenCV, NLTK, Matplotlib, Seaborn, CUDA, Linux, Git, Docker, Akka.Net, OracleDatabase, JUnit, Google Test</font><br />
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- News -->
-    <section id="news" class="home-section">
-        <div class="container">
-            <div class="row">
-                <!-- <div class="col-sm-12"> -->
-                <div class="col-xs-12 col-md-4 section-heading"></div>
-                    <h3>News</h3>
-                    <ul>
-                        <li><span style="color:green">[Career]</span> <strong>[Feb 2025]</strong> I'm excited to share that I'll be joining <strong><a href="https://www.facebook.com/Meta/" data-wpel-link="internal">Meta</a></strong> as a Research Scientist, based in Menlo Park, California! Looking forward to this next chapter and the incredible opportunities ahead!</li>
-                        <li><span style="color:orange">[Paper]</span> <strong>[Jan 2025]</strong> Our paper: <strong><a href="https://www.arxiv.org/abs/2501.13297" data-wpel-link="external">RAMQA: A Unified Framework for Retrieval-Augmented Multi-Modal Question Answering</a></strong> got accepted by NAACL Findings 2025! </li>
-                        <li><span style="color:blue">[Degree]</span> <strong>[Dec 2024]</strong> Thrilled to share that I have officially earned my Ph.D. in Computer Science from the University of Florida! Grateful for the journey and everyone who supported me along the way! </li>
-                        <li><span style="color:green">[Internship]</span> <strong>[May 2024]</strong> I'm thrilled to announce that during this summer, I will be taking on the role of a Ph.D. Machine Learning Software Engineering Intern at <strong><a href="https://www.facebook.com/Meta/" data-wpel-link="internal">Meta</a></strong>! See you in New York! </li>
-                        <li><span style="color:orange">[Paper]</span> <strong>[Feb 2024]</strong> Our paper: <strong><a href="https://aclanthology.org/2024.lrec-main.947/" data-wpel-link="external">M3: A Multi-Task Mixed-Objective Learning Framework for Open-Domain Multi-Hop Dense Sentence Retrieval</a></strong> got accepted by COLING 2024! </li>
-                        <li><span style="color:orange">[Paper]</span> <strong>[Oct 2023]</strong> Our paper: <strong><a href="https://dl.acm.org/doi/abs/10.1145/3583780.3615514" data-wpel-link="external">Can Knowledge Graphs Simplify Text?</a></strong> is published in CIKM 2023. </li>
-                        <li><span style="color:orange">[Paper]</span><strong>[Jul 2023]</strong> Our paper: <strong><a href="https://dl.acm.org/doi/10.1145/3539618.3591907" data-wpel-link="external">MythQA: Query-Based Large-Scale Check-Worthy Claim Detection through Multi-Answer Open-Domain Question Answering</a></strong> is published in SIGIR 2023.</li>
-                        <li><span style="color:orange">[Paper]</span><strong>[May 2023]</strong> Our paper: <strong><a href="https://ieeexplore.ieee.org/abstract/document/10129897" data-wpel-link="external">Improving Rare Tree Species Classification Using Domain Knowledge</a></strong> is published in IEEE GEOSCIENCE AND REMOTE SENSING LETTERS, VOL. 20, 2023.</li>
-                        <li><span style="color:orangered">[Award]</span><strong>[Apr 2023]</strong>  I am delighted to announce that I have once again been awarded the <strong><a data-wpel-link="internal">Gartner Group Information Technology Scholarship</a></strong> from the CISE department at the University of Florida. Receiving this scholarship for a second time is both an honor and a reaffirmation of my dedication to the field of information technology. I'm deeply thankful for this continued support and recognition.</li>
-                        <li><span style="color:green">[Internship]</span><strong>[Jun 2022]</strong> I'm excited to share that this summer, I will be joining <strong><a href="https://www.bell-labs.com/#gref" data-wpel-link="internal">Nokia Bell Labs</a></strong> as a Machine Learning Intern supervided by Dr.Ahmet Akyamac.</li>
-                        <li><span style="color:orangered">[Award]</span><strong>[Apr 2022]</strong>  I am thrilled to share some wonderful news: I have been awarded the <strong><a data-wpel-link="internal">Gartner Group Information Technology Scholarship</a></strong>, valued at $1000, from the CISE department at the University of Florida. I am immensely grateful for this recognition and support, which will undoubtedly contribute to my academic and professional journey in the field of information technology.</li>
-                        <li><span style="color:orange">[Paper]</span><strong>[Dec 2020]</strong> Our work in <strong><a href="https://dsr.cise.ufl.edu/wp-content/uploads/2021/02/gaia_smkbp_2020.pdf" data-wpel-link="internal">GAIA at SM-KBP 2020 – A Dockerized Multi-media Multi-lingual Knowledge Extraction, Clustering, Temporal Tracking and Hypothesis Generation System</a></strong> in the DARPA AIDA program achieved top performance in the alternative hypotheses generation task.</li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Work experience -->
-    <section id="experience" class="home-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3>Work Experience</h3>
-                    <ul class="ul-edu fa-ul">         
-                        <li>
-                            <i class="fa-li fa fa-briefcase"></i>
-                            <div class="description">
-                                <details>
-                                    <summary style="display:list-item">
-                                        <span style="color:rgb(4, 49, 132)"><strong>Research Assistant </strong> | 
-                                            <font size="2.5rem">Data Science Research (DSR) Lab , University of Florida</font> 
-                                            -- <strong>Oct 2018 - Present</strong></span>
-                                        <!-- <p class="position"><strong>Research Assistant </strong> | 
-                                            <font size="2.5rem">Data Science Research (DSR) Lab , University of Florida</font> 
-                                            -- <strong>Oct 2018 - Present</strong>  
-                                        </p> -->
-                                    </summary>
-                                    <p class="institution">
-                                        <!-- AIDA Project -->
-                                        <section>
-                                            <ul>
-                                                <li>
-                                                    <details>
-                                                        <summary style="display:list-item"><strong><span style="color:rgb(4, 132, 64)">Team Lead & Individual Contributor, DARPA's AIDA Project | 2019-2022</span></strong>  </summary>
-                                                        <p><em>Active Interpretation of Disparate Alternatives</em><br>
-                                                        University of Florida</p>
-                                                        <ul>
-                                                            <li>
-                                                                <!-- <details>
-                                                                    <summary style="display:list-item"><strong>Project Overview: </strong><br>  </summary>
-                                                                    ▼
-                                                                    Played a dual role in the DARPA-sponsored "Active Interpretation of Disparate Alternatives" (AIDA) project, focusing on developing an advanced search engine for analyzing alternative hypotheses in event-centric knowledge graphs.
-                                                                </details> -->
-                                                                <strong>Project Overview: </strong><br>
-                                                                Played a dual role in the DARPA-sponsored "Active Interpretation of Disparate Alternatives" (AIDA) project, focusing on developing an advanced search engine for analyzing alternative hypotheses in event-centric knowledge graphs.
-                                                            </li>
-                                                            <li>
-                                                                <!-- <details>
-                                                                    <summary style="display:list-item"><strong>Contributions:</strong> </summary>
-                                                                    <ul>
-                                                                        <li>
-                                                                            Engineered a novel two-tier graph searching algorithm, optimizing knowledge graph exploration at both mention and cluster levels. This innovation led to a significant <strong>25%</strong> improvement in the final F1 score.
-                                                                        </li>
-                                                                        <li>
-                                                                            Developed a sophisticated graph clustering algorithm. This algorithm enhanced the differentiation of alternative hypotheses by quantifying both structural and semantic distances between candidates, resulting in a <strong>20%</strong> improvement in clustering quality (v-measure).
-                                                                        </li>
-                                                                        <li>
-                                                                            The system demonstrated exceptional performance, achieving top results in the NIST TAC SMKBP2020 evaluation, a benchmark test in knowledge-based performance.
-                                                                        </li>
-                                                                    </ul>
-                                                                </details> -->
-                                                                <strong>Contributions:</strong>
-                                                                <ul>
-                                                                    <li>
-                                                                        Engineered a novel two-tier graph searching algorithm, optimizing knowledge graph exploration at both mention and cluster levels. This innovation led to a significant <strong>25%</strong> improvement in the final F1 score.
-                                                                    </li>
-                                                                    <li>
-                                                                        Developed a sophisticated graph clustering algorithm. This algorithm enhanced the differentiation of alternative hypotheses by quantifying both structural and semantic distances between candidates, resulting in a <strong>20%</strong> improvement in clustering quality (v-measure).
-                                                                    </li>
-                                                                    <li>
-                                                                        The system demonstrated exceptional performance, achieving top results in the NIST TAC SMKBP2020 evaluation, a benchmark test in knowledge-based performance.
-                                                                    </li>
-                                                                </ul>
-                                                                
-                                                            </li>
-                                                            <!-- <li>
-                                                                <details>
-                                                                    <summary style="display:list-item"><strong>Achievements</strong> </summary>
-                                                                    The system demonstrated exceptional performance, achieving top results in the NIST TAC SMKBP2020 evaluation, a benchmark test in knowledge-based performance.
-                                                                </details>
-                                                            </li> -->
-                                                        </ul>
-                                                    </details>
-                                                </li>
-                                            </ul>
-                                        </section>
-                                        
-                                        <!-- Mort than reading comprehension Project -->
-                                        <section>
-                                            <ul>
-                                                <li>
-                                                    <details>
-                                                        <summary style="display:list-item"><strong><span style="color:rgb(4, 132, 64)">First Author, Textual QA Survey Project | 2020-2021</span></strong>  </summary>
-                                                        <p><em>"More Than Reading Comprehension: A Survey on Datasets and Metrics of Textual Question Answering 
-                                                            <a href="https://arxiv.org/abs/2109.12264" target="_blank" itemprop="url" rel="noopener">
-                                                                <span itemprop="name">(pdf)</span>
-                                                            </a>"
-                                                        </em><br>
-                                                        University of Florida</p>
-                                                        <ul>
-                                                            <li>
-                                                                <!-- <details>
-                                                                    <summary style="display:list-item"><strong>Project Overview: </strong><br> </summary>
-                                                                    Authored the comprehensive research paper titled "More Than Reading Comprehension: A Survey on Datasets and Metrics of Textual Question Answering." This research involved a thorough analysis of Textual Question Answering (QA), aiming to provide natural language answers using unstructured data, mainly focusing on machine reading comprehension (MRC).
-                                                                </details> -->
-                                                                <strong>Project Overview: </strong><br>
-                                                                Authored the comprehensive research paper titled "More Than Reading Comprehension: A Survey on Datasets and Metrics of Textual Question Answering." This research involved a thorough analysis of Textual Question Answering (QA), aiming to provide natural language answers using unstructured data, mainly focusing on machine reading comprehension (MRC).
-                                                            </li>
-                                                            <li>
-                                                                <!-- <details>
-                                                                    <summary style="display:list-item"><strong>Contributions:</strong> </summary>
-                                                                    <ul>
-                                                                        <li>
-                                                                            Developed a new taxonomy for textual QA, considering novel application scenarios.
-                                                                        </li>
-                                                                        <li>
-                                                                            Covered 7 major subtasks of textual QA, including classical MRC, four novel MRC tasks (conversational QA, multi-hop QA, long-form QA, and cross-language QA), ODQA, and commonsense QA.
-                                                                        </li>
-                                                                        <li>
-                                                                            Conducted comparative analysis across multiple facets of benchmark datasets.
-                                                                        </li>
-                                                                        <li>
-                                                                            Provided detailed statistics for each dataset and described evaluation metrics for each benchmark.
-                                                                        </li>
-                                                                        <li>
-                                                                            Addressed current trends and challenges in textual QA, suggesting directions for future research to tackle unsolved tasks and propose more challenging datasets.
-                                                                        </li>
-                                                                    </ul>
-                                                                </details> -->
-                                                                <strong>Contributions:</strong>
-                                                                <ul>
-                                                                    <li>
-                                                                        Developed a new taxonomy for textual QA, considering novel application scenarios.
-                                                                    </li>
-                                                                    <li>
-                                                                        Covered 7 major subtasks of textual QA, including classical MRC, four novel MRC tasks (conversational QA, multi-hop QA, long-form QA, and cross-language QA), ODQA, and commonsense QA.
-                                                                    </li>
-                                                                    <li>
-                                                                        Conducted comparative analysis across multiple facets of benchmark datasets.
-                                                                    </li>
-                                                                    <li>
-                                                                        Provided detailed statistics for each dataset and described evaluation metrics for each benchmark.
-                                                                    </li>
-                                                                    <li>
-                                                                        Addressed current trends and challenges in textual QA, suggesting directions for future research to tackle unsolved tasks and propose more challenging datasets.
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                            <!-- <li>
-                                                                <details>
-                                                                    <summary style="display:list-item"><strong>Impact</strong> </summary>
-                                                                    Addressed current trends and challenges in textual QA, suggesting directions for future research to tackle unsolved tasks and propose more challenging datasets.
-                                                                </details>
-                                                            </li> -->
-                                                        </ul>
-                                                    </details>
-                                                </li>
-                                            </ul>
-                                        </section>                                    
-
-                                        <!-- MythQA Project -->
-                                        <section>
-                                            <ul>
-                                                <li>
-                                                    <details>
-                                                        <summary style="display:list-item"><strong><span style="color:rgb(4, 132, 64)">MythQA Project Lead and First Author | 2021-2022</span></strong> </summary>
-                                                        <p><em>Our work is accepted by SIGIR'23 (
-                                                            <a href="https://dl.acm.org/doi/10.1145/3539618.3591907" target="_blank" itemprop="url" rel="noopener">
-                                                                <span itemprop="name">(pdf)</span>
-                                                            </a>
-                                                            )</em><br>
-                                                            University of Florida</p>
-                                                        <ul>
-                                                            <li>
-                                                                <!-- <details>
-                                                                    <summary style="display:list-item"><strong>Project Overview: </strong><br> </summary>
-                                                                    Spearheaded the "MythQA" project at the University of Florida, an innovative endeavor in the realm of machine learning. This project was centered on the development of large-scale check-worthy claim detection using multi-answer open-domain question answering (QA).
-                                                                </details> -->
-                                                                <strong>Project Overview: </strong><br>
-                                                                Spearheaded the "MythQA" project at the University of Florida, an innovative endeavor in the realm of machine learning. This project was centered on the development of large-scale check-worthy claim detection using multi-answer open-domain question answering (QA).
-                                                            </li>
-                                                            <li>
-                                                                <!-- <details>
-                                                                    <summary style="display:list-item"><strong>Contributions:</strong> </summary>
-                                                                    <ul>
-                                                                        <li>
-                                                                            Led a team in the creation of a unique benchmark dataset, utilizing advanced data collection methods via the Twitter API.
-                                                                        </li>
-                                                                        <li>
-                                                                            Innovated in the development of new evaluation metrics and a specialized data schema, tailored specifically for this project, along with detailed annotation guidelines.
-                                                                        </li>
-                                                                        <li>
-                                                                            Successfully developed and implemented a user-friendly annotation tool and a comprehensive end-to-end pipeline. 
-                                                                            This pipeline played a crucial role in assessing the impact of various components, such as information retrieval, machine reading comprehension, and distinct answer selection, significantly enhancing the project's overall performance.
-                                                                        </li>
-                                                                    </ul>
-                                                                </details> -->
-                                                                <strong>Contributions:</strong> 
-                                                                <ul>
-                                                                    <li>
-                                                                        Led a team in the creation of a unique benchmark dataset, utilizing advanced data collection methods via the Twitter API.
-                                                                    </li>
-                                                                    <li>
-                                                                        Innovated in the development of new evaluation metrics and a specialized data schema, tailored specifically for this project, along with detailed annotation guidelines.
-                                                                    </li>
-                                                                    <li>
-                                                                        Successfully developed and implemented a user-friendly annotation tool and a comprehensive end-to-end pipeline. 
-                                                                        This pipeline played a crucial role in assessing the impact of various components, such as information retrieval, machine reading comprehension, and distinct answer selection, significantly enhancing the project's overall performance.
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </details>
-                                                </li>
-                                            </ul>
-                                        </section>
-                                        
-                                        <!-- M3 Project -->
-                                        <section>
-                                            <ul>
-                                                <li>
-                                                    <details>
-                                                        <summary style="display:list-item"><strong><span style="color:rgb(4, 132, 64)">M3 Project Lead and First Author | 2022-2023</span></strong> </summary>
-                                                        <p><em>Open-Domain Multi-Hop Dense Sentence Retrieval (under submission)</em><br>
-                                                        University of Florida</p>
-                                                        <ul>
-                                                            <li>
-                                                                <!-- <details>
-                                                                    <summary style="display:list-item"><strong>Project Overview: </strong><br> </summary>
-                                                                    Contributed to the cutting-edge research paper "M3: A Multi-Task Mixed-Objective Learning Framework for Open-Domain Multi-Hop Dense Sentence Retrieval". This project aimed to enhance dense retrieval performance by merging contrastive learning with multi-task and mixed-objective learning frameworks.
-                                                                </details> -->
-                                                                <strong>Project Overview: </strong><br>
-                                                                Contributed to the cutting-edge research paper "M3: A Multi-Task Mixed-Objective Learning Framework for Open-Domain Multi-Hop Dense Sentence Retrieval". This project aimed to enhance dense retrieval performance by merging contrastive learning with multi-task and mixed-objective learning frameworks.
-                                                            </li>
-                                                            <li>
-                                                                <!-- <details>
-                                                                    <summary style="display:list-item"><strong>Contributions:</strong> </summary>
-                                                                    <ul>
-                                                                        <li>
-                                                                            Developed the M3 system, an advanced, recursive multi-hop dense sentence retrieval system using a new method for dense sentence representation learning.
-                                                                        </li>
-                                                                        <li>
-                                                                            Proposed the M3-DSR method, vastly surpassing existing benchmarks in sentence-level retrieval.
-                                                                        </li>
-                                                                        <li>
-                                                                            Introduced an innovative heuristic hybrid ranking algorithm that effectively combines single-hop and multi-hop sentence evidence, thereby improving performance.
-                                                                        </li>
-                                                                        <li>
-                                                                            Achieved groundbreaking results in multi-hop retrieval and fact verification on the FEVER dataset, setting a new standard in open-domain fact verification.
-                                                                        </li>
-                                                                    </ul>
-                                                                </details> -->
-                                                                <strong>Contributions:</strong>
-                                                                <ul>
-                                                                    <li>
-                                                                        Developed the M3 system, an advanced, recursive multi-hop dense sentence retrieval system using a new method for dense sentence representation learning.
-                                                                    </li>
-                                                                    <li>
-                                                                        Proposed the M3-DSR method, vastly surpassing existing benchmarks in sentence-level retrieval.
-                                                                    </li>
-                                                                    <li>
-                                                                        Introduced an innovative heuristic hybrid ranking algorithm that effectively combines single-hop and multi-hop sentence evidence, thereby improving performance.
-                                                                    </li>
-                                                                    <li>
-                                                                        Achieved groundbreaking results in multi-hop retrieval and fact verification on the FEVER dataset, setting a new standard in open-domain fact verification.
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                            <!-- <li>
-                                                                <details>
-                                                                    <summary style="display:list-item"><strong>Achievements</strong> </summary>
-                                                                    Achieved groundbreaking results in multi-hop retrieval and fact verification on the FEVER dataset, setting a new standard in open-domain fact verification.
-                                                                </details>
-                                                            </li> -->
-                                                            <!-- <li>
-                                                                <details>
-                                                                    <summary style="display:list-item"><strong>Impact</strong> </summary>
-                                                                    The research addressed significant challenges in retrieval performance, establishing new benchmarks in the field. Plans are in place to make the findings and methodologies publicly available upon paper acceptance.
-                                                                </details>
-                                                            </li> -->
-                                                        </ul>
-                                                    </details>
-                                                </li>
-                                            </ul>
-                                        </section>
-                                                                                    
-                                    </p>
-                                </details>
-                            </div>
-                        </li>
-
-                        <li>
-                            <i class="fa-li fa fa-briefcase"></i>
-                            <div class="description">
-                                <details>
-                                    <summary style="display:list-item">
-                                        <span style="color:rgb(4, 49, 132)">
-                                            <strong>Machine Learning Intern </strong> | 
-                                            <font size="2.5rem">Nokia Bell Labs</font> -- <strong>Jun 2022 - Aug 2022</strong>
-                                        </span>
-                                        <!-- <p class="position"><strong>Machine Learning Intern </strong> | 
-                                            <font size="2.5rem">Nokia Bell Labs</font> 
-                                            -- <strong>Jun 2022 - Aug 2022</strong>  
-                                        </p> -->
-                                    </summary>
-                                    <ul>
-                                        <li>
-                                            <!-- <details>
-                                                <summary style="display:list-item"><strong>Project Overview: </strong><br> </summary>
-                                                As a Machine Learning Intern at Nokia Bell Labs, I spearheaded the development of a retrieval-based framework to streamline the analysis of complex ticketing systems. This involved handling vast amounts of data, with each ticket containing 10-100 million log lines.
-                                            </details> -->
-                                            <strong>Project Overview: </strong><br> 
-                                            As a Machine Learning Intern at Nokia Bell Labs, I spearheaded the development of a retrieval-based framework to streamline the analysis of complex ticketing systems. This involved handling vast amounts of data, with each ticket containing 10-100 million log lines.
-                                        </li>
-                                        <li>
-                                            <!-- <details>
-                                                <summary style="display:list-item"><strong>Contributions:</strong> </summary>
-                                                <ul>
-                                                    <li>
-                                                        Implemented and proposed a system to efficiently retrieve relevant log lines from extensive log files based on ticket information.
-                                                    </li>
-                                                    <li>
-                                                        Conducted comprehensive data management tasks, including cleaning, processing, and visualizing large-scale time-series semi-structured log data.
-                                                    </li>
-                                                    <li>
-                                                        Developed an advanced dense log retrieval system by fine-tuning encoders in an contrastive learning framework.
-                                                    </li>
-                                                    <li>
-                                                        My contributions led to the creation of a model that significantly surpassed the BM25 baseline, achieving a <strong>16.1% </strong> improvement in retrieval recall.
-                                                    </li> 
-                                                </ul>
-                                            </details> -->
-                                            <strong>Contributions:</strong>
-                                            <ul>
-                                                <li>
-                                                    Implemented and proposed a system to efficiently retrieve relevant log lines from extensive log files based on ticket information.
-                                                </li>
-                                                <li>
-                                                    Conducted comprehensive data management tasks, including cleaning, processing, and visualizing large-scale time-series semi-structured log data.
-                                                </li>
-                                                <li>
-                                                    Developed an advanced dense log retrieval system by fine-tuning encoders in an contrastive learning framework.
-                                                </li>
-                                                <li>
-                                                    My contributions led to the creation of a model that significantly surpassed the BM25 baseline, achieving a <strong>16.1% </strong> improvement in retrieval recall.
-                                                </li> 
-                                            </ul>
-                                        </li>
-                                        <!-- <li>
-                                            <details>
-                                                <summary style="display:list-item"><strong>Achievements</strong> </summary>
-                                                My contributions led to the creation of a model that significantly surpassed the BM25 baseline, achieving a <strong>16.1% </strong> improvement in retrieval recall.
-                                            </details>
-                                        </li> -->
-                                    </ul>
-                                </details>
-                            </div>
-                            
-                        </li>
-                        
-                        <li>
-                            <i class="fa-li fa fa-briefcase"></i>
-                            <div class="description">
-                                <details>
-                                    <summary style="display:list-item">
-                                        <span style="color:rgb(4, 49, 132)">
-                                        <strong>Deep Learning Researcher </strong> | 
-                                            <font size="2.5rem"> Large Intelligence (Li) Lab, University of Florida </font> 
-                                            -- <strong>May 2018 - Oct 2018</strong> 
-                                        </span>
-                                        <!-- <p class="position"><strong>Deep Learning Researcher </strong> | 
-                                            <font size="2.5rem"> Large Intelligence (Li) Lab, University of Florida </font> 
-                                            -- <strong>May 2018 - Oct 2018</strong> 
-                                        </p> -->
-                                    </summary>
-                                    <p class="institution">
-                                        Research on the state-of-art deep learning technologies regarding the recommender systems in the business supervised by Dr.Andy Li. <br>
-                                        Developed a transformer-based sequential recommender system, improving recommendation accuracy by <strong>1.7%</strong>.
-                                    </p>
-                                </details>
-                            </div>
-                            
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications -->
-    <section id="publications" class="home-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3>Publications</h3>
-                    <ul> 
-                        <li>
-                            <strong><a href="https://www.arxiv.org/abs/2501.13297" data-wpel-link="external">RAMQA: A Unified Framework for Retrieval-Augmented Multi-Modal Question Answering</a></strong><br>
-                            <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, 
-                            Christan Grant, 
-                            and Daisy Zhe Wang.<br>
-                            <strong>NAACL Findings '25<strong>: The 2025 Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics. Albuquerque, New Mexico, USA. 2025</strong></strong>
-                        </li>
-                        <br>
-                        <li>
-                            <strong><a href="https://aclanthology.org/2024.lrec-main.947/" data-wpel-link="external">M3: A Multi-Task Mixed-Objective Learning Framework for Open-Domain Multi-Hop Dense Sentence Retrieval</a></strong><br>
-                            <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, 
-                            Anthony Colas, 
-                            and Daisy Zhe Wang.<br>
-                            <strong>COLING '24<strong>: The Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING). Torino, Italy. 2024.</strong></strong>
-                        </li>
-                        <br>
-                        <li>
-                            <strong><a href="https://dl.acm.org/doi/10.1145/3539618.3591907" data-wpel-link="external">MythQA: Query-Based Large-Scale Check-Worthy Claim Detection through Multi-Answer Open-Domain Question Answering</a></strong><br>
-                            <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, 
-                            Anthony Colas, 
-                            and Daisy Zhe Wang.<br>
-                            <strong>SIGIR '23<strong>: Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval</strong></strong>
-                        </li>
-                        <br>       
-                        <li>
-                            <strong><a href="https://dl.acm.org/doi/abs/10.1145/3583780.3615514#:~:text=Through%20an%20iterative%20and%20sampling,output%20fluent%20and%20descriptive%20sentences." data-wpel-link="external">Can Knowledge Graphs Simplify Text?</a></strong><br>
-                            Anthony Colas, Haodi Ma, Xuanli He, 
-                            <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, 
-                            and Daisy Zhe Wang.<br>
-                            <strong>CIKM '23</strong>: 32nd ACM International Conference on Information and Knowledge Management
-                        </li>
-                        <br>
-                        <li>
-                            <strong>
-                                <a href="https://ieeexplore.ieee.org/abstract/document/10129897" data-wpel-link="external">Improving Rare Tree Species Classification Using Domain Knowledge</a>
-                            </strong>
-                            <br>
-                            Ira Harmon , Sergio Marconi, Ben Weinstein, 
-                            <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, 
-                            Daisy Zhe Wang, 
-                            Ethan White , and Stephanie Bohlman<br />
-                            IEEE GEOSCIENCE AND REMOTE SENSING LETTERS, VOL. 20, 2023.</strong></strong>
-                        </li>
-                        <br>
-                        <li>
-                            <strong>
-                                <a href="https://arxiv.org/abs/2109.12264" data-wpel-link="external">More Than Reading Comprehension: A Survey on Datasets and Metrics of Textual Question Answering</a>
-                            </strong>
-                            <br>
-                            <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, 
-                            Daisy Zhe Wang.
-                            <br>
-                            arXiv 2021</strong></strong>
-                        </li>
-                        <br>
-                        <li>
-                            <a href="https://dsr.cise.ufl.edu/wp-content/uploads/2021/02/gaia_smkbp_2020.pdf" data-wpel-link="internal">
-                                <strong>GAIA at SM-KBP 2020 &#8211; A Dockerized Multi-media Multi-lingual Knowledge Extraction, Clustering, Temporal Tracking and Hypothesis Generation System</strong>
-                            </a>
-                            <br>
-                            Manling Li, Ying Lin, Tuan Manh Lai, Xiaoman Pan, Haoyang Wen, Sha Li, Zhenhailong Wang, Pengfei Yu, Lifu Huang, Di Lu, Qingyun Wang, Haoran Zhang, Qi Zeng, Chi Han, Zixuan Zhang, Yujia Qin, Xiaodan Hu, Nikolaus Parulian, Daniel Campos, Heng Ji, Brian Chen, Xudong Lin, Alireza Zareian, Amith Ananthram, Emily Allaway, Shih-Fu Chang, Kathleen McKeown, Yixiang Yao, Michael Spector, Mitchell DeHaven, Daniel Napierski, Marjorie Freedman, Pedro Szekely, Haidong Zhu, Ram Nevatia, 
-                            <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, 
-                            Yifan Wang, Ali Sadeghian, Haodi Ma, Daisy Zhe Wang
-                            <br>
-                            Proc. Text Analysis Conference (<strong>TAC2020</strong>).
-                        </li>
-                        <br>
-                        <li>
-                            <strong>
-                                <a href="https://dsr.cise.ufl.edu/wp-content/uploads/2020/03/gaia_smkbp_2019.pdf" data-wpel-link="internal">GAIA at SM-KBP 2019-A Multi-media Multi-lingual Knowledge Extraction and Hypothesis Generation System</a>
-                            </strong>
-                            <br>
-                            Manling Li, Ying Lin, Ananya Subburathinam, Spencer Whitehead, Xiaoman Pan, Di Lu, Qingyun Wang, Tongtao Zhang, Lifu Huang, Heng Ji, Alireza Zareian, Hassan Akbari, Brian Chen, Bo Wu, Emily Allaway, Shih-Fu Chang, Kathleen McKeown, Yixiang Yao, Jennifer Chen, Eric Berquist, Kexuan Sun, Xujun Peng, Ryan Gabbard, Marjorie Freedman, Pedro Szekely, TK Satish Kumar, Arka Sadhu, Ram Nevatia, 
-                            Miguel Rodriguez, Yifan Wang, 
-                            <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, 
-                            Ali Sadeghian, Daisy Zhe Wang
-                            <br>
-                            <em>Proc. Text Analysis Conference (<strong>TAC2019</strong>).</em>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div> 
-        </div>
-    </section>
-
-    <!-- Interests and Education -->
-    <section id="interests" class="home-section">
-        <div class="container">
-            <div class="row">
-                <!-- Interests -->
-                <div class="col-sm-5">
-                    <h3>Interests</h3>
-                    <ul class="ul-interests">
-                        <li>Machine Learning</li>
-                        <li>Natural Language Processing</li>
-                        <li>Information Retrieval</li>
-                        <li>Retrieval-Augmented Multi-Model Generation</li>
-                    </ul>
-                </div>
-                <!-- Education -->
-                <div class="col-sm-7">
-                    <h3>Education</h3>
-                    <ul class="ul-edu fa-ul">
-                        <li>
-                            <i class="fa-li fa fa-graduation-cap"></i>
-                            <div class="description">
-                                <p class="course"><strong>Ph.D. in Computer Science.</strong>, 2019-2024</p>
-                                <p class="institution">University of Florida, USA</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <i class="fa-li fa fa-graduation-cap"></i>
-                            <div class="description">
-                                <p class="course"><strong>M.Sc. in Electrical and Computing Eng.</strong>, 2016-2018</p>
-                                <p class="institution">University of Florida, USA</p>
-                            </div>
-                        </li>
-                        
-                        <li>
-                            <i class="fa-li fa fa-graduation-cap"></i>
-                            <div class="description">
-                                <p class="course"><strong>B.Sc. in Microelectronics</strong>, 2012-2016</p>
-                                <p class="institution">Sichuan University, China</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-     <!-- Achievements -->
-     <section id="achievements" class="home-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-md-4 section-heading">
-                        <h1>Achievements</h1>
-                    </div>
-                    <div class="col-xs-12 col-md-8">
-                        <p>
-                            <!-- Gartner Group Graduate Fellowship -->
-                            <p>
-                                <i class="fa fa-trophy"></i> 
-                                <strong>Gartner Group Graduate Fellowship</strong><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <font size="2.5rem">
-                                    <i class="fa fa-calendar"></i>
-                                    &nbsp;&nbsp;Apr. 2023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-map-marker"></i>
-                                    &nbsp;&nbsp;CISE Department at Univerisy of Florida&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-file"></i>
-                                    <a href="./img/fellowship2023.jpg", target="_blank">Certificate</a>
-                                </font>
-                            </p>
-
-                            <!-- Gartner Group Graduate Fellowship -->
-                            <p>
-                                <i class="fa fa-trophy"></i> 
-                                <strong>Gartner Group Graduate Fellowship</strong><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <font size="2.5rem">
-                                    <i class="fa fa-calendar"></i>
-                                    &nbsp;&nbsp;Apr. 2022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-map-marker"></i>
-                                    &nbsp;&nbsp;CISE Department at Univerisy of Florida&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-file"></i>
-                                    <a href="./img/fellowship2022.png", target="_blank">Certificate</a>
-                                </font>
-                            </p>
-                            <!-- Graph Analytics for Big Data -->
-                            <p>
-                                <i class="fa fa-trophy"></i> 
-                                <strong>Accomplished the Graph Analytics for Big Data Courses</strong><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <font size="2.5rem">
-                                    <i class="fa fa-calendar"></i>
-                                    &nbsp;&nbsp;Feb. 2019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-map-marker"></i>
-                                    &nbsp;&nbsp;UCSanDiego|Online, Coursera&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-file"></i>
-                                    <a href="https://www.coursera.org/account/accomplishments/certificate/F475KPQ9AEKU", target="_blank">Certificate</a>
-                                </font>
-                            </p>
-                            <!-- Deep Learning Specialization-->
-                            <p>
-                                <i class="fa fa-trophy"></i> 
-                                <strong>Accomplished the Deep Learning Specialization Courses</strong><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <font size="2.5rem">
-                                    <i class="fa fa-calendar"></i>
-                                    &nbsp;&nbsp;Jul. 2018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-map-marker"></i>
-                                    &nbsp;&nbsp;deeplearning.ai, Coursera&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-file"></i>
-                                    <a href="https://www.coursera.org/account/accomplishments/specialization/PV94P8A5Z43Y", target="_blank">Certificate</a>
-                                </font>
-                            </p>
-                            <!-- Machine Learning -->
-                            <p>
-                                <i class="fa fa-trophy"></i> 
-                                <strong>Accomplished the Mechine Learning Courses</strong><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <font size="2.5rem">
-                                    <i class="fa fa-calendar"></i>
-                                    &nbsp;&nbsp;Jul. 2017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-map-marker"></i>
-                                    &nbsp;&nbsp;Stanford|Online, Coursera&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-file"></i>
-                                    <a href="https://www.coursera.org/account/accomplishments/certificate/BXGD7VGR45KP", target="_blank">Certificate</a>
-                                </font>
-                            </p>
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    <!-- contact information -->
-    <section id="contact" class="home-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-4 section-heading">
-                    <h1>Contact</h1>
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <ul class="fa-ul" itemscope>
-                        <li>
-                            <i class="fa-li fa fa-envelope fa-2x" aria-hidden="true"></i>
-                            <span id="person-email" itemprop="email">
-                                <a href="mailto:tony.bai.yang@gmail.com">tony.bai.yang-at-gmail-dot-com</a>
-                            </span>
-                        </li>
-                        <li>
-                            <i class="fa-li fa fa-map-marker fa-2x" aria-hidden="true"></i>
-                            <span id="person-address" itemprop="address">1 Hacker Wy, Menlo Park, CA 94025, USA</span>
-                        <!-- </li>
-                        <br>
-                        <br>
-                        <br>
-                        <li>
-                            <a href="https://info.flagcounter.com/yG8q" class="cneter">
-                                <img src="https://s11.flagcounter.com/count2/yG8q/bg_FFFFFF/txt_000000/border_CCCCCC/columns_6/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Free counters!" border="0" class="center">
-                            </a>
-                        </li> -->
-                        <!-- <li>
-                            <i class="fa-li fa fa-clock-o fa-2x" aria-hidden="true"></i>
-                            <span>Please email for appointment.</span>
-                        </li> -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- <div class="container">
-            <div id="center-img">
-                <a href="https://info.flagcounter.com/yG8q" class="cneter">
-                    <img src="https://s11.flagcounter.com/count2/yG8q/bg_FFFFFF/txt_000000/border_CCCCCC/columns_6/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Free counters!" border="0" class="center">
-                </a>
-            </div>
-    </div> -->
-    
-     <!-- visitor information -->
-     <section id="contact" class="home-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-4 section-heading">
-                    <!-- <h1>Contact</h1> -->
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <ul class="fa-ul" itemscope>
-                        <!-- <li>
-                            <i class="fa-li fa fa-envelope fa-2x" aria-hidden="true"></i>
-                            <span id="person-email" itemprop="email">
-                                <a href="mailto:baiyang94@ufl.edu">baiyang94-at-ufl-dot-edu</a>
-                            </span>
-                        </li>
-                        <li>
-                            <i class="fa-li fa fa-map-marker fa-2x" aria-hidden="true"></i>
-                            <span id="person-address" itemprop="address">412 Newell Drive, Room 457, Gainesville, Florida, 32611, USA</span>
-                        </li> -->
-                        <br>
-                        <br>
-                        <br>
-                        <li>
-                            <a href="https://info.flagcounter.com/yG8q" class="cneter">
-                                <img src="https://s11.flagcounter.com/count2/yG8q/bg_FFFFFF/txt_000000/border_CCCCCC/columns_6/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Free counters!" border="0" class="center">
-                            </a>
-                        </li>
-                        <!-- <li>
-                            <i class="fa-li fa fa-clock-o fa-2x" aria-hidden="true"></i>
-                            <span>Please email for appointment.</span>
-                        </li> -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fotter -->
-    <footer class="site-footer">
-        <div class="container">
-            <p class="powered-by">
-                &copy; 2025-2026 &middot; 
-                <strong>Yang Bai (Tony)</strong>
-                <span class="pull-right" aria-hidden="true">
-                    <a href="#" id="back_to_top">
-                        <span class="button_icon">
-                            <i class="fa fa-chevron-up fa-2x"></i>
-                        </span>
-                    </a>
-                </span>
-            </p>
-        </div>
-    </footer>
-    
-    <!-- Unknown div -->
-    <div id="modal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Cite</h4>
-                </div>
-                <div>
-                    <pre><code class="modal-body tex"></code></pre>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
-                        <i class="fa fa-copy"></i> Copy
-                    </a>
-                    <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
-                        <i class="fa fa-download"></i> Download
-                    </a>
-                    <div id="modal-error"></div>
-                </div>
-            </div>
-        </div>
+  <nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Yang Bai (Tony)</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item"><a href="/#about" data-target="#about">Home</a></li>
+          <li class="nav-item"><a href="/#news" data-target="#news">News</a></li>
+          <li class="nav-item"><a href="/#experience" data-target="#experience">Experience</a></li>
+          <li class="nav-item"><a href="/#projects" data-target="#projects">Projects</a></li>
+          <li class="nav-item"><a href="/#publications" data-target="#publications">Publications</a></li>
+          <li class="nav-item"><a href="/#achievements" data-target="#achievements">Achievements</a></li>
+          <li class="nav-item"><a href="/#contact" data-target="#contact">Contact</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- JavaScrips -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
-    <script src="./js/hugo-academic.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/xml.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({ 
-            tex2jax: { 
-            inlineMath: [['$','$'], ['\\(','\\)']] 
-            } 
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-xAWI9i8WMRLdgksuhaMCYMTw9D+MEc2cYVBApWwGRJ0cdcywTjMovOfJnlGt9LlEQj6QzyMzpIZLMYujetPcQg==" crossorigin="anonymous"></script>
+  <section id="about" class="home-section">
+    <div class="container"><div class="row" itemprop="author" itemscope itemtype="http://schema.org/Person" itemref="person-email person-address">
+      <div class="col-xs-12 col-md-4"><div id="profile">
+        <div class="portrait" style="background-image: url('./img/portrait.jpg');"></div>
+        <meta itemprop="image" content="./img/portrait.jpg">
+        <div class="portrait-title">
+          <h2 itemprop="name">Yang Bai (Tony)</h2>
+          <h3 itemprop="jobTitle">Research Scientist at Meta | Machine Learning, Causal Inference, Large-Scale Decision Systems</h3>
+        </div>
+        <link itemprop="url" href="https://TonyBY.github.io/">
+        <ul class="network-icon" aria-label="Professional profiles">
+          <li><a href="mailto:tony.bai.yang@gmail.com"><i class="fa fa-envelope big-icon" aria-hidden="true"></i><span class="sr-only">Email</span></a></li>
+          <li><a href="https://www.linkedin.com/in/yang-tony-bai-948865128/" target="_blank" rel="noopener"><i class="fa fa-linkedin big-icon" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
+          <li><a href="https://github.com/TonyBY" target="_blank" rel="noopener"><i class="fa fa-github big-icon" aria-hidden="true"></i><span class="sr-only">GitHub</span></a></li>
+          <li><a href="https://scholar.google.com/citations?user=XagJp5MAAAAJ&amp;hl=en" target="_blank" rel="noopener"><i class="ai ai-google-scholar big-icon" aria-hidden="true"></i><span class="sr-only">Google Scholar</span></a></li>
+        </ul>
+        <br><em><a href="./files/cv/resume_YangBai_2026.pdf" target="_blank" rel="noopener">Resume</a></em>
+      </div></div>
+      <div class="col-xs-12 col-md-8" itemprop="description">
+        <h2>Biography</h2>
+        <p>Yang Bai is a Research Scientist at Meta working on large-scale machine learning and decision systems for Instagram Ads. His work spans predictive modeling, causal inference, counterfactual modeling, online experimentation, and scalable ML systems, including models trained on billions of observations and deployed in production.</p>
+        <p>He received his Ph.D. in Computer Science from the University of Florida, where his research focused on information retrieval, NLP, dense retrieval, and multimodal question answering. His publications include NAACL Findings, COLING, and SIGIR.</p>
+        <h5>SKILLS</h5>
+        <p><strong>Programming:</strong> Python, C++, Java, SQL<br>
+        <strong>Machine Learning / Research:</strong> Predictive Modeling, Deep Learning, Causal Inference, Counterfactual Modeling, Learning-to-Rank, Retrieval Systems, Online Experimentation<br>
+        <strong>Frameworks:</strong> PyTorch, TensorFlow, Transformers, Scikit-learn<br>
+        <strong>Data / Infrastructure:</strong> Spark, Linux, Docker, Distributed Training<br>
+        <strong>Domains:</strong> Information Retrieval, Ranking Systems, NLP, Multimodal Question Answering</p>
+      </div>
+    </div></div>
+  </section>
 
+  <section id="news" class="home-section">
+    <div class="container"><div class="row"><div class="col-sm-12">
+      <h3>News</h3>
+      <ul>
+        <li><span style="color:green">[Career]</span> <strong>[2025-Present]</strong> Working as a Research Scientist at Meta on large-scale machine learning and decision systems for Instagram Ads.</li>
+        <li><span style="color:orange">[Paper]</span> <strong>[Jan 2025]</strong> <a href="https://aclanthology.org/2025.findings-naacl.60/" target="_blank" rel="noopener">RAMQA</a> was accepted to NAACL Findings 2025.</li>
+        <li><span style="color:blue">[Degree]</span> <strong>[Dec 2024]</strong> Received a Ph.D. in Computer Science from the University of Florida.</li>
+        <li><span style="color:orange">[Paper]</span> <strong>[Feb 2024]</strong> <a href="https://aclanthology.org/2024.lrec-main.947/" target="_blank" rel="noopener">M3</a> was published at COLING 2024.</li>
+        <li><span style="color:orange">[Paper]</span> <strong>[Jul 2023]</strong> <a href="https://dl.acm.org/doi/10.1145/3539618.3591907" target="_blank" rel="noopener">MythQA</a> was published at SIGIR 2023.</li>
+      </ul>
+    </div></div></div>
+  </section>
+
+  <section id="experience" class="home-section">
+    <div class="container"><div class="row"><div class="col-sm-12">
+      <h3>Work Experience</h3>
+      <ul class="ul-edu fa-ul">
+        <li><i class="fa-li fa fa-briefcase"></i><div class="description">
+          <p class="course"><strong>Research Scientist | Meta</strong> &mdash; Feb 2025-Present</p>
+          <ul>
+            <li>Built large-scale engagement prediction models for Instagram Feed Ads, trained on billions of user interactions.</li>
+            <li>Designed causal inference and counterfactual models to estimate engagement sensitivity under changing ad exposure policies.</li>
+            <li>Migrated training pipelines into Meta's NRML production infrastructure and deployed models through large-scale A/B experiments.</li>
+            <li><strong>Increased Instagram Feed revenue by approximately 0.6% (~$0.6M/day) while maintaining neutral impact on top-line engagement metrics.</strong></li>
+          </ul>
+        </div></li>
+        <li><i class="fa-li fa fa-briefcase"></i><div class="description">
+          <p class="course"><strong>Machine Learning Engineer Intern | Meta</strong> &mdash; Summer 2024</p>
+          <ul>
+            <li>Built neural ranking models for Threads Search and generated synthetic relevance labels for training at scale.</li>
+            <li>Ran offline evaluations across model architectures to measure search relevance improvements.</li>
+          </ul>
+        </div></li>
+        <li><i class="fa-li fa fa-briefcase"></i><div class="description">
+          <p class="course"><strong>Machine Learning Intern | Nokia Bell Labs</strong> &mdash; Summer 2022</p>
+          <ul><li>Developed contrastive-learning dense retrieval for incident analysis spanning 10-100 million log lines per ticket, improving retrieval performance by 16.1% over BM25.</li></ul>
+        </div></li>
+        <li><i class="fa-li fa fa-briefcase"></i><div class="description">
+          <p class="course"><strong>Graduate Researcher | University of Florida</strong> &mdash; 2019-2024</p>
+          <ul>
+            <li>Developed multi-hop dense retrieval for open-domain fact verification on FEVER and built resources for multi-answer question answering.</li>
+            <li>Built event-centric knowledge graph search for DARPA AIDA; the team ranked #1 in the NIST TAC SM-KBP 2020 evaluation.</li>
+          </ul>
+        </div></li>
+      </ul>
+    </div></div></div>
+  </section>
+
+  <section id="projects" class="home-section">
+    <div class="container"><div class="row"><div class="col-sm-12">
+      <h3>Selected Research Projects</h3>
+      <ul>
+        <li><strong><a href="https://aclanthology.org/2025.findings-naacl.60/" target="_blank" rel="noopener">RAMQA</a></strong> &mdash; A unified retrieval-augmented framework for multimodal question answering. <em>NAACL Findings 2025.</em></li>
+        <li><strong><a href="https://aclanthology.org/2024.lrec-main.947/" target="_blank" rel="noopener">M3</a></strong> &mdash; A multi-task, mixed-objective framework for open-domain multi-hop dense sentence retrieval. <em>COLING 2024.</em></li>
+        <li><strong><a href="https://dl.acm.org/doi/10.1145/3539618.3591907" target="_blank" rel="noopener">MythQA</a></strong> &mdash; Query-based claim detection through multi-answer open-domain question answering. <em>SIGIR 2023.</em></li>
+        <li><strong><a href="https://dsr.cise.ufl.edu/wp-content/uploads/2021/02/gaia_smkbp_2020.pdf" target="_blank" rel="noopener">DARPA AIDA / GAIA</a></strong> &mdash; Event-centric knowledge graph search and hypothesis generation; ranked #1 in NIST TAC SM-KBP 2020.</li>
+      </ul>
+    </div></div></div>
+  </section>
+
+  <section id="publications" class="home-section">
+    <div class="container"><div class="row"><div class="col-sm-12">
+      <h3>Selected Publications</h3>
+      <ul>
+        <li><strong><a href="https://aclanthology.org/2025.findings-naacl.60/" target="_blank" rel="noopener">RAMQA: A Unified Framework for Retrieval-Augmented Multi-Modal Question Answering</a></strong><br><strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, Christan Grant, and Daisy Zhe Wang. <em>Findings of NAACL, 2025.</em></li>
+        <li><strong><a href="https://aclanthology.org/2024.lrec-main.947/" target="_blank" rel="noopener">M3: A Multi-Task Mixed-Objective Learning Framework for Open-Domain Multi-Hop Dense Sentence Retrieval</a></strong><br><strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, Anthony Colas, and Daisy Zhe Wang. <em>COLING, 2024.</em></li>
+        <li><strong><a href="https://dl.acm.org/doi/10.1145/3539618.3591907" target="_blank" rel="noopener">MythQA: Query-Based Large-Scale Check-Worthy Claim Detection through Multi-Answer Open-Domain Question Answering</a></strong><br><strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, Anthony Colas, and Daisy Zhe Wang. <em>SIGIR, 2023.</em></li>
+        <li><strong><a href="https://dl.acm.org/doi/10.1145/3583780.3615514" target="_blank" rel="noopener">Can Knowledge Graphs Simplify Text?</a></strong><br>Anthony Colas, Haodi Ma, Xuanli He, <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, and Daisy Zhe Wang. <em>CIKM, 2023.</em></li>
+        <li><strong><a href="https://ieeexplore.ieee.org/document/10129897" target="_blank" rel="noopener">Improving Rare Tree Species Classification Using Domain Knowledge</a></strong><br>Ira Harmon, Sergio Marconi, Ben Weinstein, <strong><span style="color:rgb(244, 163, 71)">Yang Bai</span></strong>, Daisy Zhe Wang, Ethan White, and Stephanie Bohlman. <em>IEEE Geoscience and Remote Sensing Letters, 2023.</em></li>
+      </ul>
+    </div></div></div>
+  </section>
+
+  <section id="interests" class="home-section">
+    <div class="container"><div class="row">
+      <div class="col-sm-5">
+        <h3>Research Interests</h3>
+        <ul class="ul-interests">
+          <li>Machine Learning and Decision Systems</li><li>Causal Inference and Experimentation</li><li>Ranking and Information Retrieval</li><li>Natural Language Processing</li><li>Multimodal Question Answering</li>
+        </ul>
+      </div>
+      <div class="col-sm-7">
+        <h3>Education</h3>
+        <ul class="ul-edu fa-ul">
+          <li><i class="fa-li fa fa-graduation-cap"></i><div class="description"><p class="course"><strong>Ph.D. in Computer Science</strong>, 2019-2024</p><p class="institution">University of Florida, USA</p></div></li>
+          <li><i class="fa-li fa fa-graduation-cap"></i><div class="description"><p class="course"><strong>M.S. in Electrical and Computer Engineering</strong>, 2016-2018</p><p class="institution">University of Florida, USA</p></div></li>
+          <li><i class="fa-li fa fa-graduation-cap"></i><div class="description"><p class="course"><strong>B.S. in Microelectronics</strong>, 2012-2016</p><p class="institution">Sichuan University, China</p></div></li>
+        </ul>
+      </div>
+    </div></div>
+  </section>
+
+  <section id="achievements" class="home-section">
+    <div class="container"><div class="row">
+      <div class="col-xs-12 col-md-4 section-heading"><h1>Achievements</h1></div>
+      <div class="col-xs-12 col-md-8">
+        <p><i class="fa fa-trophy"></i> <strong>Gartner Group Graduate Fellowship</strong><br>CISE Department, University of Florida &mdash; 2022 and 2023</p>
+        <p><i class="fa fa-trophy"></i> <strong>#1, NIST TAC SM-KBP 2020</strong><br>DARPA AIDA / GAIA alternative hypothesis generation evaluation</p>
+      </div>
+    </div></div>
+  </section>
+
+  <section id="contact" class="home-section">
+    <div class="container"><div class="row">
+      <div class="col-xs-12 col-md-4 section-heading"><h1>Contact</h1></div>
+      <div class="col-xs-12 col-md-8">
+        <ul class="fa-ul" itemscope>
+          <li><i class="fa-li fa fa-envelope fa-2x" aria-hidden="true"></i><span id="person-email" itemprop="email"><a href="mailto:tony.bai.yang@gmail.com">tony.bai.yang-at-gmail-dot-com</a></span></li>
+          <li><i class="fa-li fa fa-map-marker fa-2x" aria-hidden="true"></i><span id="person-address" itemprop="address">Menlo Park, CA</span></li>
+          <li><i class="fa-li fa fa-linkedin fa-2x" aria-hidden="true"></i><a href="https://www.linkedin.com/in/yang-tony-bai-948865128/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><i class="fa-li fa fa-github fa-2x" aria-hidden="true"></i><a href="https://github.com/TonyBY" target="_blank" rel="noopener">GitHub</a></li>
+          <li><i class="fa-li ai ai-google-scholar ai-2x" aria-hidden="true"></i><a href="https://scholar.google.com/citations?user=XagJp5MAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+        </ul>
+      </div>
+    </div></div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container"><p class="powered-by">&copy; 2025-2026 &middot; <strong>Yang Bai (Tony)</strong><span class="pull-right" aria-hidden="true"><a href="#" id="back_to_top"><i class="fa fa-chevron-up fa-2x"></i></a></span></p></div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11KraBDX6hqKojyBZs1w8WvYlsI/QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+  <script src="./js/hugo-academic.js"></script>
 </body>
 </html>
